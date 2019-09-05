@@ -3515,4 +3515,4 @@ async def dm_error(ctx, error):
 # - BOT LOGIN
 
 
-bot.run("token")
+bot.run(os.environ.get("token"))
