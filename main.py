@@ -213,7 +213,7 @@ async def on_message(message: Message):
         await message.channel.send("dm <@393839495859929089> with thigh pics for free admin aha x")
     elif message.content == "!!apply":
         await message.channel.send("Thank you for applying! Please check your DMs to complete the application.")
-    elif message.content == "no u" and message.author.id != 593090256560193549:
+    elif message.content == "no u" and message.author.id != 594131533745356804:
         await message.channel.send("no u")
     elif message.content == "glow":
         await message.channel.send("O_O")
