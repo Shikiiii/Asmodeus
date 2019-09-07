@@ -119,7 +119,7 @@ async def on_message(message: Message):
             for role in toremove:
                 await message.author.remove_roles(role)
             return
-        new_role = discord.utils.get(ctx.message.author.guild.roles, name=message.content)
+        new_role = discord.utils.get(message.author.guild.roles, name=message.content)
         if hasattr(new_role, "id"):
             toremove = []
             for role in message.author.roles:
