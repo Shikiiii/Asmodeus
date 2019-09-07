@@ -282,7 +282,12 @@ async def afk(ctx, *, reason: str):
 	#global afklist
 	user = ctx.message.author
 	oldnick = str(user.display_name)
-	await user.edit(nick="[AFK] {}".format(oldnick))
+	try:
+		await user.edit(nick="[AFK] {}".format(oldnick))
+	except:
+		embed = discord.Embed(description="Your role is higher or equal to mines, no [AFK] to your nickname.", color=0xebf533)
+		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+		await ctx.send(embed=embed)
 	if len(reason) == 0:
 		if str(ctx.message.author.id) not in afklist.keys():
 			afklist[user.id] = reason
@@ -301,7 +306,12 @@ async def afk_error(ctx, error):
 	if isinstance(error, commands.MissingRequiredArgument):
 		user = ctx.message.author
 		oldnick = str(user.display_name)
-		await user.edit(nick="[AFK] {}".format(oldnick))
+		try:
+			await user.edit(nick="[AFK] {}".format(oldnick))
+		except:
+			embed = discord.Embed(description="Your role is higher or equal to mines, no [AFK] to your nickname.", color=0xebf533)
+			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+			await ctx.send(embed=embed)
 		if str(ctx.message.author.id) not in afklist.keys():
 			afklist[user.id] = reason
 			list = ["Fapping to pornhub.com", "Fuckin yo mom", "Doin something", "Im too lazy to type what I'm afk for", "Hi"]
