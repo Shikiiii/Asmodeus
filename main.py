@@ -296,6 +296,21 @@ async def afk(ctx, *, reason: str):
 			await ctx.send("{}, I set your AFK: **{}**.".format(ctx.message.author.mention, reason))
 			#return
 
+@afk.error
+async def afk_error(ctx, error):
+	if isinstance(error, commands.MissingRequiredArgument):
+		user = ctx.message.author
+		oldnick = str(user.display_name)
+		await user.edit(nick="[AFK] {}".format(oldnick))
+		if str(ctx.message.author.id) not in afklist.keys():
+			afklist[user.id] = reason
+			list = ["Fapping to pornhub.com", "Fuckin yo mom", "Doin something", "Im too lazy to type what I'm afk for", "Hi"]
+			afkk = random.choice(list)
+			await ctx.send("{}, I set your AFK: **{}**.".format(ctx.message.author.mention, afkk))
+	else:
+		print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+		traceback.print_exception(type(error), error, None, file=sys.stderr)
+
 # - Fun Commands:
 @bot.command()
 async def help(ctx, *, mdl: str):
