@@ -1093,7 +1093,7 @@ async def thotrate_error(ctx, error):
 
 @bot.command()
 async def howlesbian(ctx, *, user: discord.Member):
-    les = random.randint(0, 100)
+    les = random.randint(0, 101)
     embed = discord.Embed(description="{} is **{}**% lesbian. <:lesbian22:612745721883656203>".format(user.mention, str(les)),
                           color=0xef42f5)
     embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -1108,7 +1108,7 @@ async def howlesbian_error(ctx, error):
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
     elif isinstance(error, commands.MissingRequiredArgument):
-        les = random.randint(0, 100)
+        les = random.randint(0, 101)
         embed = discord.Embed(
             description="{} is **{}**% lesbian. <:lesbian22:612745721883656203>".format(ctx.message.author.mention, str(les)),
             color=0xef42f5)
@@ -1291,7 +1291,7 @@ async def rate_error(ctx, error):
 
 @bot.command()
 async def howgay(ctx, *, user: discord.Member):
-    gay = random.randint(0,100)
+    gay = random.randint(0,101)
     embed = discord.Embed(description="{} is **{}**% gay. :gay_pride_flag:".format(user.mention, str(gay)), color=0xef42f5)
     embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
     embed.set_thumbnail(url=user.avatar_url)
@@ -1306,6 +1306,30 @@ async def howgay_error(ctx, error):
         await ctx.send(embed=embed)
     elif isinstance(error, commands.MissingRequiredArgument):
         embed = discord.Embed(description="Just give me a member and I'll tell you their gayness.", color=0xFF3639)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        await ctx.send(embed=embed)
+    else:
+        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+        traceback.print_exception(type(error), error, None, file=sys.stderr)
+
+@bot.command()
+async def howhot(ctx, *, user: discord.Member):
+    gay = random.randint(0,101)
+    embed = discord.Embed(description="{} is **{}**% hot. :sweat_drops:".format(user.mention, str(gay)), color=0xef42f5)
+    embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+    embed.set_thumbnail(url=user.avatar_url)
+    await ctx.send(embed=embed)
+
+@howgay.error
+async def howhot_error(ctx, error):
+    if isinstance(error, commands.BadArgument):
+        embed = discord.Embed(description="I couldn't find this member.", color=0xFF3639)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        await ctx.send(embed=embed)
+    elif isinstance(error, commands.MissingRequiredArgument):
+        embed = discord.Embed(description="Just give me a member and I'll tell you their hotness(?).", color=0xFF3639)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
