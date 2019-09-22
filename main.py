@@ -1005,9 +1005,9 @@ async def urban_error(ctx, error):
 async def penis(ctx, *, user: discord.Member):
 	sizes = ["8D", "8=D", "8==D", "8===D", "8====D", "8=====D", "8======D", "8=======D", "8========D", "8=========D", "8==========D", "8===========D", "8============D", "8=============D", "8==============D", "8===============D"]
 	if user.id == 393839495859929089:
-          size = "sorry bro, my dick so big this message can't fit it, for more info ask your mom, ily"
-        else:
-          size = random.choice(sizes)
+		size = "sorry bro, my dick so big this message can't fit it, for more info ask your mom, ily"
+	else:
+		size = random.choice(sizes)
 	embed = discord.Embed(description=f"{user}'s pee pee size \n\n{size}", color=0x000000)
 	embed.set_author(name=f"{ctx.message.author}", icon_url=ctx.message.author.avatar_url)
 	embed.set_thumbnail(url=user.avatar_url)
