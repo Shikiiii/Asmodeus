@@ -3420,7 +3420,7 @@ async def role_error(ctx, error):
 
 # - Purge Command:
 @bot.command()
-@commands.has_any_role("Chat Moderator", "Mod ˚｡⋆", "Admin ˚｡☆", "Head Admin ✧˚*:･")
+@commands.has_any_role("Chat Moderator", "Mod ˚｡⋆", "Admin ˚｡☆", "Owner")
 async def clean(ctx):
 	def check(m):
 		return m.author.bot
