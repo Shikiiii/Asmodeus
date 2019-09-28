@@ -88,9 +88,9 @@ async def on_member_join(member):
         channel4 = discord.utils.get(member.guild.channels, name="♥‿♥welcome-goodbye♥‿♥")
         await channel4.send("Welcome to **defying ღ thots**, **{}** ({}) has joined the server. We now have **{}** members.".format(member, member.mention, member.guild.member_count))
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
-	await loggg.send(f"{member} ({member.mention}, {member.id}) joined.")
+        await loggg.send(f"{member} ({member.mention}, {member.id}) joined.")
 
-	#await channel.send("Welcome {} to **e nightclub!** You’re the **{}** member. \n\n Make sure to read: {}  |  Roles: {}  |  For help:  {}.".format(member.mention, member.guild.member_count, channel2.mention, channel3.mention, channel4.mention))
+        #await channel.send("Welcome {} to **e nightclub!** You’re the **{}** member. \n\n Make sure to read: {}  |  Roles: {}  |  For help:  {}.".format(member.mention, member.guild.member_count, channel2.mention, channel3.mention, channel4.mention))
         chan = discord.utils.get(member.guild.channels, name="roles-menu")
         msg = await chan.send(f"Hi {member.mention}, check out our roles!")
         await asyncio.sleep(60)
