@@ -107,7 +107,7 @@ async def on_member_remove(member):
         channel = discord.utils.get(member.guild.channels, name="♥‿♥welcome-goodbye♥‿♥")
         await channel.send("**{}** ({}) has left the server. We now have **{}** members.".format(member, member.mention, member.guild.member_count))
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
-	await loggg.send(f"{member} ({member.mention}, {member.id}) left.")
+        await loggg.send(f"{member} ({member.mention}, {member.id}) left.")
 # EMBED MESSAGES
 
 @bot.event
