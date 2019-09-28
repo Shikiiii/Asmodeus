@@ -3574,14 +3574,14 @@ async def dm_error(ctx, error):
 @bot.command()
 async def restart(ctx):
 	await ctx.send("**Closing connection to Heroku...**")
-	await logout()
-	await clear()
+	await bot.logout()
+	await bot.clear()
 
 @bot.command()
 async def r(ctx):
 	await ctx.send("**Closing connection to Heroku...**")
-	await logout()
-	await clear()
+	await bot.logout()
+	await bot.clear()
 
 # - BOT LOGIN
 
