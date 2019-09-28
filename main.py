@@ -85,8 +85,8 @@ async def on_member_join(member):
         embed.set_author(name="{}".format(member), icon_url=member.avatar_url)
         embed.set_thumbnail(url=member.guild.icon_url)
         await channel.send("{}".format(member.mention), embed=embed)
-        channel4 = discord.utils.get(member.guild.channels, name="♥‿♥welcome-goodbye♥‿♥")
-        await channel4.send("Welcome to **defying ღ thots**, **{}** ({}) has joined the server. We now have **{}** members.".format(member, member.mention, member.guild.member_count))
+        #channel4 = discord.utils.get(member.guild.channels, name="♥‿♥welcome-goodbye♥‿♥")
+        #await channel4.send("Welcome to **defying ღ thots**, **{}** ({}) has joined the server. We now have **{}** members.".format(member, member.mention, member.guild.member_count))
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
         await loggg.send(f"{member} ({member.mention}, {member.id}) joined.")
 
@@ -104,8 +104,8 @@ async def on_member_remove(member):
     if(member.guild.id == 618048944840245248):
         mbrcnt = bot.get_channel(618054108758278170)
         await mbrcnt.edit(name="ღ MEMBERS: {}".format(member.guild.member_count))
-        channel = discord.utils.get(member.guild.channels, name="♥‿♥welcome-goodbye♥‿♥")
-        await channel.send("**{}** ({}) has left the server. We now have **{}** members.".format(member, member.mention, member.guild.member_count))
+        #channel = discord.utils.get(member.guild.channels, name="♥‿♥welcome-goodbye♥‿♥")
+        #await channel.send("**{}** ({}) has left the server. We now have **{}** members.".format(member, member.mention, member.guild.member_count))
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
         await loggg.send(f"{member} ({member.mention}, {member.id}) left.")
 # EMBED MESSAGES
