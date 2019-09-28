@@ -3574,7 +3574,7 @@ async def dm_error(ctx, error):
 @bot.command()
 async def restart(ctx):
 	await ctx.send("**Closing connection to Heroku...**")
-	await bot.logout()
+	await bot.logout(os.environ.get("token"))
 	await ctx.send("**Re-connecting to Discord...**")
 	await bot.start()
 
@@ -3582,7 +3582,7 @@ async def restart(ctx):
 async def r(ctx):
 	await ctx.send("**Closing connection to Heroku...**")
 	await ctx.send("**Re-connecting to Discord...**")
-	await bot.start()
+	await bot.start(os.environ.get("token"))
 	await bot.logout()
 
 # - BOT LOGIN
