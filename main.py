@@ -3580,10 +3580,14 @@ async def restart(ctx):
 
 @bot.command()
 async def r(ctx):
-	await ctx.send("**Closing connection to Heroku...**")
-	await ctx.send("**Re-connecting to Discord...**")
+	await ctx.send("```HEROKU\nRestarting```")
+	await ctx.send("```State changed from up to starting```")
+	await ctx.send("```Starting process with command python main.py```")
 	await bot.start(os.environ.get("token"))
 	await bot.logout()
+	await ctx.send("```State changed from starting to up```")
+	await ctx.send("```Process exited with status 0```")
+	await ctx.send("**Restarted.**")
 
 # - BOT LOGIN
 
