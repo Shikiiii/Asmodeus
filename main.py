@@ -3581,9 +3581,9 @@ async def restart(ctx):
 @bot.command()
 async def r(ctx):
 	await ctx.send("**Closing connection to Heroku...**")
-	await bot.logout()
 	await ctx.send("**Re-connecting to Discord...**")
 	await bot.start()
+	await bot.logout()
 
 # - BOT LOGIN
 
