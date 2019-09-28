@@ -3569,6 +3569,20 @@ async def dm_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
 
+# Under tests:
+
+@bot.command()
+async def restart(ctx):
+	await ctx.send("**Closing connection to Heroku...**")
+	await logout()
+	await clear()
+
+@bot.command()
+async def r(ctx):
+	await ctx.send("**Closing connection to Heroku...**")
+	await logout()
+	await clear()
+
 # - BOT LOGIN
 
 
