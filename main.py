@@ -310,7 +310,7 @@ async def survey(ctx):
         else:
             serverAv = "``2``"
         await ctx.send(f"Alright, {ctx.message.author.mention}. Thanks for taking your time to answer the surveys. Here are the current surveys:\n\n   {botAv} **BOT SURVEY**\n   {serverAv} **SERVER SURVEY**\n\nRespond with either 1 or 2.")
-	print(takenServerSurvey + " " + takenBotSurvey)
+        print(takenServerSurvey + " " + takenBotSurvey)
         msg1 = await bot.wait_for('message')
         if (msg1.content == "2") and (usr.id not in takenServerSurvey):
             surveyServer = True
