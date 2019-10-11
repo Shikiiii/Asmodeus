@@ -112,6 +112,8 @@ async def on_member_remove(member):
 
 @bot.event
 async def on_message(message: Message):
+    if message.guild is None:
+        return
     if message.channel.id == 618083681017266190:
         role_names = {"Light Red", "Light Orange", "Light Purple", "Light Yellow", "Light Cyan", "Light Blue", "Light Green", "Light Pink", "Dark Red", "Dark Blue", "Dark Purple", "Dark Pink", "Dark Red", "Crimson", "Black", "Gray", "Indigo", "Lavender", "Violet", "White", "Magenta"}
         await message.delete()
