@@ -295,7 +295,7 @@ async def survey(ctx):
     surveyServerAnswers = {}
     usr = ctx.message.author
     def check(m):
-        return m.author.id == usr.id and isinstance(message.channel, DMChannel)
+        return m.author.id == usr.id and isinstance(m.channel, DMChannel)
     if ctx.guild is None:
         if ctx.message.author.id in curBotSurvey or ctx.message.author.id in curServerSurvey:
             await ctx.send("Not gonna lie, but I think you're already taking a survey.")
