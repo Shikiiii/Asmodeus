@@ -289,8 +289,8 @@ curServerSurvey = []
 
 @bot.command()
 async def survey(ctx):
-    surveyBot = false
-    surveyServer = false
+    surveyBot = False
+    surveyServer = False
     surveyBotAnswers = {}
     surveyServerAsnwers = {}
     
@@ -309,10 +309,10 @@ async def survey(ctx):
 
         msg1 = await client.wait_for('message')
         if (msg1 == "1") and (ctx.message.author.id not in takenServerSurvey):
-            surveyBot = true
+            surveyBot = True
             curServerSurvey.append(ctx.message.author.id)
         elif (msg1 == "2") and (ctx.message.author.id not in takenBotSurvey):
-            surveyServer = true
+            surveyServer = True
             curBotSurvey.append(ctx.message.author.id)
         else:
             await usr.send("You've either already taken this survey or you didn't enter a correct number. Try again.")
