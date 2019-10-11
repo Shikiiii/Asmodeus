@@ -278,6 +278,168 @@ async def on_message_edit(before, after):
 		timestamp2 = datetime.datetime.now()
 		corfor = timestamp2.strftime("%d %b, %Y at %H:%M")
 		toeditsnipetime[before.channel.id] = timestamp2
+# BETA COMMANDS:
+takenBotSurvey = []
+takenServerSurvey = []
+curBotSurvey = []
+curServerSurvey = []
+
+@bot.command()
+async def survey(ctx):
+    surveyBot = false
+    surveyServer = false
+    surveyBotAnswers = {}
+    surveyServerAsnwers = {}
+    
+    usr = ctx.message.author
+    if ctx.guild is None:
+        if ctx.message.author.id in curBotSurvey or ctx.message.author.id in curServerSurvey:
+            await ctx.send("Not gonna lie, but I think you're already taking a survey.")
+            return
+        botAv = "``1``"
+        serverAv == "``2``"
+        if ctx.message.author.id in takenBotSurvey:
+            botAv = ":x:"
+        if ctx.message.author.id in takenServerSurvey:
+            serverAv = ":x:"
+        await ctx.send(f"Alright, {ctx.message.author.mention}. Thanks for taking your time to answer the surveys. Here are the current surveys:\n\n   {serverAv} **SERVER SURVEY**\n   {botAv} **BOT SURVEY**\n\nRespond with either 1 or 2.")
+
+        msg1 = await client.wait_for('message')
+        if msg1 == "1" and ctx.message.author.id not in takenServerSurvey:
+            surveyBot = true
+            curServerSurvey.append(ctx.message.author.id)
+        else if msg1 == "2" and ctx.message.author.id not in takenBotSurvey:
+            surveyServer = true
+            curBotSurvey.append(ctx.message.author.id)
+        else:
+            await usr.send("You've either already taken this survey or you didn't enter a correct number. Try again.")
+            return
+    if surveyBot:
+        await usr.send("You're now taking the **bot survey**. Cancel anytime using ``cancel``.")
+        await usr.send("**QUESTION 1**: What features do you currently use of the bot?")
+        msg1 = await client.wait_for('message')
+        if msg1 == "cancel":
+            await usr.send("Canceling the survey. All answers are getting wiped out...")
+            return
+        else:
+            surveyBotAnswers['answer1'] = msg1
+            
+        await usr.send("**QUESTION 2**: If you don't use the bot, what features would make you use it?")
+        msg2 = await client.wait_for('message')
+        if msg2 == "cancel":
+            await usr.send("Canceling the survey. All answers are getting wiped out...")
+            return
+        else:
+            surveyBotAnswers['answer2'] = msg2
+        await usr.send("**QUESTION 3**: What features are currently not in the bot that are required in every bot?")
+        msg3 = await client.wait_for('message')
+        if msg3 == "cancel":
+            await usr.send("Canceling the survey. All answers are getting wiped out...")
+            return
+        else:
+            surveyBotAnswers['answer3'] = msg3
+        await usr.send("**QUESTION 4**: Is the bot good enough for you to add it to your server yet?")
+        msg4 = await client.wait_for('message')
+        if msg4 == "cancel":
+            await usr.send("Canceling the survey. All answers are getting wiped out...")
+            return
+        else:
+            surveyBotAnswers['answer4'] = msg4
+        await usr.send("**QUESTION 5**: If you answered ``no`` on the previous question, what features are still required so you'd add the bot to your server?")
+        msg5 = await client.wait_for('message')
+        if msg5 == "cancel":
+            await usr.send("Canceling the survey. All answers are getting wiped out...")
+            return
+        else:
+            surveyBotAnswers['answer5'] = msg5
+        await usr.send("**QUESTION 6**: Do you think the bot's name should be changed?")
+        msg6 = await client.wait_for('message')
+        if msg6 == "cancel":
+            await usr.send("Canceling the survey. All answers are getting wiped out...")
+            return
+        else:
+            surveyBotAnswers['answer6'] = msg6
+        await usr.send("**QUESTION 7**: If the developer team makes the bot better, would you consider donating?")
+        msg7 = await client.wait_for('message')
+        if msg7 == "cancel":
+            await usr.send("Canceling the survey. All answers are getting wiped out...")
+            return
+        else:
+            surveyBotAnswers['answer7'] = msg7
+        await usr.send("**QUESTION 8**: Anything else to say?")
+        msg8 = await client.wait_for('message')
+        if msg8 == "cancel":
+            await usr.send("Canceling the survey. All answers are getting wiped out...")
+            return
+        else:
+            surveyBotAnswers['answer8'] = msg8
+            
+        await usr.send("Alright, sending your answers to the dev team. Thank you for your support.")
+        takenBotSurvey.append(usr.id)
+        shiki = await bot.fetch_user(393839495859929089)
+        await shiki.send(f"NEW BOT SURVEY TAKEN ({usr}, {usr.id}). ANSWERS:")
+        for answer in surveyBotAnswers.values():
+            shiki.send(f"{answer}\n----------------------")
+
+    if surveyServer:
+        await usr.send("You're now taking the **server survey**. Cancel anytime using ``cancel``.")
+        await usr.send("**QUESTION 1**: What do you think about the server in its current state?")
+        msg1 = await client.wait_for('message')
+        if msg1 == "cancel":
+            await usr.send("Canceling the survey. All answers are getting wiped out...")
+            return
+        else:
+            surveyServerAnswers['answer1'] = msg1
+        await usr.send("**QUESTION 2**: What do you think will speed up the server growth?")
+        msg2 = await client.wait_for('message')
+        if msg2 == "cancel":
+            await usr.send("Canceling the survey. All answers are getting wiped out...")
+            return
+        else:
+            surveyServerAnswers['answer2'] = msg2
+        await usr.send("**QUESTION 3**: What do you think will boost the server activity?")
+        msg3 = await client.wait_for('message')
+        if msg3 == "cancel":
+            await usr.send("Canceling the survey. All answers are getting wiped out...")
+            return
+        else:
+            surveyServerAnswers['answer3'] = msg3
+        await usr.send("**QUESTION 4**: What do you think about the server in its current state?")
+        msg4 = await client.wait_for('message')
+        if msg4 == "cancel":
+            await usr.send("Canceling the survey. All answers are getting wiped out...")
+            return
+        else:
+            surveyServerAnswers['answer4'] = msg4
+        await usr.send("**QUESTION 5**: Would you be active if the chat is active too?")
+        msg5 = await client.wait_for('message')
+        if msg5 == "cancel":
+            await usr.send("Canceling the survey. All answers are getting wiped out...")
+            return
+        else:
+            surveyServerAnswers['answer5'] = msg5
+        await usr.send("**QUESTION 6**: Why do people stay in a server, and what improvements to our server would make people stay in it and possible be active?")
+        msg6 = await client.wait_for('message')
+        if msg6 == "cancel":
+            await usr.send("Canceling the survey. All answers are getting wiped out...")
+            return
+        else:
+            surveyServerAnswers['answer6'] = msg6
+        await usr.send("**QUESTION 7**: Anything left to say?")
+        msg7 = await client.wait_for('message')
+        if msg7 == "cancel":
+            await usr.send("Canceling the survey. All answers are getting wiped out...")
+            return
+        else:
+            surveyServerAnswers['answer7'] = msg7
+        await usr.send("Alright, sending your answers to the server owners. Thank you for your support.")
+        takenServerSurvey.append(usr.id)
+        shiki = await bot.fetch_user(393839495859929089)
+        await shiki.send(f"NEW SERVER SURVEY TAKEN ({usr}, {usr.id}). ANSWERS:")
+        for answer in surveyBotAnswers.values():
+            shiki.send(f"{answer}\n----------------------")
+
+
 
 
 # - Afk command:
