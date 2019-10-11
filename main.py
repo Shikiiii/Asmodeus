@@ -474,7 +474,7 @@ async def survey(ctx):
         curServerSurvey.remove(usr.id)
         shiki = await bot.fetch_user(393839495859929089)
         await shiki.send(f"NEW SERVER SURVEY TAKEN ({usr}, {usr.id}). ANSWERS:")
-        for answer, value in surveyBotAnswers.items():
+        for answer, value in surveyServerAnswers.items():
             await shiki.send(f"{value}\n----------------------")
 
 
