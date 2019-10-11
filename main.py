@@ -310,14 +310,14 @@ async def survey(ctx):
         else:
             serverAv = "``2``"
         await ctx.send(f"Alright, {ctx.message.author.mention}. Thanks for taking your time to answer the surveys. Here are the current surveys:\n\n   {botAv} **BOT SURVEY**\n   {serverAv} **SERVER SURVEY**\n\nRespond with either 1 or 2.")
-
+	print(takenServerSurvey + " " + takenBotSurvey)
         msg1 = await bot.wait_for('message')
-        if (msg1 == "2") and (ctx.message.author.id not in takenServerSurvey):
-            surveyBot = True
-            curServerSurvey.append(ctx.message.author.id)
-        elif (msg1 == "1") and (ctx.message.author.id not in takenBotSurvey):
+        if (msg1 == "2") and (usr.id not in takenServerSurvey):
             surveyServer = True
-            curBotSurvey.append(ctx.message.author.id)
+            curServerSurvey.append(usr.id)
+        elif (msg1 == "1") and (usr.id not in takenBotSurvey):
+            surveyBot = True
+            curBotSurvey.append(usr.id)
         else:
             await usr.send("You've either already taken this survey or you didn't enter a correct number. Try again.")
             return
