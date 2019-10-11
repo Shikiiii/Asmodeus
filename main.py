@@ -385,7 +385,7 @@ async def survey(ctx):
         takenBotSurvey.append(usr.id)
         shiki = await bot.fetch_user(393839495859929089)
         await shiki.send(f"NEW BOT SURVEY TAKEN ({usr}, {usr.id}). ANSWERS:")
-        for answer, value in surveyBotAnswers:
+        for answer, value in surveyBotAnswers.items():
             shiki.send(f"{value}\n----------------------")
 
     if surveyServer:
@@ -443,7 +443,7 @@ async def survey(ctx):
         takenServerSurvey.append(usr.id)
         shiki = await bot.fetch_user(393839495859929089)
         await shiki.send(f"NEW SERVER SURVEY TAKEN ({usr}, {usr.id}). ANSWERS:")
-        for answer, value in surveyBotAnswers:
+        for answer, value in surveyBotAnswers.items():
             shiki.send(f"{value}\n----------------------")
 
 
