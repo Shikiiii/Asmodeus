@@ -309,6 +309,7 @@ async def survey(ctx):
             serverAv = ":x:"
         else:
             serverAv = "``2``"
+        await asyncio.sleep(1)
         await ctx.send(f"Alright, {ctx.message.author.mention}. Thanks for taking your time to answer the surveys. Here are the current surveys:\n\n   {botAv} **BOT SURVEY**\n   {serverAv} **SERVER SURVEY**\n\nRespond with either 1 or 2.")
         #print(takenServerSurvey + " " + takenBotSurvey)
         msg1 = await bot.wait_for('message')
@@ -327,6 +328,7 @@ async def survey(ctx):
         msg1 = await bot.wait_for('message')
         if msg1 == "cancel":
             await usr.send("Canceling the survey. All answers are getting wiped out...")
+            curBotSurvey.remove(usr.id)
             return
         else:
             surveyBotAnswers['answer1'] = msg1.content
@@ -335,6 +337,7 @@ async def survey(ctx):
         msg2 = await bot.wait_for('message')
         if msg2 == "cancel":
             await usr.send("Canceling the survey. All answers are getting wiped out...")
+            curBotSurvey.remove(usr.id)
             return
         else:
             surveyBotAnswers['answer2'] = msg2.content
@@ -343,6 +346,7 @@ async def survey(ctx):
         msg3 = await bot.wait_for('message')
         if msg3 == "cancel":
             await usr.send("Canceling the survey. All answers are getting wiped out...")
+            curBotSurvey.remove(usr.id)
             return
         else:
             surveyBotAnswers['answer3'] = msg3.content
@@ -351,6 +355,7 @@ async def survey(ctx):
         msg4 = await bot.wait_for('message')
         if msg4 == "cancel":
             await usr.send("Canceling the survey. All answers are getting wiped out...")
+            curBotSurvey.remove(usr.id)
             return
         else:
             surveyBotAnswers['answer4'] = msg4.content
@@ -359,6 +364,7 @@ async def survey(ctx):
         msg5 = await bot.wait_for('message')
         if msg5 == "cancel":
             await usr.send("Canceling the survey. All answers are getting wiped out...")
+            curBotSurvey.remove(usr.id)
             return
         else:
             surveyBotAnswers['answer5'] = msg5.content
@@ -367,6 +373,7 @@ async def survey(ctx):
         msg6 = await bot.wait_for('message')
         if msg6 == "cancel":
             await usr.send("Canceling the survey. All answers are getting wiped out...")
+            curBotSurvey.remove(usr.id)
             return
         else:
             surveyBotAnswers['answer6'] = msg6.content
@@ -375,6 +382,7 @@ async def survey(ctx):
         msg7 = await bot.wait_for('message')
         if msg7 == "cancel":
             await usr.send("Canceling the survey. All answers are getting wiped out...")
+            curBotSurvey.remove(usr.id)
             return
         else:
             surveyBotAnswers['answer7'] = msg7.content
@@ -383,6 +391,7 @@ async def survey(ctx):
         msg8 = await bot.wait_for('message')
         if msg8 == "cancel":
             await usr.send("Canceling the survey. All answers are getting wiped out...")
+            curBotSurvey.remove(usr.id)
             return
         else:
             surveyBotAnswers['answer8'] = msg8.content
@@ -401,6 +410,7 @@ async def survey(ctx):
         msg1 = await bot.wait_for('message')
         if msg1 == "cancel":
             await usr.send("Canceling the survey. All answers are getting wiped out...")
+            curServerSurvey.remove(usr.id)
             return
         else:
             surveyServerAnswers['answer1'] = msg1.content
@@ -409,6 +419,7 @@ async def survey(ctx):
         msg2 = await bot.wait_for('message')
         if msg2 == "cancel":
             await usr.send("Canceling the survey. All answers are getting wiped out...")
+            curServerSurvey.remove(usr.id)
             return
         else:
             surveyServerAnswers['answer2'] = msg2.content
@@ -417,6 +428,7 @@ async def survey(ctx):
         msg3 = await bot.wait_for('message')
         if msg3 == "cancel":
             await usr.send("Canceling the survey. All answers are getting wiped out...")
+            curServerSurvey.remove(usr.id)
             return
         else:
             surveyServerAnswers['answer3'] = msg3.content
@@ -425,6 +437,7 @@ async def survey(ctx):
         msg4 = await bot.wait_for('message')
         if msg4 == "cancel":
             await usr.send("Canceling the survey. All answers are getting wiped out...")
+            curServerSurvey.remove(usr.id)
             return
         else:
             surveyServerAnswers['answer4'] = msg4.content
@@ -433,6 +446,7 @@ async def survey(ctx):
         msg5 = await bot.wait_for('message')
         if msg5 == "cancel":
             await usr.send("Canceling the survey. All answers are getting wiped out...")
+            curServerSurvey.remove(usr.id)
             return
         else:
             surveyServerAnswers['answer5'] = msg5.content
@@ -441,6 +455,7 @@ async def survey(ctx):
         msg6 = await bot.wait_for('message')
         if msg6 == "cancel":
             await usr.send("Canceling the survey. All answers are getting wiped out...")
+            curServerSurvey.remove(usr.id)
             return
         else:
             surveyServerAnswers['answer6'] = msg6.content
@@ -449,6 +464,7 @@ async def survey(ctx):
         msg7 = await bot.wait_for('message')
         if msg7 == "cancel":
             await usr.send("Canceling the survey. All answers are getting wiped out...")
+            curServerSurvey.remove(usr.id)
             return
         else:
             surveyServerAnswers['answer7'] = msg7.content
