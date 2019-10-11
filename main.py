@@ -389,6 +389,7 @@ async def survey(ctx):
         await asyncio.sleep(1)
         await usr.send("Alright, sending your answers to the dev team. Thank you for your support.")
         takenBotSurvey.append(usr.id)
+        curBotSurvey.remove(usr.id)
         shiki = await bot.fetch_user(393839495859929089)
         await shiki.send(f"NEW BOT SURVEY TAKEN ({usr}, {usr.id}). ANSWERS:")
         for answer, value in surveyBotAnswers.items():
@@ -454,6 +455,7 @@ async def survey(ctx):
         await asyncio.sleep(1)
         await usr.send("Alright, sending your answers to the server owners. Thank you for your support.")
         takenServerSurvey.append(usr.id)
+        curServerSurvey.remove(usr.id)
         shiki = await bot.fetch_user(393839495859929089)
         await shiki.send(f"NEW SERVER SURVEY TAKEN ({usr}, {usr.id}). ANSWERS:")
         for answer, value in surveyBotAnswers.items():
