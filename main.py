@@ -303,12 +303,12 @@ async def survey(ctx):
         serverAv == " "
         if ctx.message.author.id in takenBotSurvey:
             botAv = ":x:"
-	else:
-		botAv == "``1``"
+        else:
+            botAv == "``1``"
         if ctx.message.author.id in takenServerSurvey:
             serverAv = ":x:"
-	else:
-		serverAv == "``2``"
+        else:
+            serverAv == "``2``"
         await ctx.send(f"Alright, {ctx.message.author.mention}. Thanks for taking your time to answer the surveys. Here are the current surveys:\n\n   {serverAv} **SERVER SURVEY**\n   {botAv} **BOT SURVEY**\n\nRespond with either 1 or 2.")
 
         msg1 = await client.wait_for('message')
