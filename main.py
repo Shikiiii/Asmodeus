@@ -292,7 +292,7 @@ async def survey(ctx):
     surveyBot = False
     surveyServer = False
     surveyBotAnswers = {}
-    surveyServerAsnwers = {}
+    surveyServerAnswers = {}
     
     usr = ctx.message.author
     if ctx.guild is None:
