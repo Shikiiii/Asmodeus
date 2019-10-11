@@ -293,8 +293,9 @@ async def survey(ctx):
     surveyServer = False
     surveyBotAnswers = {}
     surveyServerAnswers = {}
-    
     usr = ctx.message.author
+    def check(m):
+        return m.author.id == usr.id
     if ctx.guild is None:
         if ctx.message.author.id in curBotSurvey or ctx.message.author.id in curServerSurvey:
             await ctx.send("Not gonna lie, but I think you're already taking a survey.")
@@ -312,7 +313,7 @@ async def survey(ctx):
         await asyncio.sleep(1)
         await ctx.send(f"Alright, {ctx.message.author.mention}. Thanks for taking your time to answer the surveys. Here are the current surveys:\n\n   {botAv} **BOT SURVEY**\n   {serverAv} **SERVER SURVEY**\n\nRespond with either 1 or 2.")
         #print(takenServerSurvey + " " + takenBotSurvey)
-        msg1 = await bot.wait_for('message')
+        msg1 = await bot.wait_for('message', check=check)
         if (msg1.content == "2") and (usr.id not in takenServerSurvey):
             surveyServer = True
             curServerSurvey.append(usr.id)
