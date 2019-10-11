@@ -305,10 +305,10 @@ async def survey(ctx):
         await ctx.send(f"Alright, {ctx.message.author.mention}. Thanks for taking your time to answer the surveys. Here are the current surveys:\n\n   {serverAv} **SERVER SURVEY**\n   {botAv} **BOT SURVEY**\n\nRespond with either 1 or 2.")
 
         msg1 = await client.wait_for('message')
-        if msg1 == "1" and ctx.message.author.id not in takenServerSurvey:
+        if (msg1 == "1") and (ctx.message.author.id not in takenServerSurvey):
             surveyBot = true
             curServerSurvey.append(ctx.message.author.id)
-        else if msg1 == "2" and ctx.message.author.id not in takenBotSurvey:
+        elif (msg1 == "2") and (ctx.message.author.id not in takenBotSurvey):
             surveyServer = true
             curBotSurvey.append(ctx.message.author.id)
         else:
