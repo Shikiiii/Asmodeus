@@ -186,7 +186,7 @@ async def on_message(message: Message):
         embed2 = discord.Embed(color=0xFF93F0)
         await message.channel.send(embed=embed1)
     elif message.content == "info":
-        await ctx.send("Hi! I'm currently in **{}** guilds, seeing a total of **{}** users.".format(len(bot.guilds), len(bot.users)))
+        await message.channel.send("Hi! I'm currently in **{}** guilds, seeing a total of **{}** users.".format(len(bot.guilds), len(bot.users)))
     elif message.content == "invite":
         online = 0
         for member in message.guild.members:
