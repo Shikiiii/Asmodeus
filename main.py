@@ -185,6 +185,8 @@ async def on_message(message: Message):
         embed1 = discord.Embed(title="**༚ ✧˳⁺ Verification ⁺˳✧ ༚**", description="✧ - Post selfie in <#627942893448986713> with \"Shiki\" written on a piece of paper. \r\n\r\n ✧ - Verified role gives you access to <#627942990186283039> or <#627943195069775912> depends on your gender. \r\n\r\n If you're feeling uncomfortable with posting your selfie, you can DM the selfie to the owner.", color=0x000000)
         embed2 = discord.Embed(color=0xFF93F0)
         await message.channel.send(embed=embed1)
+    elif message.content == "info":
+        await ctx.send("Hi! I'm currently in **{}** guilds, seeing a total of **{}** users.".format(len(bot.guilds), len(bot.users)))
     elif message.content == "invite":
         online = 0
         for member in message.guild.members:
