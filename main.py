@@ -452,7 +452,7 @@ async def survey(ctx):
         else:
             surveyServerAnswers['answer5'] = msg5.content
         await asyncio.sleep(1)
-        await usr.send("**QUESTION 6**: Why do people stay in a server, and what improvements to our server would make people stay in it and possible be active?")
+        await usr.send("**QUESTION 6**: Why do people stay in a server, and what improvements to our server would make people stay in it and possibly be active?")
         msg6 = await bot.wait_for('message', check=check)
         if msg6.content == "cancel":
             await usr.send("Canceling the survey. All answers are getting wiped out...")
