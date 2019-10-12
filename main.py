@@ -3632,8 +3632,9 @@ async def clean(ctx):
 	def check(m):
 		return m.author.bot
 	#rr = todeln + 1
+	ctx.message.delete()
 	deleted = await ctx.message.channel.purge(limit=100, check=check)
-	embed = discord.Embed(description="Cleaned bot's messages.", color=0x000000)
+	embed = discord.Embed(description="Cleaned bots' messages.", color=0x000000)
 	embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
 	msg = await ctx.send(embed=embed)
 	await asyncio.sleep(5)
@@ -3676,7 +3677,7 @@ async def purge(ctx, amount, *, user: discord.Member):
 		msg = await ctx.send(embed=embed)
 		await asyncio.sleep(5)
 		await msg.delete()
-		logch = discord.utils.get(ctx.message.author.guild.channels, name="enightclub-logs")
+		logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
 		timestamp=datetime.datetime.now()
 		corfor = timestamp.strftime("%d %b, %Y at %H:%M")
 		log = discord.Embed(description="Used command ``!purge`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF)
