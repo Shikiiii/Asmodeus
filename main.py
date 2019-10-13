@@ -54,6 +54,7 @@ async def on_ready():
     #print("+++++++++++++++ \n" + str(guildd) + "+++++++++++++++++++")
 
     while True:
+	global msgsCounterrr
         msgsCounterrr = 0
         await asyncio.sleep(3600)
 
@@ -101,6 +102,8 @@ async def on_member_remove(member):
 
 @bot.event
 async def on_message(message: Message):
+    global msgsCounterr
+    global msgsCounterrr
     msgsCounterr += 1
     msgsCounterrr += 1
     if message.guild is None:
