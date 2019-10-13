@@ -32,6 +32,7 @@ shiki: Optional[Member] = None
 
 msgsCounterr = 0
 msgsCounterrr = 0
+allTimeMessages = 0
 	
 # bot status.
 
@@ -43,6 +44,9 @@ async def on_ready():
     global guild
     guild = bot.get_guild(618048944840245248)
 	
+    msggg = await bot.fetch_message(632905000980316180)
+    allTimeMessages = (int)msggg.content
+
     #global shiki
     #shiki = server.get_member(393839495859929089)
 
@@ -104,8 +108,10 @@ async def on_member_remove(member):
 async def on_message(message: Message):
     global msgsCounterr
     global msgsCounterrr
+    global allTimeMessages
     msgsCounterr += 1
     msgsCounterrr += 1
+    allTimeMessages += 1
     if message.guild is None:
         await bot.process_commands(message)
         return
@@ -180,7 +186,7 @@ async def on_message(message: Message):
         embed2 = discord.Embed(color=0xFF93F0)
         await message.channel.send(embed=embed1)
     elif message.content == "info":
-        await message.channel.send("Hi! I'm currently in **{}** guilds, seeing a total of **{}** users.\n**{}** messages were sent in the past hour, and **{}** messages were sent since last restart.".format(len(bot.guilds), len(bot.users), msgsCounterrr, msgsCounterr))
+        await message.channel.send("Hi! I'm currently in **{}** guilds, seeing a total of **{}** users.\n**{}** messages were sent in the past hour, and **{}** messages were sent since last restart.\n**{}** messages were sent in global (LAST RESET: 13/10/19 @ 2:55PM GTM+3)".format(len(bot.guilds), len(bot.users), msgsCounterrr, msgsCounterr, allTimeMessages))
     elif message.content == "invite":
         online = 0
         for member in message.guild.members:
@@ -226,6 +232,11 @@ async def on_message(message: Message):
         await message.channel.send("dm <@567799351368482826> for a Daddy :wink:")
 
     await bot.process_commands(message)
+
+@bot.event
+async def on_disconnect():
+	msg = await bot.fetch_message(632905000980316180)
+	msg.edit("{}".format(allTimeMessages))
 
 tosnipe = {}
 tosnipeauthors = {}
