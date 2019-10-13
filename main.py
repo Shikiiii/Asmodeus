@@ -30,6 +30,9 @@ guild: Optional[Guild] = None
 
 shiki: Optional[Member] = None
 
+msgsCounterr = 0
+msgsCounterrr = 0
+	
 # bot status.
 
 @bot.event
@@ -51,22 +54,8 @@ async def on_ready():
     #print("+++++++++++++++ \n" + str(guildd) + "+++++++++++++++++++")
 
     while True:
-        channel2 = discord.utils.get(guildd.channels, name="ღl-lounge")
-        channel = discord.utils.get(guildd.channels, name="ღhow-to-verifyღ")
-        embed2 = discord.Embed(title="Reminder:", description="You can bump the server by typing **!d bump** and help our server grow.", color=0xffffff)
-        embed2.set_thumbnail(url=guildd.icon_url)
-        embed1 = discord.Embed(title="Reminder:", description="Check out {} to get verified role.".format(channel.mention), color=0xffffff)
-        embed1.set_thumbnail(url=guildd.icon_url)
-        #try:
-        await channel2.send(embed=embed1)
-        #except:
-        #print("oh okay that broke")
-        await asyncio.sleep(float(7200))
-        #try:
-        await channel2.send(embed=embed1)
-        #except:
-        #print("oh okay, that broke 2")
-        await asyncio.sleep(float(7200))
+        msgsCounterrr = 0
+        await asyncio.sleep(3600)
 
 # welcome message
 
@@ -112,6 +101,8 @@ async def on_member_remove(member):
 
 @bot.event
 async def on_message(message: Message):
+    msgsCounterr += 1
+    msgsCounterrr += 1
     if message.guild is None:
         await bot.process_commands(message)
         return
@@ -186,7 +177,7 @@ async def on_message(message: Message):
         embed2 = discord.Embed(color=0xFF93F0)
         await message.channel.send(embed=embed1)
     elif message.content == "info":
-        await message.channel.send("Hi! I'm currently in **{}** guilds, seeing a total of **{}** users.".format(len(bot.guilds), len(bot.users)))
+        await message.channel.send("Hi! I'm currently in **{}** guilds, seeing a total of **{}** users.\n**{}** messages were sent in the past hour, and **{}** messages were sent since last restart.".format(len(bot.guilds), len(bot.users), msgsCounterrr, msgsCounterr))
     elif message.content == "invite":
         online = 0
         for member in message.guild.members:
