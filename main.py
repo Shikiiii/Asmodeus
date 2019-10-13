@@ -1,4 +1,4 @@
-# a custom bot made for the [] server by shiki, glow & zaf
+# a custom bot made for the Asmodeus server by shiki, glow & zaf
 
 # 02/09/2019 | 2020-2019
 
@@ -188,7 +188,9 @@ async def on_message(message: Message):
         embed2 = discord.Embed(color=0xFF93F0)
         await message.channel.send(embed=embed1)
     elif message.content == "info":
-        await message.channel.send("Hi! I'm currently in **{}** guilds, seeing a total of **{}** users.\n**{}** messages were sent in the past hour, and **{}** messages were sent since last restart.\n**{}** messages were sent in global (LAST RESET: 13/10/19 @ 2:55PM GTM+3)".format(len(bot.guilds), len(bot.users), msgsCounterrr, msgsCounterr, allTimeMessages))
+        await message.channel.send("Hi! I'm currently in **{}** guilds, seeing a total of **{}** users.\n
+                                    **{}** messages were sent in the past hour, and **{}** messages were sent since last restart.\n
+                                    **{}** messages were sent in global (LAST RESET: 13/10/19 @ 2:55PM GTM+3)".format(len(bot.guilds), len(bot.users), msgsCounterrr, msgsCounterr, allTimeMessages))
     elif message.content == "invite":
         online = 0
         for member in message.guild.members:
