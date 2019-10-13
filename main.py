@@ -54,7 +54,7 @@ async def on_ready():
     #print("+++++++++++++++ \n" + str(guildd) + "+++++++++++++++++++")
 
     while True:
-	global msgsCounterrr
+        global msgsCounterrr
         msgsCounterrr = 0
         await asyncio.sleep(3600)
 
