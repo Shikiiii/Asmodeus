@@ -238,7 +238,7 @@ async def on_message(message: Message):
 @bot.event
 async def on_disconnect():
 	msg = await bot.fetch_message(632905000980316180)
-	msg.edit("{}".format(allTimeMessages))
+	msg.edit(content="{}".format(allTimeMessages))
 
 tosnipe = {}
 tosnipeauthors = {}
