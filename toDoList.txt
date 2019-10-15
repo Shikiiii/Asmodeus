@@ -1,1 +1,17 @@
-
+Things to do:
+change mod commands permissions from **role** to **permission**
+change so the name of the server in every mod command displays a **string** with the name of it,instead of a preset string
+fix the global messages count
+completely recode !lockdown,leavinf 2 choices to either lock down every channel or just this channel
+make logs optional
+make an option to change the prefix for each guild
+make **info** an embed (and a command,with required permissions)
+remove useless features
+split the code into different files
+fix an empty string bug on !ship
+make so that !ship can take 1 user only too
+fix the restart command and add permissions to it 
+serverinfo and userinfo currently require roles,make them public commands
+timestamps are formatted wrongly and currently display only gtm+0 currently,change them to discord-style timestamps and make them able to track individual user's timezone.
+deleted and message logs
+detect that the author deleted their own message when someone else forefully deleted it,fix that
