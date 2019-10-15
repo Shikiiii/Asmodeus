@@ -60,7 +60,7 @@ async def on_ready():
     #print("+++++++++++++++ \n" + str(guildd) + "+++++++++++++++++++")
     while True:
         chann = bot.get_channel(633785042606489655)
-        chann.send("<@393839495859929089>")
+        await chann.send("<@393839495859929089>")
 
     while True:
         global msgsCounterrr
@@ -240,8 +240,8 @@ async def on_message(message: Message):
 
 @bot.event
 async def on_disconnect():
-	chan = await bot.get_channel(632904178100076565)
-	msg = await chan.fetch_message(632905000980316180)
+	chan = bot.get_channel(632904178100076565)
+	msg = chan.fetch_message(632905000980316180)
 	global allTimeMessages
 	await msg.edit(content="{}".format(allTimeMessages))
 		
