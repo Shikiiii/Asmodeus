@@ -25,3 +25,4 @@ add a way to choose your own welcome message and channel
 add a way to choose your own leave message and channel
 add APIs that allow to pull results from Wikipedia,Reddit,Facebook and Twitter
 remove the stupid limit from purge (seriously, remove it) 
+add **!r id** (Facebook-style reply command,reply to Discord messages) 
