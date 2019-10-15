@@ -45,8 +45,8 @@ async def on_ready():
     guild = bot.get_guild(618048944840245248)
     testguild = bot.get_guild(617866004978073620)
     thischannell = bot.get_channel(632904178100076565)
-    msggg = await thischannell.fetch_message(632905000980316180)
-    await msggg.edit("0")
+    msggg = await thischannell.fetch_message(633576140409405440)
+
     allTimeMessages = int(msggg.content)
 
     #global shiki
