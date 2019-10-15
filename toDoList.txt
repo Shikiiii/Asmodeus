@@ -16,3 +16,12 @@ timestamps are formatted wrongly and currently display only gtm+0,change them to
 deleted and message logs
 detect that the author deleted their own message when someone else forefully deleted it,to be fixed
 if the bot does not have perms to change the nickname, there's probably a return somewhere in the code, remove that from afk
+we should loop through the string of define and replace spaces with +es
+we should add a timer to afk
+add a basic economy database to store $ for each user
+add a pat and a facepalm command
+begin the music stuff
+add a way to choose your own welcome message and channel
+add a way to choose your own leave message and channel
+add APIs that allow to pull results from Wikipedia,Reddit,Facebook and Twitter
+remove the stupid limit from purge (seriously, remove it) 
