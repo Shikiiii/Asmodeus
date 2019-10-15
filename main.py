@@ -237,11 +237,11 @@ async def on_message(message: Message):
 
 @bot.event
 async def on_disconnect():
-        chan = await bot.get_channel(632904178100076565)
+	chan = await bot.get_channel(632904178100076565)
 	msg = await chan.fetch_message(632905000980316180)
-        global allTimeMessages
+	global allTimeMessages
 	await msg.edit(content="{}".format(allTimeMessages))
-
+		
 tosnipe = {}
 tosnipeauthors = {}
 tosnipetime = {}
