@@ -58,10 +58,10 @@ async def on_ready():
     await bot.wait_until_ready()
     guildd = bot.get_guild(618048944840245248)
     #print("+++++++++++++++ \n" + str(guildd) + "+++++++++++++++++++")
-    while True:
-        chann = bot.get_channel(633785042606489655)
-        await chann.send("<@393839495859929089>")
-        await asyncio.sleep(2)
+    #while True:
+        #chann = bot.get_channel(633785042606489655)
+        #await chann.send("<@393839495859929089>")
+        #await asyncio.sleep(2)
 
     while True:
         global msgsCounterrr
