@@ -73,15 +73,15 @@ async def on_ready():
 @bot.event
 async def on_member_join(member):
     if(member.guild.id == 618048944840245248):
-        rol = discord.utils.get(member.guild.roles, name="ღ Members ღ")
+        rol = discord.utils.get(member.guild.roles, name="Members 💖")
         await member.add_roles(rol)
-        mbrcnt = bot.get_channel(618054108758278170)
-        await mbrcnt.edit(name="ღ MEMBERS: {}".format(member.guild.member_count))
-        channel = discord.utils.get(member.guild.channels, name="ღl-lounge")
-        channel2 = discord.utils.get(member.guild.channels, name="♥‿♥faq♥‿♥")
-        channel3 = discord.utils.get(member.guild.channels, name="roles-menu")
-        channel4 = discord.utils.get(member.guild.channels, name="colors-menu")
-        embed = discord.Embed(description="Welcome to **[defying ღ thots](https://discord.gg/GJ5UDth)**! You're the **{}th** member. \n\n Make sure to read: {}  \n\nRoles: {} \nColors: {}.".format(member.guild.member_count, channel2.mention, channel3.mention, channel4.mention), color=0x000000)
+        mbrcnt = bot.get_channel(628144020715077642)
+        await mbrcnt.edit(name="{} LOVIES ღ".format(member.guild.member_count))
+        channel = bot.get_channel(629056727186407445)
+        channel2 = bot.get_channel(629849552215867405)
+        channel3 = bot.get_channel(628308702587518987)
+        channel4 = bot.get_channel(629061888646316032)
+        embed = discord.Embed(description="Welcome to **[Ａｓｍｏｄｅｕｓ](https://discord.gg/GJ5UDth)**! You're the **{}th** member. \n\n Make sure to read: {}  \n\nRoles: {} \nColors: {}.".format(member.guild.member_count, channel2.mention, channel3.mention, channel4.mention), color=0x000000)
         embed.set_author(name="{}".format(member), icon_url=member.avatar_url)
         embed.set_thumbnail(url=member.guild.icon_url)
         await channel.send("{}".format(member.mention), embed=embed)
@@ -91,7 +91,7 @@ async def on_member_join(member):
         await loggg.send(f"{member} ({member.mention}, {member.id}) joined.")
 
         #await channel.send("Welcome {} to **e nightclub!** You’re the **{}** member. \n\n Make sure to read: {}  |  Roles: {}  |  For help:  {}.".format(member.mention, member.guild.member_count, channel2.mention, channel3.mention, channel4.mention))
-        chan = discord.utils.get(member.guild.channels, name="roles-menu")
+        chan = bot.get_channel(628308702587518987)
         msg = await chan.send(f"Hi {member.mention}, check out our roles!")
         await asyncio.sleep(60)
         await msg.delete()
