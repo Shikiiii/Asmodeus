@@ -1,2 +1,2 @@
-# asmodeus
+# Asmodeus
 A cool bot.
