@@ -550,9 +550,6 @@ async def afk_error(ctx, error):
 @bot.command()
 async def help(ctx, *, mdl: str):
 	selfbotasmember = ctx.guild.get_member(594131533745356804)
-	modrole = discord.utils.get(ctx.message.author.guild.roles, name="Admin ･˚｡")
-	adminrole = discord.utils.get(ctx.message.author.guild.roles, name="Admin ･˚｡")
-	headadminrole = discord.utils.get(ctx.message.author.guild.roles, name="Owner")
 	print(selfbotasmember)
 	if mdl == "general":
 		embed = discord.Embed(title="Module: General", description="To view more info about a command, use ``!cmdhelp command``.", color=0x000000)
@@ -565,47 +562,29 @@ async def help(ctx, *, mdl: str):
 		embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
 		await ctx.send(embed=embed)
 	elif mdl == "mod":
-		if (adminrole in ctx.message.author.roles) or (modrole in ctx.message.author.roles) or (headadminrole in ctx.message.author.roles):
-			embed = discord.Embed(title="Module: Moderation", description="To view more info about a command, use ``!cmdhelp command``.", color=0x000000)
-			embed.add_field(name="Commands:", value="``kick``, ``mute``, ``unmute``, ``purge``, ``clean``, ``serverinfo``, ``membercount``")
-			embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
-			await ctx.send(embed=embed)
-		else:
-			embed = discord.Embed(description="You aren't permitted to see this module. Only mods and above can see it.", color=0xFF3639)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-			await ctx.send(embed=embed)
+		embed = discord.Embed(title="Module: Moderation", description="To view more info about a command, use ``!cmdhelp command``.", color=0x000000)
+		embed.add_field(name="Commands:", value="``kick``, ``mute``, ``unmute``, ``purge``, ``clean``, ``serverinfo``, ``membercount``")
+		embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
+		await ctx.send(embed=embed)
 	elif mdl == "admin":
-		if (adminrole in ctx.message.author.roles) or (headadminrole in ctx.message.author.roles):
-			embed = discord.Embed(title="Module: Administration", description="To view more info about a command, use ``!cmdhelp command``.", color=0x000000)
-			embed.add_field(name="Commands:", value="``members``, ``ban``, ``banid``, ``unban``")
-			embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
-			await ctx.send(embed=embed)
-		else:
-			embed = discord.Embed(description="You aren't permitted to see this module. Only admins and above can see it.", color=0xFF3639)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-			await ctx.send(embed=embed)
-	elif mdl == "owners":
-		if ctx.message.author.id == 514392208254959618 or ctx.message.author.id == 393839495859929089 or ctx.message.author.id == 543885407071371340:
-			embed = discord.Embed(title="Module: Owners", description="To view more info about a command, use ``!cmdhelp command``.", color=0x000000)
-			embed.add_field(name="Commands:", value="``say``, ``status``, ``verify``, ``lockdown``, ``role``, ``bots``")
-			embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
-			await ctx.send(embed=embed)
-		else:
-			embed = discord.Embed(description="You aren't permitted to see this module. Only owners (glow and Shiki) can see it.", color=0xFF3639)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-			await ctx.send(embed=embed)
+		embed = discord.Embed(title="Module: Administration", description="To view more info about a command, use ``!cmdhelp command``.", color=0x000000)
+		embed.add_field(name="Commands:", value="``members``, ``ban``, ``banid``, ``unban``, ``role``, ``bots``, ``lockdown``")
+		embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
+		await ctx.send(embed=embed)
+	elif mdl == "owners":		
+		embed = discord.Embed(title="Module: Owners", description="To view more info about a command, use ``!cmdhelp command``.", color=0x000000)
+		embed.add_field(name="Commands:", value="``say``, ``status``")
+		embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
+		await ctx.send(embed=embed)
 	else:
-		embed = discord.Embed(title="Modules:", description="``!help general`` | General Commands\n``!help fun`` | Fun Commands\n``!help mod`` | Moderation Commands\n``!help admin`` | Administration Commands\n``!help owners`` | Owners Commands", color=0x000000)
+		embed = discord.Embed(title="Modules:", description="``!help general`` | General Commands\n``!help fun`` | Fun Commands\n``!help mod`` | Moderation Commands\n``!help admin`` | Administration Commands\n``!help bot_owners`` | Bot Owners Commands", color=0x000000)
 		embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
 		await ctx.send(embed=embed)
 		
 @help.error
 async def help_error(ctx, error):
 	if isinstance(error, commands.MissingRequiredArgument):
-		embed = discord.Embed(title="Modules:", description="``!help general`` | General Commands\n``!help fun`` | Fun Commands\n``!help mod`` | Moderation Commands\n``!help admin`` | Administration Commands\n``!help owners`` | Owners Commands", color=0x000000)
+		embed = discord.Embed(title="Modules:", description="``!help general`` | General Commands\n``!help fun`` | Fun Commands\n``!help mod`` | Moderation Commands\n``!help admin`` | Administration Commands\n``!help bot_owners`` | Bot Owners Commands", color=0x000000)
 		embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
 		await ctx.send(embed=embed)
 	else:
@@ -614,9 +593,6 @@ async def help_error(ctx, error):
 		
 @bot.command()
 async def cmdhelp(ctx, *, cmd: str):
-	modrole = discord.utils.get(ctx.message.author.guild.roles, name="Admin ･˚｡")
-	adminrole = discord.utils.get(ctx.message.author.guild.roles, name="Admin ･˚｡")
-	headadminrole = discord.utils.get(ctx.message.author.guild.roles, name="Owner")
 	if(cmd == "help"):
 		embed = discord.Embed(title="!help [module]", description="Gets the help menu with the modules / of a module. It includes all commands.\n\nExample: ``!help fun``", color=0x000000)
 		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -721,175 +697,73 @@ async def cmdhelp(ctx, *, cmd: str):
 		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
 		await ctx.send(embed=embed)
 	elif(cmd == "kick"):
-		if (adminrole in ctx.message.author.roles) or (modrole in ctx.message.author.roles) or (headadminrole in ctx.message.author.roles):
-			embed = discord.Embed(title="!kick [user] [reason]", description="Kicks the user you gave.\n\nExample: ``!kick @dy idk``", color=0x000000)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			await ctx.send(embed=embed)
-		else:
-			embed = discord.Embed(description="You aren't permitted to see this command. Only mods and above can see it.", color=0xFF3639)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-			await ctx.send(embed=embed)
+		embed = discord.Embed(title="!kick [user] [reason]", description="Kicks the user you gave.\n\nExample: ``!kick @dy idk``", color=0x000000)
+		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+		await ctx.send(embed=embed)
 	elif(cmd == "mute"):
-		if (adminrole in ctx.message.author.roles) or (modrole in ctx.message.author.roles) or (headadminrole in ctx.message.author.roles):
-			embed = discord.Embed(title="!mute [user] [reason]", description="Mutes the user you gave for permanet.\n\nExample: ``!mute @Shiki idk``", color=0x000000)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			await ctx.send(embed=embed)
-		else:
-			embed = discord.Embed(description="You aren't permitted to see this command. Only mods and above can see it.", color=0xFF3639)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-			await ctx.send(embed=embed)
+		embed = discord.Embed(title="!mute [user] [reason]", description="Mutes the user you gave for permanet.\n\nExample: ``!mute @Shiki idk``", color=0x000000)
+		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+		await ctx.send(embed=embed)
 	elif(cmd == "unmute"):
-		if (adminrole in ctx.message.author.roles) or (modrole in ctx.message.author.roles) or (headadminrole in ctx.message.author.roles):
-			embed = discord.Embed(title="!unmute [user] [reason]", description="Unmutes the user you gave.\n\nExample: ``!unmute @Shiki idk``", color=0x000000)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			await ctx.send(embed=embed)
-		else:
-			embed = discord.Embed(description="You aren't permitted to see this command. Only mods and above can see it.", color=0xFF3639)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-			await ctx.send(embed=embed)
+		embed = discord.Embed(title="!unmute [user] [reason]", description="Unmutes the user you gave.\n\nExample: ``!unmute @Shiki idk``", color=0x000000)
+		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+		await ctx.send(embed=embed)
 	elif(cmd == "purge"):
-		if (adminrole in ctx.message.author.roles) or (modrole in ctx.message.author.roles) or (headadminrole in ctx.message.author.roles):
-			embed = discord.Embed(title="!purge [amount] [user]", description="Purges ``amount`` messages. User is optional. Maximum is 200.\n\nExample: ``!purge 10 @Shiki``", color=0x000000)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			await ctx.send(embed=embed)
-		else:
-			embed = discord.Embed(description="You aren't permitted to see this command. Only mods and above can see it.", color=0xFF3639)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-			await ctx.send(embed=embed)
+		embed = discord.Embed(title="!purge [amount] [user]", description="Purges ``amount`` messages. User is optional. Maximum is 200.\n\nExample: ``!purge 10 @Shiki``", color=0x000000)
+		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+		await ctx.send(embed=embed)
 	elif(cmd == "clean"):
-		if (adminrole in ctx.message.author.roles) or (modrole in ctx.message.author.roles) or (headadminrole in ctx.message.author.roles):
-			embed = discord.Embed(title="!clean", description="Cleans up to 100 of the bot's messages in this channel.", color=0x000000)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			await ctx.send(embed=embed)
-		else:
-			embed = discord.Embed(description="You aren't permitted to see this command. Only mods and above can see it.", color=0xFF3639)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-			await ctx.send(embed=embed)
+		embed = discord.Embed(title="!clean", description="Cleans up to 100 of the bot's messages in this channel.", color=0x000000)
+		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+		await ctx.send(embed=embed)
 	elif(cmd == "serverinfo"):
-		if (adminrole in ctx.message.author.roles) or (modrole in ctx.message.author.roles) or (headadminrole in ctx.message.author.roles):
-			embed = discord.Embed(title="!serverinfo", description="Shows the server info.", color=0x000000)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			await ctx.send(embed=embed)
-		else:
-			embed = discord.Embed(description="You aren't permitted to see this command. Only mods and above can see it.", color=0xFF3639)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-			await ctx.send(embed=embed)
+		embed = discord.Embed(title="!serverinfo", description="Shows the server info.", color=0x000000)
+		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+		await ctx.send(embed=embed)
 	elif(cmd == "membercount"):
-		if (adminrole in ctx.message.author.roles) or (modrole in ctx.message.author.roles) or (headadminrole in ctx.message.author.roles):
-			embed = discord.Embed(title="!membercount", description="Shows the member count of the server.", color=0x000000)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			await ctx.send(embed=embed)
-		else:
-			embed = discord.Embed(description="You aren't permitted to see this command. Only mods and above can see it.", color=0xFF3639)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-			await ctx.send(embed=embed)
+		embed = discord.Embed(title="!membercount", description="Shows the member count of the server.", color=0x000000)
+		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+		await ctx.send(embed=embed)
 	elif(cmd == "members"):
-		if (adminrole in ctx.message.author.roles) or (headadminrole in ctx.message.author.roles):
-			embed = discord.Embed(title="!members [role]", description="Shows the members that have the given role.\n\nExample: ``!members owner``", color=0x000000)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			await ctx.send(embed=embed)
-		else:
-			embed = discord.Embed(description="You aren't permitted to see this command. Only admins and above can see it.", color=0xFF3639)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-			await ctx.send(embed=embed)
+		embed = discord.Embed(title="!members [role]", description="Shows the members that have the given role.\n\nExample: ``!members owner``", color=0x000000)
+		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+		await ctx.send(embed=embed)
 	elif(cmd == "ban"):
-		if (adminrole in ctx.message.author.roles) or (headadminrole in ctx.message.author.roles):
-			embed = discord.Embed(title="!ban [user] [reason]", description="Bans the given user.\n\nExample: ``!ban @dy idk``", color=0x000000)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			await ctx.send(embed=embed)
-		else:
-			embed = discord.Embed(description="You aren't permitted to see this command. Only admins and above can see it.", color=0xFF3639)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-			await ctx.send(embed=embed)
+		embed = discord.Embed(title="!ban [user] [reason]", description="Bans the given user.\n\nExample: ``!ban @dy idk``", color=0x000000)
+		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+		await ctx.send(embed=embed)
 	elif(cmd == "banid"):
-		if (adminrole in ctx.message.author.roles) or (headadminrole in ctx.message.author.roles):
-			embed = discord.Embed(title="!banid [id]", description="Bans a user that's not in the server using their ID.\n\nExample: ``!banid 395802215190888498``", color=0x000000)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			await ctx.send(embed=embed)
-		else:
-			embed = discord.Embed(description="You aren't permitted to see this command. Only admins and above can see it.", color=0xFF3639)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-			await ctx.send(embed=embed)
+		embed = discord.Embed(title="!banid [id]", description="Bans a user that's not in the server using their ID.\n\nExample: ``!banid 395802215190888498``", color=0x000000)
+		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+		await ctx.send(embed=embed)
 	elif(cmd == "unban"):
-		if (adminrole in ctx.message.author.roles) or (headadminrole in ctx.message.author.roles):
-			embed = discord.Embed(title="!unban [id]", description="Unbans the given user with their ID.\n\nExample: ``!unban 395802215190888498``", color=0x000000)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			await ctx.send(embed=embed)
-		else:
-			embed = discord.Embed(description="You aren't permitted to see this command. Only admins and above can see it.", color=0xFF3639)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-			await ctx.send(embed=embed)
+		embed = discord.Embed(title="!unban [id]", description="Unbans the given user with their ID.\n\nExample: ``!unban 395802215190888498``", color=0x000000)
+		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+		await ctx.send(embed=embed)
 	elif(cmd == "status"):
-		if ctx.message.author.id == 495680416422821888 or ctx.message.author.id == 393839495859929089:
-			embed = discord.Embed(title="!status [o/i/d] [p/w/l] [message]", description="Changes the bot's status. Online, idle or do not disturb. Playing, watching or listening to.\n\nExample: ``!status o w you sleep.``", color=0x000000)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			await ctx.send(embed=embed)
-		else:
-			embed = discord.Embed(description="You aren't permitted to see this command. Only owners are allowed to see it.", color=0xFF3639)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-			await ctx.send(embed=embed)
-	elif(cmd == "verify"):
-		if ctx.message.author.id == 495680416422821888 or ctx.message.author.id == 393839495859929089:
-			embed = discord.Embed(title="!verify [user] [male/female]", description="Verifies the user to either male or female.\nAlias: ``!v``\n\nExample: ``!verify @dy m``", color=0x000000)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			await ctx.send(embed=embed)
-		else:
-			embed = discord.Embed(description="You aren't permitted to see this command. Only owners are allowed to see it.", color=0xFF3639)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-			await ctx.send(embed=embed)
+		embed = discord.Embed(title="!status [o/i/d] [p/w/l] [message]", description="Changes the bot's status. Online, idle or do not disturb. Playing, watching or listening to.\n\nExample: ``!status o w you sleep.``", color=0x000000)
+		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+		await ctx.send(embed=embed)
+	#elif(cmd == "verify"):
+	#		embed = discord.Embed(title="!verify [user] [male/female]", description="Verifies the user to either male or female.\nAlias: ``!v``\n\nExample: ``!verify @dy m``", color=0x000000)
+	#		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+	#		await ctx.send(embed=embed)
 	elif(cmd == "lockdown"):
-		if ctx.message.author.id == 495680416422821888 or ctx.message.author.id == 393839495859929089:
-			embed = discord.Embed(title="!lockdown", description="Locks the channel where the message was sent in. To unlock, type !lockdown again.", color=0x000000)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			await ctx.send(embed=embed)
-		else:
-			embed = discord.Embed(description="You aren't permitted to see this command. Only owners are allowed to see it.", color=0xFF3639)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-			await ctx.send(embed=embed)
+		embed = discord.Embed(title="!lockdown", description="Locks the channel where the message was sent in. To unlock, type !lockdown again.", color=0x000000)
+		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+		await ctx.send(embed=embed)
 	elif(cmd == "role"):
-		if ctx.message.author.id == 495680416422821888 or ctx.message.author.id == 393839495859929089:
-			embed = discord.Embed(title="!role [user] [role]", description="Gives/Removes the given role to/from the given user.\n\nExample: ``!role @Shiki retard``", color=0x000000)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			await ctx.send(embed=embed)
-		else:
-			embed = discord.Embed(description="You aren't permitted to see this command. Only owners are allowed to see it.", color=0xFF3639)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-			await ctx.send(embed=embed)
+		embed = discord.Embed(title="!role [user] [role]", description="Gives/Removes the given role to/from the given user.\n\nExample: ``!role @Shiki retard``", color=0x000000)
+		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+		await ctx.send(embed=embed)
 	elif(cmd == "say"):
-		if ctx.message.author.id == 495680416422821888 or ctx.message.author.id == 393839495859929089:
-			embed = discord.Embed(title="!say [channel] [message]", description="The bot says whatever the [message] is. Channel is optional.\n\nExample: ``!say #asd asd``", color=0x000000)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			await ctx.send(embed=embed)
-		else:
-			embed = discord.Embed(description="You aren't permitted to see this command. Only owners are allowed to see it.", color=0xFF3639)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-			await ctx.send(embed=embed)
+		embed = discord.Embed(title="!say [channel] [message]", description="The bot says whatever the [message] is. Channel is optional.\n\nExample: ``!say #asd asd``", color=0x000000)
+		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+		await ctx.send(embed=embed)
 	elif(cmd == "bots"):
-		if ctx.message.author.id == 495680416422821888 or ctx.message.author.id == 393839495859929089:
-			embed = discord.Embed(title="!bots", description="Lists all the bots in the server.", color=0x000000)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			await ctx.send(embed=embed)
-		else:
-			embed = discord.Embed(description="You aren't permitted to see this command. Only owners can see it.", color=0xFF3639)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-			await ctx.send(embed=embed)
+		embed = discord.Embed(title="!bots", description="Lists all the bots in the server.", color=0x000000)
+		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+		await ctx.send(embed=embed)
 	else:
 			embed = discord.Embed(description="This isn't a valid command.", color=0xFF3639)
 			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -898,9 +772,6 @@ async def cmdhelp(ctx, *, cmd: str):
 
 @bot.command()
 async def nick(ctx, user: discord.Member, *, msg: str):
-	role3 = discord.utils.get(ctx.message.author.guild.roles, name="Admin ･˚｡")
-	role4 = discord.utils.get(ctx.message.author.guild.roles, name="Owner")
-	role5 = discord.utils.get(ctx.message.author.guild.roles, name="Co Owner")
 	if ctx.message.author.id == user.id:
 		try:
 			await ctx.message.author.edit(nick="{}".format(msg))
@@ -914,19 +785,18 @@ async def nick(ctx, user: discord.Member, *, msg: str):
 		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
 		embed.set_thumbnail(url=user.avatar_url)
 		await ctx.send(embed=embed)
-	elif ((role1 or role2 or role3 or role4 or role5) in ctx.message.author.roles):
-		try:
-			await user.edit(nick="{}".format(msg))
-		except:
-			embed = discord.Embed(description="Their role is higher or equal to mines, can't change their nickname.", color=0xFF3639)
-			embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-			embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-			await ctx.send(embed=embed)
-			return
-		embed = discord.Embed(description="Changed {}'s nickname to **{}**.".format(user.mention, msg), color=0x000000)
-		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-		embed.set_thumbnail(url=user.avatar_url)
-		await ctx.send(embed=embed)
+	#elif ((role1 or role2 or role3 or role4 or role5) in ctx.message.author.roles):
+	#	try:
+	#		await user.edit(nick="{}".format(msg))
+	#	except:
+	#		embed = discord.Embed(description="Their role is higher or equal to mines, can't change their nickname.", color=0xFF3639)
+	#		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+	##		await ctx.send(embed=embed)
+	#		return
+	#	embed = discord.Embed(description="Changed {}'s nickname to **{}**.".format(user.mention, msg), color=0x000000)
+	#	embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+	#	embed.set_thumbnail(url=user.avatar_url)
+	#	await ctx.send(embed=embed)
 	else:
 		embed = discord.Embed(description="You can only change your own nickname with your current permissions.", color=0xFF3639)
 		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
