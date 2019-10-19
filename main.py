@@ -121,6 +121,9 @@ async def on_message(message: Message):
     if message.guild is None:
         await bot.process_commands(message)
         return
+    if message.content == "/get bot_invite":
+        embed = discord.Embed(description="You can invite me from [here](https://discordapp.com/oauth2/authorize?client_id=594131533745356804&scope=bot&permissions=477752407)!")
+        await message.channel.send(embed=embed)
     if message.channel.id == 629061888646316032:
         role_names = {"Light Red", "Light Orange", "Light Purple", "Light Yellow", "Light Cyan", "Light Blue", "Light Green", "Light Pink", "Dark Red", "Dark Blue", "Dark Purple", "Dark Pink", "Dark Red", "Crimson", "Black", "Gray", "Indigo", "Lavender", "Violet", "White", "Magenta"}
         await message.delete()
