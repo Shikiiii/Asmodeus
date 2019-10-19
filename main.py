@@ -72,7 +72,7 @@ async def on_ready():
 
 @bot.event
 async def on_member_join(member):
-    if(member.guild.id == 618048944840245248):
+    if(member.guild.id == 627928375989764138):
         rol = discord.utils.get(member.guild.roles, name="Members 💖")
         await member.add_roles(rol)
         mbrcnt = bot.get_channel(628144020715077642)
