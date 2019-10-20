@@ -28,4 +28,5 @@ remove the stupid limit from purge (seriously, remove it)
 add **!r id** (Facebook-style reply command,reply to Discord messages) 
 And for some reason, the editing on disconnect does not work, please fix it Mat (Notice me, Mat-senpai) - urgent 
 add XP features
+a strange, unique bug appeared:!snipe command gives a message error - fix it
 {join messages and logs aren't working for the main server, this has been fixed albeit it still needs work} 
