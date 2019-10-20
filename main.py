@@ -252,6 +252,12 @@ async def on_disconnect():
 	global allTimeMessages
 	await msg.edit(content="{}".format(allTimeMessages))
 		
+@bot.command()
+async def servers(ctx):
+    servers = bot.guilds()
+    readme = "/n".join(servers)
+    await ctx.send("```{}```".format(readme))
+
 tosnipe = {}
 tosnipeauthors = {}
 tosnipetime = {}
