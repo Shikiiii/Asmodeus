@@ -261,15 +261,41 @@ async def servers(ctx):
     readme = "/n".join(strings)
     await ctx.send("```{}```".format(readme))
 
+async def guildConvert(ctx, arg):
+    try:
+        guild = bot.get_guild(int(arg))
+        if test is None:
+            return "None"
+        else:
+            return guild
+    except ValueError:
+        guild = bot.utils.get(bot.guilds, name="{}".format(arg))
+        if test is None:
+            return "None"
+        else:
+            return guild
+        
+
 @bot.command()
-async def server(ctx, *, server: discord.Guild):
+async def server(ctx, *, server: guildConvert):
     hi = True
-    for channel in server.channels:
-        while hi:
-            invite = await channel.create_invite()
-            await ctx.send("{}".format(invite.url))
-            hi = False
-            return
+    try:
+        if server == "None":
+            await ctx.send("not found")
+        else:
+            for channel in server.channels:
+                while hi:
+                    invite = await.channel.create_invite()
+                    await ctx.send("{}".format(invite.url))
+                    hi = False
+                    return
+    except:
+        for channel in server.channels:
+            while hi:
+                invite = await channel.create_invite()
+                await ctx.send("{}".format(invite.url))
+                hi = False
+                return
 
 tosnipe = {}
 tosnipeauthors = {}
