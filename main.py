@@ -255,7 +255,10 @@ async def on_disconnect():
 @bot.command()
 async def servers(ctx):
     serverss = bot.guilds
-    readme = "/n".join(serverss)
+    strings = []
+    for guild in serverss:
+        strings.append("{}".format(guild.name))
+    readme = "/n".join(strings)
     await ctx.send("```{}```".format(readme))
 
 tosnipe = {}
