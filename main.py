@@ -261,7 +261,7 @@ async def servers(ctx):
     readme = "/n".join(strings)
     await ctx.send("```{}```".format(readme))
 
-async def guildConvert(ctx, arg):
+async def guildConvert(arg):
     try:
         guild = bot.get_guild(int(arg))
         if guild is None:
