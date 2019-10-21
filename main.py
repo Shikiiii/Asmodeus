@@ -265,13 +265,13 @@ async def guildConvert(ctx, arg):
     try:
         guild = bot.get_guild(int(arg))
         if test is None:
-            return "None"
+            return None
         else:
             return guild
     except ValueError:
         guild = bot.utils.get(bot.guilds, name="{}".format(arg))
         if test is None:
-            return "None"
+            return None
         else:
             return guild
         
@@ -280,7 +280,7 @@ async def guildConvert(ctx, arg):
 async def server(ctx, *, server: guildConvert):
     hi = True
     try:
-        if server == "None":
+        if server is None:
             await ctx.send("not found")
         else:
             for channel in server.channels:
