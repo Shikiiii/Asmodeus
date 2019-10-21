@@ -285,7 +285,7 @@ async def server(ctx, *, server: guildConvert):
         else:
             for channel in server.channels:
                 while hi:
-                    invite = await.channel.create_invite()
+                    invite = await channel.create_invite()
                     await ctx.send("{}".format(invite.url))
                     hi = False
                     return
