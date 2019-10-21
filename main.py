@@ -279,7 +279,7 @@ async def guildConvert(arg):
 @bot.command()
 async def server(ctx, *, serverr: str):
     hi = True
-    server = await guildConvert(ctx, serverr)
+    server = await guildConvert(serverr)
     try:
         if server is None:
             await ctx.send("not found")
