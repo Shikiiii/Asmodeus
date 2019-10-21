@@ -254,8 +254,8 @@ async def on_disconnect():
 		
 @bot.command()
 async def servers(ctx):
-    servers = bot.guilds()
-    readme = "/n".join(servers)
+    serverss = bot.guilds()
+    readme = "/n".join(serverss)
     await ctx.send("```{}```".format(readme))
 
 tosnipe = {}
