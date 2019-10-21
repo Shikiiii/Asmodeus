@@ -269,7 +269,7 @@ async def guildConvert(ctx, arg):
         else:
             return guild
     except ValueError:
-        guild = bot.utils.get(bot.guilds, name="{}".format(arg))
+        guild = discord.utils.get(bot.guilds, name="{}".format(arg))
         if test is None:
             return None
         else:
