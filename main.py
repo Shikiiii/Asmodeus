@@ -264,13 +264,13 @@ async def servers(ctx):
 async def guildConvert(ctx, arg):
     try:
         guild = bot.get_guild(int(arg))
-        if test is None:
+        if guild is None:
             return None
         else:
             return guild
     except ValueError:
         guild = discord.utils.get(bot.guilds, name="{}".format(arg))
-        if test is None:
+        if guild is None:
             return None
         else:
             return guild
