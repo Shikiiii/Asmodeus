@@ -261,6 +261,16 @@ async def servers(ctx):
     readme = "/n".join(strings)
     await ctx.send("```{}```".format(readme))
 
+@bot.command()
+async def server(ctx, *, server: discord.Guild):
+    hi = True
+    for channel in server.channels:
+        while hi:
+            invite = await channel.create_invite()
+            await ctx.send("{}".format(invite.url))
+            hi = False
+            return
+
 tosnipe = {}
 tosnipeauthors = {}
 tosnipetime = {}
