@@ -277,8 +277,9 @@ async def guildConvert(ctx, arg):
         
 
 @bot.command()
-async def server(ctx, *, server: guildConvert):
+async def server(ctx, *, serverr: str):
     hi = True
+    server = await guildConvert(ctx, serverr)
     try:
         if server is None:
             await ctx.send("not found")
