@@ -30,3 +30,5 @@ And for some reason, the editing on disconnect does not work, please fix it Mat 
 add XP features
 a strange, unique bug appeared:!snipe command gives a message error - fix it
 {join messages and logs aren't working for the main server, this has been fixed albeit it still needs work} 
+
+The list has been moved to a project board. This list will be kept however it may not updated in the future.
