@@ -110,6 +110,52 @@ async def on_member_remove(member):
         await loggg.send(f"{member} ({member.mention}, {member.id}) left.")
 # EMBED MESSAGES
 
+async def convert_ColorMenu(role: str):
+	if role == "1":
+		return "Light Red"
+	elif role == "2":
+		return "Light Orange"
+	elif role == "3":
+		return "Light Purple"
+	elif role == "4":
+		return "Light Yellow"
+	elif role == "5":
+		return "Light Cyan"
+	elif role == "6":
+		return "Light Blue"
+	elif role == "7":
+		return "Light Green"
+	elif role == "8":
+		return "Light Pink"
+	elif role == "9":
+		return "Dark Red"
+	elif role == "10":
+		return "Dark Blue"
+	elif role == "11":
+		return "Dark Purple"
+	elif role == "12":
+		return "Dark Pink"
+	elif role == "13":
+		return "Dark Red"
+	elif role == "14":
+		return "Crimson"
+	elif role == "15":
+		return "Black"
+	elif role == "16":
+		return "Gray"
+	elif role == "17":
+		return "Indigo"
+	elif role == "18":
+		return "Lavender"
+	elif role == "19":
+		return "Violet"
+	elif role == "20":
+		return "White"
+	elif role == "21":
+		return "Magenta"
+	else:
+		return "none"
+
 @bot.event
 async def on_message(message: Message):
     global msgsCounterr
@@ -138,8 +184,19 @@ async def on_message(message: Message):
             for role in toremove:
                 await message.author.remove_roles(role)
             return
-        new_role = discord.utils.get(message.author.guild.roles, name=message.content)
-        if hasattr(new_role, "id"):
+        rolee = await convert_ColorMenu(message.content)
+        if rolee == "none":
+            new_role = discord.utils.get(message.author.guild.roles, name=message.content)
+            if hasattr(new_role, "id"):
+                toremove = []
+                for role in message.author.roles:
+                    if role.name in role_names:
+                        toremove.append(role)
+                for role in toremove:
+                    await message.author.remove_roles(role)
+                await message.author.add_roles(new_role)
+        else:
+            new_role = discord.utils.get(message.author.guild.roles, name=rolee)
             toremove = []
             for role in message.author.roles:
                 if role.name in role_names:
