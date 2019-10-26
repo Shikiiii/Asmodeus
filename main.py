@@ -158,6 +158,10 @@ async def convert_ColorMenu(role: str):
 
 @bot.event
 async def on_message(message: Message):
+    if message.channel.id == 627942893448986713 or message.channel.id == 627942990186283039 or message.channel.id == 627943195069775912 or message.channel.id == 627943336572878859:
+        if len(message.attachments) == 0:
+            await message.delete()
+            await message.author.send("> :red_circle: You're only allowed to post images in {}.".format(message.channel.mention))
     global msgsCounterr
     global msgsCounterrr
     global allTimeMessages
