@@ -585,8 +585,7 @@ async def reminderdmcancel(ctx):
 
 
 # - Avatar commands:
-@bot.command()
-@bot.command(name='av')
+@bot.command(aliases=['av'])
 async def avatar(ctx, user: discord.Member):
     embed = discord.Embed(title="Avatar of {}".format(user), color=0x000000)
     embed.set_image(url=user.avatar_url)
@@ -610,8 +609,7 @@ async def avatar_error(ctx, error):
         traceback.print_exception(type(error), error, None, file=sys.stderr)
 
 
-@bot.command()
-@bot.command(name='avid')
+@bot.command(aliases=['avid'])
 async def avatarid(ctx, user_id: int):
     try:
         user = await bot.fetch_user(user_id)
@@ -648,9 +646,7 @@ async def avatarid_error(ctx, error):
 
 
 # - Userinfo Command:
-@bot.command()
-@bot.command(name="uf")
-@bot.command(name="whois")
+@bot.command(aliases=["uf", "whois"])
 async def userinfo(ctx, user: discord.Member):
     time = user.joined_at
 
