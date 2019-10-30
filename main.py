@@ -308,8 +308,8 @@ async def on_message(message: Message):
 
 @bot.event
 async def on_disconnect():
-	chan = bot.get_channel(632904178100076565)
-	msg = chan.fetch_message(632905000980316180)
+	chan = bot.get_channel(639113168144039939)
+	msg = chan.fetch_message(639113405244112906)
 	global allTimeMessages
 	await msg.edit(content="{}".format(allTimeMessages))
 		
