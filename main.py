@@ -81,7 +81,7 @@ async def on_member_join(member):
         rol = discord.utils.get(member.guild.roles, name="Members 💖")
         await member.add_roles(rol)
         mbrcnt = bot.get_channel(628144020715077642)
-        await mbrcnt.edit(name="{} LOVIES ღ".format(member.guild.member_count))
+        await mbrcnt.edit(name="{} SNOWIES ❄️".format(member.guild.member_count))
         channel = bot.get_channel(629056727186407445)
         channel2 = bot.get_channel(629849552215867405)
         channel3 = bot.get_channel(628308702587518987)
