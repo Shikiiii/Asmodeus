@@ -168,7 +168,7 @@ async def convert_color_menu(role_number: str):
 
 @bot.event
 async def on_message(message: Message):
-    if message.channel.id == 635581513228091462 and message.author.bot:
+    if ((message.channel.id == 635581513228091462) or (message.channel.id == 629056727186407445)) and message.author.bot:
         await message.delete()
         return
     if message.channel.id == 627942893448986713 or message.channel.id == 627942990186283039 or message.channel.id == 627943195069775912 or message.channel.id == 627943336572878859:
