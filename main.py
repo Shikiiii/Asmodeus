@@ -3322,7 +3322,7 @@ async def restart(ctx):
 
 @bot.command()
 async def r(ctx, id: int, *, content: str):
-    msg = await bot.fetch_message(id)
+    msg = await ctx.message.channel.fetch_message(id)
     embed = discord.Embed(description="> {}\n\n{}".format(msg.content, content))
     msg3 = await ctx.send(f"**{ctx.message.author.name}** replied to **{msg.author.name}**:", embed=embed)
     msg2 = discord.Embed(description="Ay, **{}** replied to your message in **{}**. \n[Jump to the reply.](https://discordapp.com/channels/{}/{}/{})".format(ctx.message.author.name, ctx.message.author.guild.name, msg3.author.id, ctx.message.author.guild.id, msg3.id))
