@@ -25,10 +25,10 @@ add a way to choose your own welcome message and channel
 add a way to choose your own leave message and channel
 add APIs that allow to pull results from Wikipedia,Reddit,Facebook and Twitter
 remove the stupid limit from purge (seriously, remove it) 
-add **!r id** (Facebook-style reply command,reply to Discord messages) 
+{add **!r id** (Facebook-style reply command,reply to Discord messages) still needs a bit of work}
 And for some reason, the editing on disconnect does not work, please fix it Mat (Notice me, Mat-senpai) - urgent 
 add XP features
 a strange, unique bug appeared:!snipe command gives a message error - fix it
 {join messages and logs aren't working for the main server, this has been fixed albeit it still needs work} 
 
-The list has been moved to a project board. This list will be kept however it may not updated in the future.
+
