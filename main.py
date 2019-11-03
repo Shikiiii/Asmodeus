@@ -3343,7 +3343,7 @@ async def reply_error(ctx, error):
     def check(m):
         return m.channel.id == ctx.message.channel.id and m.id == msg.id
     try:
-        reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
+        reaction, user = await bot.wait_for('reaction_add', timeout=60.0, check=check)
     except asyncio.TimeoutError:
         await msg.remove_reaction("❌")
         await msg.remove_reaction("✔")
