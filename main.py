@@ -87,7 +87,7 @@ async def on_member_join(member):
         channel3 = bot.get_channel(628308702587518987)
         channel4 = bot.get_channel(629061888646316032)
         embed = discord.Embed(
-            description="Welcome to **[Ａｓｍｏｄｅｕｓ](https://discord.gg/GJ5UDth)**! You're the **{}th** member. \n\n Make sure to read: {}  \n\nRoles: {} \nColors: {}.".format(
+            description="Welcome to **[Ａｓｍｏｄｅｕｓ](https://discord.gg/crEzb7P)**! You're the **{}th** member. \n\n Make sure to read: {}  \n\nRoles: {} \nColors: {}.".format(
                 member.guild.member_count, channel2.mention, channel3.mention, channel4.mention), color=0x000000)
         embed.set_author(name="{}".format(member), icon_url=member.avatar_url)
         embed.set_thumbnail(url=member.guild.icon_url)
