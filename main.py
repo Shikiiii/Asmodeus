@@ -3353,7 +3353,7 @@ async def reply_error(ctx, error):
             await msg.delete()
             await ctx.message.delete()
             return
-        else if str(reaction.emoji) == "✔":
+        elif str(reaction.emoji) == '✔':
             await msg.delete()
             await ctx.message.delete()
             embed2 = discord.Embed(title="!reply [message.id] [content]", 
