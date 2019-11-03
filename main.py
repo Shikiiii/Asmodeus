@@ -3340,8 +3340,8 @@ async def reply_error(ctx, error):
     msg = await ctx.message.channel.send(embed=embed)
     await msg.add_reaction("❌")
     await msg.add_reaction("✔")
-    def check(m):
-        return m.channel.id == ctx.message.channel.id and m.id == msg.id
+    def check(reaction, user):
+        return user == ctx.message.author and reaction.message.channel.id == ctx.message.channel.id and reaction.message.id == msg.id
     try:
         reaction, user = await bot.wait_for('reaction_add', timeout=60.0, check=check)
     except asyncio.TimeoutError:
