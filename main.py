@@ -110,7 +110,7 @@ async def on_member_join(member):
 async def on_member_remove(member):
     if member.guild.id == 627928375989764138:
         mbrcnt = bot.get_channel(628144020715077642)
-        await mbrcnt.edit(name="{} LOVIES ღ".format(member.guild.member_count))
+        await mbrcnt.edit(name="{} SNOWIES ❄️".format(member.guild.member_count))
         # channel = discord.utils.get(member.guild.channels, name="♥‿♥welcome-goodbye♥‿♥")
         # await channel.send("**{}** ({}) has left the server. We now have **{}** members.".format(member, member.mention, member.guild.member_count))
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
@@ -3321,15 +3321,15 @@ async def restart(ctx):
 
 
 @bot.command()
-async def r(ctx):
-    await ctx.send("```HEROKU\nRestarting```")
-    await ctx.send("```State changed from up to starting```")
-    await ctx.send("```Starting process with command python main.py```")
-    await bot.start(os.environ.get("token"))
-    await bot.logout()
-    await ctx.send("```State changed from starting to up```")
-    await ctx.send("```Process exited with status 0```")
-    await ctx.send("**Restarted.**")
+async def r(ctx, id: int):
+    msg = await bot.fetch_message(id)
+    embed = discord.Embed(description="> {}\n\n{}".format(msg.content, ctx.message.content))
+    msg3 = await ctx.send(f"**{ctx.message.author.name}** replied to **{msg.author.name}**:", embed=embed)
+    msg2 = discord.Embed(description="Ay, **{}** replied to your message in **{}**. \n[Jump to the reply.](https://discordapp.com/channels/{}/{}/{})".format(ctx.message.author.name, ctx.message.author.guild.name, msg3.author.id, ctx.message.author.guild.id, msg3.id))
+    await msg.author.send(embed=msg2)
+    await ctx.message.delete()
+    
+    
 
 
 # - BOT LOGIN
