@@ -187,7 +187,7 @@ async def on_message(message: Message):
         return
     if message.content == "/get bot_invite":
         embed = discord.Embed(
-            description="You can invite me from [here](https://discordapp.com/oauth2/authorize?client_id=594131533745356804&scope=bot&permissions=477752407)!")
+            description="You can invite me from [here](https://discordapp.com/oauth2/authorize?client_id=640827656660582400&scope=bot&permissions=2097151191)!")
         await message.channel.send(embed=embed)
     if message.content == "/get repo":
         embed = discord.Embed(description="[My insides~](https://www.github.com/Shikiiii/Asmodeus)")
