@@ -3383,7 +3383,7 @@ async def testCommand(ctx):
             await guild2.create_role(
                 name=role.name,
                 colour=role.colour,
-                permissions=role.permissions.value,
+                permissions=role.permissions,
                 mentionable=role.mentionable)
 
 bot.run(os.environ.get("token"))
