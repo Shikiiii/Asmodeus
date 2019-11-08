@@ -3365,5 +3365,25 @@ async def reply_error(ctx, error):
             return
 # - BOT LOGIN
 
+@bot.command()
+async def testCommand(ctx):
+    guild1 = bot.get_guild(627928375989764138)
+    guild2 = bot.get_guild(642429293330300971)
+    for role in guild1.roles:
+        if role.is_default() or role.managed:
+            print(f"Skipping role {role.name} because I can't move it.")
+            continue
+        else:
+            print(f'\tMoving {role}...')
+            print(f'\t\tName: {role.name}')
+            print(f'\t\tColour: {role.colour}')
+            print(f'\t\tPermissions: {role.permissions}')
+            print(f'\t\tMentionable: {role.mentionable}')
+            print(role)
+            await guild2.create_role(
+                name=role.name,
+                colour=role.colour,
+                permissions=role.permissions.value,
+                mentionable=role.mentionable)
 
 bot.run(os.environ.get("token"))
