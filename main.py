@@ -3369,7 +3369,9 @@ async def reply_error(ctx, error):
 async def testCommand(ctx):
     guild1 = bot.get_guild(627928375989764138)
     guild2 = bot.get_guild(642429293330300971)
-    for role in guild1.roles.reverse():
+    role_list = list(guild1.roles)
+    role_list.reverse()
+    for role in role_list:
         if role.is_default() or role.managed:
             print(f"Skipping role {role.name} because I can't move it.")
             continue
