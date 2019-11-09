@@ -77,17 +77,17 @@ async def on_ready():
 
 @bot.event
 async def on_member_join(member):
-    if member.guild.id == 627928375989764138:
+    if member.guild.id == 642429293330300971:
         rol = discord.utils.get(member.guild.roles, name="Members 💖")
         await member.add_roles(rol)
-        mbrcnt = bot.get_channel(628144020715077642)
+        mbrcnt = bot.get_channel(642482823445479424)
         await mbrcnt.edit(name="{} SNOWIES ❄️".format(member.guild.member_count))
-        channel = bot.get_channel(629056727186407445)
-        channel2 = bot.get_channel(629849552215867405)
-        channel3 = bot.get_channel(628308702587518987)
-        channel4 = bot.get_channel(629061888646316032)
+        channel = bot.get_channel(642482771511476234)
+        channel2 = bot.get_channel(642482763295096857)
+        channel3 = bot.get_channel(642482769049681930)
+        channel4 = bot.get_channel(642482769833885736)
         embed = discord.Embed(
-            description="Welcome to **[Ａｓｍｏｄｅｕｓ](https://discord.gg/crEzb7P)**! You're the **{}th** member. \n\n Make sure to read: {}  \n\nRoles: {} \nColors: {}.".format(
+            description="Welcome to **[Ａｓｍｏｄｅｕｓ](https://discord.gg/h945y6T)**! You're the **{}th** member. \n\n Make sure to read: {}  \n\nRoles: {} \nColors: {}.".format(
                 member.guild.member_count, channel2.mention, channel3.mention, channel4.mention), color=0x000000)
         embed.set_author(name="{}".format(member), icon_url=member.avatar_url)
         embed.set_thumbnail(url=member.guild.icon_url)
@@ -98,8 +98,8 @@ async def on_member_join(member):
         await loggg.send(f"{member} ({member.mention}, {member.id}) joined.")
 
         # await channel.send("Welcome {} to **e nightclub!** You’re the **{}** member. \n\n Make sure to read: {}  |  Roles: {}  |  For help:  {}.".format(member.mention, member.guild.member_count, channel2.mention, channel3.mention, channel4.mention))
-        chan = bot.get_channel(628308702587518987)
-        msg = await chan.send(f"Hi {member.mention}, check out our roles!")
+        chan = bot.get_channel(642482769049681930)
+        msg = await chan.send(f"Ay {member.mention}, feel free to check out our roles and grab some. :)")
         await asyncio.sleep(60)
         await msg.delete()
 
@@ -108,8 +108,8 @@ async def on_member_join(member):
 
 @bot.event
 async def on_member_remove(member):
-    if member.guild.id == 627928375989764138:
-        mbrcnt = bot.get_channel(628144020715077642)
+    if member.guild.id == 642429293330300971:
+        mbrcnt = bot.get_channel(642482823445479424)
         await mbrcnt.edit(name="{} SNOWIES ❄️".format(member.guild.member_count))
         # channel = discord.utils.get(member.guild.channels, name="♥‿♥welcome-goodbye♥‿♥")
         # await channel.send("**{}** ({}) has left the server. We now have **{}** members.".format(member, member.mention, member.guild.member_count))
@@ -168,10 +168,10 @@ async def convert_color_menu(role_number: str):
 
 @bot.event
 async def on_message(message: Message):
-    if ((message.channel.id == 635581513228091462) or (message.channel.id == 629056727186407445)) and message.author.bot and message.author.id != 640827656660582400:
-        await message.delete()
-        return
-    if message.channel.id == 627942893448986713 or message.channel.id == 627942990186283039 or message.channel.id == 627943195069775912 or message.channel.id == 627943336572878859:
+    #if ((message.channel.id == 642482771511476234) or (message.channel.id == 629056727186407445)) and message.author.bot and message.author.id != 640827656660582400:
+    #    await message.delete()
+    #    return
+    if message.channel.id == 642482779111555072 or message.channel.id == 642482779925250067 or message.channel.id == 642482780797665290 or message.channel.id == 642482781812686866:
         if len(message.attachments) == 0:
             await message.delete()
             await message.author.send(
@@ -192,7 +192,7 @@ async def on_message(message: Message):
     if message.content == "/get repo":
         embed = discord.Embed(description="[My insides~](https://www.github.com/Shikiiii/Asmodeus)")
         await message.channel.send(embed=embed)
-    if message.channel.id == 629061888646316032:
+    if message.channel.id == 642482769833885736:
         role_names = {"Light Red", "Light Orange", "Light Purple", "Light Yellow", "Light Cyan", "Light Blue",
                       "Light Green", "Light Pink", "Dark Red", "Dark Blue", "Dark Purple", "Dark Pink", "Dark Red",
                       "Crimson", "Black", "Gray", "Indigo", "Lavender", "Violet", "White", "Magenta"}
@@ -247,7 +247,7 @@ async def on_message(message: Message):
                                description="- We are so glad to have you join our server! By joining this server you agreed to our rules. \r\n\r\n - We have over 100+ roles, channels and some bots to play different games and much more! \r\n\r\n - Our channels are not aggressively moderated so feel free to join any conversation you like.",
                                color=0x000000)
         embed2 = discord.Embed(color=0x000000)
-        embed2.set_image(url="https://media.giphy.com/media/dXKnyjh6RfxOpEVshY/giphy.gif")
+        embed2.set_image(url="https://cdn.discordapp.com/attachments/635581513228091462/637970310095831061/Untitled-1.png")
         await message.channel.send(embed=embed2)
         await message.channel.send(embed=embed1)
     elif (message.content == "!rules" and (
