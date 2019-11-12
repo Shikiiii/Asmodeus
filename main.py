@@ -1615,7 +1615,6 @@ async def rate_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
 
-
 @bot.command()
 async def howgay(ctx, *, user: discord.Member):
     gay = random.randint(0, 101)
@@ -1882,7 +1881,6 @@ async def v_error(ctx, error):
 # - Info commands:
 
 @bot.command()
-@commands.has_any_role("Admin ･˚｡", "Admin ･˚｡", "Owner", "Co Owner")
 async def membercount(ctx):
     time = datetime.datetime.now()
     corfor = time.strftime("%d %b, %Y at %H:%M")
@@ -1910,21 +1908,7 @@ async def membercount(ctx):
 
     await ctx.send(embed=embed)
 
-
-@membercount.error
-async def membercount_error(ctx, error):
-    if isinstance(error, commands.CheckFailure):
-        embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        await ctx.send(embed=embed)
-    else:
-        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
-        traceback.print_exception(type(error), error, None, file=sys.stderr)
-
-
 @bot.command()
-@commands.has_any_role("Admin ･˚｡", "Admin ･˚｡", "Owner", "Co Owner")
 async def serverinfo(ctx):
     time = ctx.message.author.guild.created_at
 
@@ -1992,20 +1976,6 @@ async def serverinfo(ctx):
     await ctx.send(embed=embed)
 
 
-# await ctx.send(embed=embed2)
-
-@serverinfo.error
-async def serverinfo_error(ctx, error):
-    if isinstance(error, commands.CheckFailure):
-        embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        await ctx.send(embed=embed)
-    else:
-        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
-        traceback.print_exception(type(error), error, None, file=sys.stderr)
-
-
 @bot.command()
 async def bots(ctx):
     if ctx.message.author.id == 495680416422821888 or ctx.message.author.id == 237938976999079948:
@@ -2031,7 +2001,6 @@ async def bots(ctx):
 
 
 @bot.command()
-@commands.has_any_role("Admin ･˚｡", "Co Owner", "Owner")
 async def members(ctx, *, rolee: str):
     role = await parse_roles(ctx, rolee)
     members = []
@@ -2042,6 +2011,12 @@ async def members(ctx, *, rolee: str):
                           color=0x000000)
     embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
     embed.set_thumbnail(url=bot.user.avatar_url)
+    if role is None:
+        embed = discord.Embed(description="I couldn't find this role.", color=0xFF3639)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        await ctx.send(embed=embed)
+        return
     try:
         await ctx.send(embed=embed)
     except discord.HTTPException as exception:
