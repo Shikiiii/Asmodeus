@@ -29,6 +29,8 @@ remove the stupid limit from purge (seriously, remove it)
 And for some reason, the editing on disconnect does not work, please fix it Mat (Notice me, Mat-senpai) - urgent 
 add XP features
 a strange, unique bug appeared:!snipe command gives a message error - fix it
+bug on howgay, wrong error message
+also, lets add having the help page of a command whenever it gets an error
 {join messages and logs aren't working for the main server, this has been fixed albeit it still needs work} 
 
 
