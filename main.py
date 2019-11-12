@@ -54,7 +54,7 @@ async def on_ready():
     # allTimeMessages = int(msggg.content)
 
     # global shiki
-    # shiki = server.get_member(393839495859929089)
+    # shiki = server.get_member(237938976999079948)
 
     await bot.change_presence(activity=discord.Game(name='!help'))
     print('started.')
@@ -64,7 +64,7 @@ async def on_ready():
     # print("+++++++++++++++ \n" + str(guildd) + "+++++++++++++++++++")
     # while True:
     # chann = bot.get_channel(633785042606489655)
-    # await chann.send("<@393839495859929089>")
+    # await chann.send("<@237938976999079948>")
     # await asyncio.sleep(2)
 
     while True:
@@ -242,44 +242,44 @@ async def on_message(message: Message):
         del afklist[message.author.id]
         await message.channel.send("Welcome back, {}! I removed your AFK.".format(message.author.mention))
     if (message.content == "!welcome" and (
-            message.author.id == 393839495859929089 or message.author.id == 495680416422821888)):
+            message.author.id == 237938976999079948 or message.author.id == 495680416422821888)):
         embed1 = discord.Embed(title="**༚ ✧˳⁺ __Welcome to Ａｓｍｏｄｅｕｓ!__  ⁺˳✧ ༚**",
                                description="- We are so glad to have you join our server! By joining this server you agreed to our rules. \r\n\r\n - We have over 100+ roles, channels and some bots to play different games and much more! \r\n\r\n - Our channels are not aggressively moderated so feel free to join any conversation you like.",
-                               color=0x000000)
-        embed2 = discord.Embed(color=0x000000)
+                               color=0xC5FCFC)
+        embed2 = discord.Embed(color=0xC5FCFC)
         embed2.set_image(url="https://cdn.discordapp.com/attachments/635581513228091462/637970310095831061/Untitled-1.png")
         await message.channel.send(embed=embed2)
         await message.channel.send(embed=embed1)
     elif (message.content == "!rules" and (
-            message.author.id == 393839495859929089 or message.author.id == 495680416422821888)):
+            message.author.id == 237938976999079948 or message.author.id == 495680416422821888)):
         embed1 = discord.Embed(title="**༚ ✧˳⁺ __Server rules__ ⁺˳✧ ༚**",
-                               description="__``1``__ • Make sure to follow the [Discord TOS](https://discordapp.com/terms) and the [Community Guidelines](https://discordapp.com/guidelines). \r\n\r\n __``2``__ • Keep content in the appropriate channels. This includes only posting NSFW content in NSFW marked channels. \r\n\r\n __``3``__ • No Doxing / Do not leak someone's IP address / Do not share personal information of anyone. \r\n\r\n __``4``__ • Any type of serious harassment will result in a ban. If you're not sure about whether something you've done is harassment, check out the [guidelines](https://discordapp.com/guidelines). \r\n\r\n __``5``__ • No advertising (Including PM advertisement). \r\n\r\n __``6``__ • Do NOT tell people to kill themselves (even if it's a joke). \r\n\r\n __``7``__ • Do not impersonate other users. Impersonating our staff team or discord staff will result in a permanent ban. \r\n\r\n __``8``__ • Remember that this server is English only! Try to avoid using any other languages so everyone can understand each other and have fun. \r\n\r\n __``9``__ • Respect all staff and follow their instruction(s). \r\n\r\n __``10``__ • Do NOT set people up against each other. \r\n\r\n __``11``__ • Respect people's wishes considering revealing their age, face reveal etc. \r\n\r\n __``12``__ • Asking for nudes or for other information is ABSOLUTELY not accepted here and will result in a ban. \r\n\r\n **- Please contact <@393839495859929089> if you have any issues with our staff team and/or the rules posted above.** \r\n\r\n **- Thank you for joining Ａｓｍｏｄｅｕｓ! We hope you have a great stay here!**",
-                               color=0x000000)
-        embed2 = discord.Embed(color=0x000000)
+                               description="__``1``__ • Make sure to follow the [Discord TOS](https://discordapp.com/terms) and the [Community Guidelines](https://discordapp.com/guidelines). \r\n\r\n __``2``__ • Keep content in the appropriate channels. This includes only posting NSFW content in NSFW marked channels. \r\n\r\n __``3``__ • No Doxing / Do not leak someone's IP address / Do not share personal information of anyone. \r\n\r\n __``4``__ • Any type of serious harassment will result in a ban. If you're not sure about whether something you've done is harassment, check out the [guidelines](https://discordapp.com/guidelines). \r\n\r\n __``5``__ • No advertising (Including PM advertisement). \r\n\r\n __``6``__ • Do NOT tell people to kill themselves (even if it's a joke). \r\n\r\n __``7``__ • Do not impersonate other users. Impersonating our staff team or discord staff will result in a permanent ban. \r\n\r\n __``8``__ • Remember that this server is English only! Try to avoid using any other languages so everyone can understand each other and have fun. \r\n\r\n __``9``__ • Respect all staff and follow their instruction(s). \r\n\r\n __``10``__ • Do NOT set people up against each other. \r\n\r\n __``11``__ • Respect people's wishes considering revealing their age, face reveal etc. \r\n\r\n __``12``__ • Asking for nudes or for other information is ABSOLUTELY not accepted here and will result in a ban. \r\n\r\n **- Please contact <@237938976999079948> if you have any issues with our staff team and/or the rules posted above.** \r\n\r\n **- Thank you for joining Ａｓｍｏｄｅｕｓ! We hope you have a great stay here!**",
+                               color=0xC5FCFC)
+        embed2 = discord.Embed(color=0xC5FCFC)
         embed2.set_image(url="https://media.giphy.com/media/kD0G3PwfsUhUzQu3QQ/giphy.gif")
         embed3 = discord.Embed(title="**༚ ✧˳⁺ __Voice Chat rules__ ⁺˳✧ ༚**",
                                description="__``1``__ • Don't ear rape other people with music or with your mic. \r\n\r\n __``2``__ • Do not spam music, let other people play their song. \r\n\r\n __``3``__ • Do not stop the music if there are still others in the voice channel. \r\n\r\n __``4``__ • Do not mic spam, yell or disturb others. \r\n\r\n __``5``__ • Do NOT be toxic or be racist.",
-                               color=0x000000)
+                               color=0xC5FCFC)
         await message.channel.send(embed=embed2)
         await message.channel.send(embed=embed3)
         await message.channel.send(embed=embed1)
     elif (message.content == "!faq" and (
-            message.author.id == 393839495859929089 or message.author.id == 495680416422821888)):
+            message.author.id == 237938976999079948 or message.author.id == 495680416422821888)):
         embed1 = discord.Embed(title="*__**FAQ**:__*",
-                               description="__**How can I level up?**__ \r\n\r\n To level up you have to be active in any channel in the server, avoid spamming. Spamming won't level you up. \r\n\r\n __**Is there a way to get picture perms/embed links?**__ \r\n\r\n Yes there is a way to get these perms, when you reach **level 10+** you'll be able to post pictures or links.. \r\n\r\n __**Someone is advertising in my DMS what do I do?**__ \r\n\r\n Dm a staff member and they'll ban them as soon as possible. \r\n\r\n __**Staff is abusing his perms, what do I do?**__ \r\n\r\n DM <@393839495859929089>. \r\n\r\n __**Do you guys do giveaways and events?**__ \r\n\r\n Yes we do events and giveaways sometimes. \r\n\r\n __**I want to apply for a Partner Manager, how can I do that?**__ \r\n\r\n DM <@393839495859929089>.",
-                               color=0x000000)
-        embed2 = discord.Embed(color=0x000000)
+                               description="__**How can I level up?**__ \r\n\r\n To level up you have to be active in any channel in the server, avoid spamming. Spamming won't level you up. \r\n\r\n __**Is there a way to get picture perms/embed links?**__ \r\n\r\n Yes there is a way to get these perms, when you reach **level 10+** you'll be able to post pictures or links.. \r\n\r\n __**Someone is advertising in my DMS what do I do?**__ \r\n\r\n Dm a staff member and they'll ban them as soon as possible. \r\n\r\n __**Staff is abusing his perms, what do I do?**__ \r\n\r\n DM <@237938976999079948>. \r\n\r\n __**Do you guys do giveaways and events?**__ \r\n\r\n Yes we do events and giveaways sometimes. \r\n\r\n __**I want to apply for a Partner Manager, how can I do that?**__ \r\n\r\n DM <@237938976999079948>.",
+                               color=0xC5FCFC)
+        embed2 = discord.Embed(color=0xC5FCFC)
         embed2.set_image(url="https://media.giphy.com/media/WtISnEdn9w4jjSZNtC/giphy.gif")
         embed3 = discord.Embed(title="",
-                               description="__**Can we be partners?**__ \r\n\r\n Sure! You can be partner with us by messaging one of the PMs.\r\n\r\n __**I got banned for no reason, what do I do?**__ \r\n\r\n Simply DM the owner <@393839495859929089> and I'll unban you as soon as possible! \r\n\r\n __**Can I get a color?**__ \r\n\r\n Yes, you can pick a color form our [colors menu](https://discordapp.com/channels/627928375989764138/629061888646316032/629220377637421067). \r\n\r\n __**Someone leaked my pictures, IP, phone number. What do I do?**__ \r\n\r\n DM one of the staff members and they'll ban them. \r\n\r\n __**When was this server created?**__ \r\n\r\n created on 29/9/2019, but was released public on 14/10/2019. \r\n\r\n __**Is this a dating server?**__ \r\n\r\n Nope, this is a chill server to talk to new people and make friends. However, we won't stop you if you're dating **__AND__** you're 18 or above.",
-                               color=0x000000)
+                               description="__**Can we be partners?**__ \r\n\r\n Sure! You can be partner with us by messaging one of the PMs.\r\n\r\n __**I got banned for no reason, what do I do?**__ \r\n\r\n Simply DM the owner <@237938976999079948> and I'll unban you as soon as possible! \r\n\r\n __**Can I get a color?**__ \r\n\r\n Yes, you can pick a color form our [colors menu](https://discordapp.com/channels/627928375989764138/629061888646316032/629220377637421067). \r\n\r\n __**Someone leaked my pictures, IP, phone number. What do I do?**__ \r\n\r\n DM one of the staff members and they'll ban them. \r\n\r\n __**When was this server created?**__ \r\n\r\n created on 29/9/2019, but was released public on 14/10/2019. \r\n\r\n __**Is this a dating server?**__ \r\n\r\n Nope, this is a chill server to talk to new people and make friends. However, we won't stop you if you're dating **__AND__** you're 18 or above.",
+                               color=0xC5FCFC)
         await message.channel.send(embed=embed2)
         await message.channel.send(embed=embed1)
         await message.channel.send(embed=embed3)
     elif (message.content == "!staff" and (
-            message.author.id == 393839495859929089 or message.author.id == 495680416422821888)):
+            message.author.id == 237938976999079948 or message.author.id == 495680416422821888)):
         embed1 = discord.Embed(title="**__Staff Members:__**",
-                               description="☆ - Owners: glow <@514392208254959618> | Shiki <@393839495859929089>. \r\n\r\n ☆ - Co Owners: zyzz <@543885407071371340>\r\n\r\n☆ - Admins: zip <@267631540811464704> \r\n\r\n ☆ - Mods: Alex <@444751983786852362> | System <@316988095562252290>",
+                               description="☆ - Owners: glow <@514392208254959618> | Shiki <@237938976999079948>. \r\n\r\n ☆ - Co Owners: zyzz <@543885407071371340>\r\n\r\n☆ - Admins: zip <@267631540811464704> \r\n\r\n ☆ - Mods: Alex <@444751983786852362> | System <@316988095562252290>",
                                color=0xFF93F0)
         embed2 = discord.Embed(color=0xFF93F0)
         embed2.set_image(url="https://media.giphy.com/media/Xy1debdAWrNLK3cnHk/giphy.gif")
@@ -289,10 +289,10 @@ async def on_message(message: Message):
         await message.channel.send(embed=embed1)
         await message.channel.send(embed=embed3)
     elif (message.content == "!verification" and (
-            message.author.id == 393839495859929089 or message.author.id == 495680416422821888)):
+            message.author.id == 237938976999079948 or message.author.id == 495680416422821888)):
         embed1 = discord.Embed(title="**༚ ✧˳⁺ Verification ⁺˳✧ ༚**",
                                description="✧ - Post selfie in <#627942893448986713> with \"Shiki\" written on a piece of paper. \r\n\r\n ✧ - Verified role gives you access to <#627942990186283039> or <#627943195069775912> depends on your gender. \r\n\r\n If you're feeling uncomfortable with posting your selfie, you can DM the selfie to the owner.",
-                               color=0x000000)
+                               color=0xC5FCFC)
         # embed2 = discord.Embed(color=0xFF93F0)
         await message.channel.send(embed=embed1)
     elif message.content == "info":
@@ -334,10 +334,10 @@ async def on_message(message: Message):
     # elif shiki in message.mentions:
     # await message.author.send(f"Hey there, {message.author.mention}! \nPlease don't abusively mention the Devs without a reason. If you want to just talk to them, it's okay, but don't don it oftenly without a real reason. But while you're here... \n\n Are you looking for **cheap** and sometimes **free** __bot developing and hosting__? Our **custom bot**, <@593090256560193549> was made by the user you just pinged, {shiki.mention}. \n\n If you're interesting in having a custom bot like this one, **DM {shiki.mention}** and we'll talk about it there. \n\n > This automatic action was fired because you pinged either the Bot Coder role or {shiki.mention}.")
     elif message.content == "shiki":
-        await message.channel.send("dm <@393839495859929089> with thigh pics for free admin aha x")
+        await message.channel.send("dm <@237938976999079948> with thigh pics for free admin aha x")
     elif message.content == "!!apply":
         await message.channel.send("Thank you for applying! Please check your DMs to complete the application.")
-    elif message.content == "no u" and message.author.id != 594131533745356804:
+    elif message.content == "no u" and ((message.author.id != 594131533745356804) and (message.author.id != 640827656660582400)):
         await message.channel.send("no u")
     elif message.content == "glow":
         await message.channel.send("O_O")
@@ -576,7 +576,7 @@ async def survey(ctx):
         await usr.send("Alright, sending your answers to the dev team. Thank you for your support.")
         takenBotSurvey.append(usr.id)
         curBotSurvey.remove(usr.id)
-        shiki = await bot.fetch_user(393839495859929089)
+        shiki = await bot.fetch_user(237938976999079948)
         await shiki.send(f"NEW BOT SURVEY TAKEN ({usr}, {usr.id}). ANSWERS:")
         for answer, value in surveyBotAnswers.items():
             await shiki.send(f"{value}\n----------------------")
@@ -650,7 +650,7 @@ async def survey(ctx):
         await usr.send("Alright, sending your answers to the server owners. Thank you for your support.")
         takenServerSurvey.append(usr.id)
         curServerSurvey.remove(usr.id)
-        shiki = await bot.fetch_user(393839495859929089)
+        shiki = await bot.fetch_user(237938976999079948)
         await shiki.send(f"NEW SERVER SURVEY TAKEN ({usr}, {usr.id}). ANSWERS:")
         for answer, value in surveyServerAnswers.items():
             await shiki.send(f"{value}\n----------------------")
@@ -789,7 +789,7 @@ async def cmdhelp(ctx, *, cmd: str):
         await ctx.send(embed=embed)
     elif cmd == "avatarid":
         embed = discord.Embed(title="!aavatarid [id]",
-                              description="Gets someone's avatar. This command can get the avatar of a user that's not in the server. Works with IDs.\nAlias: ``!avid``.\n\nExample: ``!avatarid 393839495859929089``",
+                              description="Gets someone's avatar. This command can get the avatar of a user that's not in the server. Works with IDs.\nAlias: ``!avid``.\n\nExample: ``!avatarid 237938976999079948``",
                               color=0x000000)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         await ctx.send(embed=embed)
@@ -1271,7 +1271,7 @@ async def penis(ctx, *, user: discord.Member):
     sizes = ["8D", "8=D", "8==D", "8===D", "8====D", "8=====D", "8======D", "8=======D", "8========D", "8=========D",
              "8==========D", "8===========D", "8============D", "8=============D", "8==============D",
              "8===============D"]
-    if user.id == 393839495859929089:
+    if user.id == 237938976999079948:
         size = "sorry bro, my dick so big this message can't fit it, for more info ask your mom, ily"
     else:
         size = random.choice(sizes)
@@ -1959,7 +1959,7 @@ async def serverinfo_error(ctx, error):
 
 @bot.command()
 async def bots(ctx):
-    if ctx.message.author.id == 495680416422821888 or ctx.message.author.id == 393839495859929089:
+    if ctx.message.author.id == 495680416422821888 or ctx.message.author.id == 237938976999079948:
         bots = []
         for member in ctx.message.author.guild.members:
             if member.bot:
@@ -2766,7 +2766,7 @@ async def unmute_error(ctx, error):
 
 @bot.command()
 async def status(ctx, a, b, *, status: str = " "):
-    if ctx.message.author.id == 514392208254959618 or ctx.message.author.id == 393839495859929089:
+    if ctx.message.author.id == 514392208254959618 or ctx.message.author.id == 237938976999079948:
         if len(a) != 0:
             # embed = discord.Embed(description="Status changed. \n".format(status), color=0x000000)
             if (a == "o" or a == "online") and (b == "p" or b == "playing"):
@@ -2952,7 +2952,7 @@ async def status(ctx, a, b, *, status: str = " "):
 @status.error
 async def status_error(ctx, error):
     if isinstance(error, commands.BadArgument):
-        if ctx.message.author.id == 495680416422821888 or ctx.message.author.id == 393839495859929089:
+        if ctx.message.author.id == 495680416422821888 or ctx.message.author.id == 237938976999079948:
             if len(ctx.message.content) > 8:
                 embed2 = discord.Embed(
                     description="Since you didn't provide a valid **status_type** and/or **status_msg**, I think that the status is empty. I'll get the status by your message. (COULD **NOT BE WORKING PROPERLY**!)",
@@ -2987,7 +2987,7 @@ async def status_error(ctx, error):
         # embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         # embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         # await ctx.send(embed=embed)
-        if ctx.message.author.id == 495680416422821888 or ctx.message.author.id == 393839495859929089:
+        if ctx.message.author.id == 495680416422821888 or ctx.message.author.id == 237938976999079948:
             if len(ctx.message.content) > 8:
                 embed2 = discord.Embed(
                     description="Since you didn't provide a valid **status_type** and/or **status_msg**, I think that the status is empty. I'll get the status by your message. (COULD **NOT BE WORKING PROPERLY**!)",
