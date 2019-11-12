@@ -1588,9 +1588,11 @@ async def howgay_error(ctx, error):
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
     elif isinstance(error, commands.MissingRequiredArgument):
-        embed = discord.Embed(description="Just give me a member and I'll tell you their gayness.", color=0xFF3639)
+        gay = random.randint(0, 101)
+        embed = discord.Embed(description="{} is **{}**% gay. :gay_pride_flag:".format(ctx.message.author.mention, str(gay)),
+                              color=0xef42f5)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        embed.set_thumbnail(url=ctx.message.author.avatar_url)
         await ctx.send(embed=embed)
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
@@ -1614,9 +1616,10 @@ async def howhot_error(ctx, error):
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
     elif isinstance(error, commands.MissingRequiredArgument):
-        embed = discord.Embed(description="Just give me a member and I'll tell you their hotness(?).", color=0xFF3639)
+        gay = random.randint(0, 101)
+        embed = discord.Embed(description="{} is **{}**% hot. :sweat_drops:".format(ctx.message.author.mention, str(gay)), color=0xef42f5)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        embed.set_thumbnail(url=ctx.message.author.avatar_url)
         await ctx.send(embed=embed)
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
