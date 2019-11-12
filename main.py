@@ -3201,7 +3201,7 @@ async def role_error(ctx, error):
 
 # - Purge Command:
 @bot.command()
-@commands.has_any_role("Chat Moderator", "Mod ˚｡⋆", "Admin ˚｡☆", "Owner")
+@commands.has_permissions(manage_messages=True)
 async def clean(ctx):
     def check(m):
         return m.author.bot
@@ -3229,13 +3229,13 @@ async def clean_error(ctx, error):
 
 
 @bot.command()
-@commands.has_any_role("Chat Moderator", "Mod ˚｡⋆", "Admin ˚｡☆", "Owner", "Co Owner")
+@commands.has_permissions(manage_messages=True)
 async def purge(ctx, amount, *, user: discord.Member):
     try:
         todeln = int(amount)
     except:
         ctx.message.delete()
-        embed = discord.Embed(description="You didn't enter a number between 2 and 200.", color=0xFF3639)
+        embed = discord.Embed(description="You didn't enter a number of messages to delete. Try again!", color=0xFF3639)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         msg = await ctx.send(embed=embed)
@@ -3276,32 +3276,24 @@ async def purge_error(ctx, error):
         await ctx.send(embed=embed)
     if isinstance(error, commands.MissingRequiredArgument):
         todeln = int(ctx.message.content[7:])
-        if todeln < 200 and todeln > 2:
-            deleted = await ctx.message.channel.purge(limit=(todeln + 1))
-            embed = discord.Embed(description="Successfully purged **{}** messages.".format(todeln), color=0x000000)
-            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            await ctx.send(embed=embed)
-            logch = discord.utils.get(ctx.message.author.guild.channels, name="enightclub-logs")
-            timestamp = datetime.datetime.now()
-            corfor = timestamp.strftime("%d %b, %Y at %H:%M")
-            log = discord.Embed(
-                description="Used command ``!purge`` in {}:\n{}\n\nMod ID: {}".format(ctx.message.channel.mention,
-                                                                                      ctx.message.content,
-                                                                                      ctx.message.author.id),
-                color=0xFFFFFF)
-            log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            log.set_footer(text="{}".format(corfor))
-            # log.set_thumbnail(url=user.avatar_url)
-            await logch.send(embed=log)
-            return
-        else:
-            embed = discord.Embed(
-                description="There's a limit of 200 messages per purge. You entered a higher number than that.",
-                color=0xFF3639)
-            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-            await ctx.send(embed=embed)
-            return
+        deleted = await ctx.message.channel.purge(limit=(todeln + 1))
+        embed = discord.Embed(description="Successfully purged **{}** messages.".format(todeln), color=0x000000)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        msgg = await ctx.send(embed=embed)
+        await asyncio.sleep(5)
+        msgg.delete()
+        logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
+        timestamp = datetime.datetime.now()
+        corfor = timestamp.strftime("%d %b, %Y at %H:%M")
+        log = discord.Embed(
+            description="Used command ``!purge`` in {}:\n{}\n\nMod ID: {}".format(ctx.message.channel.mention,
+                                                                                  ctx.message.content,
+                                                                                  ctx.message.author.id),
+                                                                                  color=0xFFFFFF)
+        log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        log.set_footer(text="{}".format(corfor))
+        # log.set_thumbnail(url=user.avatar_url)
+        await logch.send(embed=log)
     if isinstance(error, commands.CheckFailure):
         embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
