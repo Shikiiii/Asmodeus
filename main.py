@@ -1053,6 +1053,8 @@ hug = "animehug"
 slap = "animeslap"
 cuddle = "animecuddle"
 blush = "animeblush"
+pat = "animepat"
+facepalm = "animefacepalm"
 
 kissgifs = requests.get(
     "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s&media_filter=%s" % (kiss, tenorkey, limit, media_filter))
@@ -1064,15 +1066,59 @@ cuddlegifs = requests.get(
     "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s&media_filter=%s" % (cuddle, tenorkey, limit, media_filter))
 blushgifs = requests.get(
     "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s&media_filter=%s" % (blush, tenorkey, limit, media_filter))
+patgifs = requests.get(
+    "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s&media_filter=%s" % (pat, tenorkey, limit, media_filter))
+facepalmgifs = requests.get(
+    "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s&media_filter=%s" % (facepalm, tenorkey, limit, media_filter))
 
 kiss_gifs = json.loads(kissgifs.content)
 hug_gifs = json.loads(huggifs.content)
 slap_gifs = json.loads(slapgifs.content)
 cuddle_gifs = json.loads(cuddlegifs.content)
 blush_gifs = json.loads(blushgifs.content)
+pat_gifs = json.loads(patgifs.content)
+facepalm_gifs = json.loads(facepalmgifs.content)
 
 
 # print(json.dumps(kiss_gifs, sort_keys=True, indent=4))
+
+@bot.command()
+async def facepalm(ctx):
+    embed = discord.Embed(title="{} facepalms. Damn, that hurts!".format(ctx.message.author), color=0x000000)
+    result = random.choice(facepalm_gifs["results"])
+    chosen_media = result["media"][0]
+    url = chosen_media["gif"]["url"]
+    embed.set_image(url=url)
+    await ctx.send(embed=embed)
+
+@bot.command()
+async def pat(ctx, *, user: discord.Member):
+    embed = discord.Embed(title="{} pats {}. Cute!".format(ctx.message.author, user), color=0x000000)
+    result = random.choice(pat_gifs["results"])
+    chosen_media = result["media"][0]
+    url = chosen_media["gif"]["url"]
+    embed.set_image(url=url)
+    await ctx.send(embed=embed)
+
+@pat.error
+async def pat_error(ctx, error):
+    if isinstance(error, commands.BadArgument):
+        embed = discord.Embed(title="I couldn't find this member, so I'll pat you instead.", color=0x000000)
+        result = random.choice(pat_gifs["results"])
+        chosen_media = result["media"][0]
+        url = chosen_media["gif"]["url"]
+        embed.set_image(url=url)
+        await ctx.send(embed=embed)
+    elif isinstance(error, commands.MissingRequiredArgument):
+        embed = discord.Embed(title="Hey! Don't feel down. Here, take a pat from me. <3", color=0x000000)
+        result = random.choice(pat_gifs["results"])
+        chosen_media = result["media"][0]
+        url = chosen_media["gif"]["url"]
+        embed.set_image(url=url)
+        await ctx.send(embed=embed)
+    else:
+        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+        traceback.print_exception(type(error), error, None, file=sys.stderr)
 
 @bot.command()
 async def kiss(ctx, *, user: discord.Member):
