@@ -1558,7 +1558,7 @@ async def ship_error(ctx, error):
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
     elif isinstance(error, commands.MissingRequiredArgument):
-        # fix this
+         return
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
