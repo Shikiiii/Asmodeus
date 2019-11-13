@@ -1,1 +1,1 @@
-worked: python general.py
+worked: python main.py
