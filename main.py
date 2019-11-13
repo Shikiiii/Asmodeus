@@ -1519,29 +1519,29 @@ async def roast_error(ctx, error):
 async def ship(ctx, user: discord.Member, user2: discord.Member):
     percent = random.randint(0, 100)
     strr = " "
-    if percent < 11 and percent > 0:
+    if percent >= 0 and percent <= 10:
         strr = "horrible"
-    if percent < 21 and percent > 10:
+    if percent >= 11 and percent <= 20:
         strr = "very bad"
-    if percent < 31 and percent > 20:
+    if percent >= 21 and percent <= 30:
         strr = "bad"
-    if percent < 41 and percent > 30:
+    if percent >= 31 and percent <= 40:
         strr = "worse than avarage"
-    if percent < 51 and percent > 40:
+    if percent >= 41 and percent <= 50:
         strr = "avarage"
-    if percent < 61 and percent > 50:
+    if percent >= 51 and percent <= 60:
         strr = "better than avarage"
     if percent == 69:
         strr = ":wink:"
-    if percent < 71 and percent > 69 and percent < 69 and percent > 60:
+    if percent >= 61 and percent <= 68 
         strr = "good"
-    if percent == 68:
+    if percent == 70:
         strr = "good"
-    if percent < 81 and percent > 70:
+    if percent >= 71 and percent <= 80:
         strr = "very good"
-    if percent < 91 and percent > 80:
+    if percent >= 81 and percent <= 90:
         strr = "almost perfect"
-    if percent < 101 and percent > 90:
+    if percent >= 91 and percent <= 100:
         strr = "amazing"
     embed = discord.Embed(title=":two_hearts:  MATCHMAKING: :two_hearts: ",
                           description="**{}** :heart: **{}**\n\n**{}%**! That's **{}**.".format(user.name, user2.name,
@@ -1558,10 +1558,7 @@ async def ship_error(ctx, error):
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
     elif isinstance(error, commands.MissingRequiredArgument):
-        embed = discord.Embed(description="You didn't give me 2 users.", color=0xFF3639)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        await ctx.send(embed=embed)
+        # fix this
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
