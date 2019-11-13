@@ -1533,7 +1533,7 @@ async def ship(ctx, user: discord.Member, user2: discord.Member):
         strr = "better than avarage"
     if percent == 69:
         strr = ":wink:"
-    if percent >= 61 and percent <= 68 
+    if percent >= 61 and percent <= 68:
         strr = "good"
     if percent == 70:
         strr = "good"
