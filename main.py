@@ -3415,8 +3415,14 @@ async def postMenus(ctx):
     if ctx.message.author.id == 237938976999079948:
         age = discord.Embed(title="__ AGE __ ;", description="> :underage: : **-18**\n> :white_check_mark: : **+18**", color=0xC5FCFC)
         await ctx.send("Menus created by $shiki for Asmodeus. :copyright:")
+        age.set_thumbnail(url="https://giphy.com/stickers/snow-glitter-effects-26BRyql7J3iOx875u")
         await ctx.send(embed=age)
-        gender = discord.Embed(title="__ GENDER __ ;", description="> :man: : **Male**\n> :woman: : **Female**\n> <:nonbinary:645021363077251082> : **Non-Binary**", color=0xC5FCFC)
+        gender = discord.Embed(title="__ GENDER __ ;", description="> :man: : **Male**\n> :woman: : **Female**\n> <:nonbinary:630137147638415383> : **Non-Binary**", color=0xC5FCFC)
+        gender.set_thumbnail(url="https://giphy.com/stickers/snow-glitter-effects-26BRyql7J3iOx875u")
         await ctx.send(embed=gender)
+        sexuality = discord.Embed(title="__ SEXUALITY __ ;", description="> :couple: : **Straight**\n> :couple_with_heart: : **Bisexual**\n> <:pansexual:630137281977516052> : **Pansexual**", color=0xC5FCFC)
+        sexuality.set_thumbnail(url="https://giphy.com/stickers/snow-glitter-effects-26BRyql7J3iOx875u")
+        await ctx.send(embed=sexuality)
+
 
 bot.run(os.environ.get("token"))
