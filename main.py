@@ -3413,15 +3413,15 @@ async def mCM(ctx):
 @bot.command()
 async def postMenus(ctx):
     if ctx.message.author.id == 237938976999079948:
-        age = discord.Embed(title="__ AGE __ ;", description="> :underage: : **-18**\n> :white_check_mark: : **+18**", color=0xC5FCFC)
+        age = discord.Embed(title="__ AGE __ ;                                          ", description="> :underage: : **-18**\n> :white_check_mark: : **+18**", color=0xC5FCFC)
         await ctx.send("Menus created by $shiki for Asmodeus. :copyright:")
-        age.set_thumbnail(url="https://giphy.com/stickers/snow-glitter-effects-26BRyql7J3iOx875u")
+        age.set_thumbnail(url="https://cdn.discordapp.com/attachments/636271929061539851/645030217064251393/giphy.gif")
         await ctx.send(embed=age)
-        gender = discord.Embed(title="__ GENDER __ ;", description="> :man: : **Male**\n> :woman: : **Female**\n> <:nonbinary:630137147638415383> : **Non-Binary**", color=0xC5FCFC)
-        gender.set_thumbnail(url="https://giphy.com/stickers/snow-glitter-effects-26BRyql7J3iOx875u")
+        gender = discord.Embed(title="__ GENDER __ ;                                   ", description="> :man: : **Male**\n> :woman: : **Female**\n> <:nonbinary:630137147638415383> : **Non-Binary**", color=0xC5FCFC)
+        gender.set_thumbnail(url="https://cdn.discordapp.com/attachments/636271929061539851/645030217064251393/giphy.gif")
         await ctx.send(embed=gender)
-        sexuality = discord.Embed(title="__ SEXUALITY __ ;", description="> :couple: : **Straight**\n> :couple_with_heart: : **Bisexual**\n> <:pansexual:630137281977516052> : **Pansexual**", color=0xC5FCFC)
-        sexuality.set_thumbnail(url="https://giphy.com/stickers/snow-glitter-effects-26BRyql7J3iOx875u")
+        sexuality = discord.Embed(title="__ SEXUALITY __ ;                              ", description="> :couple: : **Straight**\n> :couple_with_heart: : **Bisexual**\n> <:pansexual:630137281977516052> : **Pansexual**", color=0xC5FCFC)
+        sexuality.set_thumbnail(url="https://cdn.discordapp.com/attachments/636271929061539851/645030217064251393/giphy.gif")
         await ctx.send(embed=sexuality)
 
 
