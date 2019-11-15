@@ -3410,4 +3410,11 @@ async def mCM(ctx):
             role = discord.utils.get(ctx.message.guild.roles, name=item)
             await role.edit(mentionable = not role.mentionable)
 
+@bot.command()
+async def postMenus(ctx):
+    if ctx.message.author.id == 237938976999079948:
+        age = discord.Embed(title="__ AGE __ ;", description="> :underage: : **-18**\n> :white_check_mark: : **+18**", color=0xFF93F0)
+        await ctx.send("Menus created by $shiki for Asmodeus. :copyright:")
+        await ctx.send(embed=age)
+
 bot.run(os.environ.get("token"))
