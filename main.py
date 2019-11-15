@@ -3380,25 +3380,36 @@ async def reply_error(ctx, error):
 
 @bot.command()
 async def testCommand(ctx):
-    guild1 = bot.get_guild(627928375989764138)
-    guild2 = bot.get_guild(642429293330300971)
-    role_list = list(guild1.roles)
-    role_list.reverse()
-    for role in role_list:
-        if role.is_default() or role.managed:
-            print(f"Skipping role {role.name} because I can't move it.")
-            continue
-        else:
-            print(f'\tMoving {role}...')
-            print(f'\t\tName: {role.name}')
-            print(f'\t\tColour: {role.colour}')
-            print(f'\t\tPermissions: {role.permissions}')
-            print(f'\t\tMentionable: {role.mentionable}')
-            print(role)
-            await guild2.create_role(
-                name=role.name,
-                colour=role.colour,
-                permissions=role.permissions,
-                mentionable=role.mentionable)
+    if ctx.message.author.id == 237938976999079948:
+        guild1 = bot.get_guild(627928375989764138)
+        guild2 = bot.get_guild(642429293330300971)
+        role_list = list(guild1.roles)
+        role_list.reverse()
+        for role in role_list:
+            if role.is_default() or role.managed:
+                print(f"Skipping role {role.name} because I can't move it.")
+                continue
+            else:
+                print(f'\tMoving {role}...')
+                print(f'\t\tName: {role.name}')
+                print(f'\t\tColour: {role.colour}')
+                print(f'\t\tPermissions: {role.permissions}')
+                print(f'\t\tMentionable: {role.mentionable}')
+                print(role)
+                await guild2.create_role(
+                    name=role.name,
+                    colour=role.colour,
+                    permissions=role.permissions,
+                    mentionable=role.mentionable)
+
+@bot.command()
+async def mCM(ctx):
+    if ctx.message.author.id == 237938976999079948:
+        role_names = ["Light Red", "Light Orange", "Light Purple", "Light Yellow", "Light Cyan", "Light Blue",
+                      "Light Green", "Light Pink", "Dark Red", "Dark Blue", "Dark Purple", "Dark Pink", "Dark Red",
+                      "Crimson", "Black", "Gray", "Indigo", "Lavender", "Violet", "White", "Magenta"]
+        for item in role_names:
+            role = discord.utils.get(ctx.message.guild.roles, name=item)
+            await role.edit(mentionable = not role.mentionable)
 
 bot.run(os.environ.get("token"))
