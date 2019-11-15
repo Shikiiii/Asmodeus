@@ -3413,8 +3413,10 @@ async def mCM(ctx):
 @bot.command()
 async def postMenus(ctx):
     if ctx.message.author.id == 237938976999079948:
-        age = discord.Embed(title="__ AGE __ ;", description="> :underage: : **-18**\n> :white_check_mark: : **+18**", color=0xFF93F0)
+        age = discord.Embed(title="__ AGE __ ;", description="> :underage: : **-18**\n> :white_check_mark: : **+18**", color=0xC5FCFC)
         await ctx.send("Menus created by $shiki for Asmodeus. :copyright:")
         await ctx.send(embed=age)
+        gender = discord.Embed(title="__ GENDER __ ;", description="> :man: : **Male**\n> :woman: : **Female**\n> <:nonbinary:645021363077251082> : **Non-Binary**", color=0xC5FCFC)
+        await ctx.send(embed=gender)
 
 bot.run(os.environ.get("token"))
