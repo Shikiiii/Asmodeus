@@ -145,22 +145,20 @@ async def convert_color_menu(role_number: str):
     elif role_number == "12":
         return "Dark Pink"
     elif role_number == "13":
-        return "Dark Red"
-    elif role_number == "14":
         return "Crimson"
-    elif role_number == "15":
+    elif role_number == "14":
         return "Black"
-    elif role_number == "16":
+    elif role_number == "15":
         return "Gray"
-    elif role_number == "17":
+    elif role_number == "16":
         return "Indigo"
-    elif role_number == "18":
+    elif role_number == "17":
         return "Lavender"
-    elif role_number == "19":
+    elif role_number == "18":
         return "Violet"
-    elif role_number == "20":
+    elif role_number == "19":
         return "White"
-    elif role_number == "21":
+    elif role_number == "20":
         return "Magenta"
     else:
         return "none"
@@ -194,7 +192,7 @@ async def on_message(message: Message):
         await message.channel.send(embed=embed)
     if message.channel.id == 642482769833885736:
         role_names = {"Light Red", "Light Orange", "Light Purple", "Light Yellow", "Light Cyan", "Light Blue",
-                      "Light Green", "Light Pink", "Dark Red", "Dark Blue", "Dark Purple", "Dark Pink", "Dark Red",
+                      "Light Green", "Light Pink", "Dark Red", "Dark Blue", "Dark Purple", "Dark Pink",
                       "Crimson", "Black", "Gray", "Indigo", "Lavender", "Violet", "White", "Magenta"}
         await message.delete()
         if message.content == "none":
@@ -3406,7 +3404,7 @@ async def testCommand(ctx):
 async def mCM(ctx):
     if ctx.message.author.id == 237938976999079948:
         role_names = ["Light Red", "Light Orange", "Light Purple", "Light Yellow", "Light Cyan", "Light Blue",
-                      "Light Green", "Light Pink", "Dark Red", "Dark Blue", "Dark Purple", "Dark Pink", "Dark Red",
+                      "Light Green", "Light Pink", "Dark Red", "Dark Blue", "Dark Purple", "Dark Pink",
                       "Crimson", "Black", "Gray", "Indigo", "Lavender", "Violet", "White", "Magenta"]
         for item in role_names:
             role = discord.utils.get(ctx.message.guild.roles, name=item)
