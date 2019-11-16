@@ -2082,7 +2082,7 @@ async def members_error(ctx, error):
 # - Admin commands:
 
 @bot.command()
-@commands.has_any_role("Owner")
+@commands.has_permissions(kick_members=True)
 async def masskick(ctx, *, users: str):
     desc = "Mass kick started. May take a while. \n\n"
     embed = discord.Embed(description=desc, color=0x000000)
@@ -2124,7 +2124,7 @@ async def masskick_error(ctx, error):
 
 
 @bot.command()
-@commands.has_any_role("Owner")
+@commands.has_permissions(ban_members=True)
 async def massmute(ctx, *, users: str):
     desc = "Mass mute started. May take a while. \n\n"
     role = discord.utils.get(ctx.message.author.guild.roles, name="Muted")
@@ -2167,25 +2167,25 @@ async def massmute_error(ctx, error):
 
 
 @bot.command()
-@commands.has_any_role("Owner", "Admin ･˚｡", "Co Owner")
+@commands.has_permissions(manage_channels=True)
 async def lockdown(ctx):
-    enightclubrole = discord.utils.get(ctx.message.guild.roles, name="@everyone")
-    check = ctx.message.channel.overwrites_for(enightclubrole)
+    lockdownRole = discord.utils.get(ctx.message.guild.roles, name="@everyone")
+    check = ctx.message.channel.overwrites_for(lockdownRole)
     if check.send_messages == False:
-        await ctx.send(
-            ":warning: **defying ღ thots** | **Lockdown** mode turned __off__ for **this channel** by {}.".format(
-                ctx.message.author.mention))
-        await ctx.message.channel.set_permissions(enightclubrole, send_messages=True)
+        lockdownMsg = discord.Embed(description="**Lockdown mode** : :red_circle: OFF | {}".format(ctx.message.author.mention), color=0xFFF308)
+        lockdownMsg.set_footer(text="Note: Lockdown only affects the channel where the command was ran.")
+        await ctx.send(embed=lockdownMsg)
+        await ctx.message.channel.set_permissions(lockdownRole, send_messages=True)
     elif check.send_messages == True:
-        await ctx.send(
-            ":warning: **defying ღ thots** | **Lockdown** mode turned __on__ for **this channel** by {}.".format(
-                ctx.message.author.mention))
-        await ctx.message.channel.set_permissions(enightclubrole, send_messages=False)
+        lockdownMsg = discord.Embed(description="**Lockdown mode** : :green_circle: ON | {}".format(ctx.message.author.mention), color=0xFFF308)
+        lockdownMsg.set_footer(text="Note: Lockdown only affects the channel where the command was ran.")
+        await ctx.send(embed=lockdownMsg)
+        await ctx.message.channel.set_permissions(lockdownRole, send_messages=False)
     else:
-        await ctx.send(
-            ":warning: **defying ღ thots** | **Lockdown** mode turned __on__ for **this channel** by {}.".format(
-                ctx.message.author.mention))
-        await ctx.message.channel.set_permissions(enightclubrole, send_messages=False)
+        lockdownMsg = discord.Embed(description="**Lockdown mode** : :green_circle: ON | {}".format(ctx.message.author.mention), color=0xFFF308)
+        lockdownMsg.set_footer(text="Note: Lockdown only affects the channel where the command was ran.")
+        await ctx.send(embed=lockdownMsg)
+        await ctx.message.channel.set_permissions(lockdownRole, send_messages=False)
 
 
 @lockdown.error
@@ -2202,30 +2202,22 @@ async def lockdown_error(ctx, error):
 
 
 @bot.command()
-@commands.has_any_role("Admin ･˚｡", "Co Owner", "Owner")
+@commands.has_permissions(ban_members=True)
 async def ban(ctx, user: discord.Member, *, reason: str):
     if len(reason) == 0:
-        embed = discord.Embed(title="Successfully banned {}.".format(user),
-                              description="**{}** was __banned__ from **[defying ღ thots](https://discord.gg/GJ5UDth)**. \nThe reason of their ban is **none, not provided**. \n Banned for permanent.".format(
-                                  user.mention), color=0x000000)
-        embed.set_thumbnail(url=user.avatar_url)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        await ctx.send(embed=embed)
-        # await ctx.send("**{}** was __banned__ from **defying ღ thots**.\n>> Banned by: **{}**\n>> Reason: **i guess the dummy that used the command forgot to enter a reason, so i'd say they got clapped justcuz**".format(user.mention, ctx.message.author.mention))
+        punishMsg = discord.Embed(description="{} was banned.\n``Reason:`` N/A\n``Duration:`` -".format(user.mention), color=0x000000)
+        punishMsg.set_author(name="{}".format(ctx.message.author.name))
+        punishMsg.set_thumbnail(url=user.avatar_url)
+        await ctx.send(embed=punishMsg)
         try:
-            embed = discord.Embed(title="You were banned from defying ღ thots.",
-                                  description="You were banned by **{}**. \nThe reason for your ban is **none, not provided**. \nThis ban is permanent. \n\n [ - The defying ღ thots staff team.](https://discord.gg/GJ5UDth)".format(
-                                      ctx.message.author), color=0x000000)
-            embed.set_thumbnail(url=ctx.message.author.guild.icon_url)
-            await user.send(embed=embed)
-        # await user.send("You've been banned from **defying ღ thots**. You were banned by **{}**, and you were banned for **none (no reason was found)**.\nIf you feel like this punishment isn't correct, feel free to contact dy#0777 or ¢คຖt Şนpprē$͓̽$͓̽ | PM#7802, and they'll look into it.".format(ctx.message.author))
+            await user.send("You've been banned from {}.".format(ctx.server.name))
         except:
             embed = discord.Embed(
-                description="I tried to DM the user, but I'm not allowed to because we don't share any guilds.",
+                description="I tried to DM the user, but I'm not allowed to because their DMs aren't open.",
                 color=0xebf533)
             embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
             await ctx.send(embed=embed)
-        # await ctx.send("I failed to DM {}, so I didn't inform them for their ban. \n Obvious reason: the user had their DMs disabled.".format(user.mention))
+        await user.ban(reason="N/A")
         logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
         timestamp = datetime.datetime.now()
         corfor = timestamp.strftime("%d %b, %Y at %H:%M")
@@ -2236,27 +2228,19 @@ async def ban(ctx, user: discord.Member, *, reason: str):
         log.set_thumbnail(url=user.avatar_url)
         await logch.send(embed=log)
     else:
-        embed = discord.Embed(title="Successfully banned {}.".format(user),
-                              description="**{}** was __banned__ from **[defying ღ thots](https://discord.gg/GJ5UDth)**. \nThe reason of their ban is **{}**. \n Banned for permanent.".format(
-                                  user.mention, reason), color=0x000000)
-        embed.set_thumbnail(url=user.avatar_url)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        await ctx.send(embed=embed)
-        # await ctx.send("**{}** was __banned__ from **defying ღ thots**.\n>> Banned by: **{}**\n>> Reason: **{}**".format(user.mention, ctx.message.author.mention, reason))
+        punishMsg = discord.Embed(description="{} was banned.\n``Reason:`` {}\n``Duration:`` -".format(user.mention, reason), color=0x000000)
+        punishMsg.set_author(name="{}".format(ctx.message.author.name))
+        punishMsg.set_thumbnail(url=user.avatar_url)
+        await ctx.send(embed=punishMsg)
         try:
-            embed = discord.Embed(title="You were banned from defying ღ thots.",
-                                  description="You were banned by **{}**. \nThe reason for your ban is **{}**. \nThis ban is permanent. \n\n [ - The defying ღ thots staff team.](https://discord.gg/GJ5UDth)".format(
-                                      ctx.message.author, reason), color=0x000000)
-            embed.set_thumbnail(url=ctx.message.author.guild.icon_url)
-            await user.send(embed=embed)
-        # await user.send("You've been banned from **defying ღ thots**. You were banned by **{}**, and you were banned for **none (no reason was found)**.\nIf you feel like this punishment isn't correct, feel free to contact dy#0777 or ¢คຖt Şนpprē$͓̽$͓̽ | PM#7802, and they'll look into it.".format(ctx.message.author))
+            await user.send("You've been banned from {}.".format(ctx.server.name))
         except:
             embed = discord.Embed(
-                description="I tried to DM the user, but I'm not allowed to because we don't share any guilds.",
+                description="I tried to DM the user, but I'm not allowed to because their DMs aren't open.",
                 color=0xebf533)
             embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
             await ctx.send(embed=embed)
-        # await ctx.send("I failed to DM {}, so I didn't inform them for their ban. \n Obvious reason: the user had their DMs disabled.".format(user.mention))
+        await user.ban(reason=reason)
         logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
         timestamp = datetime.datetime.now()
         corfor = timestamp.strftime("%d %b, %Y at %H:%M")
@@ -2266,7 +2250,6 @@ async def ban(ctx, user: discord.Member, *, reason: str):
         log.set_footer(text="{}".format(corfor))
         log.set_thumbnail(url=user.avatar_url)
         await logch.send(embed=log)
-    await user.ban()
 
 
 @ban.error
@@ -2276,7 +2259,6 @@ async def ban_error(ctx, error):
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
-    # await ctx.send("{} look now, do i look like a magician? just mention a user and i'll ban them \n example: ``!ban @dy ez noob``".format(ctx.message.author.mention))
     if isinstance(error, commands.MissingRequiredArgument):
         embed = discord.Embed(
             description="Give me a user to ban. \n``TIP:`` If you want to ban a user that's not in the server, try using !banid.",
@@ -2284,7 +2266,6 @@ async def ban_error(ctx, error):
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
-    # await ctx.send("{} okay so, i can't read your mind, sorry, could you try giving me at least a member to ban? \n example: ``!ban @dy ez noob``".format(ctx.message.author.mention))
     if isinstance(error, commands.CheckFailure):
         embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -2296,51 +2277,19 @@ async def ban_error(ctx, error):
 
 
 @bot.command()
-@commands.has_any_role("Admin ･˚｡", "Co Owner", "Owner")
+@commands.has_permissions(ban_members=True)
 async def banid(ctx, id: int, *, reason: str):
     user = await bot.fetch_user(id)
     if user is None:
-        embed = discord.Embed(description="User doesn't exist.", color=0xFF3639)
+        embed = discord.Embed(description="User doesn't exist, duh.", color=0xFF3639)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        # await ctx.send(f"{ctx.message.author.mention}, this user doesn't exist.")
         return
-    # banEntry = await ctx.message.guild.fetch_ban(user)
-    # if BanEntry is None:
-    # if reason is None:
-    #	await ctx.send("**{}** was __banned__ from **defying ღ thots**.\n>> Banned by: **{}**\n>> Reason: **i guess the dummy that used the command forgot to enter a reason, so i'd say they got clapped justcuz**".format(user.mention, ctx.message.author.mention))
-    ##	try:
-    #		await user.send("You've been banned from **defying ღ thots**. You were banned by **{}**, and you were banned for **none (no reason was found)**.\nIf you feel like this punishment isn't correct, feel free to contact dy#0777 or ¢คຖt Şนpprē$͓̽$͓̽ | PM#7802, and they'll look into it.".format(ctx.message.author))
-    #	except:
-    #		await ctx.send("I failed to DM {}, so I didn't inform them for their ban. \n Obvious reason: his command bans people that are not in the server, it would make sense to not have the perms to DM them.".format(user.mention))
-    # else:
-    #	await ctx.send("**{}** was __banned__ from **defying ღ thots**.\n>> Banned by: **{}**\n>> Reason: **{}**".format(user.mention, ctx.message.author.mention, reason))
-    #	try:
-    ##		await user.send("You've been banned from **defying ღ thots**. You were banned by **{}**, and you were banned for **none (no reason was found)**.\nIf you feel like this punishment isn't correct, feel free to contact dy#0777 or ¢คຖt Şนpprē$͓̽$͓̽ | PM#7802, and they'll look into it.".format(ctx.message.author))
-    #	except:
-    #		await ctx.send("I failed to DM {}, so I didn't inform them for their ban. \n Obvious reason: this command bans people that are not in the server, it would make sense to not have the perms to DM them..".format(user.mention))
     if len(reason) == 0:
-        embed = discord.Embed(title="Successfully banned {}.".format(user),
-                              description="**{}** was __banned__ from **[defying ღ thots](https://discord.gg/GJ5UDth)**. \nThe reason of their ban is **none, not provided**. \n Banned for permanent.".format(
-                                  user.mention), color=0x000000)
-        embed.set_thumbnail(url=user.avatar_url)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        await ctx.send(embed=embed)
-        # await ctx.send("**{}** was __banned__ from **defying ღ thots**.\n>> Banned by: **{}**\n>> Reason: **i guess the dummy that used the command forgot to enter a reason, so i'd say they got clapped justcuz**".format(user.mention, ctx.message.author.mention))
-        try:
-            embed = discord.Embed(title="You were banned from defying ღ thots.",
-                                  description="You were banned by **{}**. \nThe reason for your ban is **none, not provided**. \nThis ban is permanent. \n\n [ - The defying ღ thots staff team.](https://discord.gg/GJ5UDth)".format(
-                                      ctx.message.author), color=0x000000)
-            embed.set_thumbnail(url=ctx.message.author.guild.icon_url)
-            await user.send(embed=embed)
-        # await user.send("You've been banned from **defying ღ thots**. You were banned by **{}**, and you were banned for **none (no reason was found)**.\nIf you feel like this punishment isn't correct, feel free to contact dy#0777 or ¢คຖt Şนpprē$͓̽$͓̽ | PM#7802, and they'll look into it.".format(ctx.message.author))
-        except:
-            embed = discord.Embed(
-                description="I tried to DM the user, but I'm not allowed to because we don't share any guilds.",
-                color=0xebf533)
-            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            await ctx.send(embed=embed)
-        # await ctx.send("I failed to DM {}, so I didn't inform them for their ban. \n Obvious reason: the user had their DMs disabled.".format(user.mention))
+        punishMsg = discord.Embed(description="{} was banned.\n``Reason:`` N/A\n``Duration:`` -".format(user.mention), color=0x000000)
+        punishMsg.set_author(name="{}".format(ctx.message.author.name))
+        punishMsg.set_thumbnail(url=user.avatar_url)
+        await ctx.send(embed=punishMsg)
         logch = discord.utils.get(ctx.message.author.guild.channels, name="enightclub-logs")
         timestamp = datetime.datetime.now()
         corfor = timestamp.strftime("%d %b, %Y at %H:%M")
@@ -2350,28 +2299,13 @@ async def banid(ctx, id: int, *, reason: str):
         log.set_footer(text="{}".format(corfor))
         log.set_thumbnail(url=user.avatar_url)
         await logch.send(embed=log)
+        await ctx.message.guild.ban(discord.Object(id=id), reason="N/A")
     else:
-        embed = discord.Embed(title="Successfully banned {}.".format(user),
-                              description="**{}** was __banned__ from **[defying ღ thots](https://discord.gg/GJ5UDth)**. \nThe reason of their ban is **{}**. \n Banned for permanent.".format(
-                                  user.mention, reason), color=0x000000)
-        embed.set_thumbnail(url=user.avatar_url)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        await ctx.send(embed=embed)
-        # await ctx.send("**{}** was __banned__ from **defying ღ thots**.\n>> Banned by: **{}**\n>> Reason: **{}**".format(user.mention, ctx.message.author.mention, reason))
-        try:
-            embed = discord.Embed(title="You were banned from defying ღ thots.",
-                                  description="You were banned by **{}**. \nThe reason for your ban is **{}**. \nThis ban is permanent. \n\n [ - The defying ღ thots staff team.](https://discord.gg/GJ5UDth)".format(
-                                      ctx.message.author, reason), color=0x000000)
-            embed.set_thumbnail(url=ctx.message.author.guild.icon_url)
-            await user.send(embed=embed)
-        # await user.send("You've been banned from **defying ღ thots**. You were banned by **{}**, and you were banned for **none (no reason was found)**.\nIf you feel like this punishment isn't correct, feel free to contact dy#0777 or ¢คຖt Şนpprē$͓̽$͓̽ | PM#7802, and they'll look into it.".format(ctx.message.author))
-        except:
-            embed = discord.Embed(
-                description="I tried to DM the user, but I'm not allowed to because we don't share any guilds.",
-                color=0xebf533)
-            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            await ctx.send(embed=embed)
-        # await ctx.send("I failed to DM {}, so I didn't inform them for their ban. \n Obvious reason: the user had their DMs disabled.".format(user.mention))
+        punishMsg = discord.Embed(description="{} was banned.\n``Reason:`` {}\n``Duration:`` -".format(user.mention, reason), color=0x000000)
+        punishMsg.set_author(name="{}".format(ctx.message.author.name))
+        punishMsg.set_thumbnail(url=user.avatar_url)
+        await ctx.send(embed=punishMsg)
+        await ctx.message.guild.ban(discord.Object(id=id), reason=reason)
         logch = discord.utils.get(ctx.message.author.guild.channels, name="enightclub-logs")
         timestamp = datetime.datetime.now()
         corfor = timestamp.strftime("%d %b, %Y at %H:%M")
@@ -2381,12 +2315,6 @@ async def banid(ctx, id: int, *, reason: str):
         log.set_footer(text="{}".format(corfor))
         log.set_thumbnail(url=user.avatar_url)
         await logch.send(embed=log)
-
-    await ctx.message.guild.ban(discord.Object(id=id))
-
-
-# else:
-# ctx.send(f"{ctx.message.author.mention}, seems like this user is already banned.")
 
 @banid.error
 async def banid_error(ctx, error):
@@ -2395,13 +2323,11 @@ async def banid_error(ctx, error):
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
-    # await ctx.send("{} look now, do i look like a magician? just mention a user and i'll ban them \n example: ``!ban @dy ez noob``".format(ctx.message.author.mention))
     if isinstance(error, commands.MissingRequiredArgument):
         embed = discord.Embed(description="Give me ID of an user to ban.", color=0xFF3639)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
-    # await ctx.send("{} okay so, i can't read your mind, sorry, could you try giving me at least a member to ban? \n example: ``!ban @dy ez noob``".format(ctx.message.author.mention))
     if isinstance(error, commands.CheckFailure):
         embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -2413,7 +2339,7 @@ async def banid_error(ctx, error):
 
 
 @bot.command()
-@commands.has_any_role("Co Owner", "Owner")
+@commands.has_permissions(ban_members=True)
 async def massban(ctx, *, users: str):
     desc = "Mass ban started. May take a while. \n\n"
     embed = discord.Embed(description=desc, color=0x000000)
@@ -2421,13 +2347,10 @@ async def massban(ctx, *, users: str):
     msg = await ctx.send(embed=embed)
     mentions = ctx.message.mentions
     for user in mentions:
-        # desc = desc + "\n{}".format(user)
         try:
             await user.ban()
         except:
-            # desc = desc + "\n :x: | {}".format(user)
             await ctx.send(f"Couldn't ban {user.mention} because of missing permissions.")
-    # await msg.edit(embed=embed)
 
 
 @massban.error
@@ -2455,22 +2378,16 @@ async def massban_error(ctx, error):
 
 
 @bot.command()
-@commands.has_any_role("Admin ･˚｡", "Co Owner", "Owner")
+@commands.has_permissions(ban_member=True)
 async def unban(ctx, id: int, *, reason: str = ""):
-    # print("I got the user!")
-    # print("ID: " + id)
     user = await bot.fetch_user(id)
     if user is None:
         embed = discord.Embed(description="User doesn't exist.", color=0xFF3639)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        # await ctx.send(f"{ctx.message.author.mention}, this user doesn't exist.")
         return
-    # print("I fetched this user!")
     banEntry = await ctx.message.guild.fetch_ban(user)
     if banEntry is None:
-        # print("This user is not banned!")
-        # await ctx.send(f"{ctx.message.author.mention}, are you sure this user is banned?")
         embed = discord.Embed(description="This user is not banned.", color=0xFF3639)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
@@ -2478,18 +2395,11 @@ async def unban(ctx, id: int, *, reason: str = ""):
         return
     else:
         if banEntry.reason is None:
-            # print("Going without a reason!")
-            # await ctx.send("**{}** was __unbanned__. \n"
-            #				">> Unbanned by: **{}**\n"
-            #				">> Reason: **who even puts reasons on unban lol**"
-            #				.format(banEntry.user, ctx.message.author.mention))
-            embed = discord.Embed(title="Successfully unbanned {}".format(user),
-                                  description="**{}** was unbanned from [**defying ღ thots**](https://discord.gg/GJ5UDth). \nThe reason of the unban is **reasons on unban? seems gay to me**".format(
-                                      banEntry.user, ctx.message.author.mention), color=0x000000)
-            embed.set_thumbnail(url=user.avatar_url)
-            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            await ctx.send(embed=embed)
-            logch = discord.utils.get(ctx.message.author.guild.channels, name="enightclub-logs")
+            punishMsg = discord.Embed(description="{} was unbanned.", color=0x000000)
+            punishMsg.set_author(name="{}".format(ctx.message.author.name))
+            punishMsg.set_thumbnail(url=user.avatar_url)
+            await ctx.send(embed=punishMsg)
+            logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
             timestamp = datetime.datetime.now()
             corfor = timestamp.strftime("%d %b, %Y at %H:%M")
             log = discord.Embed(description="Used command ``!unban`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
@@ -2499,17 +2409,11 @@ async def unban(ctx, id: int, *, reason: str = ""):
             log.set_thumbnail(url=user.avatar_url)
             await logch.send(embed=log)
         else:
-            # print("Going with a reason!")
-            # await ctx.send("**{}** was __unbanned__. \n"
-            #				">> Unbanned by: **{}**\n"
-            #				">> Reason: **{}**"
-            #				.format(banEntry.user, ctx.message.author.mention, reason))
-            embed = discord.Embed(title="Successfully unbanned {}".format(user),
-                                  description="**{}** was unbanned from [**defying ღ thots**](https://discord.gg/GJ5UDth). \nThe reason of the unban is **{}**".format(
-                                      banEntry.user, ctx.message.author.mention, reason), color=0x000000)
-            embed.set_thumbnail(url=user.avatar_url)
-            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            logch = discord.utils.get(ctx.message.author.guild.channels, name="enightclub-logs")
+            punishMsg = discord.Embed(description="{} was unbanned.", color=0x000000)
+            punishMsg.set_author(name="{}".format(ctx.message.author.name))
+            punishMsg.set_thumbnail(url=user.avatar_url)
+            await ctx.send(embed=punishMsg)
+            logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
             timestamp = datetime.datetime.now()
             corfor = timestamp.strftime("%d %b, %Y at %H:%M")
             log = discord.Embed(description="Used command ``!unban`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
@@ -2518,8 +2422,7 @@ async def unban(ctx, id: int, *, reason: str = ""):
             log.set_footer(text="{}".format(corfor))
             log.set_thumbnail(url=user.avatar_url)
             await logch.send(embed=log)
-        # print("I unbanned the user!")
-        await ctx.message.guild.unban(banEntry.user, reason="Ban reason goes here")
+        await ctx.message.guild.unban(banEntry.user, reason="Unbanned by mod.")
 
 
 @unban.error
@@ -2529,51 +2432,40 @@ async def unban_error(ctx, error):
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
-    # await ctx.send("{} look now, do i look like a magician? just give me the id of an user and i'll unban them \n example: ``!unban id how did this happen to begin with``".format(ctx.message.author.mention))
     if isinstance(error, commands.MissingRequiredArgument):
         embed = discord.Embed(description="I couldn't  unban.. no one? Try giving me the ID of an user.",
                               color=0xFF3639)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
-    # await ctx.send("{} okay so, i can't read your mind, sorry, could you try giving me at least a member to unban? \n example: ``!unban id how did this happen to begin with``".format(ctx.message.author.mention))
     if isinstance(error, commands.CheckFailure):
         embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
-    # await ctx.send("{} r u dumb or hella dumb? this command is for admins and mods only, nice try tho, i must give u that.".format(ctx.message.author.mention))
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
 
 
 @bot.command()
-@commands.has_any_role("Admin ･˚｡", "Co Owner", "Owner", "Admin ･˚｡")
+@commands.has_permissions(kick_members=True)
 async def kick(ctx, user: discord.Member, *, reason: str):
     if len(reason) == 0:
-        embed = discord.Embed(title="Successfully kicked {}.".format(user),
-                              description="**{}** was __kicked__ from **[defying ღ thots](https://discord.gg/GJ5UDth)**. \nThe reason of their kick is **none, not provided**.".format(
-                                  user.mention), color=0x000000)
-        embed.set_thumbnail(url=user.avatar_url)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        await ctx.send(embed=embed)
-        # await ctx.send("**{}** was __kicked__ from **defying ღ thots**.\n>> Kicked by: **{}**\n>> Reason: **i guess the dummy that used the command forgot to enter a reason, so i'd say they got slapped justcuz**".format(user.mention, ctx.message.author.mention))
+        punishMsg = discord.Embed(description="{} was kicked.\n``Reason:`` N/A\n``Duration:``-".format(user.mention), color=0x000000)
+        punishMsg.set_author(name="{}".format(ctx.message.author.name))
+        punishMsg.set_thumbnail(url=user.avatar_url)
+        await ctx.send(embed=punishMsg)
         try:
-            embed = discord.Embed(title="You were kicked from [**defying ღ thots**](https://discord.gg/GJ5UDth).",
-                                  description="You were kicked by **{}**. \nThe reason for your kick is **none, not provided**. \n\n [ - The defying ღ thots staff team.](https://discord.gg/GJ5UDth)".format(
-                                      ctx.message.author), color=0x000000)
-            embed.set_thumbnail(url=ctx.message.author.guild.icon_url)
-            await user.send(embed=embed)
-        # await user.send("You've been kicked from **defying ღ thots**. You were kicked by **{}**, and you were kicked for **none (no reason was found)**.\nIf you feel like this punishment isn't correct, feel free to contact dy#0777 or ¢คຖt Şนpprē$͓̽$͓̽ | PM#7802, and they'll look into it.".format(ctx.message.author))
+            await ctx.send("You've been kicked from {}.".format(ctx.server.name))
         except:
             embed = discord.Embed(
-                description="I tried to DM the user, but I'm not allowed to because their DMs weren't enabled.",
+                description="I tried to DM the user, but I'm not allowed to because their DMs aren't open.",
                 color=0xebf533)
             embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
             await ctx.send(embed=embed)
-        # await ctx.send("I failed to DM {}, so I didn't inform them for their kick. \n Obvious reason: the user had their DMs disabled.".format(user.mention))
-        logch = discord.utils.get(ctx.message.author.guild.channels, name="enightclub-logs")
+        await user.kick(reason="N/A")
+        logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
         timestamp = datetime.datetime.now()
         corfor = timestamp.strftime("%d %b, %Y at %H:%M")
         log = discord.Embed(description="Used command ``!kick`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
@@ -2583,28 +2475,20 @@ async def kick(ctx, user: discord.Member, *, reason: str):
         log.set_thumbnail(url=user.avatar_url)
         await logch.send(embed=log)
     else:
-        embed = discord.Embed(title="Successfully kicked {}.".format(user),
-                              description="**{}** was __kicked__ from **[defying ღ thots](https://discord.gg/GJ5UDth)**. \nThe reason of their kick is **{}**.".format(
-                                  user.mention, reason), color=0x000000)
-        embed.set_thumbnail(url=user.avatar_url)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        await ctx.send(embed=embed)
-        # await ctx.send("**{}** was __kicked__ from **defying ღ thots**.\n>> Kicked by: **{}**\n>> Reason: **{}**".format(user.mention, ctx.message.author.mention, reason))
+        punishMsg = discord.Embed(description="{} was kicked.\n``Reason:`` N/A\n``Duration:``-".format(user.mention), color=0x000000)
+        punishMsg.set_author(name="{}".format(ctx.message.author.name))
+        punishMsg.set_thumbnail(url=user.avatar_url)
+        await ctx.send(embed=punishMsg)
         try:
-            embed = discord.Embed(title="You were kicked from [**defying ღ thots**](https://discord.gg/GJ5UDth).",
-                                  description="You were kicked by **{}**. \nThe reason for your kick is **none, not provided**. \n\n [ - The defying ღ thots staff team.](https://discord.gg/GJ5UDth)".format(
-                                      ctx.message.author), color=0x000000)
-            embed.set_thumbnail(url=ctx.message.author.guild.icon_url)
-            await user.send(embed=embed)
-        # await user.send("You've been kicked from **defying ღ thots**. You were kicked by **{}**, and you were kicked for **none (no reason was found)**.\nIf you feel like this punishment isn't correct, feel free to contact dy#0777 or ¢คຖt Şนpprē$͓̽$͓̽ | PM#7802, and they'll look into it.".format(ctx.message.author))
+            await ctx.send("You've been kicked from {}.".format(ctx.server.name))
         except:
             embed = discord.Embed(
-                description="I tried to DM the user, but I'm not allowed to because their DMs weren't enabled.",
+                description="I tried to DM the user, but I'm not allowed to because their DMs aren't open.",
                 color=0xebf533)
             embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
             await ctx.send(embed=embed)
-        # await ctx.send("I failed to DM {}, so I didn't inform them for their kick. \n Obvious reason: the user had their DMs disabled.".format(user.mention))
-        logch = discord.utils.get(ctx.message.author.guild.channels, name="enightclub-logs")
+        await user.kick(reason=reason)
+        logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
         timestamp = datetime.datetime.now()
         corfor = timestamp.strftime("%d %b, %Y at %H:%M")
         log = discord.Embed(description="Used command ``!kick`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
@@ -2613,7 +2497,6 @@ async def kick(ctx, user: discord.Member, *, reason: str):
         log.set_footer(text="{}".format(corfor))
         log.set_thumbnail(url=user.avatar_url)
         await logch.send(embed=log)
-    await user.kick()
 
 
 @kick.error
@@ -2623,26 +2506,23 @@ async def kick_error(ctx, error):
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
-    # await ctx.send("{} look now, do i look like a magician? just mention a user and i'll kick them \n example: ``!kick @dy ez noob``".format(ctx.message.author.mention))
     if isinstance(error, commands.MissingRequiredArgument):
         embed = discord.Embed(description="I couldn't kick.. no one? Try giving me a correct user.", color=0xFF3639)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
-    # await ctx.send("{} okay so, i can't read your mind, sorry, could you try giving me at least a member to kick? \n example: ``!kick @dy ez noob``".format(ctx.message.author.mention))
     if isinstance(error, commands.CheckFailure):
         embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
-    # await ctx.send("{} r u dumb or hella dumb? this command is for admins and mods only, nice try tho, i must give u that.".format(ctx.message.author.mention))
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
 
 
 @bot.command()
-@commands.has_any_role("Chat Moderator", "Co Owner", "Owner", "Admin ･˚｡")
+@commands.has_permissions(manage_messages=True)
 async def mute(ctx, user: discord.Member, *, reason: str):
     mutedrole = discord.utils.get(ctx.message.author.guild.roles, name="Muted")
     if mutedrole in user.roles:
@@ -2653,28 +2533,12 @@ async def mute(ctx, user: discord.Member, *, reason: str):
         return
     else:
         if len(reason) == 0:
-            embed = discord.Embed(title="Successfully muted {}.".format(user),
-                                  description="**{}** was __muted__. \nThe reason of their mute is **none, not provided**.".format(
-                                      user.mention), color=0x000000)
-            embed.set_thumbnail(url=user.avatar_url)
-            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            await ctx.send(embed=embed)
-            # await ctx.send("**{}** was __muted__.\n>> Muted by: **{}**\n>> Reason: **i guess the dummy that used the command forgot to enter a reason, so i'd say they got slapped justcuz** \n**This mute won't be removed automatically. Someone has to manually remove it.**".format(user.mention, ctx.message.author.mention))
-            try:
-                embed = discord.Embed(title="You were muted in [**defying ღ thots**](https://discord.gg/GJ5UDth).",
-                                      description="You were muted by **{}**. \nThe reason for your mute is **none, not provided**. \n\n [ - The defying ღ thots staff team.](https://discord.gg/GJ5UDth)".format(
-                                          ctx.message.author), color=0x000000)
-                embed.set_thumbnail(url=ctx.message.author.guild.icon_url)
-                await user.send(embed=embed)
-            # await user.send("You've been muted in **defying ღ thots**. You were muted by **{}**, and you were muted for **none (no reason was found)**.\n**This mute won't be removed automatically. Someone has to manually remove it.**\nIf you feel like this punishment isn't correct, feel free to contact dy#0777 or ¢คຖt Şนpprē$͓̽$͓̽ | PM#7802, and they'll look into it.".format(ctx.message.author))
-            except:
-                embed = discord.Embed(
-                    description="I tried to DM the user, but I'm not allowed to because their DMs weren't enabled.",
-                    color=0xebf533)
-                embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-                await ctx.send(embed=embed)
-            # await ctx.send("I failed to DM {}, so I didn't inform them for their mute. \n Obvious reason: the user had their DMs disabled.".format(user.mention))
-            logch = discord.utils.get(ctx.message.author.guild.channels, name="enightclub-logs")
+            punishMsg = discord.Embed(description="{} was muted.\n``Reason:`` N/A\n``Duration:`` -".format(user.mention), color=0x000000)
+            punishMsg.set_author(name="{}".format(ctx.message.author.name))
+            punishMsg.set_thumbnail(url=user.avatar_url)
+            await ctx.send(embed=punishMsg)
+            await user.add_roles(mutedrole, reason="N/A")
+            logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
             timestamp = datetime.datetime.now()
             corfor = timestamp.strftime("%d %b, %Y at %H:%M")
             log = discord.Embed(description="Used command ``!mute`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
@@ -2683,29 +2547,14 @@ async def mute(ctx, user: discord.Member, *, reason: str):
             log.set_footer(text="{}".format(corfor))
             log.set_thumbnail(url=user.avatar_url)
             await logch.send(embed=log)
+            
         else:
-            embed = discord.Embed(title="Successfully muted {}.".format(user),
-                                  description="**{}** was __muted__. \nThe reason of their mute is **{}**.".format(
-                                      user.mention, reason), color=0x000000)
-            embed.set_thumbnail(url=user.avatar_url)
-            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            await ctx.send(embed=embed)
-            # await ctx.send("**{}** was __muted__.\n>> Muted by: **{}**\n>> Reason: **{}**\n**This mute won't be removed automatically. Someone has to manually remove it.**".format(user.mention, ctx.message.author.mention, reason))
-            try:
-                embed = discord.Embed(title="You were muted in [**defying ღ thots**](https://discord.gg/GJ5UDth).",
-                                      description="You were muted by **{}**. \nThe reason for your mute is **{}**. \n\n [ - The defying ღ thots staff team.](https://discord.gg/GJ5UDth)".format(
-                                          ctx.message.author, reason), color=0x000000)
-                embed.set_thumbnail(url=ctx.message.author.guild.icon_url)
-                await user.send(embed=embed)
-            # await user.send("You've been muted in **defying ღ thots**. You were muted by **{}**, and you were muted for **{}**. \n**This mute won't be removed automatically. Someone has to manually remove it.**\n If you feel like this punishment isn't correct, feel free to contact dy#0777 or ¢คຖt Şนpprē$͓̽$͓̽ | PM#7802, and they'll look into it.".format(ctx.message.author, reason))
-            except:
-                embed = discord.Embed(
-                    description="I tried to DM the user, but I'm not allowed to because their DMs weren't enabled.",
-                    color=0xebf533)
-                embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-                await ctx.send(embed=embed)
-            # await ctx.send("I failed to DM {}, so I didn't inform them for their mute. \n Obvious reason: the user had their DMs disabled.".format(user.mention))
-            logch = discord.utils.get(ctx.message.author.guild.channels, name="enightclub-logs")
+            punishMsg = discord.Embed(description="{} was muted.\n``Reason:`` {}\n``Duration:`` -".format(user.mention, reason), color=0x000000)
+            punishMsg.set_author(name="{}".format(ctx.message.author.name))
+            punishMsg.set_thumbnail(url=user.avatar_url)
+            await ctx.send(embed=punishMsg)
+            await user.add_roles(mutedrole, reason=reason)
+            logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
             timestamp = datetime.datetime.now()
             corfor = timestamp.strftime("%d %b, %Y at %H:%M")
             log = discord.Embed(description="Used command ``!mute`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
@@ -2714,7 +2563,6 @@ async def mute(ctx, user: discord.Member, *, reason: str):
             log.set_footer(text="{}".format(corfor))
             log.set_thumbnail(url=user.avatar_url)
             await logch.send(embed=log)
-        await user.add_roles(mutedrole)
 
 
 @mute.error
@@ -2724,37 +2572,32 @@ async def mute_error(ctx, error):
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
-    # await ctx.send("{} look now, do i look like a magician? just mention a user and i'll kick them \n example: ``!kick @dy ez noob``".format(ctx.message.author.mention))
     if isinstance(error, commands.MissingRequiredArgument):
         embed = discord.Embed(description="I couldn't mute.. no one? Try giving me a correct user.", color=0xFF3639)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
-    # await ctx.send("{} okay so, i can't read your mind, sorry, could you try giving me at least a member to kick? \n example: ``!kick @dy ez noob``".format(ctx.message.author.mention))
     if isinstance(error, commands.CheckFailure):
         embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
-    # await ctx.send("{} r u dumb or hella dumb? this command is for admins and mods only, nice try tho, i must give u that.".format(ctx.message.author.mention))
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
 
 
 @bot.command()
-@commands.has_any_role("Chat Moderator", "Co Owner", "Owner", "Admin ･˚｡")
-async def unmute(ctx, user: discord.Member, *, reason: str = ""):
+@commands.has_permissions(manage_messages=True)
+async def unmute(ctx, user: discord.Member):
     mutedrole = discord.utils.get(ctx.message.author.guild.roles, name="Muted")
     if mutedrole in user.roles:
-        if len(reason) == 0:
-            embed = discord.Embed(title="Successfully unmuted {}.".format(user),
-                                  description="**{}** was __unmuted__. \nThe reason of their unmute is **none, not provided**.".format(
-                                      user.mention), color=0x000000)
-            embed.set_thumbnail(url=user.avatar_url)
-            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            await ctx.send(embed=embed)
-            logch = discord.utils.get(ctx.message.author.guild.channels, name="enightclub-logs")
+            punishMsg = discord.Embed(description="{} was unmuted.", color=0x000000)
+            punishMsg.set_author(name="{}".format(ctx.message.author.name))
+            punishMsg.set_thumbnail(url=user.avatar_url)
+            await ctx.send(embed=punishMsg)
+            await user.remove_roles(mutedrole)
+            logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
             timestamp = datetime.datetime.now()
             corfor = timestamp.strftime("%d %b, %Y at %H:%M")
             log = discord.Embed(description="Used command ``!unmute`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
@@ -2763,25 +2606,6 @@ async def unmute(ctx, user: discord.Member, *, reason: str = ""):
             log.set_footer(text="{}".format(corfor))
             log.set_thumbnail(url=user.avatar_url)
             await logch.send(embed=log)
-        # await ctx.send("**{}** was __unmuted__. \n>> Unmuted by: **{}**\n>> Reason: **who even puts reasons on unmute lol**".format(user.mention, ctx.message.author.mention))
-        else:
-            embed = discord.Embed(title="Successfully unmuted {}.".format(user),
-                                  description="**{}** was __unmuted__. \nThe reason of their unmute is **{}**.".format(
-                                      user.mention, reason), color=0x000000)
-            embed.set_thumbnail(url=user.avatar_url)
-            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            await ctx.send(embed=embed)
-            logch = discord.utils.get(ctx.message.author.guild.channels, name="enightclub-logs")
-            timestamp = datetime.datetime.now()
-            corfor = timestamp.strftime("%d %b, %Y at %H:%M")
-            log = discord.Embed(description="Used command ``!unmute`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
-                ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF)
-            log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            log.set_footer(text="{}".format(corfor))
-            log.set_thumbnail(url=user.avatar_url)
-            await logch.send(embed=log)
-        # await ctx.send("**{}** was __unmuted__. \n>> Unmuted by: **{}**\n>> Reason: **{}**".format(user.mention, ctx.message.author.mention, reason))
-        await user.remove_roles(mutedrole)
     else:
         embed = discord.Embed(description="This user is not muted.", color=0xFF3639)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -2797,276 +2621,245 @@ async def unmute_error(ctx, error):
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
-    # await ctx.send("{} look now, do i look like a magician? just mention a user and i'll unmute them \n example: ``!unmute @dy lol begged for unmute``".format(ctx.message.author.mention))
     if isinstance(error, commands.MissingRequiredArgument):
         embed = discord.Embed(description="I couldn't unmute.. no one? Try giving me a correct user.", color=0xFF3639)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
-    # await ctx.send("{} okay so, i can't read your mind, sorry, could you try giving me at least a member to unmute? \n example: ``!unmute @dy lol begged for unmute``".format(ctx.message.author.mention))
     if isinstance(error, commands.CheckFailure):
         embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
-    # await ctx.send("{} r u dumb or hella dumb? this command is for admins and mods only, nice try tho, i must give u that.".format(ctx.message.author.mention))
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
 
 
 @bot.command()
+@commands.is_owner()
 async def status(ctx, a, b, *, status: str = " "):
-    if ctx.message.author.id == 514392208254959618 or ctx.message.author.id == 237938976999079948:
-        if len(a) != 0:
-            # embed = discord.Embed(description="Status changed. \n".format(status), color=0x000000)
-            if (a == "o" or a == "online") and (b == "p" or b == "playing"):
-                embed = discord.Embed(description="Status changed. \n**Online**\n**Playing {}**".format(status),
-                                      color=0x000000)
-                await bot.change_presence(status=discord.Status.online,
-                                          activity=discord.Activity(name='{}'.format(status),
-                                                                    type=discord.ActivityType.playing))
-            elif (a == "o" or a == "online") and (b == "w" or b == "watching"):
-                embed = discord.Embed(description="Status changed. \n**Online**\n**Watching {}**".format(status),
-                                      color=0x000000)
-                await bot.change_presence(status=discord.Status.online,
-                                          activity=discord.Activity(name='{}'.format(status),
-                                                                    type=discord.ActivityType.watching))
-            elif (a == "o" or a == "online") and (b == "l" or b == "listening"):
-                embed = discord.Embed(description="Status changed. \n**Online**\n**Listening to {}**".format(status),
-                                      color=0x000000)
-                await bot.change_presence(status=discord.Status.online,
-                                          activity=discord.Activity(name='{}'.format(status),
-                                                                    type=discord.ActivityType.listening))
-            elif (a == "i" or a == "idle") and (b == "p" or b == "playing"):
-                embed = discord.Embed(description="Status changed. \n**Idle**\n**Playing {}**".format(status),
-                                      color=0x000000)
-                await bot.change_presence(status=discord.Status.idle,
-                                          activity=discord.Activity(name='{}'.format(status),
-                                                                    type=discord.ActivityType.playing))
-            elif (a == "i" or a == "idle") and (b == "w" or b == "watching"):
-                embed = discord.Embed(description="Status changed. \n**Idle**\n**Watching {}**".format(status),
-                                      color=0x000000)
-                await bot.change_presence(status=discord.Status.idle,
-                                          activity=discord.Activity(name='{}'.format(status),
-                                                                    type=discord.ActivityType.watching))
-            elif (a == "i" or a == "idle") and (b == "l" or b == "listening"):
-                embed = discord.Embed(description="Status changed. \n**Idle**\n**Listening to {}**".format(status),
-                                      color=0x000000)
-                await bot.change_presence(status=discord.Status.idle,
-                                          activity=discord.Activity(name='{}'.format(status),
-                                                                    type=discord.ActivityType.listening))
-            elif (a == "d" or a == "dnd") and (b == "p" or b == "playing"):
-                embed = discord.Embed(description="Status changed. \n**Do Not Disturb**\n**Playing {}**".format(status),
-                                      color=0x000000)
-                await bot.change_presence(status=discord.Status.dnd, activity=discord.Activity(name='{}'.format(status),
-                                                                                               type=discord.ActivityType.playing))
-            elif (a == "d" or a == "dnd") and (b == "w" or b == "watching"):
-                embed = discord.Embed(
-                    description="Status changed. \n**Do Not Disturb**\n**Watching {}**".format(status), color=0x000000)
-                await bot.change_presence(status=discord.Status.dnd, activity=discord.Activity(name='{}'.format(status),
-                                                                                               type=discord.ActivityType.watching))
-            elif (a == "d" or a == "dnd") and (b == "l" or b == "listening"):
-                embed = discord.Embed(
-                    description="Status changed. \n**Do Not Disturb**\n**Listening to {}**".format(status),
-                    color=0x000000)
-                await bot.change_presence(status=discord.Status.dnd, activity=discord.Activity(name='{}'.format(status),
-                                                                                               type=discord.ActivityType.listening))
-            elif a == "o" or a == "online":
-                if len(a) == 1:
-                    statuss = ctx.message.content[9:]
-                elif len(a) == 6:
-                    statuss = ctx.message.content[14:]
-                embed = discord.Embed(description="Status changed. \n**Online**\n**Playing {}**".format(statuss),
-                                      color=0x000000)
-                await bot.change_presence(status=discord.Status.online,
-                                          activity=discord.Activity(name='{}'.format(statuss),
-                                                                    type=discord.ActivityType.playing))
-                embed2 = discord.Embed(
-                    description="Since you didn't provide a valid **status_msg**, I chose the default one: **Playing**.",
-                    color=0xf2f542)
-                embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-                embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
-                await ctx.send(embed=embed2)
-            elif a == "i" or a == "idle":
-                if len(a) == 1:
-                    statuss = ctx.message.content[9:]
-                elif len(a) == 4:
-                    statuss = ctx.message.content[12:]
-                embed = discord.Embed(description="Status changed. \n**Idle**\n**Playing {}**".format(statuss),
-                                      color=0x000000)
-                await bot.change_presence(status=discord.Status.idle,
-                                          activity=discord.Activity(name='{}'.format(statuss),
-                                                                    type=discord.ActivityType.playing))
-                embed2 = discord.Embed(
-                    description="Since you didn't provide a valid **status_msg**, I chose the default one: **Playing**.",
-                    color=0xf2f542)
-                embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-                embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
-                await ctx.send(embed=embed2)
-            elif a == "d" or a == "dnd":
-                if len(a) == 1:
-                    statuss = ctx.message.content[9:]
-                elif len(a) == 3:
-                    statuss = ctx.message.content[11:]
-                embed = discord.Embed(
-                    description="Status changed. \n**Do Not Disturb**\n**Playing {}**".format(statuss), color=0x000000)
-                await bot.change_presence(status=discord.Status.dnd,
-                                          activity=discord.Activity(name='{}'.format(statuss),
-                                                                    type=discord.ActivityType.playing))
-                embed2 = discord.Embed(
-                    description="Since you didn't provide a valid **status_msg**, I chose the default one: **Playing**.",
-                    color=0xf2f542)
-                embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-                embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
-                await ctx.send(embed=embed2)
-            elif a == "playing" or a == "p":
-                if len(a) == 1:
-                    statuss = ctx.message.content[9:]
-                elif len(a) == 7:
-                    statuss = ctx.message.content[15:]
-                embed = discord.Embed(description="Status changed. \n**Online**\n**Playing {}**".format(statuss),
-                                      color=0x000000)
-                await bot.change_presence(status=discord.Status.online,
-                                          activity=discord.Activity(name='{}'.format(statuss),
-                                                                    type=discord.ActivityType.playing))
-                embed2 = discord.Embed(
-                    description="Since you didn't provide a valid **status_ttpe**, I chose the default one: **Online**.",
-                    color=0xf2f542)
-                embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-                embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
-                await ctx.send(embed=embed2)
-            elif a == "w" or a == "watching":
-                if len(a) == 1:
-                    statuss = ctx.message.content[9:]
-                elif len(a) == 8:
-                    statuss = ctx.message.content[16:]
-                embed = discord.Embed(description="Status changed. \n**Online**\n**Watching {}**".format(statuss),
-                                      color=0x000000)
-                await bot.change_presence(status=discord.Status.online,
-                                          activity=discord.Activity(name='{}'.format(statuss),
-                                                                    type=discord.ActivityType.watching))
-                embed2 = discord.Embed(
-                    description="Since you didn't provide a valid **status_type**, I chose the default one: **Online**.",
-                    color=0xf2f542)
-                embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-                embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
-                await ctx.send(embed=embed2)
-            elif a == "l" or a == "listening":
-                if len(a) == 1:
-                    statuss = ctx.message.content[9:]
-                elif len(a) == 9:
-                    statuss = ctx.message.content[17:]
-                embed = discord.Embed(description="Status changed. \n**Online**\n**Listening to {}**".format(statuss),
-                                      color=0x000000)
-                await bot.change_presence(status=discord.Status.online,
-                                          activity=discord.Activity(name='{}'.format(statuss),
-                                                                    type=discord.ActivityType.listening))
-                embed2 = discord.Embed(
-                    description="Since you didn't provide a valid **status_type**, I chose the default one: **Online**.",
-                    color=0xf2f542)
-                embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-                embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
-                await ctx.send(embed=embed2)
-            else:
-                embed2 = discord.Embed(
-                    description="Since you didn't provide a valid **status_type** and/or **status_msg** combination, I chose the default ones: **Online** and **Playing**.",
-                    color=0xf2f542)
-                embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-                embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
-                await ctx.send(embed=embed2)
-                embed = discord.Embed(description="Status changed. \n**Online**\n**Playing {}**".format(status),
-                                      color=0x000000)
-                await bot.change_presence(status=discord.Status.online,
-                                          activity=discord.Activity(name='{}'.format(status),
-                                                                    type=discord.ActivityType.playing))
-
-            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            embed.set_thumbnail(url=ctx.message.author.guild.icon_url)
-            await ctx.send(embed=embed)
-        # await bot.change_presence(activity=discord.Game(name='{}'.format(status)))
+    if len(a) != 0:
+        if (a == "o" or a == "online") and (b == "p" or b == "playing"):
+            embed = discord.Embed(description="Status changed. \n**Online**\n**Playing {}**".format(status),
+                                  color=0x000000)
+            await bot.change_presence(status=discord.Status.online,
+                                      activity=discord.Activity(name='{}'.format(status),
+                                                                type=discord.ActivityType.playing))
+        elif (a == "o" or a == "online") and (b == "w" or b == "watching"):
+            embed = discord.Embed(description="Status changed. \n**Online**\n**Watching {}**".format(status),
+                                  color=0x000000)
+            await bot.change_presence(status=discord.Status.online,
+                                      activity=discord.Activity(name='{}'.format(status),
+                                                                type=discord.ActivityType.watching))
+        elif (a == "o" or a == "online") and (b == "l" or b == "listening"):
+            embed = discord.Embed(description="Status changed. \n**Online**\n**Listening to {}**".format(status),
+                                  color=0x000000)
+            await bot.change_presence(status=discord.Status.online,
+                                      activity=discord.Activity(name='{}'.format(status),
+                                                                type=discord.ActivityType.listening))
+        elif (a == "i" or a == "idle") and (b == "p" or b == "playing"):
+            embed = discord.Embed(description="Status changed. \n**Idle**\n**Playing {}**".format(status),
+                                  color=0x000000)
+            await bot.change_presence(status=discord.Status.idle,
+                                      activity=discord.Activity(name='{}'.format(status),
+                                                                type=discord.ActivityType.playing))
+        elif (a == "i" or a == "idle") and (b == "w" or b == "watching"):
+            embed = discord.Embed(description="Status changed. \n**Idle**\n**Watching {}**".format(status),
+                                  color=0x000000)
+            await bot.change_presence(status=discord.Status.idle,
+                                      activity=discord.Activity(name='{}'.format(status),
+                                                                type=discord.ActivityType.watching))
+        elif (a == "i" or a == "idle") and (b == "l" or b == "listening"):
+            embed = discord.Embed(description="Status changed. \n**Idle**\n**Listening to {}**".format(status),
+                                  color=0x000000)
+            await bot.change_presence(status=discord.Status.idle,
+                                      activity=discord.Activity(name='{}'.format(status),
+                                                                type=discord.ActivityType.listening))
+        elif (a == "d" or a == "dnd") and (b == "p" or b == "playing"):
+            embed = discord.Embed(description="Status changed. \n**Do Not Disturb**\n**Playing {}**".format(status),
+                                  color=0x000000)
+            await bot.change_presence(status=discord.Status.dnd, activity=discord.Activity(name='{}'.format(status),
+                                                                                           type=discord.ActivityType.playing))
+        elif (a == "d" or a == "dnd") and (b == "w" or b == "watching"):
+            embed = discord.Embed(
+                description="Status changed. \n**Do Not Disturb**\n**Watching {}**".format(status), color=0x000000)
+            await bot.change_presence(status=discord.Status.dnd, activity=discord.Activity(name='{}'.format(status),
+                                                                                           type=discord.ActivityType.watching))
+        elif (a == "d" or a == "dnd") and (b == "l" or b == "listening"):
+            embed = discord.Embed(
+                description="Status changed. \n**Do Not Disturb**\n**Listening to {}**".format(status),
+                color=0x000000)
+            await bot.change_presence(status=discord.Status.dnd, activity=discord.Activity(name='{}'.format(status),
+                                                                                           type=discord.ActivityType.listening))
+        elif a == "o" or a == "online":
+            if len(a) == 1:
+                statuss = ctx.message.content[9:]
+            elif len(a) == 6:
+                statuss = ctx.message.content[14:]
+            embed = discord.Embed(description="Status changed. \n**Online**\n**Playing {}**".format(statuss),
+                                  color=0x000000)
+            await bot.change_presence(status=discord.Status.online,
+                                      activity=discord.Activity(name='{}'.format(statuss),
+                                                                type=discord.ActivityType.playing))
+            embed2 = discord.Embed(description="Since you didn't provide a valid **status_msg**, I chose the default one: **Playing**.", color=0xf2f542)
+            embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+            embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
+            await ctx.send(embed=embed2)
+        elif a == "i" or a == "idle":
+            if len(a) == 1:
+                statuss = ctx.message.content[9:]
+            elif len(a) == 4:
+                statuss = ctx.message.content[12:]
+            embed = discord.Embed(description="Status changed. \n**Idle**\n**Playing {}**".format(statuss),
+                                  color=0x000000)
+            await bot.change_presence(status=discord.Status.idle,
+                                      activity=discord.Activity(name='{}'.format(statuss),
+                                                                type=discord.ActivityType.playing))
+            embed2 = discord.Embed(
+                description="Since you didn't provide a valid **status_msg**, I chose the default one: **Playing**.",
+                color=0xf2f542)
+            embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+            embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
+            await ctx.send(embed=embed2)
+        elif a == "d" or a == "dnd":
+            if len(a) == 1:
+                statuss = ctx.message.content[9:]
+            elif len(a) == 3:
+                statuss = ctx.message.content[11:]
+            embed = discord.Embed(
+                description="Status changed. \n**Do Not Disturb**\n**Playing {}**".format(statuss), color=0x000000)
+            await bot.change_presence(status=discord.Status.dnd,
+                                      activity=discord.Activity(name='{}'.format(statuss),
+                                                                type=discord.ActivityType.playing))
+            embed2 = discord.Embed(
+                description="Since you didn't provide a valid **status_msg**, I chose the default one: **Playing**.",
+                color=0xf2f542)
+            embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+            embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
+            await ctx.send(embed=embed2)
+        elif a == "playing" or a == "p":
+            if len(a) == 1:
+                statuss = ctx.message.content[9:]
+            elif len(a) == 7:
+                statuss = ctx.message.content[15:]
+            embed = discord.Embed(description="Status changed. \n**Online**\n**Playing {}**".format(statuss),
+                                 color=0x000000)
+            await bot.change_presence(status=discord.Status.online,
+                                      activity=discord.Activity(name='{}'.format(statuss),
+                                                                type=discord.ActivityType.playing))
+            embed2 = discord.Embed(
+                description="Since you didn't provide a valid **status_ttpe**, I chose the default one: **Online**.",
+                color=0xf2f542)
+            embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+            embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
+            await ctx.send(embed=embed2)
+        elif a == "w" or a == "watching":
+            if len(a) == 1:
+                statuss = ctx.message.content[9:]
+            elif len(a) == 8:
+                statuss = ctx.message.content[16:]
+            embed = discord.Embed(description="Status changed. \n**Online**\n**Watching {}**".format(statuss),
+                                  color=0x000000)
+            await bot.change_presence(status=discord.Status.online,
+                                      activity=discord.Activity(name='{}'.format(statuss),
+                                                                type=discord.ActivityType.watching))
+            embed2 = discord.Embed(
+                description="Since you didn't provide a valid **status_type**, I chose the default one: **Online**.",
+                color=0xf2f542)
+            embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+            embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
+            await ctx.send(embed=embed2)
+        elif a == "l" or a == "listening":
+            if len(a) == 1:
+                statuss = ctx.message.content[9:]
+            elif len(a) == 9:
+                statuss = ctx.message.content[17:]
+            embed = discord.Embed(description="Status changed. \n**Online**\n**Listening to {}**".format(statuss),
+                                  color=0x000000)
+            await bot.change_presence(status=discord.Status.online,
+                                      activity=discord.Activity(name='{}'.format(statuss),
+                                                                type=discord.ActivityType.listening))
+            embed2 = discord.Embed(
+                description="Since you didn't provide a valid **status_type**, I chose the default one: **Online**.",
+                color=0xf2f542)
+            embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+            embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
+             await ctx.send(embed=embed2)
         else:
-            embed = discord.Embed(description="You didn't provide a status.", color=0xFF3639)
-            embed.set_image(url=ctx.message.author.guild.icon_url)
-            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-            await ctx.send(embed=embed)
-            return
+            embed2 = discord.Embed(
+                description="Since you didn't provide a valid **status_type** and/or **status_msg** combination, I chose the default ones: **Online** and **Playing**.",
+                color=0xf2f542)
+            embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+            embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
+            await ctx.send(embed=embed2)
+            embed = discord.Embed(description="Status changed. \n**Online**\n**Playing {}**".format(status),
+                                  color=0x000000)
+            await bot.change_presence(status=discord.Status.online,
+                                      activity=discord.Activity(name='{}'.format(status),
+                                                                type=discord.ActivityType.playing))
+
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_thumbnail(url=ctx.message.author.guild.icon_url)
+        await ctx.send(embed=embed)
     else:
-        embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
+        embed = discord.Embed(description="You didn't provide a status.", color=0xFF3639)
+        embed.set_image(url=ctx.message.author.guild.icon_url)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
         return
 
-
 @status.error
 async def status_error(ctx, error):
     if isinstance(error, commands.BadArgument):
-        if ctx.message.author.id == 495680416422821888 or ctx.message.author.id == 237938976999079948:
-            if len(ctx.message.content) > 8:
-                embed2 = discord.Embed(
-                    description="Since you didn't provide a valid **status_type** and/or **status_msg**, I think that the status is empty. I'll get the status by your message. (COULD **NOT BE WORKING PROPERLY**!)",
-                    color=0xf2f542)
-                embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-                embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
-                await ctx.send(embed=embed2)
-                status = ctx.message.content[7:]
-                embed = discord.Embed(description="Status changed. \n**Online**\n**Playing {}**".format(status),
-                                      color=0x000000)
-                await bot.change_presence(status=discord.Status.online,
-                                          activity=discord.Activity(name='{}'.format(status),
-                                                                    type=discord.ActivityType.playing))
-                embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-                embed.set_thumbnail(url=ctx.message.author.guild.icon_url)
-                await ctx.send(embed=embed)
-            else:
-                embed = discord.Embed(description="You didn't provide a status.", color=0xFF3639)
-                embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-                embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-                await ctx.send(embed=embed)
-                return
+        if len(ctx.message.content) > 8:
+            embed2 = discord.Embed(
+                description="Since you didn't provide a valid **status_type** and/or **status_msg**, I think that the status is empty. I'll get the status by your message. (COULD **NOT BE WORKING PROPERLY**!)",
+                color=0xf2f542)
+            embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+            embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
+            await ctx.send(embed=embed2)
+            status = ctx.message.content[7:]
+            embed = discord.Embed(description="Status changed. \n**Online**\n**Playing {}**".format(status),
+                                  color=0x000000)
+            await bot.change_presence(status=discord.Status.online,
+                                      activity=discord.Activity(name='{}'.format(status),
+                                                                type=discord.ActivityType.playing))
+            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+            embed.set_thumbnail(url=ctx.message.author.guild.icon_url)
+            await ctx.send(embed=embed)
         else:
-            embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
+            embed = discord.Embed(description="You didn't provide a status.", color=0xFF3639)
             embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
             embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
             await ctx.send(embed=embed)
             return
     if isinstance(error, commands.MissingRequiredArgument):
-        # embed = discord.Embed(description="You didn't provide a status.", color=0xFF3639)
-        # embed.set_image(url=ctx.message.author.guild.icon_url)
-        # embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        # embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        # await ctx.send(embed=embed)
-        if ctx.message.author.id == 495680416422821888 or ctx.message.author.id == 237938976999079948:
-            if len(ctx.message.content) > 8:
-                embed2 = discord.Embed(
-                    description="Since you didn't provide a valid **status_type** and/or **status_msg**, I think that the status is empty. I'll get the status by your message. (COULD **NOT BE WORKING PROPERLY**!)",
-                    color=0xf2f542)
-                embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-                embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
-                await ctx.send(embed=embed2)
-                status = ctx.message.content[7:]
-                embed = discord.Embed(description="Status changed. \n**Online**\n**Playing {}**".format(status),
-                                      color=0x000000)
-                await bot.change_presence(status=discord.Status.online,
-                                          activity=discord.Activity(name='{}'.format(status),
-                                                                    type=discord.ActivityType.playing))
-                embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-                embed.set_thumbnail(url=ctx.message.author.guild.icon_url)
-                await ctx.send(embed=embed)
-            else:
-                embed = discord.Embed(description="You didn't provide a status.", color=0xFF3639)
-                embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-                embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-                await ctx.send(embed=embed)
-                return
+        if len(ctx.message.content) > 8:
+            embed2 = discord.Embed(
+                description="Since you didn't provide a valid **status_type** and/or **status_msg**, I think that the status is empty. I'll get the status by your message. (COULD **NOT BE WORKING PROPERLY**!)",
+                color=0xf2f542)
+            embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+            embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
+            await ctx.send(embed=embed2)
+            status = ctx.message.content[7:]
+            embed = discord.Embed(description="Status changed. \n**Online**\n**Playing {}**".format(status),
+                                  color=0x000000)
+            await bot.change_presence(status=discord.Status.online,
+                                      activity=discord.Activity(name='{}'.format(status),
+                                                                type=discord.ActivityType.playing))
+            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+            embed.set_thumbnail(url=ctx.message.author.guild.icon_url)
+            await ctx.send(embed=embed)
         else:
-            embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
+            embed = discord.Embed(description="You didn't provide a status.", color=0xFF3639)
             embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
             embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
             await ctx.send(embed=embed)
             return
+    if isinstance(error, commands.CheckFailure):
+        await ctx.send("{}, sorry. This command is available only to the bot developer(s).".format(ctx.message.author.mention))
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
