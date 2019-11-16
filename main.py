@@ -2378,7 +2378,7 @@ async def massban_error(ctx, error):
 
 
 @bot.command()
-@commands.has_permissions(ban_member=True)
+@commands.has_permissions(ban_members=True)
 async def unban(ctx, id: int, *, reason: str = ""):
     user = await bot.fetch_user(id)
     if user is None:
