@@ -2395,7 +2395,7 @@ async def unban(ctx, id: int, *, reason: str = ""):
         return
     else:
         if banEntry.reason is None:
-            punishMsg = discord.Embed(description="{} was unbanned.", color=0x000000)
+            punishMsg = discord.Embed(description="{} was unbanned.".format(banEntry.user.mention), color=0x000000)
             punishMsg.set_author(name="{}".format(ctx.message.author.name))
             punishMsg.set_thumbnail(url=user.avatar_url)
             await ctx.send(embed=punishMsg)
@@ -2409,7 +2409,7 @@ async def unban(ctx, id: int, *, reason: str = ""):
             log.set_thumbnail(url=user.avatar_url)
             await logch.send(embed=log)
         else:
-            punishMsg = discord.Embed(description="{} was unbanned.", color=0x000000)
+            punishMsg = discord.Embed(description="{} was unbanned.".format(banEntry.user.mention), color=0x000000)
             punishMsg.set_author(name="{}".format(ctx.message.author.name))
             punishMsg.set_thumbnail(url=user.avatar_url)
             await ctx.send(embed=punishMsg)
