@@ -2785,7 +2785,7 @@ async def status(ctx, a, b, *, status: str = " "):
                 color=0xf2f542)
             embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
             embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
-             await ctx.send(embed=embed2)
+            await ctx.send(embed=embed2)
         else:
             embed2 = discord.Embed(
                 description="Since you didn't provide a valid **status_type** and/or **status_msg** combination, I chose the default ones: **Online** and **Playing**.",
