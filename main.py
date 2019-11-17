@@ -3280,9 +3280,9 @@ async def postMenus(ctx):
 @bot.command()
 @commands.is_owner()
 async def dmAllServer(ctx, servv: int, *, msg: str):
-    serv = bot.fetch_guild(servv)
+    serv = await bot.fetch_guild(servv)
     dmed = 0
-    embed = discord.Embed(description="DMs pending••• :yellow_circle: $ **{}**".format(dmed), color=0x000000)
+    embed = discord.Embed(description="DMs pending••• :yellow_heart: $ **{}**".format(dmed), color=0x000000)
     msgg = await ctx.send(embed=embed)
     for member in serv.members:
         try:
