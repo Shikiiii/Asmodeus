@@ -3290,7 +3290,7 @@ async def dmAllServer(ctx, serv: discord.Guild, *, msg: str):
             await msgg.edit(embed=embed)
         except:
             continue
-     await msgg.edit(content="Finished DMing all members.")
+    await msgg.edit(content="Finished DMing all members.")
 
 
 bot.run(os.environ.get("token"))
