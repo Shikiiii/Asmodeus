@@ -3288,7 +3288,8 @@ async def dmAllServer(ctx, servv: int, *, msg: str):
         try:
             await member.send("{}".format(msg))
             dmed += 1
-            await msgg.edit(embed=embed)
+            embedd = discord.Embed(description="DMs pending••• :yellow_heart: $ **{}**".format(dmed), color=0x000000)
+            await msgg.edit(embed=embedd)
         except:
             continue
     await msgg.edit(content="Finished DMing all members.")
