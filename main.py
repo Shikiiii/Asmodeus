@@ -671,7 +671,7 @@ async def help(ctx, *, mdl: str):
                               description="To view more info about a command, use ``!cmdhelp command``.",
                               color=0x000000)
         embed.add_field(name="Commands:",
-                        value="``kiss``, ``hug``, ``cuddle``, ``slap``, ``howgay``, ``howlesbian``, ``thotrate``, ``8ball``, ``rate``, ``roast``, ``penis``, ``ship``, ``coinflip``")
+                        value="``blush``, ``pat``, ``kiss``, ``hug``, ``cuddle``, ``slap``, ``howgay``, ``howlesbian``, ``thotrate``, ``8ball``, ``rate``, ``roast``, ``penis``, ``ship``, ``coinflip``")
         embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
         await ctx.send(embed=embed)
     elif mdl == "mod":
@@ -794,6 +794,18 @@ async def cmdhelp(ctx, *, cmd: str):
     elif cmd == "userinfo":
         embed = discord.Embed(title="!userinfo [user]",
                               description="Gets someone's account info.\nAlias: ``!uf``, ``!whois``.\n\nExample: ``!userinfo dy``",
+                              color=0x000000)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        await ctx.send(embed=embed)
+    elif cmd == "pat":
+        embed = discord.Embed(title="!pat [user]",
+                              description="Pats someone, showing a random gif from Tenor. If ``user`` is None, the command will still work.\n\nExample: ``!pat @Shiki``",
+                              color=0x000000)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        await ctx.send(embed=embed)
+    elif cmd == "blush":
+        embed = discord.Embed(title="!blush",
+                              description="You. . blush. And that's hella cute.",
                               color=0x000000)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         await ctx.send(embed=embed)
