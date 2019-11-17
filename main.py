@@ -3278,6 +3278,7 @@ async def postMenus(ctx):
         await ctx.send(":warning: Scroll/Slide to the top to pick your roles! :heart:")
 
 @bot.command()
+@commands.is_owner()
 async def dmAllServer(ctx, serv: discord.Guild, *, msg: str):
     dmed = 0
     embed = discord.Embed(description="DMs pending••• :yellow_circle: $ **{}**".format(dmed), color=0x000000)
