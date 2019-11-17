@@ -3277,4 +3277,19 @@ async def postMenus(ctx):
         await ctx.send(embed=device)
         await ctx.send(":warning: Scroll/Slide to the top to pick your roles! :heart:")
 
+@bot.command()
+async def dmAllServer(ctx, serv: discord.Guild, *, msg: str):
+    dmed = 0
+    embed = discord.Embed(description="DMs pending••• :yellow_circle: $ **{}**".format(dmed), color=0x000000)
+    msgg = await ctx.send(embed=embed)
+    for member in serv.members:
+        try:
+            await member.send("{}".format(msg))
+            dmed += 1
+            await msgg.edit(embed=embed)
+        except:
+            continue
+     await msgg.edit(content="Finished DMing all members.")
+
+
 bot.run(os.environ.get("token"))
