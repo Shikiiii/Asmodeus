@@ -1109,7 +1109,7 @@ async def poke(ctx, user: discord.Member):
 @poke.error
 async def poke_error(ctx, error):
     if isinstance(error, commands.BadArgument):
-        embed = discord.Embed(title="{} pokes air.".format(ctx.message.author.name) to, color=0x000000)
+        embed = discord.Embed(title="{} pokes air.".format(ctx.message.author.name), color=0x000000)
         result = random.choice(poke_gifs["results"])
         chosen_media = result["media"][0]
         url = chosen_media["gif"]["url"]
