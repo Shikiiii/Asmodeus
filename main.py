@@ -1065,6 +1065,7 @@ cuddle = "animecuddle"
 blush = "animeblush"
 pat = "animepat"
 facepalm = "animefacepalm"
+poke = "animepoke"
 
 kissgifs = requests.get(
     "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s&media_filter=%s" % (kiss, tenorkey, limit, media_filter))
@@ -1080,6 +1081,9 @@ patgifs = requests.get(
     "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s&media_filter=%s" % (pat, tenorkey, limit, media_filter))
 facepalmgifs = requests.get(
     "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s&media_filter=%s" % (facepalm, tenorkey, limit, media_filter))
+pokegifs = requests.get(
+    "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s&media_filter=%s" % (poke, tenorkey, limit, media_filter))
+
 
 kiss_gifs = json.loads(kissgifs.content)
 hug_gifs = json.loads(huggifs.content)
@@ -1088,9 +1092,39 @@ cuddle_gifs = json.loads(cuddlegifs.content)
 blush_gifs = json.loads(blushgifs.content)
 pat_gifs = json.loads(patgifs.content)
 facepalm_gifs = json.loads(facepalmgifs.content)
+poke_gifs = json.loads(pokegifs.content)
 
 
 # print(json.dumps(kiss_gifs, sort_keys=True, indent=4))
+
+@bot.command()
+async def poke(ctx, user: discord.Member):
+    embed = discord.Embed(title="{} pokes {}. Cutee!".format(ctx.message.author, user), color=0x000000)
+    result = random.choice(poke_gifs["results"])
+    chosen_media = result["media"][0]
+    url = chosen_media["gif"]["url"]
+    embed.set_image(url=url)
+    await ctx.send(embed=embed)
+
+@poke.error
+async def poke_error(ctx, error):
+    if isinstance(error, commands.BadArgument):
+        embed = discord.Embed(title="{} pokes air.".format(ctx.message.author.name) to, color=0x000000)
+        result = random.choice(poke_gifs["results"])
+        chosen_media = result["media"][0]
+        url = chosen_media["gif"]["url"]
+        embed.set_image(url=url)
+        await ctx.send(embed=embed)
+    elif isinstance(error, commands.MissingRequiredArgument):
+        embed = discord.Embed(title="I poke {} because they annoy me. >:(".format(ctx.message.author.name), color=0x000000)
+        result = random.choice(poke_gifs["results"])
+        chosen_media = result["media"][0]
+        url = chosen_media["gif"]["url"]
+        embed.set_image(url=url)
+        await ctx.send(embed=embed)
+    else:
+        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+        traceback.print_exception(type(error), error, None, file=sys.stderr)
 
 @bot.command()
 async def facepalm(ctx):
