@@ -343,6 +343,8 @@ async def on_message(message: Message):
         await message.channel.send("biggest retard")
     elif message.content == "kam" or message.content == "kamera":
         await message.channel.send("dm <@567799351368482826> for a Daddy :wink:")
+    elif message.content == "madz":
+        await message.channel.send("shrek is love, shrek is life")
 
     await bot.process_commands(message)
 
