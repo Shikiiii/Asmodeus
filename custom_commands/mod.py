@@ -12,7 +12,7 @@ from common_vars import *
 
 # Commands in this file:
 # ban, unban, banid, kick, mute, unmute,
-# purge, clean, bots
+# purge, clean
 
 @bot.command()
 @commands.has_permissions(ban_members=True)
