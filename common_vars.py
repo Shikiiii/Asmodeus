@@ -1,5 +1,6 @@
 from discord.ext.commands import Bot
 import http.client
+import requests
 
 bot = Bot(command_prefix='!')
 
@@ -17,10 +18,6 @@ tosnipetime = {}
 toeditsnipe = {}
 toeditsnipeauthors = {}
 toeditsnipetime = {}
-
-guild: Optional[Guild] = None
-
-shiki: Optional[Member] = None
 
 msgsCounterr = 0
 msgsCounterrr = 0
