@@ -346,7 +346,7 @@ async def on_message(message: Message):
     elif message.content == "madz":
         await message.channel.send("shrek is love, shrek is life")
     elif message.content == "meg":
-        await message.channel.send("wooden hoe")
+        await message.channel.send("wooden hoe *with loyalty 1")
 
     await bot.process_commands(message)
 
