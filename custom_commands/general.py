@@ -12,7 +12,7 @@ import json
 from common_vars import *
 
 # Commands in this file:
-# afk, define, ping, snipe, editsnipe, reminder, remindercancel,
+# reply, afk, define, ping, snipe, editsnipe, reminder, remindercancel,
 # reminderdm, reminderdmcancel, avatar, avatarid, userinfo
 
 # Variables:
@@ -21,6 +21,45 @@ remindersserver = []
 
 
 # - Afk command:
+@bot.command(aliases=["r"])
+async def reply(ctx, id: int, *, content: str):
+    msg = await ctx.message.channel.fetch_message(id)
+    embed = discord.Embed(description="> {}\n\n{}".format(msg.content, content))
+    msg3 = await ctx.send(f"**{ctx.message.author.name}** replied to **{msg.author.name}**:", embed=embed)
+    msg2 = discord.Embed(description="Ay, **{}** replied to your message in **{}**. \n[Jump to the reply.](https://discordapp.com/channels/{}/{}/{})".format(ctx.message.author.name, ctx.message.author.guild.name, ctx.message.author.guild.id, ctx.message.channel.id, msg3.id))
+    await msg.author.send(embed=msg2)
+    await ctx.message.delete()
+    
+@reply.error
+async def reply_error(ctx, error):
+    embed = discord.Embed(title="{}".format(ctx.message.author.name), description="Something went wrong, want to read the help page?", color=0xff0000)
+    msg = await ctx.message.channel.send(embed=embed)
+    await msg.add_reaction("❌")
+    await msg.add_reaction("✔")
+    def check(reaction, user):
+        return user == ctx.message.author and reaction.message.channel.id == ctx.message.channel.id and reaction.message.id == msg.id
+    try:
+        reaction, user = await bot.wait_for('reaction_add', timeout=60.0, check=check)
+    except asyncio.TimeoutError:
+        await msg.remove_reaction("❌")
+        await msg.remove_reaction("✔")
+        return
+    else:
+        if str(reaction.emoji) == '❌':
+            await msg.delete()
+            await ctx.message.delete()
+            return
+        elif str(reaction.emoji) == '✔':
+            await msg.delete()
+            await ctx.message.delete()
+            embed2 = discord.Embed(title="!reply [message.id] [content]", 
+                                  description="**Note: The message __must be__ in the same channel where the command is ran. If you don't know how to get a message ID, check [this](https://support.discordapp.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-).**\nReplies to the given message with [content].\nAlias: ``!r``\n\nExample: ``!reply 640474593605189642 not much, hbu?``", 
+                                  color=0x000000)
+            await ctx.send(embed=embed2)
+            return
+        else:
+            return
+
 @bot.command()
 async def afk(ctx, *, reason: str):
     # global afklist
