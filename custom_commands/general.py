@@ -12,10 +12,69 @@ import json
 from common_vars import *
 
 # Commands in this file:
-# reply, afk, define, ping, snipe, editsnipe, reminder, remindercancel,
+# nick, reply, afk, define, ping, snipe, editsnipe, reminder, remindercancel,
 # reminderdm, reminderdmcancel, avatar, avatarid, userinfo
 
-# - Afk command:
+@bot.command()
+async def nick(ctx, user: discord.Member, *, msg: str):
+    if ctx.message.author.id == user.id:
+        try:
+            await ctx.message.author.edit(nick="{}".format(msg))
+        except:
+            embed = discord.Embed(description="Their role is higher or equal to mines, can't change their nickname.",
+                                  color=0xFF3639)
+            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+            embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+            await ctx.send(embed=embed)
+            return
+        embed = discord.Embed(description="Changed your nickname to **{}**.".format(user.mention, msg), color=0x000000)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_thumbnail(url=user.avatar_url)
+        await ctx.send(embed=embed)
+    else:
+        embed = discord.Embed(description="You can only change your own nickname with your current permissions.",
+                              color=0xFF3639)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        await ctx.send(embed=embed)
+
+
+@nick.error
+async def nick_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        name = ctx.message.content[6:]
+        try:
+            await ctx.message.author.edit(nick="{}".format(name))
+        except:
+            embed = discord.Embed(description="Their role is higher or equal to mines, can't change their nickname.",
+                                  color=0xFF3639)
+            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+            embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+            await ctx.send(embed=embed)
+            return
+        embed = discord.Embed(description="Changed your nickname to **{}**.".format(name), color=0x000000)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_thumbnail(url=ctx.message.author.avatar_url)
+        await ctx.send(embed=embed)
+    elif isinstance(error, commands.BadArgument):
+        name = ctx.message.content[6:]
+        try:
+            await ctx.message.author.edit(nick="{}".format(name))
+        except:
+            embed = discord.Embed(description="Their role is higher or equal to mines, can't change their nickname.",
+                                  color=0xFF3639)
+            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+            embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+            await ctx.send(embed=embed)
+            return
+        embed = discord.Embed(description="Changed your nickname to **{}**.".format(name), color=0x000000)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_thumbnail(url=ctx.message.author.avatar_url)
+        await ctx.send(embed=embed)
+    else:
+        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+        traceback.print_exception(type(error), error, None, file=sys.stderr)
+
 @bot.command(aliases=["r"])
 async def reply(ctx, id: int, *, content: str):
     msg = await ctx.message.channel.fetch_message(id)
