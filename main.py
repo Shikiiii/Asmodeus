@@ -482,7 +482,7 @@ async def help(ctx, *, mdl: str):
                               description="To view more info about a command, use ``!cmdhelp command``.",
                               color=0x000000)
         embed.add_field(name="Commands:",
-                        value="``ban``, ``unban``, ``banid``, ``kick``, ``mute``, ``unmute``, ``purge``, ``clean``, ``lockdown``, ``bots``, ``role``")
+                        value="``ban``, ``unban``, ``banid``, ``kick``, ``mute``, ``unmute``, ``purge``, ``clean``, ``bots``")
         embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
         await ctx.send(embed=embed)
     elif mdl == "admin":
@@ -490,7 +490,7 @@ async def help(ctx, *, mdl: str):
                               description="To view more info about a command, use ``!cmdhelp command``.",
                               color=0x000000)
         embed.add_field(name="Commands:",
-                        value="None yet.")
+                        value="``lockdown``, ``role``")
         embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
         await ctx.send(embed=embed)
     elif mdl == "bot_owners":
