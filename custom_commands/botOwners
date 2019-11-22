@@ -1,0 +1,167 @@
+import discord
+from discord.ext import commands
+
+import random
+import sys
+import traceback
+import asyncio
+import datetime
+import json
+
+from common_vars import *
+
+# Commands in this file:
+# servers, 
+
+@bot.command()
+@commands.is_owner()
+async def servers(ctx):
+    serverss = bot.guilds
+    strings = []
+    for guild in serverss:
+        strings.append("{}".format(guild.name))
+    readme = "/n".join(strings)
+    await ctx.send("```{}```".format(readme))
+
+@bot.command()
+@commands.is_owner()
+async def server(ctx, *, serverr: str):
+    hi = True
+    server = await guildConvert(serverr)
+    try:
+        if server is None:
+            await ctx.send("not found")
+        else:
+            for channel in server.channels:
+                while hi:
+                    invite = await channel.create_invite()
+                    await ctx.send("{}".format(invite.url))
+                    hi = False
+                    return
+    except:
+        for channel in server.channels:
+            while hi:
+                invite = await channel.create_invite()
+                await ctx.send("{}".format(invite.url))
+                hi = False
+                return
+
+@bot.command()
+@commands.is_owner()
+async def say(ctx, chan: discord.TextChannel, *, msg: str = ""):
+    # channels = ctx.message.channel_mentions
+    # if len(channels) > 0:
+    # for channel in channels:
+    await ctx.message.delete()
+    try:
+        await chan.send(f"{msg}")
+    except discord.HTTPException as exception:
+        ilove = ["Shiki", "Dy"]
+        you = random.choice(ilove)
+        await chan.send(f"I love {you}.")
+
+
+@say.error
+async def say_error(ctx, error):
+    if isinstance(error, commands.BadArgument):
+        tosend = ctx.message.content[5:]
+        await ctx.message.delete()
+        await ctx.send(f"{tosend}")
+    elif isinstance(error, commands.MissingRequiredArgument):
+        await ctx.message.delete()
+        ilove = ["Shiki", "Glow"]
+        you = random.choice(ilove)
+        await ctx.send(f"I love {you}.")
+    elif isinstance(error, commands.CheckFailure):
+        embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        await ctx.send(embed=embed)
+    else:
+        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+        traceback.print_exception(type(error), error, None, file=sys.stderr)
+
+@bot.command(aliases=["v"])
+@commands.is_owner()
+async def verify(ctx, user: discord.Member, gender: str = " "):
+    verm = discord.utils.get(ctx.message.author.guild.roles, name="Verified Male")
+    verf = discord.utils.get(ctx.message.author.guild.roles, name="Verified Female")
+    verchan = discord.utils.get(ctx.message.author.guild.channels, name="x【verification】x")
+
+    failtover = discord.Embed(
+        description="Try verifying this member again, but specify either **f** / **female** or **m** / **male**. \nExample: ``!verify @cooluser m``",
+        color=0xFF3639)
+    failtover.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+    failtover.set_footer(text="Error raised on: {}".format(ctx.message.content))
+
+    alrver = discord.Embed(description="This user is already verified.", color=0xFF3639)
+    alrver.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+    alrver.set_footer(text="Error raised on: {}".format(ctx.message.content))
+    if verm in user.roles or verf in user.roles:
+        await ctx.message.delete()
+        msg = await ctx.send(embed=alrver)
+        await asyncio.sleep(float(10))
+        await msg.delete()
+        return
+    if gender == "m" or gender == "male":
+        # verr = " ".join(m)
+        ver = discord.Embed(description="༚ ✧˳⁺ {} has received the **Verified Male** role. ⁺˳✧ ༚ ".format(user.mention),
+                            color=0xFF93F0)
+        ver.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        ver.set_thumbnail(url=user.avatar_url)
+        await user.add_roles(verm)
+        await ctx.message.delete()
+        await ctx.send(embed=ver)
+        if ctx.message.channel != verchan:
+            await verchan.send(embed=ver)
+        return
+    elif gender == "f" or gender == "female":
+        # verr = " ".join(f)
+        ver = discord.Embed(
+            description="༚ ✧˳⁺ {} has rece9ved the **Verified Female** role. ⁺˳✧ ༚ ".format(user.mention),
+            color=0xFF93F0)
+        ver.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        ver.set_thumbnail(url=user.avatar_url)
+        await user.add_roles(verf)
+        await ctx.message.delete()
+        await ctx.send(embed=ver)
+        if ctx.message.channel != verchan:
+            await verchan.send(embed=ver)
+        return
+    else:
+        await ctx.message.delete()
+        fail = await ctx.send(embed=failtover)
+        await asyncio.sleep(float(10))
+        await fail.delete()
+        return
+
+
+@verify.error
+async def verify_error(ctx, error):
+    if isinstance(error, commands.BadArgument):
+        embed = discord.Embed(description="I couldn't find this user. Are you sure this ID is correct?", color=0xFF3639)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        msg = await ctx.send(embed=embed)
+        await ctx.message.delete()
+        await asyncio.sleep(float(10))
+        await msg.delete()
+    if isinstance(error, commands.MissingRequiredArgument):
+        embed = discord.Embed(description="Try again, but give me a user to verify.", color=0xFF3639)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        msg = await ctx.send(embed=embed)
+        await ctx.message.delete()
+        await asyncio.sleep(float(10))
+        await msg.delete()
+    if isinstance(error, commands.CheckFailure):
+        embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        msg = await ctx.send(embed=embed)
+        await ctx.message.delete()
+        await asyncio.sleep(float(10))
+        await msg.delete()
+    else:
+        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+        traceback.print_exception(type(error), error, None, file=sys.stderr)
