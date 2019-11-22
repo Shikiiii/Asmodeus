@@ -605,6 +605,18 @@ async def cmdhelp(ctx, *, cmd: str):
                               color=0x000000)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         await ctx.send(embed=embed)
+    elif cmd == "facepalm":
+        embed = discord.Embed(title="!facepalm",
+                              description="Facepalms.",
+                              color=0x000000)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        await ctx.send(embed=embed)
+    elif cmd == "pokes":
+        embed = discord.Embed(title="!poke [user]",
+                              description="Pokes someone, showing a random gif from Tenor. If ``user`` is None, the command will still work.\n\nExample: ``!poke @Shiki``",
+                              color=0x000000)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        await ctx.send(embed=embed)
     elif cmd == "pat":
         embed = discord.Embed(title="!pat [user]",
                               description="Pats someone, showing a random gif from Tenor. If ``user`` is None, the command will still work.\n\nExample: ``!pat @Shiki``",
@@ -650,6 +662,12 @@ async def cmdhelp(ctx, *, cmd: str):
     elif cmd == "howlesbian":
         embed = discord.Embed(title="!howlesbian [user]",
                               description="Shows how lesbian someone is.\n\nExample: ``!howlesbian @idk``",
+                              color=0x000000)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        await ctx.send(embed=embed)
+    elif cmd == "howhot":
+        embed = discord.Embed(title="!howhot [user]",
+                              description="Shows how hot someone is.\n\nExample: ``!howhot @idk``",
                               color=0x000000)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         await ctx.send(embed=embed)
@@ -788,79 +806,6 @@ async def cmdhelp(ctx, *, cmd: str):
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)
-
-
-@bot.command()
-async def nick(ctx, user: discord.Member, *, msg: str):
-    if ctx.message.author.id == user.id:
-        try:
-            await ctx.message.author.edit(nick="{}".format(msg))
-        except:
-            embed = discord.Embed(description="Their role is higher or equal to mines, can't change their nickname.",
-                                  color=0xFF3639)
-            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-            await ctx.send(embed=embed)
-            return
-        embed = discord.Embed(description="Changed your nickname to **{}**.".format(user.mention, msg), color=0x000000)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_thumbnail(url=user.avatar_url)
-        await ctx.send(embed=embed)
-    # elif ((role1 or role2 or role3 or role4 or role5) in ctx.message.author.roles):
-    #	try:
-    #		await user.edit(nick="{}".format(msg))
-    #	except:
-    #		embed = discord.Embed(description="Their role is higher or equal to mines, can't change their nickname.", color=0xFF3639)
-    #		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    ##		await ctx.send(embed=embed)
-    #		return
-    #	embed = discord.Embed(description="Changed {}'s nickname to **{}**.".format(user.mention, msg), color=0x000000)
-    #	embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    #	embed.set_thumbnail(url=user.avatar_url)
-    #	await ctx.send(embed=embed)
-    else:
-        embed = discord.Embed(description="You can only change your own nickname with your current permissions.",
-                              color=0xFF3639)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        await ctx.send(embed=embed)
-
-
-@nick.error
-async def nick_error(ctx, error):
-    if isinstance(error, commands.MissingRequiredArgument):
-        name = ctx.message.content[6:]
-        try:
-            await ctx.message.author.edit(nick="{}".format(name))
-        except:
-            embed = discord.Embed(description="Their role is higher or equal to mines, can't change their nickname.",
-                                  color=0xFF3639)
-            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-            await ctx.send(embed=embed)
-            return
-        embed = discord.Embed(description="Changed your nickname to **{}**.".format(name), color=0x000000)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_thumbnail(url=ctx.message.author.avatar_url)
-        await ctx.send(embed=embed)
-    elif isinstance(error, commands.BadArgument):
-        name = ctx.message.content[6:]
-        try:
-            await ctx.message.author.edit(nick="{}".format(name))
-        except:
-            embed = discord.Embed(description="Their role is higher or equal to mines, can't change their nickname.",
-                                  color=0xFF3639)
-            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-            await ctx.send(embed=embed)
-            return
-        embed = discord.Embed(description="Changed your nickname to **{}**.".format(name), color=0x000000)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_thumbnail(url=ctx.message.author.avatar_url)
-        await ctx.send(embed=embed)
-    else:
-        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
-        traceback.print_exception(type(error), error, None, file=sys.stderr)
 
 
 tenorkey = "6JKJQX4V4OHD"
