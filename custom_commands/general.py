@@ -14,7 +14,7 @@ from common_vars import *
 # Commands in this file:
 # nick, reply, afk, define, ping, snipe, editsnipe, reminder, remindercancel,
 # reminderdm, reminderdmcancel, avatar, avatarid, userinfo, membercount,
-# serverinfo
+# serverinfo, members
 
 @bot.command()
 async def nick(ctx, user: discord.Member, *, msg: str):
@@ -916,3 +916,52 @@ async def serverinfo(ctx):
         embed.add_field(name="Verification level", value="{}".format(ver))
 
     await ctx.send(embed=embed)
+    
+@bot.command()
+async def members(ctx, *, rolee: str):
+    role = await parse_roles(ctx, rolee)
+    members = []
+    for member in ctx.message.author.guild.members:
+        if role in member.roles:
+            members.append(member.mention)
+    embed = discord.Embed(title="All members that have the {} role:".format(str(role)), description="\n".join(members),
+                          color=0x000000)
+    embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+    embed.set_thumbnail(url=bot.user.avatar_url)
+    if role is None:
+        embed = discord.Embed(description="I couldn't find this role.", color=0xFF3639)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        await ctx.send(embed=embed)
+        return
+    try:
+        await ctx.send(embed=embed)
+    except discord.HTTPException as exception:
+        embed = discord.Embed(description="Too many members, can't send the message.", color=0xFF3639)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        await ctx.send(embed=embed)
+
+
+@members.error
+async def members_error(ctx, error):
+    if isinstance(error, commands.BadArgument):
+        embed = discord.Embed(description="I couldn't find this role.", color=0xFF3639)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        await ctx.send(embed=embed)
+    # await ctx.send("{} look now, do i look like a magician? just mention a user and i'll ban them \n example: ``!ban @dy ez noob``".format(ctx.message.author.mention))
+    elif isinstance(error, commands.MissingRequiredArgument):
+        embed = discord.Embed(description="You didn't give me a role to get the members of.", color=0xFF3639)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        await ctx.send(embed=embed)
+    # await ctx.send("{} okay so, i can't read your mind, sorry, could you try giving me at least a member to ban? \n example: ``!ban @dy ez noob``".format(ctx.message.author.mention))
+    elif isinstance(error, commands.CheckFailure):
+        embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        await ctx.send(embed=embed)
+    else:
+        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+        traceback.print_exception(type(error), error, None, file=sys.stderr)
