@@ -23,7 +23,7 @@ async def pat(ctx, *, user: discord.Member):
     embed.set_image(url=url)
     await ctx.send(embed=embed)
     
-    @pat.error
+@pat.error
 async def pat_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(title="I couldn't find this member, so I'll pat you instead.", color=0x000000)
@@ -43,7 +43,7 @@ async def pat_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
         
-        @bot.command()
+@bot.command()
 async def kiss(ctx, *, user: discord.Member):
     embed = discord.Embed(title="{} kisses {}.".format(ctx.message.author, user), color=0x000000)
     result = random.choice(kiss_gifs["results"])
@@ -51,17 +51,8 @@ async def kiss(ctx, *, user: discord.Member):
     url = chosen_media["gif"]["url"]
     embed.set_image(url=url)
     await ctx.send(embed=embed)
-    
-    @bot.command()
-async def kiss(ctx, *, user: discord.Member):
-    embed = discord.Embed(title="{} kisses {}.".format(ctx.message.author, user), color=0x000000)
-    result = random.choice(kiss_gifs["results"])
-    chosen_media = result["media"][0]
-    url = chosen_media["gif"]["url"]
-    embed.set_image(url=url)
-    await ctx.send(embed=embed)
-    
-    @kiss.error
+
+@kiss.error    
 async def kiss_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(title="I couldn't find this member, so I'll kiss you instead.", color=0x000000)
@@ -81,7 +72,7 @@ async def kiss_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
         
-        @bot.command()
+@bot.command()
 async def hug(ctx, *, user: discord.Member):
     embed = discord.Embed(title="{} hugs {}.".format(ctx.message.author, user), color=0x000000)
     result = random.choice(hug_gifs["results"])
@@ -90,7 +81,7 @@ async def hug(ctx, *, user: discord.Member):
     embed.set_image(url=url)
     await ctx.send(embed=embed)
 
-    @hug.error
+@hug.error
 async def hug_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(title="I couldn't find this member, so I'll hug you instead.", color=0x000000)
@@ -110,7 +101,7 @@ async def hug_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
 
-        @bot.command()
+@bot.command()
 async def slap(ctx, *, user: discord.Member):
     embed = discord.Embed(title="{} slaps {}.".format(ctx.message.author, user), color=0x000000)
     result = random.choice(slap_gifs["results"])
@@ -119,7 +110,7 @@ async def slap(ctx, *, user: discord.Member):
     embed.set_image(url=url)
     await ctx.send(embed=embed)
 
-    @slap.error
+@slap.error
 async def slap_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(title="I couldn't find this member, so I'll slap you instead.", color=0x000000)
@@ -140,7 +131,7 @@ async def slap_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
         
-        @bot.command()
+@bot.command()
 async def cuddle(ctx, *, user: discord.Member):
     embed = discord.Embed(title="{} cuddles {}.".format(ctx.message.author, user), color=0x000000)
     result = random.choice(cuddle_gifs["results"])
@@ -149,7 +140,7 @@ async def cuddle(ctx, *, user: discord.Member):
     embed.set_image(url=url)
     await ctx.send(embed=embed)
     
-    @cuddle.error
+@cuddle.error
 async def cuddle_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(title="I couldn't find this member, so I'll cuddle you instead.", color=0x000000)
@@ -169,7 +160,7 @@ async def cuddle_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
         
-        @bot.command()
+@bot.command()
 async def blush(ctx):
     embed = discord.Embed(title="{} blushes.".format(ctx.message.author), color=0x000000)
     result = random.choice(blush_gifs["results"])
@@ -178,7 +169,7 @@ async def blush(ctx):
     embed.set_image(url=url)
     await ctx.send(embed=embed)
     
-    @bot.command()
+@bot.command()
 async def penis(ctx, *, user: discord.Member):
     sizes = ["8D", "8=D", "8==D", "8===D", "8====D", "8=====D", "8======D", "8=======D", "8========D", "8=========D",
              "8==========D", "8===========D", "8============D", "8=============D", "8==============D",
@@ -192,7 +183,7 @@ async def penis(ctx, *, user: discord.Member):
     embed.set_thumbnail(url=user.avatar_url)
     await ctx.send(embed=embed)
     
-    @penis.error
+@penis.error
 async def penis_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(description="How did this error get raised to begin with?", color=0xFF3639)
@@ -212,7 +203,7 @@ async def penis_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
 
-        @bot.command()
+@bot.command()
 async def thotrate(ctx, *, user: discord.Member):
     les = random.randint(0, 100)
     embed = discord.Embed(
@@ -222,7 +213,7 @@ async def thotrate(ctx, *, user: discord.Member):
     embed.set_thumbnail(url=user.avatar_url)
     await ctx.send(embed=embed)
     
-    @thotrate.error
+@thotrate.error
 async def thotrate_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(description="I couldn't find this member.", color=0x000000)
@@ -242,7 +233,7 @@ async def thotrate_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
         
-        @bot.command()
+@bot.command()
 async def howlesbian(ctx, *, user: discord.Member):
     les = random.randint(0, 101)
     embed = discord.Embed(
@@ -252,7 +243,7 @@ async def howlesbian(ctx, *, user: discord.Member):
     embed.set_thumbnail(url=user.avatar_url)
     await ctx.send(embed=embed)
     
-    @howlesbian.error
+@howlesbian.error
 async def howlesbian_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(description="I couldn't find this member.", color=0xFF3639)
@@ -271,8 +262,8 @@ async def howlesbian_error(ctx, error):
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
-        
-        @bot.command(name="8ball")
+
+@bot.command(name="8ball")
 async def ball(ctx, *, message: str):
     if len(message) > 0:
         responds = ["yes duh", "no wtf", "ig?", "naw", "pew pew", "ur mom a hoe", "u retarded fuck, its obv yes",
@@ -293,7 +284,7 @@ async def ball(ctx, *, message: str):
         embed1.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         await ctx.send(embed=embed1)
         
-        @ball.error
+@ball.error
 async def ball_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(description="How did this error get raised to begin with?", color=0xFF3639)
@@ -309,7 +300,7 @@ async def ball_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
         
-        @bot.command()
+@bot.command()
 async def roast(ctx, *, user: discord.Member):
     responds = ["are you sure youre not mentally retarded?", "that's gay..", "can't roast him, he doesn't have parents",
                 "this is why no one likes you", "just stfu retard", "they got no balls dawg", "can u speak chong bong?",
@@ -320,7 +311,7 @@ async def roast(ctx, *, user: discord.Member):
     embed2.set_footer(text="Roasted by {}".format(ctx.message.author))
     await ctx.send(embed=embed2)
     
-    @roast.error
+@roast.error
 async def roast_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(description="I couldn't find this member. No roasing.", color=0xFF3639)
@@ -335,7 +326,7 @@ async def roast_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
         
-        @bot.command()
+@bot.command()
 async def ship(ctx, user: discord.Member, user2: discord.Member):
     percent = random.randint(0, 100)
     strr = " "
@@ -369,7 +360,7 @@ async def ship(ctx, user: discord.Member, user2: discord.Member):
                           color=0x000000)
     await ctx.send(embed=embed)
     
-    @ship.error
+@ship.error
 async def ship_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(description="You didn't give me 1 or 2 correct users.", color=0xFF3639)
@@ -414,7 +405,7 @@ async def ship_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
         
-        @bot.command()
+@bot.command()
 async def rate(ctx, who, *, user: discord.Member):
     if who == "dy":
         cool = random.randint(0, 10)
@@ -445,7 +436,7 @@ async def rate(ctx, who, *, user: discord.Member):
         await ctx.send(embed=embed)
         return
       
-      @rate.error
+@rate.error
 async def rate_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(description="I couldn't find this member.", color=0xFF3639)
@@ -461,7 +452,7 @@ async def rate_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
         
-        @bot.command()
+@bot.command()
 async def howgay(ctx, *, user: discord.Member):
     gay = random.randint(0, 101)
     embed = discord.Embed(description="{} is **{}**% gay. :gay_pride_flag:".format(user.mention, str(gay)),
@@ -470,7 +461,7 @@ async def howgay(ctx, *, user: discord.Member):
     embed.set_thumbnail(url=user.avatar_url)
     await ctx.send(embed=embed)
     
-    @howgay.error
+@howgay.error
 async def howgay_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(description="I couldn't find this member.", color=0xFF3639)
@@ -488,7 +479,7 @@ async def howgay_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
         
-        @bot.command()
+@bot.command()
 async def howhot(ctx, *, user: discord.Member):
     gay = random.randint(0, 101)
     embed = discord.Embed(description="{} is **{}**% hot. :sweat_drops:".format(user.mention, str(gay)), color=0xef42f5)
@@ -496,7 +487,7 @@ async def howhot(ctx, *, user: discord.Member):
     embed.set_thumbnail(url=user.avatar_url)
     await ctx.send(embed=embed)
     
-    @howthot.error
+@howthot.error
 async def howhot_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(description="I couldn't find this member.", color=0xFF3639)
@@ -513,7 +504,7 @@ async def howhot_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
         
-        @bot.command(aliases=["cf"])
+@bot.command(aliases=["cf"])
 async def coinflip(ctx):
     embed1 = discord.Embed(description="Flipping... \n\nResults:", color=0xffffff)
     embed1.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -529,7 +520,7 @@ async def coinflip(ctx):
     embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
     await msg.edit(embed=embed2)
     
-    @bot.command()
+@bot.command()
 async def poke(ctx, user: discord.Member):
     embed = discord.Embed(title="{} pokes {}. Cutee!".format(ctx.message.author, user), color=0x000000)
     result = random.choice(poke_gifs["results"])
@@ -538,7 +529,7 @@ async def poke(ctx, user: discord.Member):
     embed.set_image(url=url)
     await ctx.send(embed=embed)
     
-    @poke.error
+@poke.error
 async def poke_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(title="{} pokes air.".format(ctx.message.author.name), color=0x000000)
@@ -558,7 +549,7 @@ async def poke_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
         
-        @bot.command()
+@bot.command()
 async def facepalm(ctx):
     embed = discord.Embed(title="{} facepalms. Damn, that hurts!".format(ctx.message.author), color=0x000000)
     result = random.choice(facepalm_gifs["results"])
