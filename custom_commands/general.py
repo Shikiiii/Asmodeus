@@ -156,9 +156,7 @@ async def afk_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
 
-
-# - Define command:
-@bot.command()
+@bot.command(aliases=["urban"])
 async def define(ctx, *, term: str):
     headers = {
         'x-rapidapi-host': "mashape-community-urban-dictionary.p.rapidapi.com",
@@ -214,8 +212,6 @@ async def define_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
 
-
-# - Ping command:
 @bot.command()
 async def ping(ctx):
     # print("Testing ping!")
@@ -242,8 +238,6 @@ async def ping(ctx):
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         await ctx.message.channel.send(embed=embed)
 
-
-# - Snipe commands:
 @bot.command()
 async def snipe(ctx):
     for key in tosnipe:
@@ -271,8 +265,6 @@ async def editsnipe(ctx):
             embed.set_footer(text="{}".format(str(corfor)))
             await ctx.send(embed=embed)
 
-
-# - Reminder commands:
 @bot.command()
 async def reminder(ctx, intime, *, remindmsg: str = ""):
     if ctx.message.author.id in remindersserver:
