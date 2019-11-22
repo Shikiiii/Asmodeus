@@ -12,9 +12,10 @@ from common_vars import *
 
 # Commands in this file:
 # lockdown, role, massban, masskick, massmute
+# bots
 
 @bot.command()
-@commands.has_permissions(manage_channels=True)
+@commands.has_permissions(administrator=True)
 async def lockdown(ctx):
     lockdownRole = discord.utils.get(ctx.message.guild.roles, name="@everyone")
     check = ctx.message.channel.overwrites_for(lockdownRole)
@@ -65,7 +66,7 @@ async def lockdown_error(ctx, error):
     return None
         
 @bot.command()
-@commands.has_permissions(manage_roles=True)
+@commands.has_permissions(manage_roles=True, administrator=True)
 async def role(ctx, user: discord.Member, *, rolee: str):
     role = await parse_roles(ctx, rolee)
     role1 = discord.utils.get(ctx.message.author.guild.roles, name="$ dy")
@@ -173,7 +174,7 @@ async def role_error(ctx, error):
         traceback.print_exception(type(error), error, None, file=sys.stderr)
         
 @bot.command()
-@commands.has_permissions(ban_members=True)
+@commands.has_permissions(administrator=True)
 async def massban(ctx, *, users: str):
     desc = "Mass ban started. May take a while. \n\n"
     embed = discord.Embed(description=desc, color=0x000000)
@@ -209,4 +210,33 @@ async def massban_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
         
-        
+
+@bot.command()
+@commands.has_permissions(administrator=True)
+async def bots(ctx):
+    bots = []
+    for member in ctx.message.author.guild.members:
+        if member.bot:
+            bots.append(member.mention)
+    embed = discord.Embed(title="All bots in this server:", description="\n".join(bots), color=0x000000)
+    embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+    embed.set_thumbnail(url=bot.user.avatar_url)
+    try:
+        await ctx.send(embed=embed)
+    except discord.HTTPException as exception:
+        embed = discord.Embed(description="Too many bots, can't send the message.", color=0xFF3639)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        await ctx.send(embed=embed)
+
+@bots.error
+async def bots_error(ctx, error):
+    if isinstance(error, commands.CheckFailure):
+        embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        await ctx.send(embed=embed)
+    else:
+        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+        traceback.print_exception(type(error), error, None, file=sys.stderr)
+
