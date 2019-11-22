@@ -64,7 +64,7 @@ async def ban(ctx, user: discord.Member, *, reason: str):
         log.set_thumbnail(url=user.avatar_url)
         await logch.send(embed=log)
 
-        @ban.error
+@ban.error
 async def ban_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(description="I couldn't find this user.", color=0xFF3639)
@@ -87,7 +87,7 @@ async def ban_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
         
-        @bot.command()
+@bot.command()
 @commands.has_permissions(ban_members=True)
 async def unban(ctx, id: int, *, reason: str = ""):
     user = await bot.fetch_user(id)
@@ -134,7 +134,7 @@ async def unban(ctx, id: int, *, reason: str = ""):
             await logch.send(embed=log)
         await ctx.message.guild.unban(banEntry.user, reason="Unbanned by mod.")
         
-        @unban.error
+@unban.error
 async def unban_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(description="I couldn't find this user. Is the ID correct?", color=0xFF3639)
@@ -156,7 +156,7 @@ async def unban_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
         
-        @bot.command()
+@bot.command()
 @commands.has_permissions(ban_members=True)
 async def banid(ctx, id: int, *, reason: str):
     user = await bot.fetch_user(id)
@@ -196,7 +196,7 @@ async def banid(ctx, id: int, *, reason: str):
         log.set_thumbnail(url=user.avatar_url)
         await logch.send(embed=log)
         
-        @banid.error
+@banid.error
 async def banid_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(description="I couldn't find this user. Is the ID correct?", color=0xFF3639)
@@ -217,7 +217,7 @@ async def banid_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
         
-        @bot.command()
+@bot.command()
 @commands.has_permissions(kick_members=True)
 async def kick(ctx, user: discord.Member, *, reason: str):
     if len(reason) == 0:
@@ -267,7 +267,7 @@ async def kick(ctx, user: discord.Member, *, reason: str):
         log.set_thumbnail(url=user.avatar_url)
         await logch.send(embed=log)
 
-        @kick.error
+@kick.error
 async def kick_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(description="I couldn't find this user. Try giving me a correct user.", color=0xFF3639)
@@ -288,7 +288,7 @@ async def kick_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
         
-        @bot.command()
+@bot.command()
 @commands.has_permissions(manage_messages=True)
 async def mute(ctx, user: discord.Member, *, reason: str):
     mutedrole = discord.utils.get(ctx.message.author.guild.roles, name="Muted")
@@ -331,7 +331,7 @@ async def mute(ctx, user: discord.Member, *, reason: str):
             log.set_thumbnail(url=user.avatar_url)
             await logch.send(embed=log)
         
-        @mute.error
+@mute.error
 async def mute_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(description="I couldn't find this user. Try giving me a correct user.", color=0xFF3639)
@@ -352,7 +352,7 @@ async def mute_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
 
-        @bot.command()
+@bot.command()
 @commands.has_permissions(manage_messages=True)
 async def unmute(ctx, user: discord.Member):
     mutedrole = discord.utils.get(ctx.message.author.guild.roles, name="Muted")
@@ -378,7 +378,7 @@ async def unmute(ctx, user: discord.Member):
         await ctx.send(embed=embed)
         return
       
-      @unmute.error
+@unmute.error
 async def unmute_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(description="I couldn't find this user. Try giving me a correct user.", color=0xFF3639)
@@ -399,7 +399,7 @@ async def unmute_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
         
-        @bot.command()
+@bot.command()
 @commands.has_permissions(manage_messages=True)
 async def clean(ctx):
     def check(m):
@@ -425,7 +425,7 @@ async def clean_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
 
-        @bot.command()
+@bot.command()
 @commands.has_permissions(manage_messages=True)
 async def purge(ctx, amount, *, user: discord.Member):
     try:
@@ -463,7 +463,7 @@ async def purge(ctx, amount, *, user: discord.Member):
         log.set_thumbnail(url=user.avatar_url)
         await logch.send(embed=log)
 
-        @purge.error
+@purge.error
 async def purge_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(description="I couldn't find this user.", color=0xFF3639)
