@@ -529,4 +529,41 @@ async def coinflip(ctx):
     embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
     await msg.edit(embed=embed2)
     
+    @bot.command()
+async def poke(ctx, user: discord.Member):
+    embed = discord.Embed(title="{} pokes {}. Cutee!".format(ctx.message.author, user), color=0x000000)
+    result = random.choice(poke_gifs["results"])
+    chosen_media = result["media"][0]
+    url = chosen_media["gif"]["url"]
+    embed.set_image(url=url)
+    await ctx.send(embed=embed)
+    
+    @poke.error
+async def poke_error(ctx, error):
+    if isinstance(error, commands.BadArgument):
+        embed = discord.Embed(title="{} pokes air.".format(ctx.message.author.name), color=0x000000)
+        result = random.choice(poke_gifs["results"])
+        chosen_media = result["media"][0]
+        url = chosen_media["gif"]["url"]
+        embed.set_image(url=url)
+        await ctx.send(embed=embed)
+    elif isinstance(error, commands.MissingRequiredArgument):
+        embed = discord.Embed(title="I poke {} because they annoy me. >:(".format(ctx.message.author.name), color=0x000000)
+        result = random.choice(poke_gifs["results"])
+        chosen_media = result["media"][0]
+        url = chosen_media["gif"]["url"]
+        embed.set_image(url=url)
+        await ctx.send(embed=embed)
+    else:
+        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+        traceback.print_exception(type(error), error, None, file=sys.stderr)
+        
+        @bot.command()
+async def facepalm(ctx):
+    embed = discord.Embed(title="{} facepalms. Damn, that hurts!".format(ctx.message.author), color=0x000000)
+    result = random.choice(facepalm_gifs["results"])
+    chosen_media = result["media"][0]
+    url = chosen_media["gif"]["url"]
+    embed.set_image(url=url)
+    await ctx.send(embed=embed)
     
