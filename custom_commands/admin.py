@@ -47,24 +47,6 @@ async def lockdown_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
         
-        # - Role Command:
-        
-        async def parse_roles(ctx, role: str):
-    try:
-        id: int = int(role)
-        role = ctx.guild.get_role(id)
-        if role is not None:
-            return role
-    except ValueError:
-        pass
-    for guild_role in ctx.guild.roles:
-        if role.lower() == guild_role.name.lower():
-            return guild_role
-    for guild_role in ctx.guild.roles:
-        if role.lower() in guild_role.name.lower():
-            return guild_role
-    return None
-        
 @bot.command()
 @commands.has_permissions(manage_roles=True, administrator=True)
 async def role(ctx, user: discord.Member, *, rolee: str):
