@@ -487,7 +487,7 @@ async def howhot(ctx, *, user: discord.Member):
     embed.set_thumbnail(url=user.avatar_url)
     await ctx.send(embed=embed)
     
-@howthot.error
+@howhot.error
 async def howhot_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(description="I couldn't find this member.", color=0xFF3639)
