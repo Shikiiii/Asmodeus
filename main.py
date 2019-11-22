@@ -24,6 +24,10 @@ import custom_commands.admin
 import custom_commands.beta
 import custom_commands.botOwner
 
+guild: Optional[Guild] = None
+
+shiki: Optional[Member] = None
+
 bot.remove_command('help')
 
 @bot.event
