@@ -11,7 +11,7 @@ import json
 from common_vars import *
 
 # Commands in this file:
-# lockdown, role
+# lockdown, role, massban, masskick, massmute
 
 @bot.command()
 @commands.has_permissions(manage_channels=True)
@@ -34,7 +34,7 @@ async def lockdown(ctx):
         await ctx.send(embed=lockdownMsg)
         await ctx.message.channel.set_permissions(lockdownRole, send_messages=False)
         
-        @lockdown.error
+@lockdown.error
 async def lockdown_error(ctx, error):
     if isinstance(error, commands.CheckFailure):
         embed = discord.Embed(
@@ -149,7 +149,7 @@ async def role(ctx, user: discord.Member, *, rolee: str):
         await logch.send(embed=log)
         return
       
-      @role.error
+@role.error
 async def role_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(description="You didn't give me a correct user and/or a role.", color=0xFF3639)
@@ -172,7 +172,7 @@ async def role_error(ctx, error):
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
         
-        @bot.command()
+@bot.command()
 @commands.has_permissions(ban_members=True)
 async def massban(ctx, *, users: str):
     desc = "Mass ban started. May take a while. \n\n"
@@ -186,7 +186,7 @@ async def massban(ctx, *, users: str):
         except:
             await ctx.send(f"Couldn't ban {user.mention} because of missing permissions.")
             
-          @massban.error
+@massban.error
 async def massban_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         embed = discord.Embed(description="No @mentioned users were found with the information you gave.",
