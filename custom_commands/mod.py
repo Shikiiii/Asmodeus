@@ -414,7 +414,7 @@ async def clean(ctx):
     await asyncio.sleep(5)
     await msg.delete()
     
-    lean.error
+@clean.error
 async def clean_error(ctx, error):
     if isinstance(error, commands.CheckFailure):
         embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
