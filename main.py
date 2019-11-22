@@ -466,7 +466,7 @@ async def help(ctx, *, mdl: str):
                               description="To view more info about a command, use ``!cmdhelp command``.",
                               color=0x000000)
         embed.add_field(name="Commands:",
-                        value="``reply``, ``afk``, ``define``, ``ping``, ``snipe``, ``editsnipe``, ``reminder``, ``remindercancel``, ``reminderdm``, ``reminderdmcancel``, ``avatar``, ``avatarid``, ``userinfo``, ``serverinfo``, ``membercount``")
+                        value="``nick``, ``reply``, ``afk``, ``define``, ``ping``, ``snipe``, ``editsnipe``, ``reminder``, ``remindercancel``, ``reminderdm``, ``reminderdmcancel``, ``avatar``, ``avatarid``, ``userinfo``, ``serverinfo``, ``membercount``")
         embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
         await ctx.send(embed=embed)
     elif mdl == "fun":
@@ -528,6 +528,11 @@ async def cmdhelp(ctx, *, cmd: str):
                               description="Gets the help menu with the modules / of a module. It includes all commands.\n\nExample: ``!help fun``",
                               color=0x000000)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        await ctx.send(embed=embed)
+    elif cmd == "nick":
+        embed = discord.Embed(title="!nick [member] [newNickname]",
+                              description="Changes either yours or someone's nickname. \n\nExample: ``!nick @Alex boomer``",
+                              color=0x000000)
         await ctx.send(embed=embed)
     elif cmd == "reply":
         embed = discord.Embed(title="!reply [message.id] [content]",
