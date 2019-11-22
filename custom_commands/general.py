@@ -15,11 +15,6 @@ from common_vars import *
 # reply, afk, define, ping, snipe, editsnipe, reminder, remindercancel,
 # reminderdm, reminderdmcancel, avatar, avatarid, userinfo
 
-# Variables:
-remindersdm = []
-remindersserver = []
-
-
 # - Afk command:
 @bot.command(aliases=["r"])
 async def reply(ctx, id: int, *, content: str):
