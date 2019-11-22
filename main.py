@@ -24,6 +24,7 @@ from common_vars import *
 
 # ~MatKrulli: this will ensure the commands from custom_commands.general are properly added to the bot
 import custom_commands.general
+import custom_commands.fun
 
 bot.remove_command('help')
 
@@ -335,7 +336,7 @@ async def on_message(message: Message):
         await message.channel.send("dm <@237938976999079948> with thigh pics for free admin aha x")
     elif message.content == "!!apply":
         await message.channel.send("Thank you for applying! Please check your DMs to complete the application.")
-    elif message.content == "no u" and ((message.author.id != 594131533745356804) and (message.author.id != 640827656660582400)):
+    elif message.content == "no u" and !message.author.bot:
         await message.channel.send("no u")
     elif message.content == "glow":
         await message.channel.send("O_O")
