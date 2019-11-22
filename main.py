@@ -455,209 +455,7 @@ async def on_message_edit(before, after):
         toeditsnipetime[before.channel.id] = timestamp2
 
 
-# BETA COMMANDS:
-takenBotSurvey = []
-takenServerSurvey = []
-curBotSurvey = []
-curServerSurvey = []
-
-
-@bot.command()
-async def survey(ctx):
-    surveyBot = False
-    surveyServer = False
-    surveyBotAnswers = {}
-    surveyServerAnswers = {}
-    usr = ctx.message.author
-
-    def check(m):
-        return m.author.id == usr.id and m.guild is None
-
-    if ctx.guild is None:
-        if ctx.message.author.id in curBotSurvey or ctx.message.author.id in curServerSurvey:
-            await ctx.send("Not gonna lie, but I think you're already taking a survey.")
-            return
-        botAv = " "
-        serverAv = " "
-        if ctx.message.author.id in takenBotSurvey:
-            botAv = ":x:"
-        else:
-            botAv = "``1``"
-        if ctx.message.author.id in takenServerSurvey:
-            serverAv = ":x:"
-        else:
-            serverAv = "``2``"
-        await asyncio.sleep(1)
-        await ctx.send(
-            f"Alright, {ctx.message.author.mention}. Thanks for taking your time to answer the surveys. Here are the current surveys:\n\n   {botAv} **BOT SURVEY**\n   {serverAv} **SERVER SURVEY**\n\nRespond with either 1 or 2.")
-        # print(takenServerSurvey + " " + takenBotSurvey)
-        msg1 = await bot.wait_for('message', check=check)
-        if (msg1.content == "2") and (usr.id not in takenServerSurvey):
-            surveyServer = True
-            curServerSurvey.append(usr.id)
-        elif (msg1.content == "1") and (usr.id not in takenBotSurvey):
-            surveyBot = True
-            curBotSurvey.append(usr.id)
-        else:
-            await usr.send("You've either already taken this survey or you didn't enter a correct number. Try again.")
-            return
-    if surveyBot:
-        await usr.send("You're now taking the **bot survey**. Cancel anytime using ``cancel``.")
-        await usr.send("**QUESTION 1**: What features do you currently use of the bot?")
-        msg1 = await bot.wait_for('message', check=check)
-        if msg1.content == "cancel":
-            await usr.send("Canceling the survey. All answers are getting wiped out...")
-            curBotSurvey.remove(usr.id)
-            return
-        else:
-            surveyBotAnswers['answer1'] = msg1.content
-        await asyncio.sleep(1)
-        await usr.send("**QUESTION 2**: If you don't use the bot, what features would make you use it?")
-        msg2 = await bot.wait_for('message', check=check)
-        if msg2.content == "cancel":
-            await usr.send("Canceling the survey. All answers are getting wiped out...")
-            curBotSurvey.remove(usr.id)
-            return
-        else:
-            surveyBotAnswers['answer2'] = msg2.content
-        await asyncio.sleep(1)
-        await usr.send("**QUESTION 3**: What features are currently not in the bot that are required in every bot?")
-        msg3 = await bot.wait_for('message', check=check)
-        if msg3.content == "cancel":
-            await usr.send("Canceling the survey. All answers are getting wiped out...")
-            curBotSurvey.remove(usr.id)
-            return
-        else:
-            surveyBotAnswers['answer3'] = msg3.content
-        await asyncio.sleep(1)
-        await usr.send("**QUESTION 4**: Is the bot good enough for you to add it to your server yet?")
-        msg4 = await bot.wait_for('message', check=check)
-        if msg4.content == "cancel":
-            await usr.send("Canceling the survey. All answers are getting wiped out...")
-            curBotSurvey.remove(usr.id)
-            return
-        else:
-            surveyBotAnswers['answer4'] = msg4.content
-        await asyncio.sleep(1)
-        await usr.send(
-            "**QUESTION 5**: If you answered ``no`` on the previous question, what features are still required so you'd add the bot to your server?")
-        msg5 = await bot.wait_for('message', check=check)
-        if msg5.content == "cancel":
-            await usr.send("Canceling the survey. All answers are getting wiped out...")
-            curBotSurvey.remove(usr.id)
-            return
-        else:
-            surveyBotAnswers['answer5'] = msg5.content
-        await asyncio.sleep(1)
-        await usr.send("**QUESTION 6**: Do you think the bot's name should be changed?")
-        msg6 = await bot.wait_for('message', check=check)
-        if msg6.content == "cancel":
-            await usr.send("Canceling the survey. All answers are getting wiped out...")
-            curBotSurvey.remove(usr.id)
-            return
-        else:
-            surveyBotAnswers['answer6'] = msg6.content
-        await asyncio.sleep(1)
-        await usr.send("**QUESTION 7**: If the developer team makes the bot better, would you consider donating?")
-        msg7 = await bot.wait_for('message', check=check)
-        if msg7.content == "cancel":
-            await usr.send("Canceling the survey. All answers are getting wiped out...")
-            curBotSurvey.remove(usr.id)
-            return
-        else:
-            surveyBotAnswers['answer7'] = msg7.content
-        await asyncio.sleep(1)
-        await usr.send("**QUESTION 8**: Anything else to say?")
-        msg8 = await bot.wait_for('message', check=check)
-        if msg8.content == "cancel":
-            await usr.send("Canceling the survey. All answers are getting wiped out...")
-            curBotSurvey.remove(usr.id)
-            return
-        else:
-            surveyBotAnswers['answer8'] = msg8.content
-        await asyncio.sleep(1)
-        await usr.send("Alright, sending your answers to the dev team. Thank you for your support.")
-        takenBotSurvey.append(usr.id)
-        curBotSurvey.remove(usr.id)
-        shiki = await bot.fetch_user(237938976999079948)
-        await shiki.send(f"NEW BOT SURVEY TAKEN ({usr}, {usr.id}). ANSWERS:")
-        for answer, value in surveyBotAnswers.items():
-            await shiki.send(f"{value}\n----------------------")
-
-    if surveyServer:
-        await usr.send("You're now taking the **server survey**. Cancel anytime using ``cancel``.")
-        await usr.send("**QUESTION 1**: What do you think about the server in its current state?")
-        msg1 = await bot.wait_for('message', check=check)
-        if msg1.content == "cancel":
-            await usr.send("Canceling the survey. All answers are getting wiped out...")
-            curServerSurvey.remove(usr.id)
-            return
-        else:
-            surveyServerAnswers['answer1'] = msg1.content
-        await asyncio.sleep(1)
-        await usr.send("**QUESTION 2**: What do you think will speed up the server growth?")
-        msg2 = await bot.wait_for('message', check=check)
-        if msg2.content == "cancel":
-            await usr.send("Canceling the survey. All answers are getting wiped out...")
-            curServerSurvey.remove(usr.id)
-            return
-        else:
-            surveyServerAnswers['answer2'] = msg2.content
-        await asyncio.sleep(1)
-        await usr.send("**QUESTION 3**: What do you think will boost the server activity?")
-        msg3 = await bot.wait_for('message', check=check)
-        if msg3.content == "cancel":
-            await usr.send("Canceling the survey. All answers are getting wiped out...")
-            curServerSurvey.remove(usr.id)
-            return
-        else:
-            surveyServerAnswers['answer3'] = msg3.content
-        await asyncio.sleep(1)
-        await usr.send("**QUESTION 4**: If we gave you nitro, would you boost our server?")
-        msg4 = await bot.wait_for('message', check=check)
-        if msg4.content == "cancel":
-            await usr.send("Canceling the survey. All answers are getting wiped out...")
-            curServerSurvey.remove(usr.id)
-            return
-        else:
-            surveyServerAnswers['answer4'] = msg4.content
-        await asyncio.sleep(1)
-        await usr.send("**QUESTION 5**: Would you be active if the chat is active too?")
-        msg5 = await bot.wait_for('message', check=check)
-        if msg5.content == "cancel":
-            await usr.send("Canceling the survey. All answers are getting wiped out...")
-            curServerSurvey.remove(usr.id)
-            return
-        else:
-            surveyServerAnswers['answer5'] = msg5.content
-        await asyncio.sleep(1)
-        await usr.send(
-            "**QUESTION 6**: Why do people stay in a server, and what improvements to our server would make people stay in it and possibly be active?")
-        msg6 = await bot.wait_for('message', check=check)
-        if msg6.content == "cancel":
-            await usr.send("Canceling the survey. All answers are getting wiped out...")
-            curServerSurvey.remove(usr.id)
-            return
-        else:
-            surveyServerAnswers['answer6'] = msg6.content
-        await asyncio.sleep(1)
-        await usr.send("**QUESTION 7**: Anything left to say?")
-        msg7 = await bot.wait_for('message', check=check)
-        if msg7.content == "cancel":
-            await usr.send("Canceling the survey. All answers are getting wiped out...")
-            curServerSurvey.remove(usr.id)
-            return
-        else:
-            surveyServerAnswers['answer7'] = msg7.content
-        await asyncio.sleep(1)
-        await usr.send("Alright, sending your answers to the server owners. Thank you for your support.")
-        takenServerSurvey.append(usr.id)
-        curServerSurvey.remove(usr.id)
-        shiki = await bot.fetch_user(237938976999079948)
-        await shiki.send(f"NEW SERVER SURVEY TAKEN ({usr}, {usr.id}). ANSWERS:")
-        for answer, value in surveyServerAnswers.items():
-            await shiki.send(f"{value}\n----------------------")
-
+# BETA COMMANDS
 
 @bot.command()
 async def help(ctx, *, mdl: str):
@@ -668,7 +466,7 @@ async def help(ctx, *, mdl: str):
                               description="To view more info about a command, use ``!cmdhelp command``.",
                               color=0x000000)
         embed.add_field(name="Commands:",
-                        value="``reply``, ``afk``, ``define``, ``ping``, ``snipe``, ``editsnipe``, ``reminder``, ``remindercancel``, ``reminderdm``, ``reminderdmcancel``, ``avatar``, ``avatarid``, ``userinfo``")
+                        value="``reply``, ``afk``, ``define``, ``ping``, ``snipe``, ``editsnipe``, ``reminder``, ``remindercancel``, ``reminderdm``, ``reminderdmcancel``, ``avatar``, ``avatarid``, ``userinfo``, ``serverinfo``, ``membercount``")
         embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
         await ctx.send(embed=embed)
     elif mdl == "fun":
@@ -684,15 +482,15 @@ async def help(ctx, *, mdl: str):
                               description="To view more info about a command, use ``!cmdhelp command``.",
                               color=0x000000)
         embed.add_field(name="Commands:",
-                        value="``kick``, ``mute``, ``unmute``, ``purge``, ``clean``, ``serverinfo``, ``membercount``")
+                        value="``ban``, ``unban``, ``banid``, ``kick``, ``mute``, ``unmute``, ``purge``, ``clean``, ``lockdown``, ``bots``, ``role``")
         embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
         await ctx.send(embed=embed)
     elif mdl == "admin":
-        embed = discord.Embed(title="Module: Administration",
+        embed = discord.Embed(title="Module: Administrator",
                               description="To view more info about a command, use ``!cmdhelp command``.",
                               color=0x000000)
         embed.add_field(name="Commands:",
-                        value="``members``, ``ban``, ``banid``, ``unban``, ``role``, ``bots``, ``lockdown``")
+                        value="None yet.")
         embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
         await ctx.send(embed=embed)
     elif mdl == "bot_owners":
