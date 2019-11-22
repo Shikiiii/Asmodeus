@@ -13,7 +13,8 @@ from common_vars import *
 
 # Commands in this file:
 # nick, reply, afk, define, ping, snipe, editsnipe, reminder, remindercancel,
-# reminderdm, reminderdmcancel, avatar, avatarid, userinfo
+# reminderdm, reminderdmcancel, avatar, avatarid, userinfo, membercount,
+# serverinfo
 
 @bot.command()
 async def nick(ctx, user: discord.Member, *, msg: str):
@@ -820,3 +821,98 @@ async def userinfo_error(ctx, error):
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
+
+@bot.command()
+async def membercount(ctx):
+    time = datetime.datetime.now()
+    corfor = time.strftime("%d %b, %Y at %H:%M")
+
+    online = 0
+    for member in ctx.message.author.guild.members:
+        if member.status != discord.Status.offline:
+            online += 1
+    bots = 0
+    for member in ctx.message.author.guild.members:
+        if member.bot == True:
+            bots += 1
+    humans = 0
+    for member in ctx.message.author.guild.members:
+        if member.bot == False:
+            humans += 1
+
+    embed = discord.Embed(color=0x000000)
+    embed.add_field(name="Members", value="{}".format(ctx.message.author.guild.member_count), inline=True)
+    embed.add_field(name="Online", value="{}".format(online), inline=True)
+    embed.add_field(name="Humans", value="{}".format(humans), inline=True)
+    embed.add_field(name="Bots", value="{}".format(bots), inline=True)
+    embed.set_footer(text="ID: {} | {}".format(ctx.message.author.guild.id, corfor))
+    embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+
+    await ctx.send(embed=embed)
+
+@bot.command()
+async def serverinfo(ctx):
+    time = ctx.message.author.guild.created_at
+
+    corfor = time.strftime("%d %b, %Y at %H:%M")
+
+    channels = ctx.message.author.guild.text_channels
+    voicechans = ctx.message.author.guild.voice_channels
+    categories = ctx.message.author.guild.categories
+    roles = ctx.message.author.guild.roles
+    online = 0
+    for member in ctx.message.author.guild.members:
+        if member.status != discord.Status.offline:
+            online += 1
+    bots = 0
+    for member in ctx.message.author.guild.members:
+        if member.bot == True:
+            bots += 1
+    humans = 0
+    for member in ctx.message.author.guild.members:
+        if member.bot == False:
+            humans += 1
+    # fa = " "
+    if ctx.message.author.guild.mfa_level == 0:
+        fa = "No"
+    if ctx.message.author.guild.mfa_level == 1:
+        fa = "Yes"
+    # ver = " "
+
+    embed = discord.Embed(title="Info of {}".format(ctx.message.author.guild.name),
+                          description="Owned by {}".format(ctx.message.author.guild.owner), color=0x000000)
+    embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+    embed.set_thumbnail(url=ctx.message.author.guild.icon_url)
+    embed.set_footer(text="ID: {} | Created at: {}".format(ctx.message.author.guild.id, corfor))
+    embed.add_field(name="Server region", value="{}".format(ctx.message.author.guild.region), inline=True)
+    embed.add_field(name="Channels count", value="{}".format(len(channels)), inline=True)
+    embed.add_field(name="Voice channels count", value="{}".format(len(voicechans)), inline=True)
+    embed.add_field(name="Categories count", value="{}".format(len(categories)), inline=True)
+    embed.add_field(name="Roles count", value="{}".format(len(roles)), inline=True)
+    embed.add_field(name="Members", value="{}".format(ctx.message.author.guild.member_count), inline=True)
+    embed.add_field(name="Online", value="{}".format(online), inline=True)
+    embed.add_field(name="Humans", value="{}".format(humans), inline=True)
+    embed.add_field(name="Bots", value="{}".format(bots), inline=True)
+    # embed2 = discord.Embed(color=0x000000)
+    embed.add_field(name="Requires 2FA", value="{}".format(fa), inline=True)
+    embed.add_field(name="Boosters", value="{}".format(ctx.message.author.guild.premium_subscription_count),
+                    inline=True)
+    embed.add_field(name="Boost level", value="{}".format(ctx.message.author.guild.premium_tier), inline=True)
+    if str(ctx.message.author.guild.verification_level) == "none":
+        ver = "None"
+        embed.add_field(name="Verification level", value="{}".format(ver))
+    # print(ver)
+    elif str(ctx.message.author.guild.verification_level) == "low":
+        ver = "Must have a verified email"
+        embed.add_field(name="Verification level", value="{}".format(ver))
+    elif str(ctx.message.author.guild.verification_level) == "medium":
+        ver = "Must have a verified email and be registered for 5 mins"
+        embed.add_field(name="Verification level", value="{}".format(ver))
+    elif str(ctx.message.author.guild.verification_level) == "high":
+        ver = "Must have a verified email, be registered for 5 minutes and be a member for 10 mins"
+        embed.add_field(name="Verification level", value="{}".format(ver))
+    elif str(ctx.message.author.guild.verification_level) == "extreme":
+        ver = "Must have a verified phone number"
+        embed.add_field(name="Verification level", value="{}".format(ver))
+
+    await ctx.send(embed=embed)
