@@ -1,9 +1,3 @@
-# a custom bot made for the Asmodeus server by shiki, glow & zaf
-
-# 02/09/2019 | 2020-2019
-
-# (c) MIT License @ Shiki
-
 import discord
 from discord import Message, Guild, Member
 from typing import Optional
@@ -25,27 +19,15 @@ from common_vars import *
 # ~MatKrulli: this will ensure the commands from custom_commands.general are properly added to the bot
 import custom_commands.general
 import custom_commands.fun
+import custom_commands.mod
+import custom_commands.admin
+import custom_commands.beta
+import custom_commands.botOwner
 
 bot.remove_command('help')
 
-# server: Optional[Guild] = None
-
-guild: Optional[Guild] = None
-
-shiki: Optional[Member] = None
-
-msgsCounterr = 0
-msgsCounterrr = 0
-allTimeMessages = 0
-
-
-# bot status.
-
 @bot.event
 async def on_ready():
-    # global server
-    # server = bot.get_guild(618048944840245248)
-
     global guild
     guild = bot.get_guild(618048944840245248)
     # testguild = bot.get_guild(617866004978073620)
@@ -116,54 +98,6 @@ async def on_member_remove(member):
         # await channel.send("**{}** ({}) has left the server. We now have **{}** members.".format(member, member.mention, member.guild.member_count))
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
         await loggg.send(f"{member} ({member.mention}, {member.id}) left.")
-
-
-# EMBED MESSAGES
-
-async def convert_color_menu(role_number: str):
-    if role_number == "1":
-        return "Light Red"
-    elif role_number == "2":
-        return "Light Orange"
-    elif role_number == "3":
-        return "Light Purple"
-    elif role_number == "4":
-        return "Light Yellow"
-    elif role_number == "5":
-        return "Light Cyan"
-    elif role_number == "6":
-        return "Light Blue"
-    elif role_number == "7":
-        return "Light Green"
-    elif role_number == "8":
-        return "Light Pink"
-    elif role_number == "9":
-        return "Dark Red"
-    elif role_number == "10":
-        return "Dark Blue"
-    elif role_number == "11":
-        return "Dark Purple"
-    elif role_number == "12":
-        return "Dark Pink"
-    elif role_number == "13":
-        return "Crimson"
-    elif role_number == "14":
-        return "Black"
-    elif role_number == "15":
-        return "Gray"
-    elif role_number == "16":
-        return "Indigo"
-    elif role_number == "17":
-        return "Lavender"
-    elif role_number == "18":
-        return "Violet"
-    elif role_number == "19":
-        return "White"
-    elif role_number == "20":
-        return "Magenta"
-    else:
-        return "none"
-
 
 @bot.event
 async def on_message(message: Message):
@@ -350,20 +284,6 @@ async def on_message(message: Message):
         await message.channel.send("wooden hoe *with loyalty 1")
 
     await bot.process_commands(message)
-
-async def guildConvert(arg):
-    try:
-        guild = bot.get_guild(int(arg))
-        if guild is None:
-            return None
-        else:
-            return guild
-    except ValueError:
-        guild = discord.utils.get(bot.guilds, name="{}".format(arg))
-        if guild is None:
-            return None
-        else:
-            return guild
 
 @bot.event
 async def on_message_delete(message: Message):
@@ -777,62 +697,6 @@ async def cmdhelp(ctx, *, cmd: str):
         embed = discord.Embed(description="This isn't a valid command.", color=0xFF3639)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        await ctx.send(embed=embed)
-
-
-tenorkey = "6JKJQX4V4OHD"
-limit = 50
-media_filter = "basic"
-kiss = "animekiss"
-hug = "animehug"
-slap = "animeslap"
-cuddle = "animecuddle"
-blush = "animeblush"
-pat = "animepat"
-facepalm = "animefacepalm"
-poke = "animepoke"
-
-kissgifs = requests.get(
-    "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s&media_filter=%s" % (kiss, tenorkey, limit, media_filter))
-huggifs = requests.get(
-    "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s&media_filter=%s" % (hug, tenorkey, limit, media_filter))
-slapgifs = requests.get(
-    "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s&media_filter=%s" % (slap, tenorkey, limit, media_filter))
-cuddlegifs = requests.get(
-    "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s&media_filter=%s" % (cuddle, tenorkey, limit, media_filter))
-blushgifs = requests.get(
-    "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s&media_filter=%s" % (blush, tenorkey, limit, media_filter))
-patgifs = requests.get(
-    "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s&media_filter=%s" % (pat, tenorkey, limit, media_filter))
-facepalmgifs = requests.get(
-    "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s&media_filter=%s" % (facepalm, tenorkey, limit, media_filter))
-pokegifs = requests.get(
-    "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s&media_filter=%s" % (poke, tenorkey, limit, media_filter))
-
-
-kiss_gifs = json.loads(kissgifs.content)
-hug_gifs = json.loads(huggifs.content)
-slap_gifs = json.loads(slapgifs.content)
-cuddle_gifs = json.loads(cuddlegifs.content)
-blush_gifs = json.loads(blushgifs.content)
-pat_gifs = json.loads(patgifs.content)
-facepalm_gifs = json.loads(facepalmgifs.content)
-poke_gifs = json.loads(pokegifs.content)               
-
-async def parse_roles(ctx, role: str):
-    try:
-        id: int = int(role)
-        role = ctx.guild.get_role(id)
-        if role is not None:
-            return role
-    except ValueError:
-        pass
-    for guild_role in ctx.guild.roles:
-        if role.lower() == guild_role.name.lower():
-            return guild_role
-    for guild_role in ctx.guild.roles:
-        if role.lower() in guild_role.name.lower():
-            return guild_role
-    return None
+        await ctx.send(embed=embed)              
 
 bot.run(os.environ.get("token"))
