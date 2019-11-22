@@ -85,8 +85,8 @@ async def on_member_join(member):
         await loggg.send(f"{member} ({member.mention}, {member.id}) joined.")
 
         # await channel.send("Welcome {} to **e nightclub!** You’re the **{}** member. \n\n Make sure to read: {}  |  Roles: {}  |  For help:  {}.".format(member.mention, member.guild.member_count, channel2.mention, channel3.mention, channel4.mention))
-        chan = bot.get_channel(642482769049681930)
-        msg = await chan.send(f"Ay {member.mention}, feel free to check out our roles and grab some. :)")
+        chan = bot.get_channel(642482765396312074)
+        msg = await chan.send(f"Ay {member.mention}, feel free to join our nitro giveaway. Scroll a bit up to join it. :)")
         await asyncio.sleep(60)
         await msg.delete()
 
