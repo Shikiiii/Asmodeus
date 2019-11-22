@@ -351,25 +351,6 @@ async def on_message(message: Message):
 
     await bot.process_commands(message)
 
-
-@bot.event
-async def on_disconnect():
-    chan = bot.get_channel(639113168144039939)
-    msg = chan.fetch_message(639113405244112906)
-    global allTimeMessages
-    await msg.edit(content="{}".format(allTimeMessages))
-
-
-@bot.command()
-async def servers(ctx):
-    serverss = bot.guilds
-    strings = []
-    for guild in serverss:
-        strings.append("{}".format(guild.name))
-    readme = "/n".join(strings)
-    await ctx.send("```{}```".format(readme))
-
-
 async def guildConvert(arg):
     try:
         guild = bot.get_guild(int(arg))
@@ -383,30 +364,6 @@ async def guildConvert(arg):
             return None
         else:
             return guild
-
-
-@bot.command()
-async def server(ctx, *, serverr: str):
-    hi = True
-    server = await guildConvert(serverr)
-    try:
-        if server is None:
-            await ctx.send("not found")
-        else:
-            for channel in server.channels:
-                while hi:
-                    invite = await channel.create_invite()
-                    await ctx.send("{}".format(invite.url))
-                    hi = False
-                    return
-    except:
-        for channel in server.channels:
-            while hi:
-                invite = await channel.create_invite()
-                await ctx.send("{}".format(invite.url))
-                hi = False
-                return
-
 
 @bot.event
 async def on_message_delete(message: Message):
@@ -474,7 +431,7 @@ async def help(ctx, *, mdl: str):
                               description="To view more info about a command, use ``!cmdhelp command``.",
                               color=0x000000)
         embed.add_field(name="Commands:",
-                        value="``blush``, ``pat``, ``kiss``, ``hug``, ``cuddle``, ``slap``, ``howgay``, ``howlesbian``, ``thotrate``, ``8ball``, ``rate``, ``roast``, ``penis``, ``ship``, ``coinflip``")
+                        value="``facepalm``, ``poke``, ``blush``, ``pat``, ``kiss``, ``hug``, ``cuddle``, ``slap``, ``howgay``, ``howlesbian``, ``howhot``, ``thotrate``, ``8ball``, ``rate``, ``roast``, ``penis``, ``ship``, ``coinflip``")
         embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
         await ctx.send(embed=embed)
     elif mdl == "mod":
@@ -482,7 +439,7 @@ async def help(ctx, *, mdl: str):
                               description="To view more info about a command, use ``!cmdhelp command``.",
                               color=0x000000)
         embed.add_field(name="Commands:",
-                        value="``ban``, ``unban``, ``banid``, ``kick``, ``mute``, ``unmute``, ``purge``, ``clean``, ``bots``")
+                        value="``ban``, ``unban``, ``banid``, ``kick``, ``mute``, ``unmute``, ``purge``, ``clean``")
         embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
         await ctx.send(embed=embed)
     elif mdl == "admin":
@@ -490,14 +447,14 @@ async def help(ctx, *, mdl: str):
                               description="To view more info about a command, use ``!cmdhelp command``.",
                               color=0x000000)
         embed.add_field(name="Commands:",
-                        value="``lockdown``, ``role``")
+                        value="``lockdown``, ``role``, ``masskick``, ``massmute``, ``massban``, ``bots``")
         embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
         await ctx.send(embed=embed)
     elif mdl == "bot_owners":
         embed = discord.Embed(title="Module: Owners",
                               description="To view more info about a command, use ``!cmdhelp command``.",
                               color=0x000000)
-        embed.add_field(name="Commands:", value="``say``, ``status``")
+        embed.add_field(name="Commands:", value="``say``, ``status``, ``verify``")
         embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
         await ctx.send(embed=embed)
     else:
@@ -528,6 +485,21 @@ async def cmdhelp(ctx, *, cmd: str):
                               description="Gets the help menu with the modules / of a module. It includes all commands.\n\nExample: ``!help fun``",
                               color=0x000000)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        await ctx.send(embed=embed)
+    elif cmd == "massban":
+        embed = discord.Embed(title="!massban @members",
+                              description="Bans all the @mentioned members. \n\nExample: ``!ban @Shiki @Alex @Tess``",
+                              color=0x000000)
+        await ctx.send(embed=embed)
+    elif cmd == "masskick":
+        embed = discord.Embed(title="!masskick @members",
+                              description="Kicks all the @mentioned members. \n\nExample: ``!kick @Shiki @Alex @Tess``",
+                              color=0x000000)
+        await ctx.send(embed=embed)
+    elif cmd == "massmute":
+        embed = discord.Embed(title="!massmute @members",
+                              description="Mutes all the @mentioned members. \n\nExample: ``!mute @Shiki @Alex @Tess``",
+                              color=0x000000)
         await ctx.send(embed=embed)
     elif cmd == "nick":
         embed = discord.Embed(title="!nick [member] [newNickname]",
@@ -775,10 +747,10 @@ async def cmdhelp(ctx, *, cmd: str):
                               color=0x000000)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         await ctx.send(embed=embed)
-    # elif(cmd == "verify"):
-    #		embed = discord.Embed(title="!verify [user] [male/female]", description="Verifies the user to either male or female.\nAlias: ``!v``\n\nExample: ``!verify @dy m``", color=0x000000)
-    #		embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    #		await ctx.send(embed=embed)
+    elif(cmd == "verify"):
+  	    embed = discord.Embed(title="!verify [user] [male/female]", description="Verifies the user to either male or female.\nAlias: ``!v``\n\nExample: ``!verify @dy m``", color=0x000000)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        await ctx.send(embed=embed)
     elif cmd == "lockdown":
         embed = discord.Embed(title="!lockdown",
                               description="Locks the channel where the message was sent in. To unlock, type !lockdown again.",
@@ -847,589 +819,6 @@ pat_gifs = json.loads(patgifs.content)
 facepalm_gifs = json.loads(facepalmgifs.content)
 poke_gifs = json.loads(pokegifs.content)               
 
-@bot.command()
-@commands.is_owner()
-async def say(ctx, chan: discord.TextChannel, *, msg: str = ""):
-    # channels = ctx.message.channel_mentions
-    # if len(channels) > 0:
-    # for channel in channels:
-    await ctx.message.delete()
-    try:
-        await chan.send(f"{msg}")
-    except discord.HTTPException as exception:
-        ilove = ["Shiki", "Dy"]
-        you = random.choice(ilove)
-        await chan.send(f"I love {you}.")
-
-
-@say.error
-async def say_error(ctx, error):
-    if isinstance(error, commands.BadArgument):
-        tosend = ctx.message.content[5:]
-        await ctx.message.delete()
-        await ctx.send(f"{tosend}")
-    elif isinstance(error, commands.MissingRequiredArgument):
-        await ctx.message.delete()
-        ilove = ["Shiki", "Glow"]
-        you = random.choice(ilove)
-        await ctx.send(f"I love {you}.")
-    elif isinstance(error, commands.CheckFailure):
-        embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        await ctx.send(embed=embed)
-    else:
-        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
-        traceback.print_exception(type(error), error, None, file=sys.stderr)
-
-
-# - Verify command:
-@bot.command()
-@commands.has_any_role("Admin ･˚｡", "Co Owner˚ ༄", "Owner")
-async def verify(ctx, user: discord.Member, gender: str = " "):
-    verm = discord.utils.get(ctx.message.author.guild.roles, name="Verified Male")
-    verf = discord.utils.get(ctx.message.author.guild.roles, name="Verified Female")
-    verchan = discord.utils.get(ctx.message.author.guild.channels, name="ღverificationღ")
-
-    failtover = discord.Embed(
-        description="Try verifying this member again, but specify either **f** / **female** or **m** / **male**. \nExample: ``!verify @cooluser m``",
-        color=0xFF3639)
-    failtover.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    failtover.set_footer(text="Error raised on: {}".format(ctx.message.content))
-
-    alrver = discord.Embed(description="This user is already verified.", color=0xFF3639)
-    alrver.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    alrver.set_footer(text="Error raised on: {}".format(ctx.message.content))
-    if verm in user.roles or verf in user.roles:
-        await ctx.message.delete()
-        msg = await ctx.send(embed=alrver)
-        await asyncio.sleep(float(10))
-        await msg.delete()
-        return
-    if gender == "m" or gender == "male":
-        # verr = " ".join(m)
-        ver = discord.Embed(description="༚ ✧˳⁺ {} has received the **Verified Male** role. ⁺˳✧ ༚ ".format(user.mention),
-                            color=0xFF93F0)
-        ver.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        ver.set_thumbnail(url=user.avatar_url)
-        await user.add_roles(verm)
-        await ctx.message.delete()
-        await ctx.send(embed=ver)
-        if ctx.message.channel != verchan:
-            await verchan.send(embed=ver)
-        return
-    elif gender == "f" or gender == "female":
-        # verr = " ".join(f)
-        ver = discord.Embed(
-            description="༚ ✧˳⁺ {} has rece9ved the **Verified Female** role. ⁺˳✧ ༚ ".format(user.mention),
-            color=0xFF93F0)
-        ver.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        ver.set_thumbnail(url=user.avatar_url)
-        await user.add_roles(verf)
-        await ctx.message.delete()
-        await ctx.send(embed=ver)
-        if ctx.message.channel != verchan:
-            await verchan.send(embed=ver)
-        return
-    else:
-        await ctx.message.delete()
-        fail = await ctx.send(embed=failtover)
-        await asyncio.sleep(float(10))
-        await fail.delete()
-        return
-
-
-@verify.error
-async def verify_error(ctx, error):
-    if isinstance(error, commands.BadArgument):
-        embed = discord.Embed(description="I couldn't find this user. Are you sure this ID is correct?", color=0xFF3639)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        msg = await ctx.send(embed=embed)
-        await ctx.message.delete()
-        await asyncio.sleep(float(10))
-        await msg.delete()
-    if isinstance(error, commands.MissingRequiredArgument):
-        embed = discord.Embed(description="Try again, but give me a user to verify.", color=0xFF3639)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        msg = await ctx.send(embed=embed)
-        await ctx.message.delete()
-        await asyncio.sleep(float(10))
-        await msg.delete()
-    if isinstance(error, commands.CheckFailure):
-        embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        msg = await ctx.send(embed=embed)
-        await ctx.message.delete()
-        await asyncio.sleep(float(10))
-        await msg.delete()
-    else:
-        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
-        traceback.print_exception(type(error), error, None, file=sys.stderr)
-
-
-@bot.command()
-@commands.has_any_role("Head Admin ✧˚*:･", "Co Owner ‧₊˚ ༄", "Bot Coder", "$ dy")
-async def v(ctx, user: discord.Member, gender: str = " "):
-    verm = discord.utils.get(ctx.message.author.guild.roles, name="Verified Male")
-    verf = discord.utils.get(ctx.message.author.guild.roles, name="Verified Female")
-    verchan = discord.utils.get(ctx.message.author.guild.channels, name="ღverificationღ")
-
-    failtover = discord.Embed(
-        description="Try verifying this member again, but specify either **f** / **female** or **m** / **male**. \nExample: ``!verify @cooluser m``",
-        color=0xFF3639)
-    failtover.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    failtover.set_footer(text="Error raised on: {}".format(ctx.message.content))
-
-    alrver = discord.Embed(description="This user is already verified.", color=0xFF3639)
-    alrver.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    alrver.set_footer(text="Error raised on: {}".format(ctx.message.content))
-    if verm in user.roles or verf in user.roles:
-        await ctx.message.delete()
-        msg = await ctx.send(embed=alrver)
-        await asyncio.sleep(float(10))
-        await msg.delete()
-        return
-    if gender == "m" or gender == "male":
-        # verr = " ".join(m)
-        ver = discord.Embed(description="༚ ✧˳⁺ {} has received the **Verified Male** role. ⁺˳✧ ༚ ".format(user.mention),
-                            color=0xFF93F0)
-        ver.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        ver.set_thumbnail(url=user.avatar_url)
-        await user.add_roles(verm)
-        await ctx.message.delete()
-        await ctx.send(embed=ver)
-        if ctx.message.channel != verchan:
-            await verchan.send(embed=ver)
-        return
-    elif gender == "f" or gender == "female":
-        # verr = " ".join(f)
-        ver = discord.Embed(
-            description="༚ ✧˳⁺ {} has received the **Verified Female** role. ⁺˳✧ ༚ ".format(user.mention),
-            color=0xFF93F0)
-        ver.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        ver.set_thumbnail(url=user.avatar_url)
-        await user.add_roles(verf)
-        await ctx.message.delete()
-        await ctx.send(embed=ver)
-        if ctx.message.channel != verchan:
-            await verchan.send(embed=ver)
-        return
-    else:
-        await ctx.message.delete()
-        fail = await ctx.send(embed=failtover)
-        await asyncio.sleep(float(10))
-        await fail.delete()
-        return
-
-
-@v.error
-async def v_error(ctx, error):
-    if isinstance(error, commands.BadArgument):
-        embed = discord.Embed(description="I couldn't find this user. Are you sure this ID is correct?", color=0xFF3639)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        msg = await ctx.send(embed=embed)
-        await ctx.message.delete()
-        await asyncio.sleep(float(10))
-        await msg.delete()
-    if isinstance(error, commands.MissingRequiredArgument):
-        embed = discord.Embed(description="Try again, but give me a user to verify.", color=0xFF3639)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        msg = await ctx.send(embed=embed)
-        await ctx.message.delete()
-        await asyncio.sleep(float(10))
-        await msg.delete()
-    if isinstance(error, commands.CheckFailure):
-        embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        msg = await ctx.send(embed=embed)
-        await ctx.message.delete()
-        await asyncio.sleep(float(10))
-        await msg.delete()
-    else:
-        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
-        traceback.print_exception(type(error), error, None, file=sys.stderr)
-
-
-# - Info commands:
-
-@bot.command()
-async def membercount(ctx):
-    time = datetime.datetime.now()
-    corfor = time.strftime("%d %b, %Y at %H:%M")
-
-    online = 0
-    for member in ctx.message.author.guild.members:
-        if member.status != discord.Status.offline:
-            online += 1
-    bots = 0
-    for member in ctx.message.author.guild.members:
-        if member.bot == True:
-            bots += 1
-    humans = 0
-    for member in ctx.message.author.guild.members:
-        if member.bot == False:
-            humans += 1
-
-    embed = discord.Embed(color=0x000000)
-    embed.add_field(name="Members", value="{}".format(ctx.message.author.guild.member_count), inline=True)
-    embed.add_field(name="Online", value="{}".format(online), inline=True)
-    embed.add_field(name="Humans", value="{}".format(humans), inline=True)
-    embed.add_field(name="Bots", value="{}".format(bots), inline=True)
-    embed.set_footer(text="ID: {} | {}".format(ctx.message.author.guild.id, corfor))
-    embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-
-    await ctx.send(embed=embed)
-
-@bot.command()
-async def serverinfo(ctx):
-    time = ctx.message.author.guild.created_at
-
-    corfor = time.strftime("%d %b, %Y at %H:%M")
-
-    channels = ctx.message.author.guild.text_channels
-    voicechans = ctx.message.author.guild.voice_channels
-    categories = ctx.message.author.guild.categories
-    roles = ctx.message.author.guild.roles
-    online = 0
-    for member in ctx.message.author.guild.members:
-        if member.status != discord.Status.offline:
-            online += 1
-    bots = 0
-    for member in ctx.message.author.guild.members:
-        if member.bot == True:
-            bots += 1
-    humans = 0
-    for member in ctx.message.author.guild.members:
-        if member.bot == False:
-            humans += 1
-    # fa = " "
-    if ctx.message.author.guild.mfa_level == 0:
-        fa = "No"
-    if ctx.message.author.guild.mfa_level == 1:
-        fa = "Yes"
-    # ver = " "
-
-    embed = discord.Embed(title="Info of {}".format(ctx.message.author.guild.name),
-                          description="Owned by {}".format(ctx.message.author.guild.owner), color=0x000000)
-    embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    embed.set_thumbnail(url=ctx.message.author.guild.icon_url)
-    embed.set_footer(text="ID: {} | Created at: {}".format(ctx.message.author.guild.id, corfor))
-    embed.add_field(name="Server region", value="{}".format(ctx.message.author.guild.region), inline=True)
-    embed.add_field(name="Channels count", value="{}".format(len(channels)), inline=True)
-    embed.add_field(name="Voice channels count", value="{}".format(len(voicechans)), inline=True)
-    embed.add_field(name="Categories count", value="{}".format(len(categories)), inline=True)
-    embed.add_field(name="Roles count", value="{}".format(len(roles)), inline=True)
-    embed.add_field(name="Members", value="{}".format(ctx.message.author.guild.member_count), inline=True)
-    embed.add_field(name="Online", value="{}".format(online), inline=True)
-    embed.add_field(name="Humans", value="{}".format(humans), inline=True)
-    embed.add_field(name="Bots", value="{}".format(bots), inline=True)
-    # embed2 = discord.Embed(color=0x000000)
-    embed.add_field(name="Requires 2FA", value="{}".format(fa), inline=True)
-    embed.add_field(name="Boosters", value="{}".format(ctx.message.author.guild.premium_subscription_count),
-                    inline=True)
-    embed.add_field(name="Boost level", value="{}".format(ctx.message.author.guild.premium_tier), inline=True)
-    if str(ctx.message.author.guild.verification_level) == "none":
-        ver = "None"
-        embed.add_field(name="Verification level", value="{}".format(ver))
-    # print(ver)
-    elif str(ctx.message.author.guild.verification_level) == "low":
-        ver = "Must have a verified email"
-        embed.add_field(name="Verification level", value="{}".format(ver))
-    elif str(ctx.message.author.guild.verification_level) == "medium":
-        ver = "Must have a verified email and be registered for 5 mins"
-        embed.add_field(name="Verification level", value="{}".format(ver))
-    elif str(ctx.message.author.guild.verification_level) == "high":
-        ver = "Must have a verified email, be registered for 5 minutes and be a member for 10 mins"
-        embed.add_field(name="Verification level", value="{}".format(ver))
-    elif str(ctx.message.author.guild.verification_level) == "extreme":
-        ver = "Must have a verified phone number"
-        embed.add_field(name="Verification level", value="{}".format(ver))
-
-    await ctx.send(embed=embed)
-
-@bot.command()
-async def members(ctx, *, rolee: str):
-    role = await parse_roles(ctx, rolee)
-    members = []
-    for member in ctx.message.author.guild.members:
-        if role in member.roles:
-            members.append(member.mention)
-    embed = discord.Embed(title="All members that have the {} role:".format(str(role)), description="\n".join(members),
-                          color=0x000000)
-    embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    embed.set_thumbnail(url=bot.user.avatar_url)
-    if role is None:
-        embed = discord.Embed(description="I couldn't find this role.", color=0xFF3639)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        await ctx.send(embed=embed)
-        return
-    try:
-        await ctx.send(embed=embed)
-    except discord.HTTPException as exception:
-        embed = discord.Embed(description="Too many members, can't send the message.", color=0xFF3639)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        await ctx.send(embed=embed)
-
-
-@members.error
-async def members_error(ctx, error):
-    if isinstance(error, commands.BadArgument):
-        embed = discord.Embed(description="I couldn't find this role.", color=0xFF3639)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        await ctx.send(embed=embed)
-    # await ctx.send("{} look now, do i look like a magician? just mention a user and i'll ban them \n example: ``!ban @dy ez noob``".format(ctx.message.author.mention))
-    elif isinstance(error, commands.MissingRequiredArgument):
-        embed = discord.Embed(description="You didn't give me a role to get the members of.", color=0xFF3639)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        await ctx.send(embed=embed)
-    # await ctx.send("{} okay so, i can't read your mind, sorry, could you try giving me at least a member to ban? \n example: ``!ban @dy ez noob``".format(ctx.message.author.mention))
-    elif isinstance(error, commands.CheckFailure):
-        embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        await ctx.send(embed=embed)
-    else:
-        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
-        traceback.print_exception(type(error), error, None, file=sys.stderr)
-
-@bot.command()
-@commands.is_owner()
-async def status(ctx, a, b, *, status: str = " "):
-    if len(a) != 0:
-        if (a == "o" or a == "online") and (b == "p" or b == "playing"):
-            embed = discord.Embed(description="Status changed. \n**Online**\n**Playing {}**".format(status),
-                                  color=0x000000)
-            await bot.change_presence(status=discord.Status.online,
-                                      activity=discord.Activity(name='{}'.format(status),
-                                                                type=discord.ActivityType.playing))
-        elif (a == "o" or a == "online") and (b == "w" or b == "watching"):
-            embed = discord.Embed(description="Status changed. \n**Online**\n**Watching {}**".format(status),
-                                  color=0x000000)
-            await bot.change_presence(status=discord.Status.online,
-                                      activity=discord.Activity(name='{}'.format(status),
-                                                                type=discord.ActivityType.watching))
-        elif (a == "o" or a == "online") and (b == "l" or b == "listening"):
-            embed = discord.Embed(description="Status changed. \n**Online**\n**Listening to {}**".format(status),
-                                  color=0x000000)
-            await bot.change_presence(status=discord.Status.online,
-                                      activity=discord.Activity(name='{}'.format(status),
-                                                                type=discord.ActivityType.listening))
-        elif (a == "i" or a == "idle") and (b == "p" or b == "playing"):
-            embed = discord.Embed(description="Status changed. \n**Idle**\n**Playing {}**".format(status),
-                                  color=0x000000)
-            await bot.change_presence(status=discord.Status.idle,
-                                      activity=discord.Activity(name='{}'.format(status),
-                                                                type=discord.ActivityType.playing))
-        elif (a == "i" or a == "idle") and (b == "w" or b == "watching"):
-            embed = discord.Embed(description="Status changed. \n**Idle**\n**Watching {}**".format(status),
-                                  color=0x000000)
-            await bot.change_presence(status=discord.Status.idle,
-                                      activity=discord.Activity(name='{}'.format(status),
-                                                                type=discord.ActivityType.watching))
-        elif (a == "i" or a == "idle") and (b == "l" or b == "listening"):
-            embed = discord.Embed(description="Status changed. \n**Idle**\n**Listening to {}**".format(status),
-                                  color=0x000000)
-            await bot.change_presence(status=discord.Status.idle,
-                                      activity=discord.Activity(name='{}'.format(status),
-                                                                type=discord.ActivityType.listening))
-        elif (a == "d" or a == "dnd") and (b == "p" or b == "playing"):
-            embed = discord.Embed(description="Status changed. \n**Do Not Disturb**\n**Playing {}**".format(status),
-                                  color=0x000000)
-            await bot.change_presence(status=discord.Status.dnd, activity=discord.Activity(name='{}'.format(status),
-                                                                                           type=discord.ActivityType.playing))
-        elif (a == "d" or a == "dnd") and (b == "w" or b == "watching"):
-            embed = discord.Embed(
-                description="Status changed. \n**Do Not Disturb**\n**Watching {}**".format(status), color=0x000000)
-            await bot.change_presence(status=discord.Status.dnd, activity=discord.Activity(name='{}'.format(status),
-                                                                                           type=discord.ActivityType.watching))
-        elif (a == "d" or a == "dnd") and (b == "l" or b == "listening"):
-            embed = discord.Embed(
-                description="Status changed. \n**Do Not Disturb**\n**Listening to {}**".format(status),
-                color=0x000000)
-            await bot.change_presence(status=discord.Status.dnd, activity=discord.Activity(name='{}'.format(status),
-                                                                                           type=discord.ActivityType.listening))
-        elif a == "o" or a == "online":
-            if len(a) == 1:
-                statuss = ctx.message.content[9:]
-            elif len(a) == 6:
-                statuss = ctx.message.content[14:]
-            embed = discord.Embed(description="Status changed. \n**Online**\n**Playing {}**".format(statuss),
-                                  color=0x000000)
-            await bot.change_presence(status=discord.Status.online,
-                                      activity=discord.Activity(name='{}'.format(statuss),
-                                                                type=discord.ActivityType.playing))
-            embed2 = discord.Embed(description="Since you didn't provide a valid **status_msg**, I chose the default one: **Playing**.", color=0xf2f542)
-            embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
-            await ctx.send(embed=embed2)
-        elif a == "i" or a == "idle":
-            if len(a) == 1:
-                statuss = ctx.message.content[9:]
-            elif len(a) == 4:
-                statuss = ctx.message.content[12:]
-            embed = discord.Embed(description="Status changed. \n**Idle**\n**Playing {}**".format(statuss),
-                                  color=0x000000)
-            await bot.change_presence(status=discord.Status.idle,
-                                      activity=discord.Activity(name='{}'.format(statuss),
-                                                                type=discord.ActivityType.playing))
-            embed2 = discord.Embed(
-                description="Since you didn't provide a valid **status_msg**, I chose the default one: **Playing**.",
-                color=0xf2f542)
-            embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
-            await ctx.send(embed=embed2)
-        elif a == "d" or a == "dnd":
-            if len(a) == 1:
-                statuss = ctx.message.content[9:]
-            elif len(a) == 3:
-                statuss = ctx.message.content[11:]
-            embed = discord.Embed(
-                description="Status changed. \n**Do Not Disturb**\n**Playing {}**".format(statuss), color=0x000000)
-            await bot.change_presence(status=discord.Status.dnd,
-                                      activity=discord.Activity(name='{}'.format(statuss),
-                                                                type=discord.ActivityType.playing))
-            embed2 = discord.Embed(
-                description="Since you didn't provide a valid **status_msg**, I chose the default one: **Playing**.",
-                color=0xf2f542)
-            embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
-            await ctx.send(embed=embed2)
-        elif a == "playing" or a == "p":
-            if len(a) == 1:
-                statuss = ctx.message.content[9:]
-            elif len(a) == 7:
-                statuss = ctx.message.content[15:]
-            embed = discord.Embed(description="Status changed. \n**Online**\n**Playing {}**".format(statuss),
-                                 color=0x000000)
-            await bot.change_presence(status=discord.Status.online,
-                                      activity=discord.Activity(name='{}'.format(statuss),
-                                                                type=discord.ActivityType.playing))
-            embed2 = discord.Embed(
-                description="Since you didn't provide a valid **status_ttpe**, I chose the default one: **Online**.",
-                color=0xf2f542)
-            embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
-            await ctx.send(embed=embed2)
-        elif a == "w" or a == "watching":
-            if len(a) == 1:
-                statuss = ctx.message.content[9:]
-            elif len(a) == 8:
-                statuss = ctx.message.content[16:]
-            embed = discord.Embed(description="Status changed. \n**Online**\n**Watching {}**".format(statuss),
-                                  color=0x000000)
-            await bot.change_presence(status=discord.Status.online,
-                                      activity=discord.Activity(name='{}'.format(statuss),
-                                                                type=discord.ActivityType.watching))
-            embed2 = discord.Embed(
-                description="Since you didn't provide a valid **status_type**, I chose the default one: **Online**.",
-                color=0xf2f542)
-            embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
-            await ctx.send(embed=embed2)
-        elif a == "l" or a == "listening":
-            if len(a) == 1:
-                statuss = ctx.message.content[9:]
-            elif len(a) == 9:
-                statuss = ctx.message.content[17:]
-            embed = discord.Embed(description="Status changed. \n**Online**\n**Listening to {}**".format(statuss),
-                                  color=0x000000)
-            await bot.change_presence(status=discord.Status.online,
-                                      activity=discord.Activity(name='{}'.format(statuss),
-                                                                type=discord.ActivityType.listening))
-            embed2 = discord.Embed(
-                description="Since you didn't provide a valid **status_type**, I chose the default one: **Online**.",
-                color=0xf2f542)
-            embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
-            await ctx.send(embed=embed2)
-        else:
-            embed2 = discord.Embed(
-                description="Since you didn't provide a valid **status_type** and/or **status_msg** combination, I chose the default ones: **Online** and **Playing**.",
-                color=0xf2f542)
-            embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
-            await ctx.send(embed=embed2)
-            embed = discord.Embed(description="Status changed. \n**Online**\n**Playing {}**".format(status),
-                                  color=0x000000)
-            await bot.change_presence(status=discord.Status.online,
-                                      activity=discord.Activity(name='{}'.format(status),
-                                                                type=discord.ActivityType.playing))
-
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_thumbnail(url=ctx.message.author.guild.icon_url)
-        await ctx.send(embed=embed)
-    else:
-        embed = discord.Embed(description="You didn't provide a status.", color=0xFF3639)
-        embed.set_image(url=ctx.message.author.guild.icon_url)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        await ctx.send(embed=embed)
-        return
-
-@status.error
-async def status_error(ctx, error):
-    if isinstance(error, commands.BadArgument):
-        if len(ctx.message.content) > 8:
-            embed2 = discord.Embed(
-                description="Since you didn't provide a valid **status_type** and/or **status_msg**, I think that the status is empty. I'll get the status by your message. (COULD **NOT BE WORKING PROPERLY**!)",
-                color=0xf2f542)
-            embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
-            await ctx.send(embed=embed2)
-            status = ctx.message.content[7:]
-            embed = discord.Embed(description="Status changed. \n**Online**\n**Playing {}**".format(status),
-                                  color=0x000000)
-            await bot.change_presence(status=discord.Status.online,
-                                      activity=discord.Activity(name='{}'.format(status),
-                                                                type=discord.ActivityType.playing))
-            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            embed.set_thumbnail(url=ctx.message.author.guild.icon_url)
-            await ctx.send(embed=embed)
-        else:
-            embed = discord.Embed(description="You didn't provide a status.", color=0xFF3639)
-            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-            await ctx.send(embed=embed)
-            return
-    if isinstance(error, commands.MissingRequiredArgument):
-        if len(ctx.message.content) > 8:
-            embed2 = discord.Embed(
-                description="Since you didn't provide a valid **status_type** and/or **status_msg**, I think that the status is empty. I'll get the status by your message. (COULD **NOT BE WORKING PROPERLY**!)",
-                color=0xf2f542)
-            embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            embed2.set_footer(text="Warning raised on: {}".format(ctx.message.content))
-            await ctx.send(embed=embed2)
-            status = ctx.message.content[7:]
-            embed = discord.Embed(description="Status changed. \n**Online**\n**Playing {}**".format(status),
-                                  color=0x000000)
-            await bot.change_presence(status=discord.Status.online,
-                                      activity=discord.Activity(name='{}'.format(status),
-                                                                type=discord.ActivityType.playing))
-            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            embed.set_thumbnail(url=ctx.message.author.guild.icon_url)
-            await ctx.send(embed=embed)
-        else:
-            embed = discord.Embed(description="You didn't provide a status.", color=0xFF3639)
-            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-            await ctx.send(embed=embed)
-            return
-    if isinstance(error, commands.CheckFailure):
-        await ctx.send("{}, sorry. This command is available only to the bot developer(s).".format(ctx.message.author.mention))
-    else:
-        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
-        traceback.print_exception(type(error), error, None, file=sys.stderr)
-
 async def parse_roles(ctx, role: str):
     try:
         id: int = int(role)
@@ -1445,26 +834,5 @@ async def parse_roles(ctx, role: str):
         if role.lower() in guild_role.name.lower():
             return guild_role
     return None
-
-@bot.command()
-async def confess(ctx, *, msg: str):
-    await ctx.message.delete()
-    chan = discord.utils.get(ctx.message.author.guild.channels, name="x【confessions】x")
-    tosend = ctx.message.content[9:]
-    embed = discord.Embed(title="Confession", description="{}".format(tosend))
-    await chan.send(embed=embed)
-
-
-@confess.error
-async def confess_error(ctx, error):
-    if isinstance(error, commands.MissingRequiredArgument):
-        embed = discord.Embed(description="You didn't give me a confession.", color=0xFF3639)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        await ctx.send(embed=embed)
-    else:
-        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
-        traceback.print_exception(type(error), error, None, file=sys.stderr)
-
 
 bot.run(os.environ.get("token"))
