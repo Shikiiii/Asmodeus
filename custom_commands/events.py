@@ -80,7 +80,7 @@ async def on_message(message: Message):
     if message.channel.id == 642482769833885736:
         role_names = {"Light Red", "Light Orange", "Light Purple", "Light Yellow", "Light Cyan", "Light Blue",
                       "Light Green", "Light Pink", "Dark Red", "Dark Blue", "Dark Purple", "Dark Pink",
-                      "Crimson", "Black", "Gray", "Indigo", "Lavender", "Violet", "White", "Magenta"}
+                      "Crimson", "Black", "Gray", "Indigo", "Lavender", "Violet", "White", "Magenta", "Cream"}
         await message.delete()
         if message.content == "none":
             toremove = []
