@@ -21,6 +21,9 @@ async def on_ready():
 
     await bot.wait_until_ready()
 
+    vc = bot.get_channel(642482823445479424)
+    await vc.connect()
+
     while True:
         global msgsCounterrr
         msgsCounterrr = 0
@@ -45,8 +48,6 @@ async def on_member_join(member):
         await channel.send("{}".format(member.mention), embed=embed)
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
         await loggg.send(f"{member} ({member.mention}, {member.id}) joined.")
-        chan = bot.get_channel(642482765396312074)
-        msg = await chan.send(f"Ay {member.mention}, feel free to join our nitro giveaway. Scroll a bit up to join it. :)")
         await asyncio.sleep(60)
         await msg.delete()
 
