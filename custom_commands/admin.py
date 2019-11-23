@@ -21,7 +21,7 @@ async def prefix(ctx, *, prefix: str):
         serverPrefixes[ctx.guild.id] = prefix
         #storage = bot.get_guild(646432280365236235)
         #storagePrefix = storage.get_channel(646432846961049601)
-        #await storagePrefix.send("{}|{}".format(ctx.guild.id, prefix))
+        await storagePrefix.send("{}|{}".format(str(ctx.guild.id), str(prefix)))
         embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Prefix for **{}** changed to ``{}``.".format(ctx.guild.name, prefix), color=0x000000)
         await ctx.send(embed=embed)
     else:
