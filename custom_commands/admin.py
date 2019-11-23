@@ -11,8 +11,36 @@ import json
 from common_vars import *
 
 # Commands in this file:
-# lockdown, role, massban, masskick, massmute
+# prefix, lockdown, role, massban, masskick, massmute
 # bots
+
+@bot.command()
+@commands.has_permissions(manage_server=True)
+async def prefix(ctx, *, prefix: str):
+    if len(prefix) <= 100:
+        serverPrefixes[ctx.guild.id] = prefix
+        await storagePrefix.send("{}|{}".format(ctx.guild.id, prefix))
+        embed = discord.Embed(title="{}".format(ctx.message.author.name), descripion=".҉ Prefix for **{}** changed to ``{}``.".format(ctx.guild.name, prefix), color=0x000000)
+        await ctx.send(embed=embed)
+    else:
+        embed = discord.Embed(description="We've limited the prefixes to 100 characters. It appears you typed a prefix longer than that.", color=0xFF3639)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        await ctx.send(embed=embed)
+    
+@prefix.error
+async def prefix_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        embed = discord.Embed(title="{}".format(ctx.message.author.name), description="To change the prefix, try giving me a prefix.", color=0x000000)
+        await ctx.send(embed=embed)
+    elif isinstance(error, commands.CheckFailure):
+        embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        await ctx.send(embed=embed)
+    else:
+        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+        traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
 
 @bot.command()
 @commands.has_permissions(administrator=True)
