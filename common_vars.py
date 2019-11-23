@@ -1,4 +1,5 @@
 from discord.ext.commands import Bot
+import discord
 import http.client
 import requests
 import json
