@@ -118,41 +118,45 @@ async def reply_error(ctx, error):
 @bot.command()
 async def afk(ctx, *, reason: str):
     # global afklist
-    user = ctx.message.author
-    oldnick = str(user.display_name)
-    try:
-        await user.edit(nick="[AFK] {}".format(oldnick))
-    except:
-        embed = discord.Embed(description="Your role is higher or equal to mines, no [AFK] to your nickname.",
-                              color=0xebf533)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        await ctx.send(embed=embed)
-    if str(ctx.message.author.id) not in afklist.keys():
-        if len(reason) == 0:
-            reason = random.choice(["Fapping to pornhub.com", "Fuckin yo mom", "Doin something",
-                                    "Im too lazy to type what I'm afk for", "Hi"])
-        afklist[user.id] = reason
-        await ctx.send("{}, I set your AFK: **{}**.".format(ctx.message.author.mention, reason))
+    #user = ctx.message.author
+    #oldnick = str(user.display_name)
+    #try:
+    #    await user.edit(nick="[AFK] {}".format(oldnick))
+    #except:
+    #    embed = discord.Embed(description="Your role is higher or equal to mines, no [AFK] to your nickname.",
+    #                          color=0xebf533)
+    #    embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+    #    await ctx.send(embed=embed)
+    #if str(ctx.message.author.id) not in afklist.keys():
+    #    if len(reason) == 0:
+    #        reason = random.choice(["Fapping to pornhub.com", "Fuckin yo mom", "Doin something",
+    #                                "Im too lazy to type what I'm afk for", "Hi"])
+    #    afklist[user.id] = reason
+    #    await ctx.send("{}, I set your AFK: **{}**.".format(ctx.message.author.mention, reason))
+    embed = discord.Embed(title="{}".format(ctx.message.author.name), description="This command has been disabled because of a bot-breaking bug. It'll be back soon, really soon!", color=0xffff00)
+    await ctx.send(embed=embed)
 
 
 @afk.error
 async def afk_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
-        user = ctx.message.author
-        oldnick = str(user.display_name)
-        try:
-            await user.edit(nick="[AFK] {}".format(oldnick))
-        except:
-            embed = discord.Embed(description="Your role is higher or equal to mines, no [AFK] to your nickname.",
-                                  color=0xebf533)
-            embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            await ctx.send(embed=embed)
-        if str(ctx.message.author.id) not in afklist.keys():
-            choice_list = ["Fapping to pornhub.com", "Fuckin yo mom", "Doin something",
-                           "Im too lazy to type what I'm afk for", "Hi"]
-            reason = random.choice(choice_list)
-            afklist[user.id] = reason
-            await ctx.send("{}, I set your AFK: **{}**.".format(ctx.message.author.mention, reason))
+        #user = ctx.message.author
+        #oldnick = str(user.display_name)
+        #try:
+        #    await user.edit(nick="[AFK] {}".format(oldnick))
+        #except:
+        #    embed = discord.Embed(description="Your role is higher or equal to mines, no [AFK] to your nickname.",
+        #                          color=0xebf533)
+        #    embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        #    await ctx.send(embed=embed)
+        #if str(ctx.message.author.id) not in afklist.keys():
+        #    choice_list = ["Fapping to pornhub.com", "Fuckin yo mom", "Doin something",
+        #                   "Im too lazy to type what I'm afk for", "Hi"]
+        #    reason = random.choice(choice_list)
+        #    afklist[user.id] = reason
+        #    await ctx.send("{}, I set your AFK: **{}**.".format(ctx.message.author.mention, reason))
+        embed = discord.Embed(title="{}".format(ctx.message.author.name), description="This command has been disabled because of a bot-breaking bug. It'll be back soon, really soon!", color=0xffff00)
+        await ctx.send(embed=embed)
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
