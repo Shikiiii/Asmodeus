@@ -66,6 +66,8 @@ async def convert_color_menu(role_number: str):
         return "White"
     elif role_number == "20":
         return "Magenta"
+    elif role_number == "21":
+        return "Cream"
     else:
         return "none"
 
