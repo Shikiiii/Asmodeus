@@ -22,7 +22,7 @@ async def prefix(ctx, *, prefix: str):
         #storage = bot.get_guild(646432280365236235)
         #storagePrefix = storage.get_channel(646432846961049601)
         #await storagePrefix.send("{}|{}".format(ctx.guild.id, prefix))
-        embed = discord.Embed(title="{}".format(ctx.message.author.name), descripion=".҉ Prefix for **{}** changed to ``{}``.".format(ctx.guild.name, prefix), color=0x000000)
+        embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Prefix for **{}** changed to ``{}``.".format(ctx.guild.name, prefix), color=0x000000)
         await ctx.send(embed=embed)
     else:
         embed = discord.Embed(description="We've limited the prefixes to 100 characters. It appears you typed a prefix longer than that.", color=0xFF3639)
