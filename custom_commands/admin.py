@@ -19,6 +19,7 @@ from common_vars import *
 async def prefix(ctx, *, prefix: str):
     if len(prefix) <= 100:
         serverPrefixes[ctx.guild.id] = prefix
+        global storagePrefix
         await storagePrefix.send("{}|{}".format(ctx.guild.id, prefix))
         embed = discord.Embed(title="{}".format(ctx.message.author.name), descripion=".҉ Prefix for **{}** changed to ``{}``.".format(ctx.guild.name, prefix), color=0x000000)
         await ctx.send(embed=embed)
