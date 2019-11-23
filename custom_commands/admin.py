@@ -15,7 +15,7 @@ from common_vars import *
 # bots
 
 @bot.command()
-@commands.has_permissions(manage_server=True)
+@commands.has_permissions(manage_guild=True)
 async def prefix(ctx, *, prefix: str):
     if len(prefix) <= 100:
         serverPrefixes[ctx.guild.id] = prefix
