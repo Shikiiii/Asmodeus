@@ -1,7 +1,12 @@
 import discord
 from discord import Message, Guild, Member
-from typing import Optional
 from discord.ext import commands
+import random
+import sys
+import traceback
+import asyncio
+import datetime
+import json
 
 @bot.event
 async def on_ready():
