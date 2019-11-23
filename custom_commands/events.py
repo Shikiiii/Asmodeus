@@ -24,6 +24,7 @@ async def on_ready():
     # Here, we get the prefixes, so we don't have to scan the channel everytime a command is ran. - Shiki
     storagePrefix = bot.get_channel(646432846961049601)
     async for message in storagePrefix.history():
+        print('I found one prefix!')
         x = message.content.split("|")
         id = x[0]
         prefix = x[1]
