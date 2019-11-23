@@ -29,6 +29,7 @@ async def on_ready():
         id = x[0]
         prefix = x[1]
         serverPrefixes[id] = prefix
+        print(serverPrefixes)
 
     #vc = bot.get_channel(642482823445479424)
     #await vc.connect()
