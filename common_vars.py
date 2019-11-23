@@ -5,7 +5,7 @@ import http.client
 import requests
 import json
 
-bot = commands.Bot(command_prefix=get_pre())
+bot = commands.Bot(command_prefix=get_prefix())
 
 afklist = {}
 
