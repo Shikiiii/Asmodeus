@@ -32,4 +32,11 @@ async def confess_error(ctx, error):
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
+        
+@bot.command()
+@commands.is_owner()
+async def test(ctx):
+    guild = bot.get_guild(646432280365236235)
+    chan = guild.get_channel(646432846961049601)
+    await chan.send("Testing!")
 
