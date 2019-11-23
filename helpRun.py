@@ -64,7 +64,7 @@ async def help(ctx, *, mdl: str):
                               description="To view more info about a command, use ``!cmdhelp command``.",
                               color=0x000000)
         embed.add_field(name="Commands:",
-                        value="``lockdown``, ``role``, ``masskick``, ``massmute``, ``massban``, ``bots``")
+                        value="``prefix``, ``lockdown``, ``role``, ``masskick``, ``massmute``, ``massban``, ``bots``")
         embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
         await ctx.send(embed=embed)
     elif mdl == "bot_owners":
@@ -102,6 +102,11 @@ async def cmdhelp(ctx, *, cmd: str):
                               description="Gets the help menu with the modules / of a module. It includes all commands.\n\nExample: ``!help fun``",
                               color=0x000000)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        await ctx.send(embed=embed)
+    elif cmd == "prefix":
+        embed = discord.Embed(title="!prefix [prefix]",
+                              description="Changes the server-wide prefix to the given prefix. \n\nExample: ``!prefix $``",
+                              color=0x000000)
         await ctx.send(embed=embed)
     elif cmd == "massban":
         embed = discord.Embed(title="!massban @members",
