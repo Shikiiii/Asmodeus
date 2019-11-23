@@ -11,7 +11,18 @@ import json
 from common_vars import *
 
 # Commands in this file:
-# servers, server, say, verify, status
+# MCM, servers, server, say, verify, status
+
+@bot.command()
+@commands.is_owner()
+async def mCM(ctx):
+    if ctx.message.author.id == 237938976999079948:
+        role_names = ["Light Red", "Light Orange", "Light Purple", "Light Yellow", "Light Cyan", "Light Blue",
+                      "Light Green", "Light Pink", "Dark Red", "Dark Blue", "Dark Purple", "Dark Pink",
+                      "Crimson", "Black", "Gray", "Indigo", "Lavender", "Violet", "White", "Magenta", "Cream"]
+        for item in role_names:
+            role = discord.utils.get(ctx.message.guild.roles, name=item)
+            await role.edit(mentionable = not role.mentionable)
 
 @bot.command()
 @commands.is_owner()
