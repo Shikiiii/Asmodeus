@@ -32,8 +32,8 @@ msgsCounterr = 0
 msgsCounterrr = 0
 allTimeMessages = 0
 
-storage = 0
-storagePrefix = 0
+#storage = 0
+#storagePrefix = 0
 serverPrefixes = {}
 
 async def convert_color_menu(role_number: str):
