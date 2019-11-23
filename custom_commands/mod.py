@@ -105,7 +105,7 @@ async def unban(ctx, id: int, *, reason: str = ""):
         return
     else:
         if banEntry.reason is None:
-            punishMsg = discord.Embed(description="{} was unbanned.".format(banEntry.user.mention), color=0x000000)
+            punishMsg = discord.Embed(description="{} was unbanned.".format(user.mention), color=0x000000)
             punishMsg.set_author(name="{}".format(ctx.message.author.name))
             punishMsg.set_thumbnail(url=user.avatar_url)
             await ctx.send(embed=punishMsg)
@@ -357,7 +357,7 @@ async def mute_error(ctx, error):
 async def unmute(ctx, user: discord.Member):
     mutedrole = discord.utils.get(ctx.message.author.guild.roles, name="Muted")
     if mutedrole in user.roles:
-            punishMsg = discord.Embed(description="{} was unmuted.", color=0x000000)
+            punishMsg = discord.Embed(description="{} was unmuted.".format(user.mention), color=0x000000)
             punishMsg.set_author(name="{}".format(ctx.message.author.name))
             punishMsg.set_thumbnail(url=user.avatar_url)
             await ctx.send(embed=punishMsg)
