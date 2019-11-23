@@ -30,6 +30,9 @@ storage = bot.get_guild(646432280365236235)
 storagePrefix = bot.get_channel(646432846961049601)
 serverPrefixes = {}
 
+async def get_prefix(bot, message):
+  return "prefix"
+
 async def convert_color_menu(role_number: str):
     if role_number == "1":
         return "Light Red"
