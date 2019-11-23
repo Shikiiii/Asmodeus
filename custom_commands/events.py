@@ -21,8 +21,8 @@ async def on_ready():
 
     await bot.wait_until_ready()
 
-    vc = bot.get_channel(642482823445479424)
-    await vc.connect()
+    #vc = bot.get_channel(642482823445479424)
+    #await vc.connect()
 
     while True:
         global msgsCounterrr
