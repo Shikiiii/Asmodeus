@@ -183,7 +183,7 @@ async def cmdhelp(ctx, *, cmd: str):
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         await ctx.send(embed=embed)
     elif cmd == "avatarid":
-        embed = discord.Embed(title="!aavatarid [id]",
+        embed = discord.Embed(title="!avatarid [id]",
                               description="Gets someone's avatar. This command can get the avatar of a user that's not in the server. Works with IDs.\nAlias: ``!avid``.\n\nExample: ``!avatarid 237938976999079948``",
                               color=0x000000)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -311,8 +311,8 @@ async def cmdhelp(ctx, *, cmd: str):
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         await ctx.send(embed=embed)
     elif cmd == "unmute":
-        embed = discord.Embed(title="!unmute [user] [reason]",
-                              description="Unmutes the user you gave.\n\nExample: ``!unmute @Shiki idk``",
+        embed = discord.Embed(title="!unmute [user]",
+                              description="Unmutes the user you gave.\n\nExample: ``!unmute @Shiki``",
                               color=0x000000)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         await ctx.send(embed=embed)
