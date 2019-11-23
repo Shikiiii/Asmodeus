@@ -8,6 +8,8 @@ import asyncio
 import datetime
 import json
 
+from common_vars import *
+
 @bot.event
 async def on_ready():
     global guild
