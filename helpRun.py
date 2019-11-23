@@ -13,8 +13,6 @@ import random
 import json
 import requests
 
-bot = commands.Bot(command_prefix='!')
-
 # ~MatKrulli: lazy import because I'm lazy
 from common_vars import *
 
