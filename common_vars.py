@@ -35,6 +35,7 @@ allTimeMessages = 0
 #storage = 0
 #storagePrefix = 0
 serverPrefixes = {}
+serverPrefixesToDelete = {}
 
 async def convert_color_menu(role_number: str):
     if role_number == "1":
