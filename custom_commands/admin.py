@@ -21,7 +21,16 @@ async def prefix(ctx, *, prefix: str):
         serverPrefixes[ctx.guild.id] = prefix
         storage = bot.get_guild(646432280365236235)
         storagePrefix = storage.get_channel(646432846961049601)
+        for key, value in serverPrefixesToDelete.items():
+            if int(key) == ctx.guild.id:
+                msgID = int(value)
+                msg = bot.fetch_message(msgID)
+                await msg.edit(content="{}|{}".format(str(ctx.guild.id), str(prefix)))
+                embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Prefix for **{}** changed to ``{}``.".format(ctx.guild.name, prefix), color=0x000000)
+                await ctx.send(embed=embed)
+                return
         await storagePrefix.send("{}|{}".format(str(ctx.guild.id), str(prefix)))
+        serverPrefixesToDelete[ctx.guild.id] = message.id
         embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Prefix for **{}** changed to ``{}``.".format(ctx.guild.name, prefix), color=0x000000)
         await ctx.send(embed=embed)
     else:
