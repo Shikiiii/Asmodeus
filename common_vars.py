@@ -7,7 +7,7 @@ import json
 
 async def get_prefix(bot, message):
     for key, value in serverPrefixes.items():
-        if key == message.guild.id:
+        if int(key) == message.guild.id:
             return value
     return "!"
 
