@@ -28,6 +28,7 @@ allTimeMessages = 0
 
 storage = bot.get_guild(646432280365236235)
 storagePrefix = bot.get_channel(646432846961049601)
+serverPrefixes = {}
 
 async def convert_color_menu(role_number: str):
     if role_number == "1":
