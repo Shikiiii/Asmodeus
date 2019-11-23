@@ -23,7 +23,6 @@ async def on_ready():
     storage = bot.get_guild(646432280365236235)
     storagePrefix = storage.get_channel(646432846961049601)
     # Here, we get the prefixes, so we don't have to scan the channel everytime a command is ran. - Shiki
-    storagePrefix = bot.get_channel(646432846961049601)
     async for message in storagePrefix.history():
         x = message.content.split("|")
         id = x[0]
