@@ -32,8 +32,8 @@ msgsCounterr = 0
 msgsCounterrr = 0
 allTimeMessages = 0
 
-storage = bot.get_guild(646432280365236235)
-storagePrefix = storage.get_channel(646432846961049601)
+storage = 0
+storagePrefix = 0
 serverPrefixes = {}
 
 async def convert_color_menu(role_number: str):
