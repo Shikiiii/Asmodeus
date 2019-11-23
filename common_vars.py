@@ -5,7 +5,7 @@ import http.client
 import requests
 import json
 
-bot = commands.Bot(command_prefix='!')
+bot = commands.Bot(command_prefix=get_pre())
 
 afklist = {}
 
@@ -31,7 +31,10 @@ storagePrefix = bot.get_channel(646432846961049601)
 serverPrefixes = {}
 
 async def get_prefix(bot, message):
-  return "prefix"
+    for key, value in serverPrefixes:
+        if key == message.guild.id:
+            return value
+    return "!"
 
 async def convert_color_menu(role_number: str):
     if role_number == "1":
