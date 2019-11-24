@@ -100,6 +100,22 @@ async def on_member_remove(member):
 
 @bot.event
 async def on_message(message: Message):
+    if bot.user.mentioned_in(message):
+        prefix = None
+        for key, value in serverPrefixes.items():
+            if int(key) == message.guild.id:
+                prefix = str(value)
+        if prefix is None:
+            prefix = "! (Default)"
+        sb = None
+        for key, value in starboardChannels.items():
+            if int(key) == message.guild.id:
+                sb = bot.get_channel(int(value))
+        if sb is None:
+            sb = "Not enabled, use the scoreboard command to enable it."
+        embed=discord.Embed(description="Haay! Here to help you.\n**Server prefix:** ``{}``\n**Starboard channel:** ``{}``".format(str(prefix), str(sb)), color=0x000000, timestamp=datetime.utcnow()) 
+        embed.set_author(name="{}".format(bot.user.name), icon_url=bot.user.avatar_url)
+        embed.set_thumbnail(url=message.guild.icon_url)
     #if ((message.channel.id == 642482771511476234) or (message.channel.id == 629056727186407445)) and message.author.bot and message.author.id != 640827656660582400:
     #    await message.delete()
     #    return
