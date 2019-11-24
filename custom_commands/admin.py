@@ -29,7 +29,7 @@ async def prefix(ctx, *, prefix: str):
                 embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Prefix for **{}** changed to ``{}``.".format(ctx.guild.name, prefix), color=0x000000)
                 await ctx.send(embed=embed)
                 return
-        await storagePrefix.send("{}|{}".format(str(ctx.guild.id), str(prefix)))
+        message = await storagePrefix.send("{}|{}".format(str(ctx.guild.id), str(prefix)))
         serverPrefixesToDelete[ctx.guild.id] = message.id
         embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Prefix for **{}** changed to ``{}``.".format(ctx.guild.name, prefix), color=0x000000)
         await ctx.send(embed=embed)
