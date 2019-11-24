@@ -14,6 +14,64 @@ from common_vars import *
 # prefix, lockdown, role, massban, masskick, massmute
 # bots
 
+@bot.commands()
+@commands.has_permissions(manage_guild=True)
+async def starboard(ctx, *, chan: discord.TextChannel):
+    starboardChannels[ctx.guild.id] = chan.id
+    storage = bot.get_guild(646432280365236235)
+    storageSB = storage.get_channel(647616003164864514)
+    for key, value in starboardChannelsToDelete.items():
+        if int(key) == ctx.guild.id:
+            msgID = int(value)
+            msg = await storageSB.fetch_message(msgID)
+            await msg.edit(content="{}|{}".format(str(ctx.guild.id), str(chan.id)))
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard channel changed to {}.".format(chan.mention), color=0x000000)
+            await ctx.send(embed=embed)
+            return
+    message = await storageSB.send("{}|{}".format(str(ctx.guild.id), str(prefix)))
+    starboardChannelsToDelete[ctx.guild.id] = message.id
+    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard is enabled! Channel set to {}.".format(chan.mention), color=0x000000)
+    await ctx.send(embed=embed)
+
+@starboard.error
+async def starboard_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        for key, value in starboardChannels:
+            if int(key) == ctx.guild.id:
+                chan = bot.get_channel(int(value))
+        if len(chan) <= 1:
+            chan = 0
+
+        if chan == 0:
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard isn't enabled for this server. Try setting a channel for it using !starboard [channel].", color=0x000000)
+            await ctx.send(embed=embed)
+        else:
+            channel = bot.get_channel(chan)
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard is currently set for {}.".format(channel.mention), color=0x000000)
+            await ctx.send(embed=embed)
+    elif isinstance(error, commands.BadArgument):
+        for key, value in starboardChannels:
+            if int(key) == ctx.guild.id:
+                chan = bot.get_channel(int(value))
+        if len(chan) <= 1:
+            chan = 0
+
+        if chan == 0:
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard isn't enabled for this server. Try setting a channel for it using !starboard [channel].", color=0x000000)
+            await ctx.send(embed=embed)
+        else:
+            channel = bot.get_channel(chan)
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard is currently set for {}.".format(channel.mention), color=0x000000)
+            await ctx.send(embed=embed)
+    elif isinstance(error, commands.CheckFailure):
+        embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        await ctx.send(embed=embed)
+    else:
+        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+        traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
+
 @bot.command()
 @commands.has_permissions(manage_guild=True)
 async def prefix(ctx, *, prefix: str):
