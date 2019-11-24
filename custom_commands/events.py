@@ -102,7 +102,7 @@ async def on_member_remove(member):
 async def on_message(message: Message):
     if bot.user.mentioned_in(message):
         if "ping" in message.content:
-            await ctx.send("{} pong".format(message.author.mention))
+            await message.channel.send("{} pong".format(message.author.mention))
         else:
             prefix = None
             for key, value in serverPrefixes.items():
