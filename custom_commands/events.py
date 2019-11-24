@@ -28,14 +28,14 @@ async def on_ready():
         x = message.content.split("|")
         id = x[0]
         prefix = x[1]
-        serverPrefixes[int(id)] = str(prefix)
+        serverPrefixes[str(id)] = str(prefix)
         serverPrefixesToDelete[id] = message.id
     async for message in storageSB.history():
         x = message.content.split("|")
         guildID = x[0]
         chan = x[1]
-        serverPrefixes[guildID] = chan
-        serverPrefixesToDelete[guildID] = message.id
+        scoreboardChannels[str(guildID)] = str(chan)
+        scoreboardChannelsToDelete[guildID] = message.id
         
 
     #vc = bot.get_channel(642482823445479424)
