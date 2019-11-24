@@ -116,7 +116,7 @@ async def on_message(message: Message):
         embed=discord.Embed(description="Haay! Here to help you.\n**Server prefix:** ``{}``\n**Starboard channel:** ``{}``".format(str(prefix), str(sb)), color=0x000000, timestamp=datetime.utcnow()) 
         embed.set_author(name="{}".format(bot.user.name), icon_url=bot.user.avatar_url)
         embed.set_thumbnail(url=message.guild.icon_url)
-        await ctx.send(embed=embed)
+        await message.channel.send(embed=embed)
     #if ((message.channel.id == 642482771511476234) or (message.channel.id == 629056727186407445)) and message.author.bot and message.author.id != 640827656660582400:
     #    await message.delete()
     #    return
