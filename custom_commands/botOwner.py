@@ -13,6 +13,10 @@ from common_vars import *
 # Commands in this file:
 # MCM, servers, server, say, verify, status
 
+#@bot.command()
+#async def update(ctx):
+#    embed = discord.Embed(title="0.7 has been pushed to the repository.", description="")
+
 @bot.command()
 @commands.is_owner()
 async def mCM(ctx):
