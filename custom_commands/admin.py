@@ -49,8 +49,8 @@ async def starboard_error(ctx, error):
             embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard isn't enabled for this server. Try setting a channel for it using !starboard [channel].", color=0x000000)
             await ctx.send(embed=embed)
         else:
-            channel = bot.get_channel(chan)
-            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard is currently set for {}.".format(channel.mention), color=0x000000)
+            chan
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard is currently set for {}.".format(chan.mention), color=0x000000)
             await ctx.send(embed=embed)
     elif isinstance(error, commands.BadArgument):
         chan = None
@@ -66,8 +66,7 @@ async def starboard_error(ctx, error):
             embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard isn't enabled for this server. Try setting a channel for it using !starboard [channel].", color=0x000000)
             await ctx.send(embed=embed)
         else:
-            channel = bot.get_channel(chan)
-            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard is currently set for {}.".format(channel.mention), color=0x000000)
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard is currently set for {}.".format(chan.mention), color=0x000000)
             await ctx.send(embed=embed)
     elif isinstance(error, commands.CheckFailure):
         embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
