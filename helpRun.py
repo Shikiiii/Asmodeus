@@ -64,7 +64,7 @@ async def help(ctx, *, mdl: str):
                               description="To view more info about a command, use ``!cmdhelp command``.",
                               color=0x000000)
         embed.add_field(name="Commands:",
-                        value="``prefix``, ``lockdown``, ``role``, ``masskick``, ``massmute``, ``massban``, ``bots``")
+                        value="``starboard``, ``prefix``, ``lockdown``, ``role``, ``masskick``, ``massmute``, ``massban``, ``bots``")
         embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
         await ctx.send(embed=embed)
     elif mdl == "bot_owners":
@@ -102,6 +102,11 @@ async def cmdhelp(ctx, *, cmd: str):
                               description="Gets the help menu with the modules / of a module. It includes all commands.\n\nExample: ``!help fun``",
                               color=0x000000)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        await ctx.send(embed=embed)
+    elif cmd == "starboard":
+        embed = discord.Embed(title="!starboard [channel/disable]",
+                              description="Changes the server channel for the starboard. If you type \'disable\' instead of a channel, starboard will be disabled. To star a message, you need 5 or more :star: reactions on it. \n\nnExample: ``!starboard #the_starboard_channel``",
+                              color=0x000000)
         await ctx.send(embed=embed)
     elif cmd == "prefix":
         embed = discord.Embed(title="!prefix [prefix]",
