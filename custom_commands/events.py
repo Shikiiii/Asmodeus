@@ -110,7 +110,8 @@ async def on_message(message: Message):
         sb = None
         for key, value in starboardChannels.items():
             if int(key) == message.guild.id:
-                sb = bot.get_channel(int(value))
+                sbb = bot.get_channel(int(value))
+                sb = sbb.mention
         if sb is None:
             sb = "Not enabled, use the scoreboard command to enable it."
         embed=discord.Embed(description="Haay! Here to help you.\n**Server prefix:** ``{}``\n**Starboard channel:** ``{}``".format(str(prefix), str(sb)), color=0x000000, timestamp=datetime.utcnow()) 
