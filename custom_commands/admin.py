@@ -29,7 +29,7 @@ async def starboard(ctx, *, chan: discord.TextChannel):
             await ctx.send(embed=embed)
             return
     message = await storageSB.send("{}|{}".format(str(ctx.guild.id), str(chan.id)))
-    starboardChannelsToDelete[str(ctx.guild.id)] = str(message.id)
+    starboardChannelsToDelete[ctx.guild.id] = message.id
     embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard is enabled! Channel set to {}.".format(chan.mention), color=0x000000)
     await ctx.send(embed=embed)
 
