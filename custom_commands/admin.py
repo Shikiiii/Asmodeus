@@ -37,7 +37,7 @@ async def starboard(ctx, *, chan: discord.TextChannel):
 async def starboard_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         chan = None
-        for key, value in starboardChannels:
+        for key, value in starboardChannels.items():
             if int(key) == ctx.guild.id:
                 chan = bot.get_channel(int(value))
             else:
@@ -54,7 +54,7 @@ async def starboard_error(ctx, error):
             await ctx.send(embed=embed)
     elif isinstance(error, commands.BadArgument):
         chan = None
-        for key, value in starboardChannels:
+        for key, value in starboardChannels.items():
             if int(key) == ctx.guild.id:
                 chan = bot.get_channel(int(value))
             else:
