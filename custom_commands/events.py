@@ -276,12 +276,8 @@ async def on_message(message: Message):
             await msg.delete()
     elif message.content == "shiki":
         await message.channel.send("dm <@237938976999079948> with thigh pics for free admin aha x")
-    elif message.content == "!!apply":
-        await message.channel.send("Thank you for applying! Please check your DMs to complete the application.")
     elif message.content == "no u" and message.author.bot == False:
         await message.channel.send("no u")
-    elif message.content == "glow":
-        await message.channel.send("O_O")
     elif message.content == "alex":
         await message.channel.send("biggest retard")
     elif message.content == "kam" or message.content == "kamera":
@@ -290,6 +286,8 @@ async def on_message(message: Message):
         await message.channel.send("shrek is love, shrek is life")
     elif message.content == "meg":
         await message.channel.send("wooden hoe *with loyalty 1")
+    elif message.content == "david":
+        await message.channel.send("looking at maps")
 
     await bot.process_commands(message)
 
