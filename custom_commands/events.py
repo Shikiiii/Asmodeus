@@ -63,7 +63,7 @@ async def on_reaction_add(reaction, user):
                     await chan.send(embed=embed)
                     embed2 = discord.Embed(description=":crown: {}'s message has been added to the starboard!".format(reaction.message.author.name), color=0xffff00)
                     await reaction.message.channel.send(embed=embed2)
-                    starboardMessage[reaction.message.id] = reaction.message.id
+                    starboardMessage[reaction.channel.id] = reaction.message.id
         
 @bot.event
 async def on_member_join(member):
