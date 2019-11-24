@@ -34,8 +34,8 @@ async def on_ready():
         x = message.content.split("|")
         guildID = x[0]
         chan = x[1]
-        scoreboardChannels[str(guildID)] = str(chan)
-        scoreboardChannelsToDelete[guildID] = message.id
+        starboardChannels[str(guildID)] = str(chan)
+        starboardChannelsToDelete[guildID] = message.id
         
 
     #vc = bot.get_channel(642482823445479424)
@@ -49,7 +49,7 @@ async def on_ready():
 @bot.event
 async def on_reaction_add(reaction, user):
     if reaction.emoji == "⭐":
-        if reaction.count >= 5:
+        if reaction.count >= 3:
             for key, value in starboardChannels.items():
                 if int(key) == reaction.message.author.guild.id:
                     chan = bot.get_channel(int(value))
