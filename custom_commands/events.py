@@ -50,7 +50,7 @@ async def on_ready():
 @bot.event
 async def on_reaction_add(reaction, user):
     if reaction.emoji == "⭐":
-        if reaction.count >= 3:
+        if reaction.count >= 5:
             for key, value in starboardChannels.items():
                 if int(key) == reaction.message.author.guild.id:
                     chan = bot.get_channel(int(value))
