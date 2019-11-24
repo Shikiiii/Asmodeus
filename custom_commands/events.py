@@ -57,7 +57,7 @@ async def on_reaction_add(reaction, user):
                         if int(key) == reaction.message.channel.id:
                             if int(value) == reaction.message.id:
                                 return
-                    embed = discord.Embed(description="{}\n\n[JUMP TO MESSAGE](https://discordapp.com/channels/{guild.id}/{chan.id}/{msg.id})".format(reaction.message.content, reaction.message.guild.id, reaction.message.channel.id, reaction.message.id), color=0xffff00)
+                    embed = discord.Embed(description="{}\n\n[JUMP TO MESSAGE](https://discordapp.com/channels/{}/{}/{})".format(reaction.message.content, reaction.message.guild.id, reaction.message.channel.id, reaction.message.id), color=0xffff00)
                     embed.set_author(name="{}".format(reaction.message.author.name), icon_url=reaction.message.author.avatar_url)
                     await chan.send(embed=embed)
                     embed2 = discord.Embed(description=":crown: {}'s message has been added to the starboard!".format(reaction.message.author.name), color=0xffff00)
