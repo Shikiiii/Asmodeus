@@ -79,6 +79,7 @@ async def starboard_error(ctx, error):
 async def prefix(ctx, *, prefix: str):
     if len(prefix) <= 100:
         serverPrefixes[ctx.guild.id] = prefix
+        print(serverPrefixes)
         storage = bot.get_guild(646432280365236235)
         storagePrefix = storage.get_channel(646432846961049601)
         for key, value in serverPrefixesToDelete.items():
