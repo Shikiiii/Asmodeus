@@ -39,10 +39,12 @@ async def starboard_error(ctx, error):
         for key, value in starboardChannels:
             if int(key) == ctx.guild.id:
                 chan = bot.get_channel(int(value))
-        if len(chan) <= 1:
-            chan = 0
+            else:
+                chan = None
+        #if len(chan) <= 1:
+        #    chan = 0
 
-        if chan == 0:
+        if chan is None:
             embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard isn't enabled for this server. Try setting a channel for it using !starboard [channel].", color=0x000000)
             await ctx.send(embed=embed)
         else:
