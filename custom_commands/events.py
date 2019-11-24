@@ -22,6 +22,7 @@ async def on_ready():
     await bot.wait_until_ready()
     storage = bot.get_guild(646432280365236235)
     storagePrefix = storage.get_channel(646432846961049601)
+    storageSB = storage.get_channel(647616003164864514)
     # Here, we get the prefixes, so we don't have to scan the channel everytime a command is ran. - Shiki
     async for message in storagePrefix.history():
         x = message.content.split("|")
@@ -29,6 +30,12 @@ async def on_ready():
         prefix = x[1]
         serverPrefixes[id] = prefix
         serverPrefixesToDelete[id] = message.id
+    async for message in storageSB.history():
+        x = message.content.split("|")
+        guildID = x[0]
+        chan = x[1]
+        serverPrefixes[guildID] = chan
+        serverPrefixesToDelete[guildID] = message.id
         
 
     #vc = bot.get_channel(642482823445479424)
@@ -39,6 +46,24 @@ async def on_ready():
         msgsCounterrr = 0
         await asyncio.sleep(3600)
 
+@bot.event
+async def on_reaction_add(reaction, user):
+    if reaction.emoji == "⭐":
+        if reaction.count >= 5:
+            for key, value in starboardChannels.items():
+                if int(key) == reaction.message.author.guild.id:
+                    chan = bot.get_channel(int(value))
+                    for key, value in starboardMessages.items():
+                        if int(key) == reaction.message.channel.id:
+                            if int(value) == reaction.message.id:
+                                return
+                    embed = discord.Embed(description="{}\n\n[JUMP TO MESSAGE](https://discordapp.com/channels/{guild.id}/{chan.id}/{msg.id})".format(reaction.message.content, reaction.guild.id, reaction.channel.id, reaction.message.id), color=0xffff00)
+                    embed.set_author(name="{}".format(reaction.message.author.name), icon_url=reaction.message.author.avatar_url)
+                    await chan.send(embed=embed)
+                    embed2 = discord.Embed(description=":crown: {}'s message has been added to the starboard!".format(reaction.message.author.name), color=0xffff00)
+                    await reaction.channel.send(embed=embed2)
+                    starboardMessage[reaction.message.id] = reaction.message.id
+        
 @bot.event
 async def on_member_join(member):
     if member.guild.id == 642429293330300971:
