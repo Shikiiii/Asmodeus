@@ -28,7 +28,7 @@ async def on_ready():
         x = message.content.split("|")
         id = x[0]
         prefix = x[1]
-        serverPrefixes[id] = prefix
+        serverPrefixes[int(id)] = str(prefix)
         serverPrefixesToDelete[id] = message.id
     async for message in storageSB.history():
         x = message.content.split("|")
