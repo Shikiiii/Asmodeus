@@ -404,3 +404,13 @@ async def status_error(ctx, error):
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
+        
+@bot.command()
+async def h(ctx):
+    chan = bot.get_channel(642482769049681930)
+    msg = await chan.fetch_message(645039542327574579)
+    sexuality = discord.Embed(title="__ SEXUALITY __ ;                              ", description="> :couple: : **Straight**\n> :couple_with_heart: : **Bisexual**\n> <:pansexual:630137281977516052> : **Pansexual**\n> :couple_mm: : **Gay**\n> :couple_ww: : **Lesbian**", color=0xC5FCFC)
+    sexuality.set_thumbnail(url="https://cdn.discordapp.com/attachments/636271929061539851/645030217064251393/giphy.gif")
+    sexuality.set_image(url="https://cdn.discordapp.com/attachments/636271929061539851/645027492142383125/info-spacer.png")
+    await msg.edit(embed=sexuality)
+
