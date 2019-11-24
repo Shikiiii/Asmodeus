@@ -17,7 +17,7 @@ from common_vars import *
 @bot.command()
 @commands.has_permissions(manage_guild=True)
 async def starboard(ctx, *, chan: discord.TextChannel):
-    starboardChannels[ctx.guild.id] = chan.id
+    starboardChannels[str(ctx.guild.id)] = str(chan.id)
     storage = bot.get_guild(646432280365236235)
     storageSB = storage.get_channel(647616003164864514)
     for key, value in starboardChannelsToDelete.items():
@@ -29,7 +29,7 @@ async def starboard(ctx, *, chan: discord.TextChannel):
             await ctx.send(embed=embed)
             return
     message = await storageSB.send("{}|{}".format(str(ctx.guild.id), str(chan.id)))
-    starboardChannelsToDelete[ctx.guild.id] = message.id
+    starboardChannelsToDelete[str(ctx.guild.id)] = str(message.id)
     embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard is enabled! Channel set to {}.".format(chan.mention), color=0x000000)
     await ctx.send(embed=embed)
 
@@ -82,7 +82,7 @@ async def starboard_error(ctx, error):
 @commands.has_permissions(manage_guild=True)
 async def prefix(ctx, *, prefix: str):
     if len(prefix) <= 100:
-        serverPrefixes[ctx.guild.id] = prefix
+        serverPrefixes[str(ctx.guild.id)] = prefix
         print(serverPrefixes)
         storage = bot.get_guild(646432280365236235)
         storagePrefix = storage.get_channel(646432846961049601)
