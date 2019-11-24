@@ -14,7 +14,7 @@ from common_vars import *
 # prefix, lockdown, role, massban, masskick, massmute
 # bots
 
-@bot.commands()
+@bot.command()
 @commands.has_permissions(manage_guild=True)
 async def starboard(ctx, *, chan: discord.TextChannel):
     starboardChannels[ctx.guild.id] = chan.id
