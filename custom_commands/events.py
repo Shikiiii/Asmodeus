@@ -60,6 +60,9 @@ async def on_reaction_add(reaction, user):
                                 return
                     embed = discord.Embed(description="{}\n\n[JUMP TO MESSAGE](https://discordapp.com/channels/{}/{}/{})".format(reaction.message.content, reaction.message.guild.id, reaction.message.channel.id, reaction.message.id), color=0xffff00, timestamp=datetime.utcnow())
                     embed.set_author(name="{}".format(reaction.message.author.name), icon_url=reaction.message.author.avatar_url)
+                    if len(reaction.message.attachments) > 0:
+                        if reaction.message.attachments[0].height is not None:
+                            embed.set_image(url=reaction.message.attachments[0].url)
                     await chan.send(embed=embed)
                     embed2 = discord.Embed(description=":crown: {}'s message has been added to the starboard!".format(reaction.message.author.name), color=0xffff00)
                     await reaction.message.channel.send(embed=embed2)
