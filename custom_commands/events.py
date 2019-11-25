@@ -107,6 +107,8 @@ async def on_message(message: Message):
     if bot.user.mentioned_in(message):
         if "ping" in message.content:
             await message.channel.send("{} pong".format(message.author.mention))
+        elif "pong" in message.content:
+            await message.channel.send("{} ping".format(message.author.mention))
         else:
             prefix = None
             for key, value in serverPrefixes.items():
