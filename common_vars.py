@@ -11,7 +11,7 @@ async def get_prefix(bot, message):
             return value
     return "!"
 
-bot = commands.Bot(command_prefix=get_prefix)
+bot = commands.Bot(command_prefix=get_prefix, case_insensitive=True)
 
 afklist = {}
 
