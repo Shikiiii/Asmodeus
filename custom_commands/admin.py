@@ -53,7 +53,7 @@ async def starboard_error(ctx, error):
             embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard is currently set for {}.".format(chan.mention), color=0x000000)
             await ctx.send(embed=embed)
     elif isinstance(error, commands.BadArgument):
-        if ctx.message.content[9:] == "disable":
+        if ctx.message.content[11:] == "disable":
             del starboardChannels[str(ctx.guild.id)]
             embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard has been disabled. Thanks for using this feature!", color=0x000000)
             await ctx.send(embed=embed)
