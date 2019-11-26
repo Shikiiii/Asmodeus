@@ -103,7 +103,7 @@ async def cmdhelp(ctx, *, cmd: str):
                               color=0x000000)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         await ctx.send(embed=embed)
-     elif cmd == "confess":
+    elif cmd == "confess":
         embed = discord.Embed(title="!confess [confession]",
                               description="Confesses the message you give anonymously. \n\nExample: ``!confess i'm gay <3``",
                               color=0x000000)
