@@ -5,7 +5,7 @@ import random
 import sys
 import traceback
 import asyncio
-import datetime
+from datetime import datetime
 import json
 
 # ~MatKrulli: lazy import because I'm lazy
