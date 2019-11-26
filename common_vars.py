@@ -41,6 +41,9 @@ starboardChannels = {}
 starboardChannelsToDelete = {}
 starboardMessages = {}
 
+confessChannels = {}
+confessChannelsToDelete = {}
+
 balances = {}
 
 async def convert_color_menu(role_number: str):
