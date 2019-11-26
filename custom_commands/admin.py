@@ -23,6 +23,7 @@ async def setmuted(ctx, *, rolee: str):
         role = ctx.message.content[10:]
         role = role[3:]
         role = role[:1]
+        print(role)
         role = await ctx.guild.get_role(role)
     except:
         role = await parse_roles(ctx, rolee)
