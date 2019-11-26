@@ -11,6 +11,8 @@ from datetime import datetime
 
 from common_vars import *
 
+from datetime import datetime
+
 @bot.event
 async def on_ready():
     global guild
