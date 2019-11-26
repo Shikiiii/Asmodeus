@@ -18,7 +18,15 @@ from common_vars import *
 
 @bot.command()
 async def setmuted(ctx, *, rolee: str):
-    role = await parse_roles(ctx, rolee)
+    role = None
+    try:
+        role = await ctx.guild.get_role(ctx.message.role_mentions[0].id)
+    except:
+        role = await parse_roles(ctx, rolee)
+    if role is None:
+        embed = discord.Embed(title="{}".format(ctx.message.author.name), description="Role not found. :(", color=0x000000)
+        await ctx.send(embed=embed)
+        return
     serverMuted[str(ctx.guild.id)] = str(role.id)
     storage = bot.get_guild(646432280365236235)
     storageM = storage.get_channel(648898928221093908)
