@@ -291,7 +291,18 @@ async def kick_error(ctx, error):
 @bot.command()
 @commands.has_permissions(manage_messages=True)
 async def mute(ctx, user: discord.Member, *, reason: str):
-    mutedrole = discord.utils.get(ctx.message.author.guild.roles, name="Muted")
+    mutedrole = None
+    for key, value in serverMuted.items():
+        if int(key) == ctx.guild.id:
+            mutedrole = await parse_roles(str(value))
+    prefix = "!"
+    for key, value in serverPrefixes.items():
+        if int(key) == ctx.guild.id:
+            prefix = str(value)
+    if mutedrole is None:
+        embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :no_entry: Mute is currently disabled because you do not have a chosen role to use. Please tell an administrator to choose a role with {}setmuted [role].".format(prefix), color=0x000000)
+        await ctx.send(embed=embed)
+        return
     if mutedrole in user.roles:
         embed = discord.Embed(description="This user is already muted.", color=0xFF3639)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -357,7 +368,18 @@ async def mute_error(ctx, error):
 @bot.command()
 @commands.has_permissions(manage_messages=True)
 async def unmute(ctx, user: discord.Member):
-    mutedrole = discord.utils.get(ctx.message.author.guild.roles, name="Muted")
+    mutedrole = None
+    for key, value in serverMuted.items():
+        if int(key) == ctx.guild.id:
+            mutedrole = await parse_roles(str(value))
+    prefix = "!"
+    for key, value in serverPrefixes.items():
+        if int(key) == ctx.guild.id:
+            prefix = str(value)
+    if mutedrole is None:
+        embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :no_entry: Mute is currently disabled because you do not have a chosen role to use. Please tell an administrator to choose a role with {}setmuted [role].".format(prefix), color=0x000000)
+        await ctx.send(embed=embed)
+        return
     if mutedrole in user.roles:
             punishMsg = discord.Embed(description="{} was unmuted.".format(user.mention), color=0x000000)
             punishMsg.set_author(name="{}".format(ctx.message.author.name))
