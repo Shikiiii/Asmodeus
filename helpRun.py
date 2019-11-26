@@ -64,11 +64,11 @@ async def help(ctx, *, mdl: str):
                               description="To view more info about a command, use ``!cmdhelp command``.",
                               color=0x000000)
         embed.add_field(name="Commands:",
-                        value="`setconfess``, ``starboard``, ``prefix``, ``lockdown``, ``role``, ``masskick``, ``massmute``, ``massban``, ``bots``")
+                        value="``setmuted``, `setconfess``, ``starboard``, ``prefix``, ``lockdown``, ``role``, ``masskick``, ``massmute``, ``massban``, ``bots``")
         embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
         await ctx.send(embed=embed)
     elif mdl == "bot_owners":
-        embed = discord.Embed(title="Module: Owners",
+        embed = discord.Embed(title="Module: Bot Owners",
                               description="To view more info about a command, use ``!cmdhelp command``.",
                               color=0x000000)
         embed.add_field(name="Commands:", value="``say``, ``status``, ``verify``")
@@ -102,6 +102,11 @@ async def cmdhelp(ctx, *, cmd: str):
                               description="Gets the help menu with the modules / of a module. It includes all commands.\n\nExample: ``!help fun``",
                               color=0x000000)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        await ctx.send(embed=embed)
+    elif cmd == "setmuted":
+        embed = discord.Embed(title="!setmuted [role]",
+                              description="Sets the role users will receieve on the mute command. \n\nExample: ``!setmuted @Muted``",
+                              color=0x000000)
         await ctx.send(embed=embed)
     elif cmd == "confess":
         embed = discord.Embed(title="!confess [confession]",
