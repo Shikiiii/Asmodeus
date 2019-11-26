@@ -38,6 +38,7 @@ serverPrefixes = {}
 serverPrefixesToDelete = {}
 
 serverMuted = {}
+serverMutedToDelete = {}
 
 starboardChannels = {}
 starboardChannelsToDelete = {}
