@@ -16,6 +16,95 @@ from common_vars import *
 # setmuted, setconfess, starboard, prefix, lockdown, role, massban,
 # masskick, massmute, bots
 
+@bot.commands()
+async def logs(ctx, type, chan: discord.TextChannel):
+    if type == "delete":
+        deleteLogs[ctx.guild.id] = chan.id
+        storage = bot.get_guild(646432280365236235)
+        storageD = storage.get_channel(648951518602592277)
+        for key, value in deleteLogsToDelete.items():
+            if key == ctx.guild.id:
+                msgID = int(value)
+                msg = await storageD.fetch_message(msgID)
+                await msg.edit(content="{}|{}".format(str(ctx.guild.id), str(chan.id)))
+                embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :green_circle: Deleted logs changed to {}.".format(chan.mention), color=0x000000)
+                await ctx.send(embed=embed)
+                return
+        message = await storageD.send("{}|{}".format(str(ctx.guild.id), str(chan.id)))
+        deleteLogsToDelete[ctx.guild.id] = message.id
+        embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :green_circle: Deleted logs enabled! Channel set to {}.".format(chan.mention), color=0x000000)
+        await ctx.send(embed=embed)
+    elif type == "edit":
+        editLogsToDelete[ctx.guild.id] = chan.id
+        storage = bot.get_guild(646432280365236235)
+        storageE = storage.get_channel(648951532905037834)
+        for key, value in editLogsToDelete.items():
+            if key == ctx.guild.id:
+                msgID = int(value)
+                msg = await storageE.fetch_message(msgID)
+                await msg.edit(content="{}|{}".format(str(ctx.guild.id), str(chan.id)))
+                embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :green_circle: Edit logs changed to {}.".format(chan.mention), color=0x000000)
+                await ctx.send(embed=embed)
+                return
+        message = await storageE.send("{}|{}".format(str(ctx.guild.id), str(chan.id)))
+        editLogsToDelete[ctx.guild.id] = message.id
+        embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :green_circle: Edit logs enabled! Channel set to {}.".format(chan.mention), color=0x000000)
+        await ctx.send(embed=embed)
+    elif type == "member":
+        memberLogsToDelete[ctx.guild.id] = chan.id
+        storage = bot.get_guild(646432280365236235)
+        storageMM = storage.get_channel(648951574319726592)
+        for key, value in memberLogsToDelete.items():
+            if key == ctx.guild.id:
+                msgID = int(value)
+                msg = await storageMM.fetch_message(msgID)
+                await msg.edit(content="{}|{}".format(str(ctx.guild.id), str(chan.id)))
+                embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :green_circle: Member join/leave logs changed to {}.".format(chan.mention), color=0x000000)
+                await ctx.send(embed=embed)
+                return
+        message = await storageMM.send("{}|{}".format(str(ctx.guild.id), str(chan.id)))
+        memberLogsToDelete[ctx.guild.id] = message.id
+        embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :green_circle: Member join/leave enabled! Channel set to {}.".format(chan.mention), color=0x000000)
+        await ctx.send(embed=embed)
+    elif type == "punishment":
+       punishLogsToDelete[ctx.guild.id] = chan.id
+        storage = bot.get_guild(646432280365236235)
+        storageP= storage.get_channel(648951548809838628)
+        for key, value in punishLogsToDelete.items():
+            if key == ctx.guild.id:
+                msgID = int(value)
+                msg = await storageP.fetch_message(msgID)
+                await msg.edit(content="{}|{}".format(str(ctx.guild.id), str(chan.id)))
+                embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :green_circle: Edit logs changed to {}.".format(chan.mention), color=0x000000)
+                await ctx.send(embed=embed)
+                return
+        message = await storageP.send("{}|{}".format(str(ctx.guild.id), str(chan.id)))
+        punishLogsToDelete[ctx.guild.id] = message.id
+        embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :green_circle: Edit logs enabled! Channel set to {}.".format(chan.mention), color=0x000000)
+        await ctx.send(embed=embed)
+    else:
+        prefix = "!"
+        for key, value in serverPrefixes.items():
+            if int(key) == ctx.guild.id:
+                prefix = str(value)
+        embed = discord.Embed(title="{}".format(ctx.message.author.name), description="Type of logs not found. The current types are: \n``delete`` : Logs from deleted messages\n``edit`` : Logs from edited messages\n``member`` : Logs from join/leave of members\n``punish`` : Logs from all staff commands\n\nTo setup these logs, do {}logs [type] [channel/disable]".format(prefix), color=0xF21B1B)
+        await ctx.send(embed=embed)
+        
+@logs.error
+async def logs_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        embed = discord.Embed(title="{}".format(ctx.message.author.name), description="Type of logs not found. The current types are: \n``delete`` : Logs from deleted messages\n``edit`` : Logs from edited messages\n``member`` : Logs from join/leave of members\n``punish`` : Logs from all staff commands\n\nTo setup these logs, do {}logs [type] [channel/disable]".format(prefix), color=0xF21B1B)
+        await ctx.send(embed=embed)
+    elif isinstance(error, commands.BadArgument):
+        typee = ctx.message.content[6:]
+        type = typee.split(" ")
+        if type[1] == "disable":
+            if type[0] == "delete":
+                # delete from dict and from channel
+            
+        
+    
+
 @bot.command()
 async def setmuted(ctx, *, rolee: str):
     role = None
