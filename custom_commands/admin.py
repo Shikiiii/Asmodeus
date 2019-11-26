@@ -19,13 +19,9 @@ from common_vars import *
 @bot.command()
 async def setmuted(ctx, *, rolee: str):
     role = None
-    try:
-        roleee = ctx.message.content[10:]
-        rolee = roleee[3:]
-        role = rolee[:1]
-        print(role)
-        role = await ctx.guild.get_role(role)
-    except:
+    if len(ctx.message.role_mentions) > 0:
+        role = await ctx.guild.get_role(ctx.message.role_mentions[0].id)
+    if role is None:
         role = await parse_roles(ctx, rolee)
     if role is None:
         embed = discord.Embed(title="{}".format(ctx.message.author.name), description="Role not found. :(", color=0x000000)
