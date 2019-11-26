@@ -11,8 +11,85 @@ import json
 from common_vars import *
 
 # Commands in this file:
-# prefix, lockdown, role, massban, masskick, massmute
-# bots
+# setconfess, starboard, prefix, lockdown, role, massban,
+# masskick, massmute, bots
+
+@bot.command()
+@commands.has_permissions(manage_guild=True)
+async def setconfess(ctx, *, chan: discord.TextChannel):
+    confessChannels[str(ctx.guild.id)] = str(chan.id)
+    storage = bot.get_guild(646432280365236235)
+    storageCF = storage.get_channel(647444887184080906)
+    for key, value in confessChannelsToDelete.items():
+        if int(key) == ctx.guild.id:
+            msgID = int(value)
+            msg = await storageCF.fetch_message(msgID)
+            await msg.edit(content="{}|{}".format(str(ctx.guild.id), str(chan.id)))
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Confess channel changed to {}.".format(chan.mention), color=0x000000)
+            await ctx.send(embed=embed)
+            return
+    message = await storageCF.send("{}|{}".format(str(ctx.guild.id), str(chan.id)))
+    confessChannelsToDelete[ctx.guild.id] = message.id
+    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Confess is enabled! Channel set to {}.".format(chan.mention), color=0x000000)
+    await ctx.send(embed=embed)
+
+@setconfess.error
+async def setconfess_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        chan = None
+        for key, value in confessChannels.items():
+            if int(key) == ctx.guild.id:
+                chan = bot.get_channel(int(value))
+            else:
+                chan = None
+        #if len(chan) <= 1:
+        #    chan = 0
+        prefix = "!"
+        for key, value in serverPrefixes.items():
+            if int(key) == message.guild.id:
+                prefix = str(value)
+        
+        if chan is None:
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Confess isn't enabled for this server. Try setting a channel for it using {}confess [channel].".format(prefix), color=0x000000)
+            await ctx.send(embed=embed)
+        else:
+            chan
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Confess is currently set for {}.".format(chan.mention), color=0x000000)
+            await ctx.send(embed=embed)
+    elif isinstance(error, commands.BadArgument):
+        if ctx.message.content[11:] == "disable":
+            del confessChannels[str(ctx.guild.id)]
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Confess has been disabled. Thanks for using this feature!", color=0x000000)
+            await ctx.send(embed=embed)
+            return
+        chan = None
+        for key, value in confessChannels.items():
+            if int(key) == ctx.guild.id:
+                chan = bot.get_channel(int(value))
+            else:
+                chan = None
+        #if len(chan) <= 1:
+        #    chan = 0
+
+        prefix = "!"
+        for key, value in serverPrefixes.items():
+            if int(key) == message.guild.id:
+                prefix = str(value)
+        
+        if chan is None:
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Confess isn't enabled for this server. Try setting a channel for it using {}confess [channel].".format(prefix), color=0x000000)
+            await ctx.send(embed=embed)
+        else:
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Confess is currently set for {}.".format(chan.mention), color=0x000000)
+            await ctx.send(embed=embed)
+    elif isinstance(error, commands.CheckFailure):
+        embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        await ctx.send(embed=embed)
+    else:
+        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+        traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
 
 @bot.command()
 @commands.has_permissions(manage_guild=True)
@@ -45,8 +122,13 @@ async def starboard_error(ctx, error):
         #if len(chan) <= 1:
         #    chan = 0
 
+        prefix = "!"
+        for key, value in serverPrefixes.items():
+            if int(key) == message.guild.id:
+                prefix = str(value)
+        
         if chan is None:
-            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard isn't enabled for this server. Try setting a channel for it using !starboard [channel].", color=0x000000)
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard isn't enabled for this server. Try setting a channel for it using {}starboard [channel].".format(prefix), color=0x000000)
             await ctx.send(embed=embed)
         else:
             chan
@@ -67,8 +149,13 @@ async def starboard_error(ctx, error):
         #if len(chan) <= 1:
         #    chan = 0
 
+        prefix = "!"
+        for key, value in serverPrefixes.items():
+            if int(key) == message.guild.id:
+                prefix = str(value)
+        
         if chan is None:
-            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard isn't enabled for this server. Try setting a channel for it using !starboard [channel].", color=0x000000)
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard isn't enabled for this server. Try setting a channel for it using {}starboard [channel].".format(prefix), color=0x000000)
             await ctx.send(embed=embed)
         else:
             embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Starboard is currently set for {}.".format(chan.mention), color=0x000000)
