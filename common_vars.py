@@ -49,6 +49,15 @@ confessChannelsToDelete = {}
 
 balances = {}
 
+deleteLogs = {}
+deleteLogsToDelete = {}
+editLogs = {}
+editLogsToDelete = {}
+memberLogs = {}
+memberLogsToDelete = {}
+punishLogs = {}
+punishLogsToDelete = {}
+
 async def convert_color_menu(role_number: str):
     if role_number == "1":
         return "Light Red"
