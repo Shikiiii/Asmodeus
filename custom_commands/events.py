@@ -122,7 +122,13 @@ async def on_message(message: Message):
                     sbb = bot.get_channel(int(value))
                     sb = sbb.mention
             if sb is None:
-                sb = "Not enabled, use the scoreboard command to enable it."
+                sb = "Not enabled, use the ``scoreboard`` command to enable it."
+            confess = None
+            for key, value in confessChannels.items():
+                if int(key) == message.guild.id:
+                    confess = bot.get_channel(int(value))
+            if confess is None:
+                confess = "Not enabled, use the ``setconfess`` command to enable it."
             embed=discord.Embed(description="Haay! Here to help you.\n**Server prefix:** ``{}``\n**Starboard channel:** {}".format(str(prefix), sb), color=0x000000, timestamp=datetime.utcnow()) 
             embed.set_author(name="{}".format(bot.user.name), icon_url=bot.user.avatar_url)
             embed.set_thumbnail(url=message.guild.icon_url)
