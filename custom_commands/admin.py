@@ -20,7 +20,7 @@ from common_vars import *
 async def setmuted(ctx, *, rolee: str):
     role = None
     if len(ctx.message.role_mentions) > 0:
-        role = await ctx.guild.get_role(ctx.message.role_mentions[0].id)
+        role = ctx.guild.get_role(ctx.message.role_mentions[0].id)
     if role is None:
         role = await parse_roles(ctx, rolee)
     if role is None:
