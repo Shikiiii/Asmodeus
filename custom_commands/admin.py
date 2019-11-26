@@ -11,9 +11,79 @@ import json
 from common_vars import *
 
 # Commands in this file:
-# setconfess, starboard, prefix, lockdown, role, massban,
+# setmuted, setconfess, starboard, prefix, lockdown, role, massban,
 # masskick, massmute, bots
 
+@bot.command()
+async def setmuted(ctx, *, rolee: str):
+    role = await parse_roles(ctx, rolee)
+    serverMuted[str(ctx.guild.id)] = str(role.id)
+    storage = bot.get_guild(646432280365236235)
+    storageM = storage.get_channel(648898928221093908)
+    for key, value in serverMuted.items():
+        if int(key) == ctx.guild.id:
+            msgID = int(value)
+            msg = await storageM.fetch_message(msgID)
+            await msg.edit(content="{}|{}".format(str(ctx.guild.id), str(role.id)))
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :no_entry: Muted role changed to {}.".format(role.mention), color=0x000000)
+            await ctx.send(embed=embed)
+            return
+    message = await storageM.send("{}|{}".format(str(ctx.guild.id), str(role.id)))
+    serverMutedToDelete[ctx.guild.id] = message.id
+    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :no_entry: Muted role set to {}.".format(role.mention), color=0x000000)
+    await ctx.send(embed=embed)
+
+@setmuted.error
+async def setmuted_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        role = None
+        for key, value in serverMuted.items():
+            if int(key) == ctx.guild.id:
+                role = await parse_roles(ctx, role)
+            else:
+
+        prefix = "!"
+        for key, value in serverPrefixes.items():
+            if int(key) == message.guild.id:
+                prefix = str(value)
+        
+        if role is None:
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :no_entry: Mute is currently disabled because you do not have a chosen role to use. Please choose a role with {}setmuted [role].".format(prefix), color=0x000000)
+            await ctx.send(embed=embed)
+        else:
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :no_entry: Muted role is currently {}.".format(role.mention), color=0x000000)
+            await ctx.send(embed=embed)
+    elif isinstance(error, commands.BadArgument):
+        role = None
+        for key, value in serverMuted.items():
+            if int(key) == ctx.guild.id:
+                role = bot.get_channel(int(value))
+            else:
+                role = None
+        #if len(chan) <= 1:
+        #    chan = 0
+
+        prefix = "!"
+        for key, value in serverPrefixes.items():
+            if int(key) == message.guild.id:
+                prefix = str(value)
+        
+        if role is None:
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :no_entry: Mute is currently disabled because you do not have a chosen role to use. Please choose a role with {}setmuted [role].".format(prefix), color=0x000000)
+            await ctx.send(embed=embed)
+        else:
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :no_entry: Muted role is currently {}.".format(role.mention), color=0x000000)
+            await ctx.send(embed=embed)
+    elif isinstance(error, commands.CheckFailure):
+        embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        await ctx.send(embed=embed)
+    else:
+        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+        traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
+
+    
 @bot.command()
 @commands.has_permissions(manage_guild=True)
 async def setconfess(ctx, *, chan: discord.TextChannel):
