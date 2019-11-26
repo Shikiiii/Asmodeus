@@ -20,7 +20,7 @@ async def setmuted(ctx, *, rolee: str):
     serverMuted[str(ctx.guild.id)] = str(role.id)
     storage = bot.get_guild(646432280365236235)
     storageM = storage.get_channel(648898928221093908)
-    for key, value in serverMuted.items():
+    for key, value in serverMutedToDelete.items():
         if int(key) == ctx.guild.id:
             msgID = int(value)
             msg = await storageM.fetch_message(msgID)
