@@ -395,7 +395,7 @@ async def ship_error(ctx, error):
         if percent >= 91 and percent <= 100:
             strr = "amazing"
         user = ctx.message.content[6:]
-        user = discord.Member
+        user = commands.MemberConverter().convert(ctx, user)
         embed = discord.Embed(title=":two_hearts:  MATCHMAKING: :two_hearts: ",
                               description="**{}** :heart: **{}**\n\n**{}%**! That's **{}**.".format(ctx.message.author.name, user.name,
                                                                                                     str(percent), strr),
