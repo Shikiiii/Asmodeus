@@ -296,7 +296,7 @@ async def mute(ctx, user: discord.Member, *, reason: str):
     mutedrole = None
     for key, value in serverMuted.items():
         if int(key) == ctx.guild.id:
-            mutedrole = await parse_roles(str(value))
+            mutedrole = await parse_roles(ctx, str(value))
     prefix = "!"
     for key, value in serverPrefixes.items():
         if int(key) == ctx.guild.id:
@@ -373,7 +373,7 @@ async def unmute(ctx, user: discord.Member):
     mutedrole = None
     for key, value in serverMuted.items():
         if int(key) == ctx.guild.id:
-            mutedrole = await parse_roles(str(value))
+            mutedrole = await parse_roles(ctx, str(value))
     prefix = "!"
     for key, value in serverPrefixes.items():
         if int(key) == ctx.guild.id:
