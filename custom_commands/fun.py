@@ -10,6 +10,8 @@ import json
 
 from common_vars import *
 
+from datetime import datetime
+
 # Commands in this file:
 # blush, pat, kiss, hug, cuddle, slap, howgay, 
 # howlesbian, thotrate, 8ball,  rate, roast, penis, ship, coinflip
