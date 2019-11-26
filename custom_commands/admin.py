@@ -73,7 +73,7 @@ async def setconfess_error(ctx, error):
 
         prefix = "!"
         for key, value in serverPrefixes.items():
-            if int(key) == message.guild.id:
+            if int(key) == ctx.guild.id:
                 prefix = str(value)
         
         if chan is None:
