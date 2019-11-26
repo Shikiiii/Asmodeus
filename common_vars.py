@@ -37,6 +37,8 @@ allTimeMessages = 0
 serverPrefixes = {}
 serverPrefixesToDelete = {}
 
+serverMuted = {}
+
 starboardChannels = {}
 starboardChannelsToDelete = {}
 starboardMessages = {}
