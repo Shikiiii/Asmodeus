@@ -40,7 +40,7 @@ async def help(ctx, *, mdl: str):
                               description="To view more info about a command, use ``!cmdhelp command``.",
                               color=0x000000)
         embed.add_field(name="Commands:",
-                        value="``nick``, ``reply``, ``afk``, ``define``, ``ping``, ``snipe``, ``editsnipe``, ``reminder``, ``remindercancel``, ``reminderdm``, ``reminderdmcancel``, ``avatar``, ``avatarid``, ``userinfo``, ``serverinfo``, ``membercount``")
+                        value="``confess``, ``nick``, ``reply``, ``afk``, ``define``, ``ping``, ``snipe``, ``editsnipe``, ``reminder``, ``remindercancel``, ``reminderdm``, ``reminderdmcancel``, ``avatar``, ``avatarid``, ``userinfo``, ``serverinfo``, ``membercount``")
         embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
         await ctx.send(embed=embed)
     elif mdl == "fun":
@@ -64,7 +64,7 @@ async def help(ctx, *, mdl: str):
                               description="To view more info about a command, use ``!cmdhelp command``.",
                               color=0x000000)
         embed.add_field(name="Commands:",
-                        value="``starboard``, ``prefix``, ``lockdown``, ``role``, ``masskick``, ``massmute``, ``massban``, ``bots``")
+                        value="`setconfess``, ``starboard``, ``prefix``, ``lockdown``, ``role``, ``masskick``, ``massmute``, ``massban``, ``bots``")
         embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
         await ctx.send(embed=embed)
     elif mdl == "bot_owners":
@@ -102,6 +102,16 @@ async def cmdhelp(ctx, *, cmd: str):
                               description="Gets the help menu with the modules / of a module. It includes all commands.\n\nExample: ``!help fun``",
                               color=0x000000)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        await ctx.send(embed=embed)
+     elif cmd == "confess":
+        embed = discord.Embed(title="!confess [confession]",
+                              description="Confesses the message you give anonymously. \n\nExample: ``!confess i'm gay <3``",
+                              color=0x000000)
+        await ctx.send(embed=embed)
+    elif cmd == "setconfess":
+        embed = discord.Embed(title="!setconfess [channel/disable]",
+                              description="Sets the channel where all the confessions go. If instead of a channel you type \'disable\', confess will be disable. \n\nnExample: ``!confess #confessions``",
+                              color=0x000000)
         await ctx.send(embed=embed)
     elif cmd == "starboard":
         embed = discord.Embed(title="!starboard [channel/disable]",
