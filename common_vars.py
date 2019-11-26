@@ -150,7 +150,7 @@ poke_gifs = json.loads(pokegifs.content)
 
 async def parse_roles(ctx, role: str):
     if role.lower() == ctx.message.role_mentions[0].name.lower():
-        return role
+        return ctx.message.role_mentions[0]
     try:
         id: int = int(role)
         role = ctx.guild.get_role(id)
