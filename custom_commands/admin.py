@@ -20,9 +20,9 @@ from common_vars import *
 async def setmuted(ctx, *, rolee: str):
     role = None
     try:
-        role = ctx.message.content[10:]
-        role = role[3:]
-        role = role[:1]
+        roleee = ctx.message.content[10:]
+        rolee = roleee[3:]
+        role = rolee[:1]
         print(role)
         role = await ctx.guild.get_role(role)
     except:
