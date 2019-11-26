@@ -42,7 +42,6 @@ async def setmuted_error(ctx, error):
         for key, value in serverMuted.items():
             if int(key) == ctx.guild.id:
                 role = await parse_roles(ctx, role)
-            else:
 
         prefix = "!"
         for key, value in serverPrefixes.items():
