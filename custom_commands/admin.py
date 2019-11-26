@@ -18,9 +18,10 @@ from common_vars import *
 
 @bot.command()
 async def setmuted(ctx, *, rolee: str):
-    role = None
+    role = ctx.message.content[10:]
+    print(role)
     try:
-        role = await ctx.guild.get_role(ctx.message.role_mentions[0].id)
+        role = await ctx.guild.get_role(role)
     except:
         role = await parse_roles(ctx, rolee)
     if role is None:
