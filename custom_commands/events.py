@@ -129,7 +129,7 @@ async def on_message(message: Message):
                     confess = bot.get_channel(int(value))
             if confess is None:
                 confess = "Not enabled, use the ``setconfess`` command to enable it."
-            embed=discord.Embed(description="Haay! Here to help you.\n**Server prefix:** ``{}``\n**Starboard channel:** {}".format(str(prefix), sb), color=0x000000, timestamp=datetime.utcnow()) 
+            embed=discord.Embed(description="Haay! Here to help you.\n**Server prefix:** ``{}``\n**Starboard channel:** {}\n**Confess channel:** {}".format(str(prefix), sb, confess), color=0x000000, timestamp=datetime.utcnow()) 
             embed.set_author(name="{}".format(bot.user.name), icon_url=bot.user.avatar_url)
             embed.set_thumbnail(url=message.guild.icon_url)
             await message.channel.send(embed=embed)
