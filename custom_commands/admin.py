@@ -57,7 +57,7 @@ async def setconfess_error(ctx, error):
             embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :shushing_face: Confess is currently set for {}.".format(chan.mention), color=0x000000)
             await ctx.send(embed=embed)
     elif isinstance(error, commands.BadArgument):
-        if ctx.message.content[9:] == "disable":
+        if ctx.message.content[12:] == "disable":
             del confessChannels[str(ctx.guild.id)]
             embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :shushing_face: Confess has been disabled. Thanks for using this feature!", color=0x000000)
             await ctx.send(embed=embed)
