@@ -25,12 +25,12 @@ async def setconfess(ctx, *, chan: discord.TextChannel):
             msgID = int(value)
             msg = await storageCF.fetch_message(msgID)
             await msg.edit(content="{}|{}".format(str(ctx.guild.id), str(chan.id)))
-            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Confess channel changed to {}.".format(chan.mention), color=0x000000)
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :shushing_face: Confess channel changed to {}.".format(chan.mention), color=0x000000)
             await ctx.send(embed=embed)
             return
     message = await storageCF.send("{}|{}".format(str(ctx.guild.id), str(chan.id)))
     confessChannelsToDelete[ctx.guild.id] = message.id
-    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Confess is enabled! Channel set to {}.".format(chan.mention), color=0x000000)
+    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :shushing_face: Confess is enabled! Channel set to {}.".format(chan.mention), color=0x000000)
     await ctx.send(embed=embed)
 
 @setconfess.error
@@ -50,16 +50,16 @@ async def setconfess_error(ctx, error):
                 prefix = str(value)
         
         if chan is None:
-            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Confess isn't enabled for this server. Try setting a channel for it using {}confess [channel].".format(prefix), color=0x000000)
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :shushing_face: Confess isn't enabled for this server. Try setting a channel for it using {}confess [channel].".format(prefix), color=0x000000)
             await ctx.send(embed=embed)
         else:
             chan
-            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Confess is currently set for {}.".format(chan.mention), color=0x000000)
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :shushing_face: Confess is currently set for {}.".format(chan.mention), color=0x000000)
             await ctx.send(embed=embed)
     elif isinstance(error, commands.BadArgument):
-        if ctx.message.content[11:] == "disable":
+        if ctx.message.content[9:] == "disable":
             del confessChannels[str(ctx.guild.id)]
-            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Confess has been disabled. Thanks for using this feature!", color=0x000000)
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :shushing_face: Confess has been disabled. Thanks for using this feature!", color=0x000000)
             await ctx.send(embed=embed)
             return
         chan = None
@@ -77,10 +77,10 @@ async def setconfess_error(ctx, error):
                 prefix = str(value)
         
         if chan is None:
-            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Confess isn't enabled for this server. Try setting a channel for it using {}confess [channel].".format(prefix), color=0x000000)
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :shushing_face: Confess isn't enabled for this server. Try setting a channel for it using {}confess [channel].".format(prefix), color=0x000000)
             await ctx.send(embed=embed)
         else:
-            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :star: Confess is currently set for {}.".format(chan.mention), color=0x000000)
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :shushing_face: Confess is currently set for {}.".format(chan.mention), color=0x000000)
             await ctx.send(embed=embed)
     elif isinstance(error, commands.CheckFailure):
         embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
