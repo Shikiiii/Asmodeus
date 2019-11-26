@@ -87,7 +87,7 @@ async def on_member_join(member):
         channel4 = bot.get_channel(642482769833885736)
         embed = discord.Embed(
             description="Welcome to **[Ａｓｍｏｄｅｕｓ](https://discord.gg/h945y6T)**! You're the **{}th** member. \n\n Make sure to read: {}  \n\nRoles: {} \nColors: {}.".format(
-                member.guild.member_count, channel2.mention, channel3.mention, channel4.mention), color=0x000000)
+                member.guild.member_count, channel2.mention, channel3.mention, channel4.mention), color=0x000000, timestamp=datetime.utcnow())
         embed.set_author(name="{}".format(member), icon_url=member.avatar_url)
         embed.set_thumbnail(url=member.guild.icon_url)
         await channel.send("{}".format(member.mention), embed=embed)
@@ -314,11 +314,9 @@ async def on_message(message: Message):
 async def on_message_delete(message: Message):
     if message.author.bot == False:
         logch = discord.utils.get(message.author.guild.channels, name="logs")
-        timestamp = datetime.datetime.now()
-        corfor = timestamp.strftime("%d %b, %Y at %H:%M")
         log = discord.Embed(
             description="Deleted a message in {}: \n{}\n\nUsers ID: {}".format(message.channel.mention, message.content,
-                                                                               message.author.id), color=0xFFFFFF)
+                                                                               message.author.id), color=0xFFFFFF, timestamp=datetime.utcnow())
         log.set_author(name="{}".format(message.author), icon_url=message.author.avatar_url)
         log.set_footer(text="{}".format(corfor))
         log.set_thumbnail(url=message.author.avatar_url)
@@ -330,19 +328,16 @@ async def on_message_delete(message: Message):
         else:
             tosnipe[message.channel.id] = message.content
             tosnipeauthors[message.channel.id] = message.author
-            timestamp2 = datetime.datetime.now()
-            corfor = timestamp2.strftime("%d %b, %Y at %H:%M")
-            tosnipetime[message.channel.id] = timestamp2
+            timestamp=datetime.utcnow()
+            tosnipetime[message.channel.id] = timestamp
 
 
 @bot.event
 async def on_message_edit(before, after):
     if before.author.bot == False:
         logch = discord.utils.get(before.author.guild.channels, name="logs")
-        timestamp = datetime.datetime.now()
-        corfor = timestamp.strftime("%d %b, %Y at %H:%M")
         log = discord.Embed(description="Edited a message in {}: \n``Old:``\n{}\n``New:``\n{}\n\nUsers ID: {}".format(
-            before.channel.mention, before.content, after.content, before.author.id), color=0xFFFFFF)
+            before.channel.mention, before.content, after.content, before.author.id), color=0xFFFFFF, timestamp=datetime.utcnow())
         log.set_author(name="{}".format(before.author), icon_url=before.author.avatar_url)
         log.set_footer(text="{}".format(corfor))
         log.set_thumbnail(url=before.author.avatar_url)
@@ -352,6 +347,5 @@ async def on_message_edit(before, after):
 
         toeditsnipe[before.channel.id] = before.content
         toeditsnipeauthors[before.channel.id] = before.author
-        timestamp2 = datetime.datetime.now()
-        corfor = timestamp2.strftime("%d %b, %Y at %H:%M")
-        toeditsnipetime[before.channel.id] = timestamp2
+        timestamp=datetime.utcnow()
+        toeditsnipetime[before.channel.id] = timestamp
