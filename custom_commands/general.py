@@ -12,9 +12,37 @@ import json
 from common_vars import *
 
 # Commands in this file:
-# nick, reply, afk, define, ping, snipe, editsnipe, reminder, remindercancel,
+# confess, nick, reply, afk, define, ping, snipe, editsnipe, reminder, remindercancel,
 # reminderdm, reminderdmcancel, avatar, avatarid, userinfo, membercount,
 # serverinfo, members
+
+@bot.command()
+async def confess(ctx, *, msg: str):
+    await ctx.message.delete()
+    chan = None
+    for key, value in confessChannels.items():
+        if int(key) == ctx.guild.id:
+            chan = bot.get_channel(int(value))
+            
+    if chan is None:
+        embed = discord.Embed(title="{}".format(ctx.message.author.name), description="Confessions aren't enabled for this server. Please contact an administrator to enable them.", color=0xe9f542)
+        await ctx.send(embed=embed)
+        return
+    tosend = ctx.message.content[9:]
+    embed = discord.Embed(title="Confession", description="{}".format(tosend))
+    await chan.send(embed=embed)
+
+
+@confess.error
+async def confess_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        embed = discord.Embed(description="You didn't give me a confession.", color=0xFF3639)
+        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+        await ctx.send(embed=embed)
+    else:
+        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+        traceback.print_exception(type(error), error, None, file=sys.stderr)
 
 @bot.command()
 async def nick(ctx, user: discord.Member, *, msg: str):
