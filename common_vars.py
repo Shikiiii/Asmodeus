@@ -149,6 +149,8 @@ facepalm_gifs = json.loads(facepalmgifs.content)
 poke_gifs = json.loads(pokegifs.content) 
 
 async def parse_roles(ctx, role: str):
+    print("ROLE FROM ARGUMENT: " + role.lower())
+    print("ROLE MENTIONED: " + ctx.message.role_mentions[0].name.lower())
     if role.lower() == ctx.message.role_mentions[0].name.lower():
         return ctx.message.role_mentions[0]
     try:
