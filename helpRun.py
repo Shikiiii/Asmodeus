@@ -64,7 +64,7 @@ async def help(ctx, *, mdl: str):
                               description="To view more info about a command, use ``!cmdhelp command``.",
                               color=0x000000)
         embed.add_field(name="Commands:",
-                        value="``setmuted``, `setconfess``, ``starboard``, ``prefix``, ``lockdown``, ``role``, ``masskick``, ``massmute``, ``massban``, ``bots``")
+                        value="``logs``, ``setmuted``, `setconfess``, ``starboard``, ``prefix``, ``lockdown``, ``role``, ``masskick``, ``massmute``, ``massban``, ``bots``")
         embed.set_author(name="{}".format(str(bot.user.name)), icon_url=str(bot.user.avatar_url))
         await ctx.send(embed=embed)
     elif mdl == "bot_owners":
@@ -102,6 +102,8 @@ async def cmdhelp(ctx, *, cmd: str):
                               description="Gets the help menu with the modules / of a module. It includes all commands.\n\nExample: ``!help fun``",
                               color=0x000000)
         embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+    elif cmd == "logs":
+        embed = discord.Embed(title="!logs [delete/edit/member/punish] [channel]", description="Sets the logs channels. The current types are: \n``delete`` : Logs from deleted messages\n``edit`` : Logs from edited messages\n``member`` : Logs from join/leave of members\n``punish`` : Logs from all staff commands\n\nTo setup these logs, do !logs [type] [channel/disable]\n\nNote: You can use the same channel for different logs.", color=0x000000)
         await ctx.send(embed=embed)
     elif cmd == "setmuted":
         embed = discord.Embed(title="!setmuted [role]",
