@@ -102,40 +102,40 @@ async def logs_error(ctx, error):
             for key, value in deleteLogs.items():
                 if int(key) == ctx.guild.id:
                     chan = bot.get_channel(int(value))
-                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Deleted logs are enabled for this server in {}.".format(prefix, chan.mention), color=0x000000)
+                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Deleted logs are enabled for this server in {}.".format(chan.mention), color=0x000000)
                     await ctx.send(embed=embed)
                     return
-            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Deleted logs aren't enabled for this server.".format(prefix), color=0x000000)
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Deleted logs aren't enabled for this server.", color=0x000000)
             await ctx.send(embed=embed)
             return
         elif type == "edit":
             for key, value in editLogs.items():
                 if int(key) == ctx.guild.id:
                     chan = bot.get_channel(int(value))
-                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Edit logs are enabled for this server in {}.".format(prefix, chan.mention), color=0x000000)
+                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Edit logs are enabled for this server in {}.".format(chan.mention), color=0x000000)
                     await ctx.send(embed=embed)
                     return
-            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Edit logs aren't enabled for this server.".format(prefix), color=0x000000)
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Edit logs aren't enabled for this server.", color=0x000000)
             await ctx.send(embed=embed)
             return
         elif type == "member":
             for key, value in memberLogs.items():
                 if int(key) == ctx.guild.id:
                     chan = bot.get_channel(int(value))
-                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Member join/leave logs are enabled for this server in {}.".format(prefix, chan.mention), color=0x000000)
+                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Member join/leave logs are enabled for this server in {}.".format(chan.mention), color=0x000000)
                     await ctx.send(embed=embed)
                     return
-            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Member join/leave logs aren't enabled for this server.".format(prefix), color=0x000000)
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Member join/leave logs aren't enabled for this server.", color=0x000000)
             await ctx.send(embed=embed)
             return
         elif type == "punish":
             for key, value in deleteLogs.items():
                 if int(key) == ctx.guild.id:
                     chan = bot.get_channel(int(value))
-                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Punishment logs are enabled for this server in {}.".format(prefix, chan.mention), color=0x000000)
+                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Punishment logs are enabled for this server in {}.".format(chan.mention), color=0x000000)
                     await ctx.send(embed=embed)
                     return
-            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Punishment logs aren't enabled for this server.".format(prefix), color=0x000000)
+            embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Punishment logs aren't enabled for this server.", color=0x000000)
             await ctx.send(embed=embed)
             return
         else:
@@ -154,40 +154,40 @@ async def logs_error(ctx, error):
                 for key, value in deleteLogs.items():
                     if int(key) == ctx.guild.id:
                         chan = bot.get_channel(int(value))
-                        embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Deleted logs are enabled for this server in {}.".format(prefix, chan.mention), color=0x000000)
+                        embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Deleted logs are enabled for this server in {}.".format(chan.mention), color=0x000000)
                         await ctx.send(embed=embed)
                         return
-                embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Deleted logs aren't enabled for this server.".format(prefix), color=0x000000)
+                embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Deleted logs aren't enabled for this server.", color=0x000000)
                 await ctx.send(embed=embed)
                 return
             elif type[0] == "edit":
                 for key, value in editLogs.items():
                     if int(key) == ctx.guild.id:
                         chan = bot.get_channel(int(value))
-                        embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Edit logs are enabled for this server in {}.".format(prefix, chan.mention), color=0x000000)
+                        embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Edit logs are enabled for this server in {}.".format(chan.mention), color=0x000000)
                         await ctx.send(embed=embed)
                         return
-                embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Edit logs aren't enabled for this server.".format(prefix), color=0x000000)
+                embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Edit logs aren't enabled for this server.", color=0x000000)
                 await ctx.send(embed=embed)
                 return
             elif type[0] == "member":
                 for key, value in memberLogs.items():
                     if int(key) == ctx.guild.id:
                         chan = bot.get_channel(int(value))
-                        embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Member join/leave logs are enabled for this server in {}.".format(prefix, chan.mention), color=0x000000)
+                        embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Member join/leave logs are enabled for this server in {}.".format(chan.mention), color=0x000000)
                         await ctx.send(embed=embed)
                         return
-                embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Member join/leave logs aren't enabled for this server.".format(prefix), color=0x000000)
+                embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Member join/leave logs aren't enabled for this server.", color=0x000000)
                 await ctx.send(embed=embed)
                 return
             elif type[0] == "punish":
                 for key, value in deleteLogs.items():
                     if int(key) == ctx.guild.id:
                         chan = bot.get_channel(int(value))
-                        embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Punishment logs are enabled for this server in {}.".format(prefix, chan.mention), color=0x000000)
+                        embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Punishment logs are enabled for this server in {}.".format(chan.mention), color=0x000000)
                         await ctx.send(embed=embed)
                         return
-                embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Punishment logs aren't enabled for this server.".format(prefix), color=0x000000)
+                embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Punishment logs aren't enabled for this server.", color=0x000000)
                 await ctx.send(embed=embed)
                 return
             else:
@@ -211,11 +211,11 @@ async def logs_error(ctx, error):
                             msg = await storageD.fetch_message(int(value))
                             await msg.delete()
                     del deleteLogsToDelete[ctx.guild.id]
-                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Delete logs have been disabled for this server.".format(prefix), color=0x000000)
+                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Delete logs have been disabled for this server.", color=0x000000)
                     await ctx.send(embed=embed)
                     return
                 else:
-                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Uh-oh! Delete logs aren't enabled for this server, so you can't disable them.".format(prefix), color=0x000000)
+                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Uh-oh! Delete logs aren't enabled for this server, so you can't disable them.", color=0x000000)
                     await ctx.send(embed=embed)
                     return
             elif type[0] == "edit":
@@ -234,11 +234,11 @@ async def logs_error(ctx, error):
                             msg = await storageE.fetch_message(int(value))
                             await msg.delete()
                     del editLogsToDelete[ctx.guild.id]
-                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Edit logs have been disabled for this server.".format(prefix), color=0x000000)
+                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Edit logs have been disabled for this server.", color=0x000000)
                     await ctx.send(embed=embed)
                     return
                 else:
-                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Uh-oh! Edit logs aren't enabled for this server, so you can't disable them.".format(prefix), color=0x000000)
+                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Uh-oh! Edit logs aren't enabled for this server, so you can't disable them.", color=0x000000)
                     await ctx.send(embed=embed)
                     return
             elif type[0] == "member":
@@ -257,11 +257,11 @@ async def logs_error(ctx, error):
                             msg = await storageMM.fetch_message(int(value))
                             await msg.delete()
                     del memberLogsToDelete[ctx.guild.id]
-                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Member join/leave logs have been disabled for this server.".format(prefix), color=0x000000)
+                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Member join/leave logs have been disabled for this server.", color=0x000000)
                     await ctx.send(embed=embed)
                     return
                 else:
-                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Uh-oh! Member join/leave logs aren't enabled for this server, so you can't disable them.".format(prefix), color=0x000000)
+                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Uh-oh! Member join/leave logs aren't enabled for this server, so you can't disable them.", color=0x000000)
                     await ctx.send(embed=embed)
                     return
             elif type[0] == "punish":
@@ -280,11 +280,11 @@ async def logs_error(ctx, error):
                             msg = await storageP.fetch_message(int(value))
                             await msg.delete()
                     del punishLogsToDelete[ctx.guild.id]
-                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Punishment logs have been disabled for this server.".format(prefix), color=0x000000)
+                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Punishment logs have been disabled for this server.", color=0x000000)
                     await ctx.send(embed=embed)
                     return
                 else:
-                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Uh-oh! Punishment logs aren't enabled for this server, so you can't disable them.".format(prefix), color=0x000000)
+                    embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Uh-oh! Punishment logs aren't enabled for this server, so you can't disable them.", color=0x000000)
                     await ctx.send(embed=embed)
                     return
             else:
