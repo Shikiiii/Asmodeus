@@ -141,7 +141,7 @@ async def on_message(message: Message):
                     mutedd = await message.guild.get_role(int(value))
                     muted = mutedd.mention
             if muted is None:
-                muted = "Not set, use the ``setmuted`` command to set it. Otherwise ``mute`` wouldn't work.")
+                muted = "Not set, use the ``setmuted`` command to set it. Otherwise ``mute`` wouldn't work."
             embed=discord.Embed(description="Haay! Here to help you.\n**Server prefix:** ``{}``\n**Starboard channel:** {}\n**Confess channel:** {}\n**Muted role:** {}".format(str(prefix), sb, confess, muted), color=0x000000, timestamp=datetime.utcnow()) 
             embed.set_author(name="{}".format(bot.user.name), icon_url=bot.user.avatar_url)
             embed.set_thumbnail(url=message.guild.icon_url)
