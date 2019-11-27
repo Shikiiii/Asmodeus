@@ -112,6 +112,9 @@ async def on_message(message: Message):
         elif "pong" in message.content:
             await message.channel.send("{} ping".format(message.author.mention))
         else:
+            splitted = message.content.split(" ")
+            if len(splitted) > 1:
+                return
             prefix = None
             for key, value in serverPrefixes.items():
                 if int(key) == message.guild.id:
@@ -132,7 +135,14 @@ async def on_message(message: Message):
                     confess = confesss.mention
             if confess is None:
                 confess = "Not enabled, use the ``setconfess`` command to enable it."
-            embed=discord.Embed(description="Haay! Here to help you.\n**Server prefix:** ``{}``\n**Starboard channel:** {}\n**Confess channel:** {}".format(str(prefix), sb, confess), color=0x000000, timestamp=datetime.utcnow()) 
+            muted = None
+            for key, value in serverMuted.items():
+                if int(key) == message.guild.id:
+                    mutedd = await message.guild.get_role(int(value))
+                    muted = mutedd.mention
+            if muted is None:
+                muted = "Not set, use the ``setmuted`` command to set it. Otherwise ``mute`` wouldn't work.")
+            embed=discord.Embed(description="Haay! Here to help you.\n**Server prefix:** ``{}``\n**Starboard channel:** {}\n**Confess channel:** {}\n**Muted role:** {}".format(str(prefix), sb, confess, muted), color=0x000000, timestamp=datetime.utcnow()) 
             embed.set_author(name="{}".format(bot.user.name), icon_url=bot.user.avatar_url)
             embed.set_thumbnail(url=message.guild.icon_url)
             await message.channel.send(embed=embed)
