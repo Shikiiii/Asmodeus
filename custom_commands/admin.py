@@ -37,19 +37,31 @@ async def logs(ctx, type, chan: discord.TextChannel):
     elif type == "edit":
         print("Type is edit!")
         editLogsToDelete[ctx.guild.id] = chan.id
+        print("ok, i got the storage channels")
         storage = bot.get_guild(646432280365236235)
         storageE = storage.get_channel(648951532905037834)
+        print("ok, entering the for loop, hope i get out alive")
         for key, value in editLogsToDelete.items():
+            print("ok, report 1, im in, nothing strange")
             if key == ctx.guild.id:
+                print("ok, some key is equal to guild.id")
                 msgID = int(value)
+                print("ok, lets fetch a message")
                 msg = await storageE.fetch_message(msgID)
+                print("now im editing a message")
                 await msg.edit(content="{}|{}".format(str(ctx.guild.id), str(chan.id)))
+                print("now lets tell whats going on")
                 embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :green_circle: Edit logs changed to {}.".format(chan.mention), color=0x000000)
+                print("sending the report")
                 await ctx.send(embed=embed)
                 return
+        print("ok, no loops for me, editing the message")
         message = await storageE.send("{}|{}".format(str(ctx.guild.id), str(chan.id)))
+        print("updating the dict")
         editLogsToDelete[ctx.guild.id] = message.id
+        print("and, making a message")
         embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :green_circle: Edit logs enabled! Channel set to {}.".format(chan.mention), color=0x000000)
+        print("sending!")
         await ctx.send(embed=embed)
     elif type == "member":
         memberLogsToDelete[ctx.guild.id] = chan.id
