@@ -23,10 +23,12 @@ conn = http.client.HTTPSConnection("mashape-community-urban-dictionary.p.rapidap
 tosnipe = {}
 tosnipeauthors = {}
 tosnipetime = {}
+tosnipepicture = {}
 
 toeditsnipe = {}
 toeditsnipeauthors = {}
 toeditsnipetime = {}
+toeditsnipepicture = {}
 
 msgsCounterr = 0
 msgsCounterrr = 0
