@@ -21,6 +21,23 @@ from common_vars import *
 
 @bot.command()
 @commands.is_owner()
+async def dmAllServer(ctx, servv: int, *, msg: str):
+    serv = bot.get_guild(servv)
+    dmed = 0
+    embed = discord.Embed(description="DMs pending••• :yellow_heart: $ **{}**".format(dmed), color=0x000000)
+    msgg = await ctx.send(embed=embed)
+    for member in serv.members:
+        try:
+            await member.send("{}".format(msg))
+            dmed += 1
+            embedd = discord.Embed(description="DMs pending••• :yellow_heart: $ **{}**".format(dmed), color=0x000000)
+            await msgg.edit(embed=embedd)
+        except:
+            continue
+    await msgg.edit(content="Finished DMing all members.")
+
+@bot.command()
+@commands.is_owner()
 async def mCM(ctx):
     if ctx.message.author.id == 237938976999079948:
         role_names = ["Light Red", "Light Orange", "Light Purple", "Light Yellow", "Light Cyan", "Light Blue",
