@@ -95,6 +95,14 @@ async def on_member_join(member):
         await loggg.send(f"{member} ({member.mention}, {member.id}) joined.")
         await asyncio.sleep(60)
         await msg.delete()
+    chan = None
+    for key, value in memberLogs.items():
+        if int(key) == member.guild.id:
+            chan = bot.get_channel(int(value))
+            embed = discord.Embed(description="joined the server.", timestamp=datetime.utcnow(), color=0x05ff44)
+            embed.set_author(name="{}".format(member), icon_url=member.avatar_url)
+            await chan.send(embed=embed)
+    
 
 @bot.event
 async def on_member_remove(member):
@@ -103,6 +111,13 @@ async def on_member_remove(member):
         await mbrcnt.edit(name="{} SNOWIES ❄️".format(member.guild.member_count))
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
         await loggg.send(f"{member} ({member.mention}, {member.id}) left.")
+    chan = None
+    for key, value in memberLogs.items():
+        if int(key) == member.guild.id:
+            chan = bot.get_channel(int(value))
+            embed = discord.Embed(description="left the server.", timestamp=datetime.utcnow(), color=0xff1e05)
+            embed.set_author(name="{}".format(member), icon_url=member.avatar_url)
+            await chan.send(embed=embed)
 
 @bot.event
 async def on_message(message: Message):
@@ -324,7 +339,12 @@ async def on_message(message: Message):
 @bot.event
 async def on_message_delete(message: Message):
     if message.author.bot == False:
-        logch = discord.utils.get(message.author.guild.channels, name="logs")
+        logch = None
+        for key, value in deleteLogs.items():
+            if int(key) == message.author.guild.id:
+                logch = bot.get_channel(int(value))
+        if logch is None:
+            return
         log = discord.Embed(
             description="Deleted a message in {}: \n{}\n\nUsers ID: {}".format(message.channel.mention, message.content,
                                                                                message.author.id), color=0xFFFFFF, timestamp=datetime.utcnow())
@@ -345,7 +365,12 @@ async def on_message_delete(message: Message):
 @bot.event
 async def on_message_edit(before, after):
     if before.author.bot == False:
-        logch = discord.utils.get(before.author.guild.channels, name="logs")
+        logch = None
+        for key, value in editLogs.items():
+            if int(key) == message.author.guild.id:
+                logch = bot.get_channel(int(value))
+        if logch is None:
+            return
         log = discord.Embed(description="Edited a message in {}: \n``Old:``\n{}\n``New:``\n{}\n\nUsers ID: {}".format(
             before.channel.mention, before.content, after.content, before.author.id), color=0xFFFFFF, timestamp=datetime.utcnow())
         log.set_author(name="{}".format(before.author), icon_url=before.author.avatar_url)
