@@ -32,16 +32,18 @@ async def update(ctx):
             await chan1.send(embed=embed)
             await chan2.send(embed=embed)
             print("Sent a message to {}!".format(guild.name))
-        elif guild.id == 634860194207236117:
+            continue
+        elif guild.id == 634860194207236117: 
             chan = bot.get_channel(635206523793965062)
             await chan.send(embed=embed)
             print("Sent a message to {}!".format(guild.name))
+            continue
         elif guild.id == 385378814584422413:
-            chan = bot.get_channel(646007396828708864)
-            chan = bot.get_channel(610621692615721005)
+            chan = bot.get_channel(646007396828708864) 
             await chan.send(embed=embed)
             await chan.send(embed=embed)
             print("Sent a message to {}!".format(guild.name))
+            continue
         else:
             for TextChannel in guild.text_channels:
                 try:
