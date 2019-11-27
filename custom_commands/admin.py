@@ -101,6 +101,7 @@ async def logs_error(ctx, error):
         if type[1] == "disable":
             if type[0] == "delete":
                 # delete from dict and from channel
+                return
             
         
     
