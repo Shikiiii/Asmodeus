@@ -38,12 +38,6 @@ async def update(ctx):
             await chan.send(embed=embed)
             print("Sent a message to {}!".format(guild.name))
             continue
-        elif guild.id == 385378814584422413:
-            chan = bot.get_channel(646007396828708864) 
-            await chan.send(embed=embed)
-            await chan.send(embed=embed)
-            print("Sent a message to {}!".format(guild.name))
-            continue
         else:
             for TextChannel in guild.text_channels:
                 try:
