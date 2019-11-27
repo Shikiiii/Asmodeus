@@ -16,7 +16,7 @@ from common_vars import *
 # setmuted, setconfess, starboard, prefix, lockdown, role, massban,
 # masskick, massmute, bots
 
-@bot.commands()
+@bot.command()
 async def logs(ctx, type, chan: discord.TextChannel):
     if type == "delete":
         deleteLogs[ctx.guild.id] = chan.id
