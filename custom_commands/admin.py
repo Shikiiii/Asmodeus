@@ -41,6 +41,7 @@ async def logs(ctx, type, chan: discord.TextChannel):
         storage = bot.get_guild(646432280365236235)
         storageE = storage.get_channel(648951532905037834)
         print("ok, entering the for loop, hope i get out alive")
+        print(editLogsToDelete)
         for key, value in editLogsToDelete.items():
             print("ok, report 1, im in, nothing strange")
             if key == ctx.guild.id:
