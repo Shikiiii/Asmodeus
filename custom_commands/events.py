@@ -329,7 +329,6 @@ async def on_message_delete(message: Message):
             description="Deleted a message in {}: \n{}\n\nUsers ID: {}".format(message.channel.mention, message.content,
                                                                                message.author.id), color=0xFFFFFF, timestamp=datetime.utcnow())
         log.set_author(name="{}".format(message.author), icon_url=message.author.avatar_url)
-        log.set_footer(text="{}".format(corfor))
         log.set_thumbnail(url=message.author.avatar_url)
         await logch.send(embed=log)
 
@@ -350,7 +349,6 @@ async def on_message_edit(before, after):
         log = discord.Embed(description="Edited a message in {}: \n``Old:``\n{}\n``New:``\n{}\n\nUsers ID: {}".format(
             before.channel.mention, before.content, after.content, before.author.id), color=0xFFFFFF, timestamp=datetime.utcnow())
         log.set_author(name="{}".format(before.author), icon_url=before.author.avatar_url)
-        log.set_footer(text="{}".format(corfor))
         log.set_thumbnail(url=before.author.avatar_url)
         if before.content == after.content:
             return
