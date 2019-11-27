@@ -93,6 +93,10 @@ async def logs(ctx, type, chan: discord.TextChannel):
 @logs.error
 async def logs_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
+        prefix = "!"
+        for key, value in serverPrefixes.items():
+            if int(key) == ctx.guild.id:
+                prefix = str(value)
         embed = discord.Embed(title="{}".format(ctx.message.author.name), description="Type of logs not found. The current types are: \n``delete`` : Logs from deleted messages\n``edit`` : Logs from edited messages\n``member`` : Logs from join/leave of members\n``punish`` : Logs from all staff commands\n\nTo setup these logs, do {}logs [type] [channel/disable]".format(prefix), color=0xF21B1B)
         await ctx.send(embed=embed)
     elif isinstance(error, commands.BadArgument):
