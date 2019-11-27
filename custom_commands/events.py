@@ -26,7 +26,37 @@ async def on_ready():
     storage = bot.get_guild(646432280365236235)
     storagePrefix = storage.get_channel(646432846961049601)
     storageSB = storage.get_channel(647616003164864514)
+    storageCF = storage.get_channel(647444887184080906)
+    storageM = storage.get_channel(648898928221093908)
+    storageD = storage.get_channel(648951518602592277)
+    storageE = storage.get_channel(648951532905037834)
+    storageMM = storage.get_channel(648951574319726592)
+    storageP= storage.get_channel(648951548809838628)
     # Here, we get the prefixes, so we don't have to scan the channel everytime a command is ran. - Shiki
+    async for message in storageP.history():
+        x = message.content.split("|")
+        guildID = x[0]
+        chan = x[1]
+        punishLogs[guildID] = chan
+        punishLogsToDelete[guildID] = message.id
+    async for message in storageMM.history():
+        x = message.content.split("|")
+        guildID = x[0]
+        chan = x[1]
+        memberLogs[guildID] = chan
+        memberLogsToDelete[guildID] = message.id
+    async for message in storageE.history():
+        x = message.content.split("|")
+        guildID = x[0]
+        chan = x[1]
+        editLogs[guildID] = chan
+        editLogsToDelete[guildID] = message.id
+    async for message in storageD.history():
+        x = message.content.split("|")
+        guildID = x[0]
+        chan = x[1]
+        deleteLogs[guildID] = chan
+        deleteLogsToDelete[guildID] = message.id
     async for message in storagePrefix.history():
         x = message.content.split("|")
         id = x[0]
@@ -39,8 +69,19 @@ async def on_ready():
         chan = x[1]
         starboardChannels[str(guildID)] = str(chan)
         starboardChannelsToDelete[guildID] = message.id
+    async for message in storageCF.history():
+        x = message.content.split("|")
+        guildID = x[0]
+        chan = x[1]
+        confessChannels[str(guildID)] = str(chan)
+        confessChannelsToDelete[guildID] = message.id
+    async for message in storageM.history():
+        x = message.content.split("|")
+        guildID = x[0]
+        role = x[1]
+        serverMuted[str(guildID)] = str(role)
+        serverMutedToDelete[guildID] = message.id
         
-
     #vc = bot.get_channel(642482823445479424)
     #await vc.connect()
 
