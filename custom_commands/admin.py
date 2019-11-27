@@ -141,7 +141,7 @@ async def logs_error(ctx, error):
                 embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Member join/leave logs aren't enabled for this server.".format(prefix), color=0x000000)
                 await ctx.send(embed=embed)
                 return
-             elif type[0] == "punish":
+            elif type[0] == "punish":
                 for key, value in deleteLogs.items():
                     if int(key) == ctx.guild.id:
                         chan = bot.get_channel(int(value))
