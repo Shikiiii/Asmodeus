@@ -128,7 +128,8 @@ async def on_message(message: Message):
             confess = None
             for key, value in confessChannels.items():
                 if int(key) == message.guild.id:
-                    confess = bot.get_channel(int(value))
+                    confesss = bot.get_channel(int(value))
+                    confess = confesss.mention
             if confess is None:
                 confess = "Not enabled, use the ``setconfess`` command to enable it."
             embed=discord.Embed(description="Haay! Here to help you.\n**Server prefix:** ``{}``\n**Starboard channel:** {}\n**Confess channel:** {}".format(str(prefix), sb, confess), color=0x000000, timestamp=datetime.utcnow()) 
