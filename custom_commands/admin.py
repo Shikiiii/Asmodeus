@@ -104,7 +104,7 @@ async def logs_error(ctx, error):
             if type[0] == "delete" or type[0] == "edit" or type[0] == "member" or type[0] == "punish":
                 if len(type[1]) > 0:
                     disabling = True
-                else if len(type[1]) == 0:
+                elif len(type[1]) == 0:
                     checking = True
         if checking == True:
             if type[0] == "delete":
