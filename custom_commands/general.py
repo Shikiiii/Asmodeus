@@ -278,12 +278,9 @@ async def snipe(ctx):
             msg = tosnipe[key]
             author = tosnipeauthors[key]
             time = tosnipetime[key]
-            embed = discord.Embed(description="{}".format(str(msg)), color=0x000000)
+            embed = discord.Embed(description="{}".format(str(msg)), color=0x000000, timestamp=time)
             embed.set_author(name="{}".format(author), icon_url=author.avatar_url)
-            corfor = time.strftime("%d %b, %Y at %H:%M")
-            embed.set_footer(text="{}".format(str(corfor)))
             await ctx.send(embed=embed)
-
 
 @bot.command()
 async def editsnipe(ctx):
@@ -292,10 +289,8 @@ async def editsnipe(ctx):
             msg = toeditsnipe[key]
             author = toeditsnipeauthors[key]
             time = toeditsnipetime[key]
-            embed = discord.Embed(description="{}".format(str(msg)), color=0x000000)
+            embed = discord.Embed(description="{}".format(str(msg)), color=0x000000, timestamp=time)
             embed.set_author(name="{}".format(author), icon_url=author.avatar_url)
-            corfor = time.strftime("%d %b, %Y at %H:%M")
-            embed.set_footer(text="{}".format(str(corfor)))
             await ctx.send(embed=embed)
 
 @bot.command()
