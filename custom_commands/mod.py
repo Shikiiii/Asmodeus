@@ -14,7 +14,7 @@ from common_vars import *
 
 # Commands in this file:
 # ban, unban, banid, kick, mute, unmute,
-# purge, clean
+# purge, clear
 
 @bot.command()
 @commands.has_permissions(ban_members=True)
@@ -33,7 +33,12 @@ async def ban(ctx, user: discord.Member, *, reason: str):
             embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
             await ctx.send(embed=embed)
         await user.ban(reason="N/A")
-        logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
+        logch = None
+        for key, value in punishLogs.items():
+            if int(key) == message.author.guild.id:
+                logch = bot.get_channel(int(value))
+        if logch is None:
+            return
         log = discord.Embed(description="Used command ``!ban`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
             ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
         log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -54,7 +59,12 @@ async def ban(ctx, user: discord.Member, *, reason: str):
             embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
             await ctx.send(embed=embed)
         await user.ban(reason=reason)
-        logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
+        logch = None
+        for key, value in punishLogs.items():
+            if int(key) == message.author.guild.id:
+                logch = bot.get_channel(int(value))
+        if logch is None:
+            return
         log = discord.Embed(description="Used command ``!ban`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
             ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
         log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -106,7 +116,12 @@ async def unban(ctx, id: int, *, reason: str = ""):
             punishMsg.set_author(name="{}".format(ctx.message.author.name))
             punishMsg.set_thumbnail(url=user.avatar_url)
             await ctx.send(embed=punishMsg)
-            logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
+            logch = None
+            for key, value in punishLogs.items():
+                if int(key) == message.author.guild.id:
+                    logch = bot.get_channel(int(value))
+            if logch is None:
+                return
             log = discord.Embed(description="Used command ``!unban`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
                 ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
             log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -117,7 +132,12 @@ async def unban(ctx, id: int, *, reason: str = ""):
             punishMsg.set_author(name="{}".format(ctx.message.author.name))
             punishMsg.set_thumbnail(url=user.avatar_url)
             await ctx.send(embed=punishMsg)
-            logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
+            logch = None
+            for key, value in punishLogs.items():
+                if int(key) == message.author.guild.id:
+                    logch = bot.get_channel(int(value))
+            if logch is None:
+                return
             log = discord.Embed(description="Used command ``!unban`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
                 ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
             log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -161,7 +181,12 @@ async def banid(ctx, id: int, *, reason: str):
         punishMsg.set_author(name="{}".format(ctx.message.author.name))
         punishMsg.set_thumbnail(url=user.avatar_url)
         await ctx.send(embed=punishMsg)
-        logch = discord.utils.get(ctx.message.author.guild.channels, name="enightclub-logs")
+        logch = None
+        for key, value in punishLogs.items():
+            if int(key) == message.author.guild.id:
+                logch = bot.get_channel(int(value))
+        if logch is None:
+            return
         log = discord.Embed(description="Used command ``!banid`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
             ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
         log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -174,7 +199,12 @@ async def banid(ctx, id: int, *, reason: str):
         punishMsg.set_thumbnail(url=user.avatar_url)
         await ctx.send(embed=punishMsg)
         await ctx.message.guild.ban(discord.Object(id=id), reason=reason)
-        logch = discord.utils.get(ctx.message.author.guild.channels, name="enightclub-logs")
+        logch = None
+        for key, value in punishLogs.items():
+            if int(key) == message.author.guild.id:
+                logch = bot.get_channel(int(value))
+        if logch is None:
+            return
         log = discord.Embed(description="Used command ``!banid`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
             ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
         log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -219,7 +249,12 @@ async def kick(ctx, user: discord.Member, *, reason: str):
             embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
             await ctx.send(embed=embed)
         await user.kick(reason="N/A")
-        logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
+        logch = None
+        for key, value in punishLogs.items():
+            if int(key) == message.author.guild.id:
+                logch = bot.get_channel(int(value))
+        if logch is None:
+            return
         log = discord.Embed(description="Used command ``!kick`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
             ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
         log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -239,7 +274,12 @@ async def kick(ctx, user: discord.Member, *, reason: str):
             embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
             await ctx.send(embed=embed)
         await user.kick(reason=reason)
-        logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
+        logch = None
+        for key, value in punishLogs.items():
+            if int(key) == message.author.guild.id:
+                logch = bot.get_channel(int(value))
+        if logch is None:
+            return
         log = discord.Embed(description="Used command ``!kick`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
             ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
         log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -296,7 +336,12 @@ async def mute(ctx, user: discord.Member, *, reason: str):
             await ctx.send(embed=punishMsg)
             await user.add_roles(mutedrole, reason="N/A")
             await user.edit(mute=True)
-            logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
+            logch = None
+            for key, value in punishLogs.items():
+                if int(key) == message.author.guild.id:
+                    logch = bot.get_channel(int(value))
+            if logch is None:
+                return
             log = discord.Embed(description="Used command ``!mute`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
                 ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
             log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -310,7 +355,12 @@ async def mute(ctx, user: discord.Member, *, reason: str):
             await ctx.send(embed=punishMsg)
             await user.add_roles(mutedrole, reason=reason)
             await user.edit(mute=True)
-            logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
+            logch = None
+            for key, value in punishLogs.items():
+                if int(key) == message.author.guild.id:
+                    logch = bot.get_channel(int(value))
+            if logch is None:
+                return
             log = discord.Embed(description="Used command ``!mute`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
                 ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
             log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -360,7 +410,12 @@ async def unmute(ctx, user: discord.Member):
             await ctx.send(embed=punishMsg)
             await user.remove_roles(mutedrole)
             await user.edit(mute=False)
-            logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
+            logch = None
+            for key, value in punishLogs.items():
+                if int(key) == message.author.guild.id:
+                    logch = bot.get_channel(int(value))
+            if logch is None:
+                return
             log = discord.Embed(description="Used command ``!unmute`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
                 ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
             log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -448,7 +503,12 @@ async def purge(ctx, amount, *, user: discord.Member):
         msg = await ctx.send(embed=embed)
         await asyncio.sleep(5)
         await msg.delete()
-        logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
+        logch = None
+        for key, value in punishLogs.items():
+            if int(key) == message.author.guild.id:
+                logch = bot.get_channel(int(value))
+        if logch is None:
+            return
         log = discord.Embed(description="Used command ``!purge`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
             ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
         log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -470,7 +530,12 @@ async def purge_error(ctx, error):
         msgg = await ctx.send(embed=embed)
         await asyncio.sleep(5)
         msgg.delete()
-        logch = discord.utils.get(ctx.message.author.guild.channels, name="logs")
+        logch = None
+        for key, value in punishLogs.items():
+            if int(key) == message.author.guild.id:
+                logch = bot.get_channel(int(value))
+        if logch is None:
+            return
         log = discord.Embed(
             description="Used command ``!purge`` in {}:\n{}\n\nMod ID: {}".format(ctx.message.channel.mention,
                                                                                   ctx.message.content,
