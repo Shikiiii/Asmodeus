@@ -199,7 +199,7 @@ async def logs_error(ctx, error):
                         embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Uh-oh! Edit logs aren't enabled for this server, so you can't disable them.".format(prefix), color=0x000000)
                         await ctx.send(embed=embed)
                         return
-                 elif type[0] == "member":
+                elif type[0] == "member":
                     chan = None
                     check = False
                     for key, value in memberLogs.items():
