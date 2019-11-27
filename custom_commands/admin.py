@@ -31,7 +31,7 @@ async def logs(ctx, type, chan: discord.TextChannel):
                 await ctx.send(embed=embed)
                 return
         message = await storageD.send("{}|{}".format(str(ctx.guild.id), str(chan.id)))
-        deleteLogsToDelete[ctx.guild.id] = message.id
+        deleteLogsToDelete[ctx.guild.id] = str(message.id)
         embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :green_circle: Deleted logs enabled! Channel set to {}.".format(chan.mention), color=0x000000)
         await ctx.send(embed=embed)
     elif type == "edit":
@@ -167,7 +167,7 @@ async def logs_error(ctx, error):
                         if int(key) == int(chan.id):
                             msg = chan.fetch_message(int(value))
                             await msg.delete()
-                    del deleteLogsToDelete[int(chan.id)]
+                    del deleteLogsToDelete[str(chan.id)]
                     embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Delete logs have been disabled for this server.".format(prefix), color=0x000000)
                     await ctx.send(embed=embed)
                     return
@@ -188,7 +188,7 @@ async def logs_error(ctx, error):
                         if int(key) == int(chan.id):
                             msg = chan.fetch_message(int(value))
                             await msg.delete()
-                    del editLogsToDelete[int(chan.id)]
+                    del editLogsToDelete[str(chan.id)]
                     embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Edit logs have been disabled for this server.".format(prefix), color=0x000000)
                     await ctx.send(embed=embed)
                     return
@@ -209,7 +209,7 @@ async def logs_error(ctx, error):
                         if int(key) == int(chan.id):
                             msg = chan.fetch_message(int(value))
                             await msg.delete()
-                    del memberLogsToDelete[int(chan.id)]
+                    del memberLogsToDelete[str(chan.id)]
                     embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Member join/leave logs have been disabled for this server.".format(prefix), color=0x000000)
                     await ctx.send(embed=embed)
                     return
@@ -230,7 +230,7 @@ async def logs_error(ctx, error):
                         if int(key) == int(chan.id):
                             msg = chan.fetch_message(int(value))
                             await msg.delete()
-                    del punishLogsToDelete[int(chan.id)]
+                    del punishLogsToDelete[str(chan.id)]
                     embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Punishment logs have been disabled for this server.".format(prefix), color=0x000000)
                     await ctx.send(embed=embed)
                     return
