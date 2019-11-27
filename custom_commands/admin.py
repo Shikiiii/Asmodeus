@@ -223,7 +223,7 @@ async def logs_error(ctx, error):
                 for key, value in punishLogs.items():
                     if key == ctx.guild.id:
                         check = True
-                         chan = bot.get_channel(int(value))
+                        chan = bot.get_channel(int(value))
                 if check == True:
                     del punishLogs[ctx.guild.id]
                     for key, value in punishLogsToDelete.items():
