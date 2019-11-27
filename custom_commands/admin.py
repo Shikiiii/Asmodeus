@@ -66,7 +66,7 @@ async def logs(ctx, type, chan: discord.TextChannel):
         memberLogsToDelete[ctx.guild.id] = message.id
         embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :green_circle: Member join/leave enabled! Channel set to {}.".format(chan.mention), color=0x000000)
         await ctx.send(embed=embed)
-    elif type == "punishment":
+    elif type == "punish":
         punishLogsToDelete[ctx.guild.id] = chan.id
         storage = bot.get_guild(646432280365236235)
         storageP= storage.get_channel(648951548809838628)
@@ -98,10 +98,48 @@ async def logs_error(ctx, error):
     elif isinstance(error, commands.BadArgument):
         typee = ctx.message.content[6:]
         type = typee.split(" ")
-        if type[1] == "disable":
+        checking = False
+        disabling = False
+        if len(type[0]) > 0:
+            if type[0] == "delete" or type[0] == "edit" or type[0] == "member" or type[0] == "punish":
+                if len(type[1]) > 0:
+                    disabling = True
+                else if len(type[1]) == 0:
+                    checking = True
+        if checking == True:
             if type[0] == "delete":
-                # delete from dict and from channel
+                for key, value in deleteLogs.items():
+                    if int(key) == ctx.guild.id:
+                        chan = bot.get_channel(int(value))
+                        embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Delete logs are enabled for this server in {}.".format(prefix, chan.mention), color=0x000000)
+                        await ctx.send(embed=embed)
+                        return
+                embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Delete logs aren't enabled for this server.".format(prefix), color=0x000000)
+                await ctx.send(embed=embed)
                 return
+        if disabling == True:
+            if type[1] == "disable":
+                if type[0] == "delete":
+                    chan = None
+                    check = False
+                    for key, value in deleteLogs.items():
+                        if key == ctx.guild.id:
+                            check = True
+                            chan = bot.get_channel(int(value))
+                    if check == True:
+                        del deleteLogs[ctx.guild.id]
+                        for key, value in deleteLogsToDelete.items():
+                            if int(key) == int(chan.id):
+                                msg = chan.fetch_message(int(value))
+                                await msg.delete()
+                        del deleteLogsToDelete[int(chan.id)]
+                        embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Delete logs have been disabled for this server.".format(prefix), color=0x000000)
+                        await ctx.send(embed=embed)
+                        return
+                    else:
+                        embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Uh-oh! Delete logs aren't enabled for this server, so you can't disable them.".format(prefix), color=0x000000)
+                        await ctx.send(embed=embed)
+                        return
             
         
     
