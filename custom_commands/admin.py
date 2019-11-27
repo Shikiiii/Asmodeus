@@ -208,7 +208,7 @@ async def logs_error(ctx, error):
                     del deleteLogs[ctx.guild.id]
                     for key, value in deleteLogsToDelete.items():
                         if int(key) == ctx.guild.id:
-                            msg = storageD.fetch_message(int(value))
+                            msg = await storageD.fetch_message(int(value))
                             await msg.delete()
                     del deleteLogsToDelete[ctx.guild.id]
                     embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Delete logs have been disabled for this server.".format(prefix), color=0x000000)
@@ -231,7 +231,7 @@ async def logs_error(ctx, error):
                     del editLogs[ctx.guild.id]
                     for key, value in editLogsToDelete.items():
                         if int(key) == ctx.guild.id:
-                            msg = storageE.fetch_message(int(value))
+                            msg = await storageE.fetch_message(int(value))
                             await msg.delete()
                     del editLogsToDelete[ctx.guild.id]
                     embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Edit logs have been disabled for this server.".format(prefix), color=0x000000)
@@ -254,7 +254,7 @@ async def logs_error(ctx, error):
                     del memberLogs[ctx.guild.id]
                     for key, value in memberLogsToDelete.items():
                         if int(key) == ctx.guild.id:
-                            msg = storageMM.fetch_message(int(value))
+                            msg = await storageMM.fetch_message(int(value))
                             await msg.delete()
                     del memberLogsToDelete[ctx.guild.id]
                     embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Member join/leave logs have been disabled for this server.".format(prefix), color=0x000000)
@@ -277,7 +277,7 @@ async def logs_error(ctx, error):
                     del punishLogs[ctx.guild.id]
                     for key, value in punishLogsToDelete.items():
                         if int(key) == ctx.guild.id:
-                            msg = storageP.fetch_message(int(value))
+                            msg = await storageP.fetch_message(int(value))
                             await msg.delete()
                     del punishLogsToDelete[ctx.guild.id]
                     embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ Punishment logs have been disabled for this server.".format(prefix), color=0x000000)
