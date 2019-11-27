@@ -36,7 +36,7 @@ async def logs(ctx, type, chan: discord.TextChannel):
         await ctx.send(embed=embed)
     elif type == "edit":
         print("Type is edit!")
-        editLogsToDelete[ctx.guild.id] = chan.id
+        editLogs[ctx.guild.id] = chan.id
         print("ok, i got the storage channels")
         storage = bot.get_guild(646432280365236235)
         storageE = storage.get_channel(648951532905037834)
@@ -65,7 +65,7 @@ async def logs(ctx, type, chan: discord.TextChannel):
         print("sending!")
         await ctx.send(embed=embed)
     elif type == "member":
-        memberLogsToDelete[ctx.guild.id] = chan.id
+        memberLogs[ctx.guild.id] = chan.id
         storage = bot.get_guild(646432280365236235)
         storageMM = storage.get_channel(648951574319726592)
         for key, value in memberLogsToDelete.items():
@@ -81,7 +81,7 @@ async def logs(ctx, type, chan: discord.TextChannel):
         embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :green_circle: Member join/leave enabled! Channel set to {}.".format(chan.mention), color=0x000000)
         await ctx.send(embed=embed)
     elif type == "punish":
-        punishLogsToDelete[ctx.guild.id] = chan.id
+        punishLogs[ctx.guild.id] = chan.id
         storage = bot.get_guild(646432280365236235)
         storageP= storage.get_channel(648951548809838628)
         for key, value in punishLogsToDelete.items():
