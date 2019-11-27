@@ -35,6 +35,7 @@ async def logs(ctx, type, chan: discord.TextChannel):
         embed = discord.Embed(title="{}".format(ctx.message.author.name), description=".҉ :green_circle: Deleted logs enabled! Channel set to {}.".format(chan.mention), color=0x000000)
         await ctx.send(embed=embed)
     elif type == "edit":
+        print("Type is edit!")
         editLogsToDelete[ctx.guild.id] = chan.id
         storage = bot.get_guild(646432280365236235)
         storageE = storage.get_channel(648951532905037834)
