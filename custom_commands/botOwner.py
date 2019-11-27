@@ -19,6 +19,14 @@ from common_vars import *
 #async def update(ctx):
 #    embed = discord.Embed(title="0.7 has been pushed to the repository.", description="")
 
+@bot.command(name="update0.7")
+@commands.is_owner()
+async def update(ctx):
+    embed = discord.Embed(title="0.7 has been deployed to the repository.", description="**__New Stuff:_**\n\n> Added 2 new reaction commands: ``poke`` and ``facepalm``.\n> Added a nick command to change yours or another member's nickname, depending on your permissions.\n> Probably the most requested feature now, added a way to change the prefix using the ``prefix`` command. Thanks for the patience OtakuStream and Liquid Rose!\n> Added a starboard! To set the channel where the starboards go, use the ``starboard`` command. A message requires 5 :star: reactions to be added to the starboard. This will be changeable in the future.\n> Addedd confessions! Let your dark secrets out. All secrets are anonymous, even to the bot developer. For you admins, set the confessions channel using ``setconfess``, and for you users, confess something by doing ``confess [message]``.\n> Added a way to choose your own mute role! Now ``mute`` won't work unless you set a role first using ``setmuted``.\n> Added logs! There are 4 type of logs right now: ``delete``, ``edit``, ``member`` and ``punish``. To set them up, use ``cmdhelp logs``.\n> Now when you mention the bot, it'll give you your prefix, starboard channel, confess channel, muted role and logs' channels. Thank me later.\n> And most importantly, finally splitted the bot into small files of groups so the bot can be updated faster. This will help new updates come out sooner!\n\n**__Fixes:__**\n> Ship can also take 1 user as an argument now, the other user will be the message author. And fixed the empty strings bug.\n> Before, typing 'no u' would make the bot spam it, till the end of the world, this has been fixed.\n> Timestamps now work as normal timestamps.\n\n**__Removed:__**\n> ``unban`` and ``unmute`` no longer take a [reason] argument. It was useless anyway.\n> ``afk`` has been disabled because of a bot-breaking bug. It'll be back soon, but upgraded!\n\n[Invite me to your server](https://discordapp.com/oauth2/authorize?client_id=640827656660582400&scope=bot&permissions=2097151191) | [Support server](https://discord.gg/h945y6T) | Bot developed by ``$ ｈｉｋｉ#0081``", timestamp=datetime.utcnow(), color=0x000000)
+    embed.set_author(name="{}".format(bot.user.name), icon_url=bot.user.avatar_url)
+    embed.set_footer(text="Please report any bug found in the support server. Thanks! Updated at:")
+    await ctx.send(embed=embed)
+
 @bot.command()
 @commands.is_owner()
 async def dmAllServer(ctx, servv: int, *, msg: str):
