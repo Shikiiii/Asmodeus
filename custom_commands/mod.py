@@ -58,7 +58,6 @@ async def ban(ctx, user: discord.Member, *, reason: str):
         log = discord.Embed(description="Used command ``!ban`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
             ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
         log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        log.set_footer(text="{}".format(corfor))
         log.set_thumbnail(url=user.avatar_url)
         await logch.send(embed=log)
 
@@ -111,7 +110,6 @@ async def unban(ctx, id: int, *, reason: str = ""):
             log = discord.Embed(description="Used command ``!unban`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
                 ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
             log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            log.set_footer(text="{}".format(corfor))
             log.set_thumbnail(url=user.avatar_url)
             await logch.send(embed=log)
         else:
@@ -123,7 +121,6 @@ async def unban(ctx, id: int, *, reason: str = ""):
             log = discord.Embed(description="Used command ``!unban`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
                 ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
             log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            log.set_footer(text="{}".format(corfor))
             log.set_thumbnail(url=user.avatar_url)
             await logch.send(embed=log)
         await ctx.message.guild.unban(banEntry.user, reason="Unbanned by mod.")
@@ -168,7 +165,6 @@ async def banid(ctx, id: int, *, reason: str):
         log = discord.Embed(description="Used command ``!banid`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
             ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
         log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        log.set_footer(text="{}".format(corfor))
         log.set_thumbnail(url=user.avatar_url)
         await logch.send(embed=log)
         await ctx.message.guild.ban(discord.Object(id=id), reason="N/A")
@@ -182,7 +178,6 @@ async def banid(ctx, id: int, *, reason: str):
         log = discord.Embed(description="Used command ``!banid`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
             ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
         log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        log.set_footer(text="{}".format(corfor))
         log.set_thumbnail(url=user.avatar_url)
         await logch.send(embed=log)
         
@@ -228,7 +223,6 @@ async def kick(ctx, user: discord.Member, *, reason: str):
         log = discord.Embed(description="Used command ``!kick`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
             ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
         log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        log.set_footer(text="{}".format(corfor))
         log.set_thumbnail(url=user.avatar_url)
         await logch.send(embed=log)
     else:
@@ -249,7 +243,6 @@ async def kick(ctx, user: discord.Member, *, reason: str):
         log = discord.Embed(description="Used command ``!kick`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
             ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
         log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        log.set_footer(text="{}".format(corfor))
         log.set_thumbnail(url=user.avatar_url)
         await logch.send(embed=log)
 
@@ -307,7 +300,6 @@ async def mute(ctx, user: discord.Member, *, reason: str):
             log = discord.Embed(description="Used command ``!mute`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
                 ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
             log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            log.set_footer(text="{}".format(corfor))
             log.set_thumbnail(url=user.avatar_url)
             await logch.send(embed=log)
             
@@ -322,7 +314,6 @@ async def mute(ctx, user: discord.Member, *, reason: str):
             log = discord.Embed(description="Used command ``!mute`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
                 ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
             log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            log.set_footer(text="{}".format(corfor))
             log.set_thumbnail(url=user.avatar_url)
             await logch.send(embed=log)
         
@@ -373,7 +364,6 @@ async def unmute(ctx, user: discord.Member):
             log = discord.Embed(description="Used command ``!unmute`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
                 ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
             log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-            log.set_footer(text="{}".format(corfor))
             log.set_thumbnail(url=user.avatar_url)
             await logch.send(embed=log)
     else:
@@ -462,7 +452,6 @@ async def purge(ctx, amount, *, user: discord.Member):
         log = discord.Embed(description="Used command ``!purge`` in {}:\n{}\n\nMod ID: {}\nUser ID: {}".format(
             ctx.message.channel.mention, ctx.message.content, ctx.message.author.id, user.id), color=0xFFFFFF, timestamp=datetime.utcnow())
         log.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        log.set_footer(text="{}".format(corfor))
         log.set_thumbnail(url=user.avatar_url)
         await logch.send(embed=log)
 
