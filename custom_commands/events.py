@@ -134,8 +134,6 @@ async def on_member_join(member):
         await channel.send("{}".format(member.mention), embed=embed)
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
         await loggg.send(f"{member} ({member.mention}, {member.id}) joined.")
-        await asyncio.sleep(60)
-        await msg.delete()
     chan = None
     for key, value in memberLogs.items():
         if int(key) == member.guild.id:
@@ -436,7 +434,7 @@ async def on_message_edit(before, after):
     if before.author.bot == False:
         logch = None
         for key, value in editLogs.items():
-            if int(key) == message.author.guild.id:
+            if int(key) == before.author.guild.id:
                 logch = bot.get_channel(int(value))
         if logch is None:
             return
