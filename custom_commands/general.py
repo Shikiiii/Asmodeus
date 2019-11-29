@@ -195,7 +195,9 @@ async def define(ctx, *, term: str):
         'x-rapidapi-host': "mashape-community-urban-dictionary.p.rapidapi.com",
         'x-rapidapi-key': "41e03ab49dmsh4d6a1ebe8db51dep1009b5jsnc4d2da773e2f"
     }
-    conn.request("GET", f"/define?term={term}", headers=headers)
+    x = term.split(' ')
+    xx = "+".join(x)
+    conn.request("GET", f"/define?term={xx}", headers=headers)
     try:
         res = conn.getresponse()
     except:
