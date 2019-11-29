@@ -196,35 +196,35 @@ async def on_message(message: Message):
                     muted = mutedd.mention
             if muted is None:
                 muted = "Not set, use the ``setmuted`` command to set it. Otherwise ``mute`` wouldn't work."
-            editLogs = None
-            deleteLogs = None
-            memberLogs = None
-            punishLogs = None
+            editLogsS = None
+            deleteLogsS = None
+            memberLogsS = None
+            punishLogsS = None
             for key, value in deleteLogs.items():
                 if int(key) == message.guild.id:
                     deleteLogss = bot.get_channel(int(value))
-                    deleteLogs = deleteLogss.mention
+                    deleteLogsS = deleteLogss.mention
             if deleteLogs is None:
-                deleteLogs = ":x:"
+                deleteLogsS = ":x:"
             for key, value in editLogs.items():
                 if int(key) == message.guild.id:
                     editLogss = bot.get_channel(int(value))
-                    editLogs = editLogss.mention
+                    editLogsS = editLogss.mention
             if editLogs is None:
-                editLogs = ":x:"
+                editLogsS = ":x:"
             for key, value in memberLogs.items():
                 if int(key) == message.guild.id:
                     memberLogss = bot.get_channel(int(value))
-                    memberLogs = memberLogss.mention
+                    memberLogsS = memberLogss.mention
             if memberLogs is None:
-                memberLogs = ":x:"
+                memberLogsS = ":x:"
             for key, value in punishLogs.items():
                 if int(key) == message.guild.id:
                     punishLogss = bot.get_channel(int(value))
-                    punishLogs = punishLogss.mention
+                    punishLogsS = punishLogss.mention
             if punishLogs is None:
-                punishLogs = ":x:"
-            embed=discord.Embed(description="Haay! Here to help you.\n**Server prefix:** ``{}``\n**Starboard channel:** {}\n**Confess channel:** {}\n**Muted role:** {}\n\n**Logs:**\n``Delete:`` {}\n``Edit:`` {}\n``Member:`` {}\n``Punish:`` {}".format(str(prefix), sb, confess, muted, deleteLogs, editLogs, memberLogs, punishLogs), color=0x000000, timestamp=datetime.utcnow()) 
+                punishLogsS = ":x:"
+            embed=discord.Embed(description="Haay! Here to help you.\n**Server prefix:** ``{}``\n**Starboard channel:** {}\n**Confess channel:** {}\n**Muted role:** {}\n\n**Logs:**\n``Delete:`` {}\n``Edit:`` {}\n``Member:`` {}\n``Punish:`` {}".format(str(prefix), sb, confess, muted, deleteLogsS, editLogsS, memberLogsS, punishLogsS), color=0x000000, timestamp=datetime.utcnow()) 
             embed.set_author(name="{}".format(bot.user.name), icon_url=bot.user.avatar_url)
             embed.set_thumbnail(url=message.guild.icon_url)
             await message.channel.send(embed=embed)
