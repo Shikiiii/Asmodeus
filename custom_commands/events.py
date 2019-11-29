@@ -192,7 +192,7 @@ async def on_message(message: Message):
             muted = None
             for key, value in serverMuted.items():
                 if int(key) == message.guild.id:
-                    mutedd = await message.guild.get_role(int(value))
+                    mutedd = message.guild.get_role(int(value))
                     muted = mutedd.mention
             if muted is None:
                 muted = "Not set, use the ``setmuted`` command to set it. Otherwise ``mute`` wouldn't work."
