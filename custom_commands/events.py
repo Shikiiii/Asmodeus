@@ -121,7 +121,7 @@ async def on_member_join(member):
         rol = discord.utils.get(member.guild.roles, name="Members 💖")
         await member.add_roles(rol)
         mbrcnt = bot.get_channel(642482823445479424)
-        await mbrcnt.edit(name="{} SNOWIES ❄️".format(member.guild.member_count))
+        #await mbrcnt.edit(name="{} SNOWIES ❄️".format(member.guild.member_count))
         channel = bot.get_channel(642482771511476234)
         channel2 = bot.get_channel(642482763295096857)
         channel3 = bot.get_channel(642482769049681930)
@@ -147,7 +147,7 @@ async def on_member_join(member):
 async def on_member_remove(member):
     if member.guild.id == 642429293330300971:
         mbrcnt = bot.get_channel(642482823445479424)
-        await mbrcnt.edit(name="{} SNOWIES ❄️".format(member.guild.member_count))
+        #await mbrcnt.edit(name="{} SNOWIES ❄️".format(member.guild.member_count))
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
         await loggg.send(f"{member} ({member.mention}, {member.id}) left.")
     chan = None
