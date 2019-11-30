@@ -50,6 +50,8 @@ confessChannels = {}
 confessChannelsToDelete = {}
 
 balances = {}
+descriptions = {}
+married = {}
 
 deleteLogs = {}
 deleteLogsToDelete = {}
