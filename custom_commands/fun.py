@@ -61,7 +61,7 @@ async def marry(ctx, *, user: discord.Member):
                 elif int(key) == user.id:
                     message2 = await storageUP.fetch_message(int(value))
             for key, value in balances.items():
-                if int(key) == author.id
+                if int(key) == author.id:
                     authorBal = int(value)
                 elif int(key) == user.id:
                     userBal = int(value)
