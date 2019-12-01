@@ -45,47 +45,52 @@ async def marry(ctx, *, user: discord.Member):
         def check(m):
             return m.author.id == user.id and m.channel == ctx.message.channel
 
-        msg = await client.wait_for('message', check=check, timeout=300.0)
-
-        if msg.content == "y" or msg.content == "yes":
-            # What I need to do here: send a message, add both users to the dict (BOTH DICTS), check if they have messages, if not, send them. Good luck me!
-            married[author_id] = user.id
-            married[user.id] = author_id
-            message1 = None
-            message2 = None
-            authorBal = 0
-            userBal = 0
-            for key, value in balancesToDelete.items():
-                if int(key) == author_id:
-                    message1 = await storageUP.fetch_message(int(value))
-                elif int(key) == user.id:
-                    message2 = await storageUP.fetch_message(int(value))
-            for key, value in balances.items():
-                if int(key) == author.id:
-                    authorBal = int(value)
-                elif int(key) == user.id:
-                    userBal = int(value)
-            if message1 is None:
-                message = await storageUP.send("{}|{}|{}".format(author_id, user.id, authorBal))
-                marriedToDelete[author_id] = message.id
-            else:
-                await message1.edit(content="{}|{}|{}".format(author_id, user.id, authorBal))
-            if message2 is None:
-                message = await storageUP.send("{}|{}|{}".format(user.id, author_id, userBal))
-                marriedToDelete[user.id] = author_id
-            else:
-                await message2.edit(content="{}|{}|{}".format(user.id, author_id, authorBal))
-            embed2 = discord.Embed("{} and {} are now happily married! Congratulations! :heart:".format(author.mention, user.mention), timestamp=datetime.utcnow(), color=0xffff66)
-            embed2.set_author(name=bot.user.name, icon_url=bot.avatar_url)
-            await ctx.send(embed=embed2)
-        elif msg.content == "n" or msg.content == "no":
+        try:
+            msg = await client.wait_for('message', check=check, timeout=300.0)
+        except asyncio.TimeoutError:
             embed2 = discord.Embed("Well, I guess the marriage isn't happening. :(", timestamp=datetime.utcnow(), color=0x000000)
             await ctx.send(embed=embed2)
             return
         else:
-            embed2 = discord.Embed("Well, I guess the marriage isn't happening. :(", timestamp=datetime.utcnow(), color=0x000000)
-            await ctx.send(embed=embed2)
-            return
+            if msg.content == "y" or msg.content == "yes":
+                # What I need to do here: send a message, add both users to the dict (BOTH DICTS), check if they have messages, if not, send them. Good luck me!
+                married[author_id] = user.id
+                married[user.id] = author_id
+                message1 = None
+                message2 = None
+                authorBal = 0
+                userBal = 0
+                for key, value in balancesToDelete.items():
+                    if int(key) == author_id:
+                        message1 = await storageUP.fetch_message(int(value))
+                    elif int(key) == user.id:
+                        message2 = await storageUP.fetch_message(int(value))
+                for key, value in balances.items():
+                    if int(key) == author.id:
+                        authorBal = int(value)
+                    elif int(key) == user.id:
+                        userBal = int(value)
+                if message1 is None:
+                    message = await storageUP.send("{}|{}|{}".format(author_id, user.id, authorBal))
+                    marriedToDelete[author_id] = message.id
+                else:
+                    await message1.edit(content="{}|{}|{}".format(author_id, user.id, authorBal))
+                if message2 is None:
+                    message = await storageUP.send("{}|{}|{}".format(user.id, author_id, userBal))
+                    marriedToDelete[user.id] = author_id
+                else:
+                    await message2.edit(content="{}|{}|{}".format(user.id, author_id, authorBal))
+                embed2 = discord.Embed("{} and {} are now happily married! Congratulations! :heart:".format(author.mention, user.mention), timestamp=datetime.utcnow(), color=0xffff66)
+                embed2.set_author(name=bot.user.name, icon_url=bot.avatar_url)
+                await ctx.send(embed=embed2)
+            elif msg.content == "n" or msg.content == "no":
+                embed2 = discord.Embed("Well, I guess the marriage isn't happening. :(", timestamp=datetime.utcnow(), color=0x000000)
+                await ctx.send(embed=embed2)
+                return
+            else:
+                embed2 = discord.Embed("Well, I guess the marriage isn't happening. :(", timestamp=datetime.utcnow(), color=0x000000)
+                await ctx.send(embed=embed2)
+                return
             
 @marry.error
 async def marry_error(ctx, error):
