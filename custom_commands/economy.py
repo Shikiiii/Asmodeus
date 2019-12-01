@@ -27,6 +27,7 @@ async def convertSecs(seconds: int):
 async def daily(ctx):
     for key, value in balances.items():
         if int(key) == ctx.message.author.id:
+            print(balances)
             bal = int(value)
             new_bal = bal+500
             balances[str(key)] = new_bal
@@ -49,6 +50,7 @@ async def daily(ctx):
             embed.set_author(name="{}".format(ctx.message.author.name), icon_url=ctx.message.author.avatar_url)
             await ctx.send(embed=embed)
             return
+    storageUP = storage.get_channel(646432281287852057)
     msg = None
     bal = 2500
     newDB = ctx.message.author.id
