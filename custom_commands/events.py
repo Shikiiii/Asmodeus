@@ -39,7 +39,7 @@ async def on_ready():
         x = message.content.split("|")
         userID = x[0]
         marriedTo = x[1]
-        balance[2]
+        balance = x[2]
         balances[int(userID)] = int(balance)
         balancesToDelete[int(userID)] = message.id
         married[int(userID)] = int(marriedTo)
