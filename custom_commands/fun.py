@@ -87,7 +87,19 @@ async def marry(ctx, *, user: discord.Member):
             await ctx.send(embed=embed2)
             return
             
-
+@marry.error
+async def marry_error(ctx, error):
+    if isinstance(error, commands.BadArgument):
+        embed = discord.Embed("Member not found.", timestamp=datetime.utcnow(), color=0xff0000)
+        embed.set_author(name=ctx.message.author.name, icon_url=ctx.message.author.avatar_url)
+        await ctx.send(embed=embed)
+    elif isinstance(error, commands.MissingRequiredArgument):
+        embed = discord.Embed("Whom do you want to marry, cmon, just give me a member.", timestamp=datetime.utcnow(), color=0xff0000)
+        embed.set_author(name=ctx.message.author.name, icon_url=ctx.message.author.avatar_url)
+        await ctx.send(embed=embed)
+    else:
+        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+        traceback.print_exception(type(error), error, None, file=sys.stderr)
 
 @bot.command()
 async def pat(ctx, *, user: discord.Member):
