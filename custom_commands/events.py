@@ -32,7 +32,18 @@ async def on_ready():
     storageE = storage.get_channel(648951532905037834)
     storageMM = storage.get_channel(648951574319726592)
     storageP= storage.get_channel(648951548809838628)
+    storageUP = storage.get_channel(646432281287852057)
+    
     # Here, we get the prefixes, so we don't have to scan the channel everytime a command is ran. - Shiki
+    async for message in storageUP.history():
+        x = message.content.split("|")
+        userID = x[0]
+        marriedTo = x[1]
+        balance[2]
+        balances[int(userID)] = int(balance)
+        balancesToDelete[int(userID)] = message.id
+        married[int(userID)] = int(marriedTo)
+        marriedToDelete[int(userID)] = message.id
     async for message in storageP.history():
         x = message.content.split("|")
         guildID = x[0]
