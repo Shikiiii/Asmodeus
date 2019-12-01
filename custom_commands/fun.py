@@ -34,11 +34,11 @@ async def marry(ctx, *, user: discord.Member):
                 embed.set_author(name="{}".format(author.name), icon_url=author.avatar_url)
                 await ctx.send(embed=embed)
                 return
-        embed = discord.Embed(description="DAMN, you trying to cheat on {}? I've notified them, just so you know...".format(marriedTo.mention), timestamp=datetime.utcnow(), color=0x000000)
-        embed.set_author(name="{}".format(author.name), icon_url=author.avatar_url)
-        notify = await ctx.send(embed=embed)
-        await marriedTo.send("Ay yo ma, **{}** tried to cheat on you with **{}** in {}.".format(author.name, user.name, ctx.message.channel.mention))
-        return
+            embed = discord.Embed(description="DAMN, you trying to cheat on {}? I've notified them, just so you know...".format(marriedTo.mention), timestamp=datetime.utcnow(), color=0x000000)
+            embed.set_author(name="{}".format(author.name), icon_url=author.avatar_url)
+            notify = await ctx.send(embed=embed)
+            await marriedTo.send("Ay yo ma, **{}** tried to cheat on you with **{}** in {}.".format(author.name, user.name, ctx.message.channel.mention))
+            return
     else:
         embed = discord.Embed(description="{}, {} wants to marry you. Do you accept? ``y`` / ``n``".format(user.mention, author.mention), color=0x99ccff)
         await ctx.send(embed=embed)
