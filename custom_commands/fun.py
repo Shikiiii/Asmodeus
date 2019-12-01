@@ -107,12 +107,12 @@ async def marry_error(ctx, error):
                 except: 
                     continue
         if marriedUser is None:
-            embed = discord.Embed("Whom do you want to marry, cmon, just give me a member.", timestamp=datetime.utcnow(), color=0xff0000)
+            embed = discord.Embed(description="Whom do you want to marry, cmon, just give me a member.", timestamp=datetime.utcnow(), color=0xff0000)
             embed.set_author(name=ctx.message.author.name, icon_url=ctx.message.author.avatar_url)
             await ctx.send(embed=embed)
             return
         else:
-            embed = discord.Embed("You're currently married to {}.".format(marriedUser.mention), timestamp=datetime.utcnow(), color=0xff0000)
+            embed = discord.Embed(description="You're currently married to {}.".format(marriedUser.mention), timestamp=datetime.utcnow(), color=0xff0000)
             embed.set_author(name=ctx.message.author.name, icon_url=ctx.message.author.avatar_url)
             await ctx.send(embed=embed)
     else:
