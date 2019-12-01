@@ -47,7 +47,7 @@ async def marry(ctx, *, user: discord.Member):
             return m.author.id == user.id and m.channel == ctx.message.channel
 
         try:
-            msg = await client.wait_for('message', check=check, timeout=300.0)
+            msg = await bot.wait_for('message', check=check, timeout=300.0)
         except asyncio.TimeoutError:
             embed2 = discord.Embed("Well, I guess the marriage isn't happening. :(", timestamp=datetime.utcnow(), color=0x000000)
             await ctx.send(embed=embed2)
