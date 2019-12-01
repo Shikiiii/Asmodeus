@@ -102,7 +102,8 @@ async def marry_error(ctx, error):
         marriedUser = None
         for key, value in married.items():
             if int(key) == ctx.message.author.id:
-                marriedUser = await bot.fetch_user(int(value))
+                try:
+                    marriedUser = await bot.fetch_user(int(value))
         if marriedUser is None:
             embed = discord.Embed("Whom do you want to marry, cmon, just give me a member.", timestamp=datetime.utcnow(), color=0xff0000)
             embed.set_author(name=ctx.message.author.name, icon_url=ctx.message.author.avatar_url)
