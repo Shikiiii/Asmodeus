@@ -25,6 +25,7 @@ async def convertSecs(seconds: int):
 @bot.command()
 @commands.cooldown(1, 86400, BucketType.user)
 async def daily(ctx):
+    storage = bot.get_guild(646432280365236235)
     for key, value in balances.items():
         if int(key) == ctx.message.author.id:
             print(balances)
