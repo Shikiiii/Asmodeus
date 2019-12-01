@@ -34,7 +34,8 @@ async def daily(ctx):
             embed.set_author(name="{}".format(ctx.message.author.name), icon_url=ctx.message.author.avatar_url)
             await ctx.send(embed=embed)
             return
-    balances[ctx.message.author.id] == 2500
+    newDB = ctx.message.author.id
+    balances[newDB] == 2500
     embed = discord.Embed(description="Congratulations on getting your first money! Since this is your first daily, you've been given $2500!", timestamp=datetime.utcnow(), color=0x000000)
     embed.set_author(name="{}".format(ctx.message.author.name), icon_url=ctx.message.author.avatar_url)
     await ctx.send(embed=embed)
