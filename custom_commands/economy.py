@@ -44,7 +44,7 @@ async def daily(ctx):
 @daily.error
 async def daily_error(ctx, error):
     if isinstance(error, commands.CommandOnCooldown):
-        timeLeft = await convertSecs(retry_after)
+        timeLeft = await convertSecs(error.retry_after)
         embed = discord.Embed(description="Whoa there! **Daily** means like, once per day, no? You'll be able to get it again in **{}**, glhf.".format(timeLeft), timestamp=datetime.utcnow())
         embed.set_author(name="{}".format(ctx.message.author.name), icon_url=ctx.message.author.avatar_url)
         await ctx.send(embed=embed)
