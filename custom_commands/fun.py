@@ -25,14 +25,15 @@ async def marry(ctx, *, user: discord.Member):
     if author_id in married:
         marriedTo_id = married[author_id]
         marriedTo = None
-        try:
-            # This try will except if the 'marriedTo' user has left all guilds with the bot.
-            marriedTo = await bot.fetch_user(marriedTo_id)
-        except:
-            embed = discord.Embed(description="Your partner has left all guilds with me (the bot). Please divorce them using the ``divorce`` command.", timestamp=datetime.utcnow(), color=0x000000)
-            embed.set_author(name="{}".format(author.name), icon_url=author.avatar_url)
-            await ctx.send(embed=embed)
-            return
+        if marriedTo_id != 0:
+            try:
+                # This try will except if the 'marriedTo' user has left all guilds with the bot.
+                marriedTo = await bot.fetch_user(marriedTo_id)
+            except:
+                embed = discord.Embed(description="Your partner has left all guilds with me (the bot). Please divorce them using the ``divorce`` command.", timestamp=datetime.utcnow(), color=0x000000)
+                embed.set_author(name="{}".format(author.name), icon_url=author.avatar_url)
+                await ctx.send(embed=embed)
+                return
         embed = discord.Embed(description="DAMN, you trying to cheat on {}? I've notified them, just so you know...".format(marriedTo.mention), timestamp=datetime.utcnow(), color=0x000000)
         embed.set_author(name="{}".format(author.name), icon_url=author.avatar_url)
         notify = await ctx.send(embed=embed)
