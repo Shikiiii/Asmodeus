@@ -13,8 +13,81 @@ from common_vars import *
 from datetime import datetime
 
 # Commands in this file:
-# blush, pat, kiss, hug, cuddle, slap, howgay, 
+# marry, blush, pat, kiss, hug, cuddle, slap, howgay, 
 # howlesbian, thotrate, 8ball,  rate, roast, penis, ship, coinflip
+
+@bot.command()
+async def marry(ctx, *, user: discord.Member):
+    author_id = ctx.message.author.id
+    author = ctx.message.author
+    storage = bot.get_guild(646432280365236235)
+    storageUP = storage.get_channel(646432281287852057)
+    if author_id in married:
+        marriedTo_id = married[author_id]
+        marriedTo = None
+        try:
+            # This try will except if the 'marriedTo' user has left all guilds with the bot.
+            marriedTo = bot.fetch_user(marriedTo_id)
+        except:
+            embed = discord.Embed(description="Your partner has left all guilds with me (the bot). Please divorce them using the ``divorce`` command.", timestamp=datetime.utcnow(), color=0x000000)
+            embed.set_author(name="{}".format(author.name), icon_url=author.avatar_url)
+            await ctx.send(embed=embed)
+            return
+        embed = discord.Embed(description="DAMN, you trying to cheat on {}? I've notified them, just so you know...".format(marriedTo.mention), timestamp=datetime.utcnow(), color=0x000000)
+        embed.set_author(name="{}".format(author.name), icon_url=author.avatar_url)
+        notify = await ctx.send(embed=embed)
+        await marriedTo.send("Ay yo ma, **{}** tried to cheat on you with **{}** in {}.".format(author.name, user.name, ctx.message.channel.mention))
+        return
+    else:
+        embed = discord.Embed(description="{}, {} wants to marry you. Do you accept? ``y`` / ``n``".format(user.mention, author.mention), color=0x99ccff)
+        await ctx.send(embed=embed)
+
+        def check(m):
+            return m.author.id == user.id and m.channel == ctx.message.channel
+
+        msg = await client.wait_for('message', check=check)
+
+        if msg.content == "y" or msg.content == "yes":
+            # What I need to do here: send a message, add both users to the dict (BOTH DICTS), check if they have messages, if not, send them. Good luck me!
+            married[author_id] = user.id
+            married[user.id] = author_id
+            message1 = None
+            message2 = None
+            authorBal = 0
+            userBal = 0
+            for key, value in balancesToDelete.items():
+                if int(key) == author_id:
+                    message1 = await storageUP.fetch_message(int(value))
+                elif int(key) == user.id:
+                    message2 = await storageUP.fetch_message(int(value))
+            for key, value in balances.items():
+                if int(key) == author.id
+                    authorBal = int(value)
+                elif int(key) == user.id:
+                    userBal = int(value)
+            if message1 is None:
+                message = await storageUP.send("{}|{}|{}".format(author_id, user.id, authorBal))
+                marriedToDelete[author_id] = message.id
+            else:
+                await message1.edit(content="{}|{}|{}".format(author_id, user.id, authorBal))
+            if message2 is None:
+                message = await storageUP.send("{}|{}|{}".format(user.id, author_id, userBal))
+                marriedToDelete[user.id] = author_id
+            else:
+                await message2.edit(content="{}|{}|{}".format(user.id, author_id, authorBal))
+            embed2 = discord.Embed("{} and {} are now happily married! Congratulations! :heart:".format(author.mention, user.mention), timestamp=datetime.utcnow(), color=0xffff66)
+            embed2.set_author(name=bot.user.name, icon_url=bot.avatar_url)
+            await ctx.send(embed=embed2)
+        elif msg.content == "n" or msg.content == "no":
+            embed2 = discord.Embed("Well, I guess the marriage isn't happening. :(", timestamp=datetime.utcnow(), color=0x000000)
+            await ctx.send(embed=embed2)
+            return
+        else:
+            embed2 = discord.Embed("Well, I guess the marriage isn't happening. :(", timestamp=datetime.utcnow(), color=0x000000)
+            await ctx.send(embed=embed2)
+            return
+            
+
 
 @bot.command()
 async def pat(ctx, *, user: discord.Member):
