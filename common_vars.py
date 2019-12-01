@@ -52,6 +52,9 @@ confessChannelsToDelete = {}
 balances = {}
 descriptions = {}
 married = {}
+balancesToDelete = {}
+descriptionsToDelete = {}
+marriedToDelete = {}
 
 deleteLogs = {}
 deleteLogsToDelete = {}
