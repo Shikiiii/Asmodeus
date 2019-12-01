@@ -20,7 +20,7 @@ async def convertSecs(seconds: int):
     seconds %= 60
     hours = minutes/60
     minutes %= 60
-    return "{}H{}M{}S".format(int(hours), int(minutes), int(seconds))
+    return "{}H {}M {}S".format(int(hours), int(minutes), int(seconds))
 
 @bot.command()
 @commands.cooldown(1, 86400, BucketType.user)
