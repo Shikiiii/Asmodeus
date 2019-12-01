@@ -22,7 +22,7 @@ async def marry(ctx, *, user: discord.Member):
     author = ctx.message.author
     storage = bot.get_guild(646432280365236235)
     storageUP = storage.get_channel(646432281287852057)
-    if author_id in married and marriedTo_id != 0:
+    if author_id in married:
         marriedTo = None
         marriedTo_id = married[author_id]
         if marriedTo_id != 0:
