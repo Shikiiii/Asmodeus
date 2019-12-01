@@ -24,6 +24,7 @@ import custom_commands.admin
 import custom_commands.beta
 import custom_commands.botOwner
 import custom_commands.events
+import custom_commands.economy
 
 guild: Optional[Guild] = None
 
