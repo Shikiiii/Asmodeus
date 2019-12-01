@@ -30,11 +30,37 @@ async def daily(ctx):
             bal = int(value)
             new_bal = bal+500
             balances[str(key)] = new_bal
+            storageUP = storage.get_channel(646432281287852057)
+            msg = None
+            for key, value in balancesToDelete.items():
+                if int(key) == ctx.message.author.id:
+                    msg = await storageUP.fetch_message(int(value))
+            married = None
+            for key, value in married.items():
+                if int(key) == ctx.message.author.id:
+                    try:
+                        married = bot.fetch_user(int(value))
+                    except:
+                        married = 0
+            if married is None:
+                married = 0
+            await msg.edit(content="{}|{}|{}".format(ctx.mesage.author.id, married.id, new_bal))
             embed = discord.Embed(description="You claimed your daily $500!", timestamp=datetime.utcnow(), color=0x000000)
             embed.set_author(name="{}".format(ctx.message.author.name), icon_url=ctx.message.author.avatar_url)
             await ctx.send(embed=embed)
             return
+    msg = None
+    bal = 2500
     newDB = ctx.message.author.id
+    for key, value in marriedToDelete.items():
+        if int(key) == ctx.message.author.id:
+            msg = await storageUP.fetch_message(int(value))
+    if msg is None:
+        await msg.edit(content="{}|{}|{}".format(ctx.mesage.author.id, married, bal))
+        balancesToDelete[str(newDB)] = msg.id
+    else:
+        msgg = await storageUP.send("{}|0|{}".format(ctx.message.author.id, bal))
+        balancesToDelete[str(newDB)] = msgg.id
     balances[str(newDB)] = 2500
     embed = discord.Embed(description="Congratulations on getting your first money! Since this is your first daily, you've been given $2500!", timestamp=datetime.utcnow(), color=0x000000)
     embed.set_author(name="{}".format(ctx.message.author.name), icon_url=ctx.message.author.avatar_url)
