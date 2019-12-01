@@ -45,7 +45,7 @@ async def marry(ctx, *, user: discord.Member):
         def check(m):
             return m.author.id == user.id and m.channel == ctx.message.channel
 
-        msg = await client.wait_for('message', check=check)
+        msg = await client.wait_for('message', check=check, timeout=300.0)
 
         if msg.content == "y" or msg.content == "yes":
             # What I need to do here: send a message, add both users to the dict (BOTH DICTS), check if they have messages, if not, send them. Good luck me!
