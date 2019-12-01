@@ -29,13 +29,13 @@ async def daily(ctx):
         if int(key) == ctx.message.author.id:
             bal = int(value)
             new_bal = bal+500
-            balances[str(key)] == new_bal
+            balances[str(key)] = new_bal
             embed = discord.Embed(description="You claimed your daily $500!", timestamp=datetime.utcnow(), color=0x000000)
             embed.set_author(name="{}".format(ctx.message.author.name), icon_url=ctx.message.author.avatar_url)
             await ctx.send(embed=embed)
             return
     newDB = ctx.message.author.id
-    balances[str(newDB)] == 2500
+    balances[str(newDB)] = 2500
     embed = discord.Embed(description="Congratulations on getting your first money! Since this is your first daily, you've been given $2500!", timestamp=datetime.utcnow(), color=0x000000)
     embed.set_author(name="{}".format(ctx.message.author.name), icon_url=ctx.message.author.avatar_url)
     await ctx.send(embed=embed)
