@@ -49,7 +49,7 @@ async def marry(ctx, *, user: discord.Member):
         try:
             msg = await bot.wait_for('message', check=check, timeout=300.0)
         except asyncio.TimeoutError:
-            embed2 = discord.Embed("Well, I guess the marriage isn't happening. :(", timestamp=datetime.utcnow(), color=0x000000)
+            embed2 = discord.Embed(description="Well, I guess the marriage isn't happening. :(", timestamp=datetime.utcnow(), color=0x000000)
             await ctx.send(embed=embed2)
             return
         else:
@@ -81,15 +81,15 @@ async def marry(ctx, *, user: discord.Member):
                     marriedToDelete[user.id] = author_id
                 else:
                     await message2.edit(content="{}|{}|{}".format(user.id, author_id, authorBal))
-                embed2 = discord.Embed("{} and {} are now happily married! Congratulations! :heart:".format(author.mention, user.mention), timestamp=datetime.utcnow(), color=0xffff66)
+                embed2 = discord.Embed(description="{} and {} are now happily married! Congratulations! :heart:".format(author.mention, user.mention), timestamp=datetime.utcnow(), color=0xffff66)
                 embed2.set_author(name=bot.user.name, icon_url=bot.avatar_url)
                 await ctx.send(embed=embed2)
             elif msg.content == "n" or msg.content == "no":
-                embed2 = discord.Embed("Well, I guess the marriage isn't happening. :(", timestamp=datetime.utcnow(), color=0x000000)
+                embed2 = discord.Embed(description="Well, I guess the marriage isn't happening. :(", timestamp=datetime.utcnow(), color=0x000000)
                 await ctx.send(embed=embed2)
                 return
             else:
-                embed2 = discord.Embed("Well, I guess the marriage isn't happening. :(", timestamp=datetime.utcnow(), color=0x000000)
+                embed2 = discord.Embed(description="Well, I guess the marriage isn't happening. :(", timestamp=datetime.utcnow(), color=0x000000)
                 await ctx.send(embed=embed2)
                 return
             
