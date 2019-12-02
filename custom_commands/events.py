@@ -411,6 +411,8 @@ async def on_message(message: Message):
         await message.channel.send("wooden hoe *with loyalty 1")
     elif message.content == "david":
         await message.channel.send("looking at maps")
+    elif message.content == "sora":
+        await message.channel.send("gift me money")
 
     await bot.process_commands(message)
 
