@@ -444,6 +444,8 @@ async def on_message_delete(message: Message):
     if message.author.bot == False:
         if message.content.startswith("!confess"):
             print("Confess was ignored from !snipe.")
+        elif "uwu" in message.content or "UwU" in message.content or "uWu" in message.content or "Uwu" in message.content or "uwU" in message.content:
+            return
         else:
             tosnipe[message.channel.id] = message.content
             tosnipeauthors[message.channel.id] = message.author
