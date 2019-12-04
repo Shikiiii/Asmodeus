@@ -21,15 +21,18 @@ from common_vars import *
 async def setign(ctx, name: str):
   storage = bot.get_guild(646432280365236235)
   storageMC = bot.get_channel(651763336425373707)
-  if mcIGNs[ctx.message.author.id] == name:
-    mcIGNs[ctx.message.author.id] = name
-    msg = mcIGNsToDelete[ctx.message.author.id]
-    await msg.edit(content=f"{ctx.message.author.id}|{name}")
-    return
-  else:
-    mcIGNs[ctx.message.author.id] == name
-    msg = await storageMC.send("{}|{}".format(ctx.message.author.id, name))
-    mcIGNsToDelete[ctx.message.author.id] = msg.id
+  for key, value in mcIGNs.items():
+    if key == ctx.message.author.id:
+      mcIGNs[ctx.message.author.id] = name
+      msg = mcIGNsToDelete[ctx.message.author.id]
+      await msg.edit(content=f"{ctx.message.author.id}|{name}")
+      await ctx.send("Your new **Minecraft In-Game Name** is: ``{}`".format(name))
+      return
+  mcIGNs[ctx.message.author.id] == name
+  msg = await storageMC.send("{}|{}".format(ctx.message.author.id, name))
+  mcIGNsToDelete[ctx.message.author.id] = msg.id
+  await ctx.send("Your new **Minecraft In-Game Name** is: ``{}`".format(name))
+
     
 @setign.error
 async def setign_error(ctx, error):
