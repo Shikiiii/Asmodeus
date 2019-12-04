@@ -13,11 +13,16 @@ from datetime import datetime
 from common_vars import *
 
 # Commands in this file:
-# MCM, servers, server, say, verify, status
+# botban, MCM, servers, server, say, verify, status
 
 #@bot.command()
 #async def update(ctx):
 #    embed = discord.Embed(title="0.7 has been pushed to the repository.", description="")
+
+@bot.command()
+@commands.is_owner()
+async def botban(ctx, user: discord.Member, ):
+    bannedFromCommands[user.id] =
 
 @bot.command(name="update0.7")
 @commands.is_owner()
