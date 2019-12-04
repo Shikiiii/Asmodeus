@@ -39,7 +39,7 @@ async def on_ready():
     async for message in storageMC.history():
         x = message.content.split("|")
         userID = x[0]
-        ign = x[2]
+        ign = x[1]
         mcIGNs[int(userID)] = ign
         mcIGNsToDelete[int(userID)] = message.id
     async for message in storageUP.history():
