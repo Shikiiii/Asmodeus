@@ -66,6 +66,7 @@ punishLogs = {}
 punishLogsToDelete = {}
 
 mcIGNs = {}
+mcIGNsToDelete = {}
 
 async def convert_color_menu(role_number: str):
     if role_number == "1":
