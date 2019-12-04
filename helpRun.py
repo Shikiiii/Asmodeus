@@ -22,10 +22,10 @@ import custom_commands.fun
 import custom_commands.mod
 import custom_commands.admin
 import custom_commands.beta
-import custom_commands.botOwner
+#import custom_commands.botOwner
 import custom_commands.events
 import custom_commands.economy
-import custom_commands.mcserver
+#import custom_commands.mcserver
 
 guild: Optional[Guild] = None
 
