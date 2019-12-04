@@ -26,7 +26,7 @@ async def setign(ctx, name: str):
       mcIGNs[ctx.message.author.id] = name
       msg = mcIGNsToDelete[ctx.message.author.id]
       await msg.edit(content=f"{ctx.message.author.id}|{name}")
-      await ctx.send("Your new **Minecraft In-Game Name** is: ``{}`".format(name))
+      await ctx.send("Your new **Minecraft In-Game Name** is: ``{}``".format(name))
       return
   mcIGNs[ctx.message.author.id] = name
   msg = await storageMC.send("{}|{}".format(ctx.message.author.id, name))
