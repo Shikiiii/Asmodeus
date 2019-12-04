@@ -404,6 +404,8 @@ async def on_message(message: Message):
                 await message.channel.send("{}, your DMs are disabled, so I couldn't DM you the invite link!".format(
                     message.author.mention))
             await msg.delete()
+    elif "uwu" in message.content or "UwU" in message.content or "uWu" in message.content or "Uwu" in message.content or "uwU" in message.content:
+        await message.delete()
     elif message.content == "shiki":
         await message.channel.send("dm <@237938976999079948> with thigh pics for free admin aha x")
     elif message.content == "no u" and message.author.bot == False:
