@@ -117,6 +117,36 @@ async def balance_error(ctx, error):
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
+           
+@bot.command()
+@commands.is_owner()
+async def addmoney(ctx, user: discord.Member, amount: str):
+    bal = balances[user.id]
+    balances[user.id] = int(bal+amount)
+    await ctx.send("**${}** have been added to {}'s profile.".format(amount, user.mention))
+    
+@bot.command()
+@commands.is_owner()
+async def removemoney(ctx, user: discord.Member, amount: str):
+    bal = balances[user.id]
+    balances[user.id] = int(bal-amount)
+    await ctx.send("**${}** have been removed from {}'s profile.".format(amount, user.mention))
+
+@bot.command(aliases=["cf"])
+async def coinflip(ctx):
+    embed1 = discord.Embed(description="Flipping... \n\nResults:", color=0xffffff)
+    embed1.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+    msg = await ctx.send(embed=embed1)
+    await asyncio.sleep(5)
+    rn = random.randint(0, 100)
+    results = " "
+    if rn < 51:
+        results = "HEADS"
+    if rn > 50:
+        results = "TAILS"
+    embed2 = discord.Embed(description="Flipped. \n\nResults: **{}**.".format(results), color=0xe9f542)
+    embed2.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+    await msg.edit(embed=embed2)
         
         
 #@bot.command()
