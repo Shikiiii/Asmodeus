@@ -117,3 +117,7 @@ async def balance_error(ctx, error):
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, None, file=sys.stderr)
+        
+        
+#@bot.command()
+#async d
