@@ -41,7 +41,7 @@ async def daily(ctx):
             for key, value in married.items():
                 if int(key) == ctx.message.author.id:
                     try:
-                        marriedd = bot.fetch_user(int(value))
+                        marriedd = await bot.fetch_user(int(value))
                     except:
                         marriedd = 0
             if marriedd is None:
