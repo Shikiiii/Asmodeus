@@ -55,7 +55,10 @@ async def daily(ctx):
     msg = None
     bal = 2500
     newDB = ctx.message.author.id
-    msg = await storageUP.fetch_message(balancesToDelete[ctx.message.author.id])
+    try:
+        msg = await storageUP.fetch_message(marriedToDelete[ctx.message.author.id])
+    except:
+        msg = None
     if msg is None:
         msgg = await storageUP.send("{}|0|{}".format(ctx.message.author.id, bal))
         balancesToDelete[str(newDB)] = msgg.id
