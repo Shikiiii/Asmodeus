@@ -43,7 +43,7 @@ async def daily(ctx):
                     try:
                         marriedd = bot.fetch_user(int(value))
                     except:
-                        married = 0
+                        marriedd = 0
             if marriedd is None:
                 marriedd = 0
             await msg.edit(content="{}|{}|{}".format(ctx.mesage.author.id, marriedd.id, new_bal))
