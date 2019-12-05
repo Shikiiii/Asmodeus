@@ -122,14 +122,14 @@ async def balance_error(ctx, error):
 @commands.is_owner()
 async def addmoney(ctx, user: discord.Member, amount: str):
     bal = balances[user.id]
-    balances[user.id] = int(bal+amount)
+    balances[user.id] = int(int(bal)+int(amount))
     await ctx.send("**${}** have been added to {}'s profile.".format(amount, user.mention))
     
 @bot.command()
 @commands.is_owner()
 async def removemoney(ctx, user: discord.Member, amount: str):
     bal = balances[user.id]
-    balances[user.id] = int(bal-amount)
+    balances[user.id] = int(int(bal)-int(amount))
     await ctx.send("**${}** have been removed from {}'s profile.".format(amount, user.mention))
 
 @bot.command(aliases=["cf"])
