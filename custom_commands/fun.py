@@ -21,7 +21,7 @@ from datetime import datetime
 #    await ctx.send("{}, this command has been disabled for a rework.".format(ctx.message.author.mention))
 
 @bot.command()
-async def marryy(ctx, *, user: discord.Member):
+async def marry(ctx, *, user: discord.Member):
     author_id = ctx.message.author.id
     author = ctx.message.author
     storage = bot.get_guild(646432280365236235)
