@@ -37,16 +37,16 @@ async def daily(ctx):
             for key, value in balancesToDelete.items():
                 if int(key) == ctx.message.author.id:
                     msg = await storageUP.fetch_message(int(value))
-            married = None
+            marriedd = None
             for key, value in married.items():
                 if int(key) == ctx.message.author.id:
                     try:
-                        married = bot.fetch_user(int(value))
+                        marriedd = bot.fetch_user(int(value))
                     except:
                         married = 0
-            if married is None:
-                married = 0
-            await msg.edit(content="{}|{}|{}".format(ctx.mesage.author.id, married.id, new_bal))
+            if marriedd is None:
+                marriedd = 0
+            await msg.edit(content="{}|{}|{}".format(ctx.mesage.author.id, marriedd.id, new_bal))
             embed = discord.Embed(description="You claimed your daily $500!", timestamp=datetime.utcnow(), color=0x000000)
             embed.set_author(name="{}".format(ctx.message.author.name), icon_url=ctx.message.author.avatar_url)
             await ctx.send(embed=embed)
