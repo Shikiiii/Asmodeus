@@ -334,6 +334,7 @@ async def on_message(message: Message):
                                description="``1`` - **Make sure to follow the [Discord TOS](https://discordapp.com/terms) and the [Community Guidelines](https://discordapp.com/guidelines)**. \n\n``2`` - This is a **friendly community**. Any toxicity, hate or racism is banned.\n\n``3`` - Hard 'R' is banned unless you're black.\n\n``4`` - Playing a mf hacker is a really, really dumb move. Linking someone's personal information (doxing them) would get you instantly banned.\n\n``5`` - Advertising is completely banned (including DM/PM advertising). If someone's DMing you ads of any sort, let staff know, they'll handle it.\n\n``6`` - Respect all members and staff, their decision(s) and wishes.\n\nOther than that, please **use common sense** while you are typing in any of the text channels. This means no spamming, raiding, insulting, etc.\n\nFor any problems: <@237938976999079948> | If you've found any loopholes in the rules, DM <@237938976999079948>.",
                                timestamp=datetime.utcnow(),
                                color=0xC5FCFC)
+        embed1.set_footer(text="Last update:")
         #embed2 = discord.Embed(color=0xC5FCFC)
         #embed2.set_image(url="https://media.giphy.com/media/kD0G3PwfsUhUzQu3QQ/giphy.gif")
         #embed3 = discord.Embed(title="**༚ ✧˳⁺ __Voice Chat rules__ ⁺˳✧ ༚**",
