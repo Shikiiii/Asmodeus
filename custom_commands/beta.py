@@ -22,7 +22,8 @@ async def donate(ctx):
         embed2 = discord.Embed(title="__Donating__", description="<a:hyperpin:653058051263430676> Donating helps out the server **a lot**. If you've got a dollar or two to spare, please do!\n\n<a:redlight:653058051263430676> All donations go towards the server. This includes (but it's not only limited to):\n - <a:hypertada:653058051263430676> Buying promotions for the server.\n - <a:hypertada:653058051263430676> Hosting giveaways.\n - <a:hypertada:653058051263430676> Hosting events with rewards.\n\n<a:hyperpin:653058051263430676> You'll also get some cool stuff:\n    ; <a:confetti:653062614242295818> **5$** or __above__:\n    @here promotion + ChatMod\n    ; <a:confetti:653062614242295818> **10$** or _above__:\n    @everyone promotion + Mod\n\n<a:hyperpin:653062506243293185> [**Donate Now!**](https://www.paypal.me/asmodeusdiscord)", color=0xEEFF03)
         embed2.set_footer(text="If you don't want to pay with PayPal, please DM the owner. Other ways to pay are available. Every payment will stay as 'Pending' until I, the server owner, accept it. Meaning you have enough time to cancel the transaction if you decide to.")
         await ctx.send(embed=embed2)
-        await ctx.send("> For any payment issues/questions please DM <@237938976999079948>. | Direct EMail for donations is ||asmodeus@abv.bg||. Thank you for being an amazing community.
+        await ctx.send("> For any payment issues/questions please DM <@237938976999079948>. | Direct EMail for donations is ||asmodeus@abv.bg||. Thank you for being an amazing community.")
+        
 
 @bot.command()
 @commands.is_owner()
