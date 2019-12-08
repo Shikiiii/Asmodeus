@@ -15,6 +15,12 @@ from common_vars import *
         
 @bot.command()
 @commands.is_owner()
+async def tag(ctx, *, type: str):
+        if type == "boosting":
+                await ctx.send("look dude, it's 5:30am for me (shiki), i need some sleep, i'll add this after i wake up, ok?")
+
+@bot.command()
+@commands.is_owner()
 async def donate(ctx):
         embed1 = discord.Embed(title="__Nitro Boosting__", description="Want to help the server out? Check the list below and see if you meet these requirements:\n\n``1`` <a:hyperpin:653053092128096256> You got boosts that you aren't using?\n``2`` <a:hyperpin:653053092128096256> Do you like this server?\nWell then, feel free to boost our server! \n\n<a:hyperheart:653053504809861150> **Boosters get a lot of perks, if you'd like to see them all, use ``!tag boosting``.** <a:hyperheart:653053504809861150>", color=0xF216F2)
         await ctx.send(embed=embed1)
