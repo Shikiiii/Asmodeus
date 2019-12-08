@@ -112,12 +112,12 @@ async def on_ready():
 async def on_member_update(before, after):
     if before.guild.id == 642429293330300971:
         role = discord.utils.get(after.guild.roles, name="Snowstorms ❄️")
-        if role in after.roles:
+        if role Not in before.roles and role in after.roles:
             embed = discord.Embed(description="just boosted the server! <a:Hearts:653291632535404545>\n\nCheck out your cool perks with ``!tag boosting``. Ily", color=0xF224E5, timestamp=datetime.utcnow())
             embed.set_author(name=after.name, icon_url=after.avatar_url)
             embed.set_thumbnail(url=after.guild.icon_url)
             chan = bot.get_channel(642482771511476234)
-            await ctx.send("{}".format(after.mention), embed=embed)
+            await chan.send("{}".format(after.mention), embed=embed)
 
 @bot.event
 async def on_reaction_add(reaction, user):
