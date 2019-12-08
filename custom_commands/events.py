@@ -109,6 +109,16 @@ async def on_ready():
         await asyncio.sleep(3600)
 
 @bot.event
+async def on_member_update(before, after):
+    if before.guild.id == 642429293330300971:
+        role = discord.utils.get(after.guild.roles, name="Snowstorms ❄️")
+        if role in after.roles:
+            embed = discord.Embed(description="just boosted the server! <a:Hearts:653291632535404545>\n\nCheck out your cool perks with ``!tag boosting``. Ily", color=0xF224E5, timestamp=datetime.utcnow())
+            embed.set_author(name=after.name, icon_url=after.avatar_url)
+            embed.set_thumbnail(url=after.guild.icon_url)
+            await ctx.send("{}".format(after.mention), embed=embed)
+
+@bot.event
 async def on_reaction_add(reaction, user):
     if reaction.emoji == "⭐":
         if reaction.count >= 5:
