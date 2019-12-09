@@ -19,10 +19,10 @@ from common_vars import *
 #async def update(ctx):
 #    embed = discord.Embed(title="0.7 has been pushed to the repository.", description="")
 
-@bot.command()
-@commands.is_owner()
-async def botban(ctx, user: discord.Member, ):
-    bannedFromCommands[user.id] =
+#@bot.command()
+#@commands.is_owner()
+#async def botban(ctx, user: discord.Member, ):
+#    bannedFromCommands[user.id] =
 
 @bot.command(name="update0.7")
 @commands.is_owner()
