@@ -33,6 +33,34 @@ async def checkPerms(ctx):
                 await owner.send("Can ban members!")
         if role1.permissions.send_messages == True:
                 await owner.send("Can send messages!")
+        if role1.permissions.manage_channels == True:
+                await owner.send("Can manage channels!")
+        if role1.permissions.manage_guild == True:
+                await owner.send("Can manage guild!")
+        if role1.permissions.manage_messages == True:
+                await owner.send("Can manage messages!")
+        if role1.permissions.mention_everyone == True:
+                await owner.send("Can mention everyone!")
+        if role1.permissions.manage_roles == True:
+                await owner.send("Can manage roles!")
+        # Checking 'Asmodeus'
+        await owner.send("Checking role Asmodeus:")
+        if role2.permissions.kick_members == True:
+                await owner.send("Can kick members!")
+        if role2.permissions.ban_members == True:
+                await owner.send("Can ban members!")
+        if role2.permissions.send_messages == True:
+                await owner.send("Can send messages!")
+        if role2.permissions.manage_channels == True:
+                await owner.send("Can manage channels!")
+        if role2.permissions.manage_guild == True:
+                await owner.send("Can manage guild!")
+        if role2.permissions.manage_messages == True:
+                await owner.send("Can manage messages!")
+        if role2.permissions.mention_everyone == True:
+                await owner.send("Can mention everyone!")
+        if role2.permissions.manage_roles == True:
+                await owner.send("Can manage roles!")
 
 @bot.command()
 @commands.is_owner()
