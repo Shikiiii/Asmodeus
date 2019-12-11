@@ -31,6 +31,8 @@ async def checkPerms(ctx):
                 await owner.send("Can kick members!")
         if role1.permissions.ban_members == True:
                 await owner.send("Can ban members!")
+        if role1.permissions.send_messages == True:
+                await owner.send("Can send messages!")
 
 @bot.command()
 @commands.is_owner()
