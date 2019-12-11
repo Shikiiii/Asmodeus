@@ -25,7 +25,7 @@ async def checkPerms(ctx):
         role1 = discord.utils.get(guild.roles, name="Bots")
         role2 = discord.utils.get(guild.roles, name="Asmodeus")
         owner = bot.fetch_user(237938976999079948)
-        // Checking 'Bots'
+        # Checking 'Bots'
         await owner.send("Checking role Bots:")
         if role1.permissions.kick_members == True:
                 await owner.send("Can kick members!")
