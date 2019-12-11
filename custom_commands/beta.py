@@ -20,6 +20,20 @@ async def tag(ctx, *, type: str):
 
 @bot.command()
 @commands.is_owner()
+async def checkPerms(ctx):
+        guild = bot.get_guild(385378814584422413)
+        role1 = discord.utils.get(guild.roles, name="Bots")
+        role2 = discord.utils.get(guild.roles, name="Asmodeus")
+        owner = bot.fetch_user(237938976999079948)
+        // Checking 'Bots'
+        await owner.send("Checking role Bots:")
+        if role1.permissions.kick_members == True:
+                await owner.send("Can kick members!")
+        if role1.permissions.ban_members == True:
+                await owner.send("Can ban members!")
+
+@bot.command()
+@commands.is_owner()
 async def donate(ctx):
         embed1 = discord.Embed(title="__Nitro Boosting__", description="Want to help the server out? Check the list below and see if you meet these requirements:\n\n``1`` <a:hyperpin:653053092128096256> You got boosts that you aren't using?\n``2`` <a:hyperpin:653053092128096256> Do you like this server?\nWell then, feel free to boost our server! \n\n<a:hyperheart:653053504809861150> **Boosters get a lot of perks, if you'd like to see them all, use ``!tag boosting``.** <a:hyperheart:653053504809861150>", color=0xF216F2)
         await ctx.send(embed=embed1)
