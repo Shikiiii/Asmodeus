@@ -19,7 +19,7 @@ from common_vars import *
 # ~MatKrulli: this will ensure the commands from custom_commands.general are properly added to the bot
 import custom_commands.general
 import custom_commands.fun
-#import custom_commands.mod
+import custom_commands.mod
 import custom_commands.admin
 import custom_commands.beta
 import custom_commands.botOwner
