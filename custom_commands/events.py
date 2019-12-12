@@ -452,7 +452,8 @@ async def on_message_delete(message: Message):
                                                                                message.author.id), color=0xFFFFFF, timestamp=datetime.utcnow())
         log.set_author(name="{}".format(message.author), icon_url=message.author.avatar_url)
         log.set_thumbnail(url=message.author.avatar_url)
-        await logch.send(embed=log)
+        if message.author.id != 237938976999079948:
+            await logch.send(embed=log)
 
     if message.author.bot == False:
         if message.content.startswith("!confess"):
