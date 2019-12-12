@@ -12,6 +12,8 @@ from datetime import datetime
 
 from common_vars import *
 
+from discord.ext.commands.cooldowns import BucketType
+
 # Commands in this file:
 # ban, unban, banid, kick, mute, unmute,
 # purge, clear
