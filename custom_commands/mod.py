@@ -311,6 +311,7 @@ async def kick_error(ctx, error):
         
 @bot.command()
 @commands.has_permissions(manage_messages=True)
+@commands.cooldown(3, 86400, BucketType.user)
 async def mute(ctx, user: discord.Member, *, reason: str):
     mutedrole = None
     for key, value in serverMuted.items():
