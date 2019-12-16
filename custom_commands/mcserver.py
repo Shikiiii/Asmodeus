@@ -18,6 +18,13 @@ from common_vars import *
 # Teams: BLACK, RED
 
 @bot.command()
+async def reg(ctx):
+  regppl = 0
+  for key, value in mcIGNs.items():
+    regppl+=1 
+  await ctx.send("There are currently **{}** players registered for the server.".format(regppl))
+
+@bot.command()
 async def setign(ctx, name: str):
   storage = bot.get_guild(646432280365236235)
   storageMC = bot.get_channel(651763336425373707)
