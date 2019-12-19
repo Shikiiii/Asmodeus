@@ -19,7 +19,8 @@ async def tag(ctx, *, type: str):
                 await ctx.send(">>> We value every booster. That's why boosters get cool stuff.\n\n``1`` <a:hyperpin:653053092128096256> You get your own custom **role** and **command**, as long as the command isn't very hard to do.\n``2`` <a:hyperpin:653053092128096256> You get your own custom-response from our bot when someone says your name/mentions you.\n``3`` <a:hyperpin:653053092128096256> You get to apply for a ChatMod even if the applications are closed.\n``4`` <a:hyperpin:653053092128096256> Boosters only role, hoisted high in the members.\n``5`` <a:hyperpin:653053092128096256> You get to participate in polls, events and giveaways for boosters only.\n``6`` <a:hyperpin:653053092128096256> Our deepest love. We love every single booster! <a:hyperheart:653053504809861150>\n\nPLEASE boost our server if you like it!")
         elif type == "lang" or type == "language" or type == "english":
                 await ctx.send("**__This is an english server.__**\n\nYou aren't allowed to chat in other languages. Please refrain from using them.\n**Staff is allowed to warn you a few times before taking action.**\n\nSpeaking in other languuages is however allowed.")
-
+        elif type == "bot" or type == "bots":
+                await ctx.send("**Bots are allowed, but spamming bot commands isn't.**\n\nWe all know its annoying to get moved to the bot channel for stuff like hug, kiss, etc. We allow these, but do not flood the chat with bot commands, you'll be muted.")
 
 @bot.command()
 @commands.is_owner()
