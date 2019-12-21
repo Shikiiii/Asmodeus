@@ -19,7 +19,7 @@ from common_vars import *
 
 @bot.command()
 @commands.is_owner()
-async def test(ctx):
+async def test23(ctx):
   await player.send("```yaml\nAsmodeus 1.15.1 | SMP | Open NOW!\n\nBecause you registered with your name ``{}``, I'm here to invite you.\n\n**IP:** play.asmodeusdiscord.com")
 
 @bot.command()
