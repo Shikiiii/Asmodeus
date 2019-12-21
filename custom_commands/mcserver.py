@@ -20,7 +20,7 @@ from common_vars import *
 @bot.command()
 @commands.is_owner()
 async def test23(ctx):
-  await ctx.send("```yaml\nAsmodeus 1.15.1 | SMP | Open NOW!\n\nBecause you registered with your name ``{}``, I'm here to invite you.\n\n**IP:** play.asmodeusdiscord.com")
+  await ctx.send("```yaml\nAsmodeus 1.15.1 | SMP | Open NOW!```\n\nBecause you registered with your name ``{}``, I'm here to invite you.\n\n**IP:** play.asmodeusdiscord.com")
 
 @bot.command()
 @commands.is_owner()
@@ -28,7 +28,7 @@ async def openServer(ctx):
   for key, value in mcIGNs.items():
     player = bot.get_user(int(key))
     try:
-      await player.send("```yaml\nAsmodeus 1.15.1 | SMP | Open NOW!\n\nBecause you registered with your name ``{}``, I'm here to invite you.\n\n**IP:** play.asmodeusdiscord.com".format(str(value)))
+      await player.send("```yaml\nAsmodeus 1.15.1 | SMP | Open NOW!```\n\nBecause you registered with your name ``{}``, I'm here to invite you.\n\n**IP:** play.asmodeusdiscord.com".format(str(value)))
     except:
       shiki = bot.get_user(237938976999079948)
       await shiki.send("Couldn't DM {} with ID {}.".format(player, player.id))
