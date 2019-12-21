@@ -27,6 +27,8 @@ async def test23(ctx):
 async def openServer(ctx):
   for key, value in mcIGNs.items():
     player = bot.get_user(int(key))
+    if player is None:
+      continue
     try:
       await player.send("```yaml\nAsmodeus 1.15.1 | SMP | Open NOW!```\n\nBecause you registered with your name ``{}``, I'm here to invite you.\n\n**IP:** play.asmodeusdiscord.com".format(str(value)))
     except:
