@@ -261,10 +261,11 @@ async def on_message(message: Message):
     #    await message.delete()
     #    return
     if message.channel.id == 642482779111555072 or message.channel.id == 642482779925250067 or message.channel.id == 642482780797665290 or message.channel.id == 642482781812686866:
-        if len(message.attachments) == 0:
-            await message.delete()
-            await message.author.send(
-                "> :red_circle: You're only allowed to post images in {}.".format(message.channel.mention))
+        if len(message.attachments) == 0:   
+            if message.author.id != 237938976999079948:
+                await message.delete()
+                await message.author.send(
+                    "> :red_circle: You're only allowed to post images in {}.".format(message.channel.mention))
     global msgsCounterr
     global msgsCounterrr
     global allTimeMessages
