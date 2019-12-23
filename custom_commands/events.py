@@ -163,6 +163,13 @@ async def on_member_join(member):
         await channel.send("{}".format(member.mention), embed=embed)
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
         await loggg.send(f"{member} ({member.mention}, {member.id}) joined.")
+        try:
+            embed = discord.Embed(description="We're hosting a **Nitro Giveaway** right now, so check it out [here](https://discordapp.com/channels/642429293330300971/642482765396312074/658799967564988419). :heart:")
+            await ctx.send("Hey! Welcome to **Ａｓｍｏｄｅｕｓ❄🎄**. Feel free to chat with us in <#642482771511476234>.", embed=embed)
+        except:
+            giveaway = bot.get_channel(642482765396312074)
+            await giveaway.send("Hey {}, we're hosting a **Nitro Giveaway**. Check it out above!".format(member.mention))
+            
     chan = None
     for key, value in memberLogs.items():
         if int(key) == member.guild.id:
