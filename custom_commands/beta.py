@@ -14,7 +14,7 @@ from common_vars import *
 # none
         
 @bot.command()
-async sef serverAv(ctx):
+async def serverAv(ctx):
         await ctx.send("{}".format(ctx.guild.icon_url))
 
 @bot.command()
