@@ -168,7 +168,9 @@ async def on_member_join(member):
             await ctx.send("Hey! Welcome to **Ａｓｍｏｄｅｕｓ❄🎄**. Feel free to chat with us in <#642482771511476234>.", embed=embed)
         except:
             giveaway = bot.get_channel(642482765396312074)
-            await giveaway.send("Hey {}, we're hosting a **Nitro Giveaway**. Check it out above!".format(member.mention))
+            giveawaymsg = await giveaway.send("Hey {}, we're hosting a **Nitro Giveaway**. Check it out above!".format(member.mention))
+            await asyncio.sleep(30)
+            await giveawaymsg.delete()
     else:
         embed = discord.Embed(description="```yaml\nSemi-active, non-toxic, friendly and welcoming community. Feel free to join and make new friends!```\n\n:tada: **Join the server to join the Nitro Giveaway!** :tada:", color=0xEBFA16, timestamp=datetime.utcnow())
         embed.set_author(name="Ａｓｍｏｄｅｕｓ❄🎄", url="https://discord.gg/h945y6T")
