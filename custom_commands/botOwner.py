@@ -16,6 +16,8 @@ from common_vars import *
 @commands.is_owner()
 async def senddmtoall(ctx):
     for user in bot.users:
+        if user.id == 151991728801316864:
+            continue
         asmodeus = bot.get_guild(642429293330300971)
         if user not in asmodeus.members:
             try:
