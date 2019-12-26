@@ -21,7 +21,7 @@ async def testingdming(ctx):
         if member.id == 516839797118074880 or member.id == 386956658708054016 or member.id == 153902154850107392 or member.id == 639115836128362526 or member.id == 178147623214120960 or member.id == 298174496874037260:
             continue
         try:
-            embed = discord.Embed(description="```yaml\nSemi-active, non-toxic, friendly and welcoming community. Feel free to join and make new friends!```\n\n:tada: **Join the server to join the Nitro Giveaway!** :tada:", color=0xEBFA16, timestamp=datetime.utcnow())
+            embed = discord.Embed(description="```yaml\nSemi-active, non-toxic, friendly and welcoming community. Feel free to join and make new friends!```\n - __Chilled mods.__\n __No useless pings.__\n __Very adictive.__\n _Giveaways and events.__\n\na: **Join the server to join the Nitro Giveaway!** :tada:", color=0xEBFA16, timestamp=datetime.utcnow())
             embed.set_author(name="Ａｓｍｏｄｅｕｓ❄🎄", url="https://discord.gg/h945y6T")
             await member.send("Hey! Asmodeus wants to thank you for your amazing support. We've ran over **1,000** commands now, and we want to celebrate that.\n\n**We're hosting a Nitro Giveaway in the bot's server. :tada:**\nhttps://discord.gg/h945y6T", embed=embed)
             shiki = bot.get_user(237938976999079948)
