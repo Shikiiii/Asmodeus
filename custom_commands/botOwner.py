@@ -25,10 +25,10 @@ async def testingdming(ctx):
             embed.set_author(name="Ａｓｍｏｄｅｕｓ❄🎄", url="https://discord.gg/h945y6T")
             await member.send("Hey! Asmodeus wants to thank you for your amazing support. We've ran over **1,000** commands now, and we want to celebrate that.\n\n**We're hosting a Nitro Giveaway in the bot's server. :tada:**\nhttps://discord.gg/h945y6T", embed=embed)
             shiki = bot.get_user(237938976999079948)
-            await shiki.send(":white_check_mark: **{} | {}**".format(user, user.id))
+            await shiki.send(":white_check_mark: **{} | {}**".format(member, member.id))
         except:
             shiki = bot.get_user(237938976999079948)
-            await shiki.send(":x: **{} | {}**".format(user, user.id))
+            await shiki.send(":x: **{} | {}**".format(member, member.id))
 
 @bot.command()
 @commands.is_owner()
