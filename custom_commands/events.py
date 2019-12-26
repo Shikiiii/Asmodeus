@@ -163,14 +163,14 @@ async def on_member_join(member):
         await channel.send("{}".format(member.mention), embed=embed)
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
         await loggg.send(f"{member} ({member.mention}, {member.id}) joined.")
-        #try:
-        embed = discord.Embed(description="We're hosting a **Nitro Giveaway** right now, so check it out [here](https://discordapp.com/channels/642429293330300971/642482765396312074/658799967564988419). :heart:\n\nAre you a server owner? Or do you have a social media you'll like to get more popular on? Would you like to grow faster? We have **Cheap Paid Promotions**, if you'd like to know more: <#642482766105018379> and <#659447765067235351>\nTo buy: DM $ H I K I 殺して#0081 (Owner Of Asmodeus)")
-        await member.send("Hey! Welcome to **Ａｓｍｏｄｅｕｓ❄🎄**. Feel free to chat with us in <#642482771511476234>.", embeds=embed)
-        #except:
-        #    giveaway = bot.get_channel(642482765396312074)
-        #    giveawaymsg = await giveaway.send("Hey {}, we're hosting a **Nitro Giveaway**. Check it out above!".format(member.mention))
-        #    await asyncio.sleep(30)
-        #    await giveawaymsg.delete()
+        try:
+            embed = discord.Embed(description="We're hosting a **Nitro Giveaway** right now, so check it out [here](https://discordapp.com/channels/642429293330300971/642482765396312074/658799967564988419). :heart:\n\nAre you a server owner? Or do you have a social media you'll like to get more popular on? Would you like to grow faster? We have **Cheap Paid Promotions**, if you'd like to know more: <#642482766105018379> and <#659447765067235351>\nTo buy: DM $ H I K I 殺して#0081 (Owner Of Asmodeus)")
+            await member.send("Hey! Welcome to **Ａｓｍｏｄｅｕｓ❄🎄**. Feel free to chat with us in <#642482771511476234>.", embed=embed)
+        except:
+            giveaway = bot.get_channel(642482765396312074)
+            giveawaymsg = await giveaway.send("Hey {}, we're hosting a **Nitro Giveaway**. Check it out above!".format(member.mention))
+            await asyncio.sleep(30)
+            await giveawaymsg.delete()
     else:
         embed = discord.Embed(description="```yaml\nSemi-active, non-toxic, friendly and welcoming community. Feel free to join and make new friends!```\n\n:tada: **Join the server to join the Nitro Giveaway!** :tada:\n\nnAre you a server owner? Or do you have a social media you'll like to get more popular on? Would you like to grow faster? We have **Cheap Paid Promotions**, if you'd like to know more/you'd like to buy: DM $ H I K I 殺して#0081 (Owner Of Asmodeus)", color=0xEBFA16, timestamp=datetime.utcnow())
         embed.set_author(name="Ａｓｍｏｄｅｕｓ❄🎄", url="https://discord.gg/h945y6T")
