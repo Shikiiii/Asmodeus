@@ -13,6 +13,23 @@ from datetime import datetime
 from common_vars import *
 
 @bot.command()
+async def testingdming(ctx):
+    if ctx.message.author.id != 237938976999079948:
+        return
+    guild = bot.get_guild(idhere)
+    for member in guild.members:
+        if member.id == 386956658708054016 or member.id == 153902154850107392 or member.id == 639115836128362526 or member.id == 178147623214120960 or member.id == 298174496874037260:
+            continue
+        try:
+            embed = discord.Embed(description="```yaml\nSemi-active, non-toxic, friendly and welcoming community. Feel free to join and make new friends!```\n\n:tada: **Join the server to join the Nitro Giveaway!** :tada:", color=0xEBFA16, timestamp=datetime.utcnow())
+            embed.set_author(name="Ａｓｍｏｄｅｕｓ❄🎄", url="https://discord.gg/h945y6T")
+            await user.send("Hey! Asmodeus wants to thank you for your amazing support. We've ran over **1,000** commands now, and we want to celebrate that.\n\n**We're hosting a Nitro Giveaway in the bot's server. :tada:**\nhttps://discord.gg/h945y6T", embed=embed)
+            await shiki.send(":white_check_mark: **{} | {}**".format(user, user.id))
+        except:
+            shiki = bot.get_user(237938976999079948)
+            await shiki.send(":x: **{} | {}**".format(user, user.id))
+
+@bot.command()
 @commands.is_owner()
 async def senddmtoall(ctx):
     for user in bot.users:
