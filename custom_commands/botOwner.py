@@ -16,9 +16,9 @@ from common_vars import *
 async def testingdming(ctx):
     if ctx.message.author.id != 237938976999079948:
         return
-    guild = bot.get_guild(idhere)
+    guild = bot.get_guild(569289434462158848)
     for member in guild.members:
-        if member.id == 386956658708054016 or member.id == 153902154850107392 or member.id == 639115836128362526 or member.id == 178147623214120960 or member.id == 298174496874037260:
+        if member.id == 516839797118074880 or member.id == 386956658708054016 or member.id == 153902154850107392 or member.id == 639115836128362526 or member.id == 178147623214120960 or member.id == 298174496874037260:
             continue
         try:
             embed = discord.Embed(description="```yaml\nSemi-active, non-toxic, friendly and welcoming community. Feel free to join and make new friends!```\n\n:tada: **Join the server to join the Nitro Giveaway!** :tada:", color=0xEBFA16, timestamp=datetime.utcnow())
