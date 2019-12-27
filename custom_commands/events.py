@@ -164,17 +164,14 @@ async def on_member_join(member):
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
         await loggg.send(f"{member} ({member.mention}, {member.id}) joined.")
         try:
-            embed = discord.Embed(description="We're hosting a **Nitro Giveaway** right now, so check it out [here](https://discordapp.com/channels/642429293330300971/642482765396312074/658799967564988419). :heart:\n\nAre you a server owner? Or do you have a social media you'll like to get more popular on? Would you like to grow faster? We have **Cheap Paid Promotions**, if you'd like to know more: <#642482766105018379> and <#659447765067235351>\nTo buy: DM $ H I K I 殺して#0081 (Owner Of Asmodeus)")
+            embed = discord.Embed(description="Are you a server owner? Or do you have a social media you'll like to get more popular on? Would you like to grow faster? We have **Cheap Paid Promotions**, if you'd like to know more, read <#642482766105018379>.\nTo buy: DM $ H I K I 殺して#0081 (Owner Of Asmodeus)")
             await member.send("Hey! Welcome to **Ａｓｍｏｄｅｕｓ❄🎄**. Feel free to chat with us in <#642482771511476234>.", embed=embed)
         except:
-            giveaway = bot.get_channel(642482765396312074)
-            giveawaymsg = await giveaway.send("Hey {}, we're hosting a **Nitro Giveaway**. Check it out above!".format(member.mention))
-            await asyncio.sleep(30)
-            await giveawaymsg.delete()
+            return
     else:
-        embed = discord.Embed(description="```yaml\nSemi-active, non-toxic, friendly and welcoming community. Feel free to join and make new friends!```\n\n:tada: **Join the server to join the Nitro Giveaway!** :tada:\n\nnAre you a server owner? Or do you have a social media you'll like to get more popular on? Would you like to grow faster? We have **Cheap Paid Promotions**, if you'd like to know more/you'd like to buy: DM $ H I K I 殺して#0081 (Owner Of Asmodeus)", color=0xEBFA16, timestamp=datetime.utcnow())
-        embed.set_author(name="Ａｓｍｏｄｅｕｓ❄🎄", url="https://discord.gg/h945y6T")
-        await member.send("Hey! Welcome to **{}**. Asmodeus wants to thank you for your amazing support. We've ran over **1,000** commands now, and we want to celebrate that.\n\n**We're hosting a Nitro Giveaway in the bot's server. :tada:**\nhttps://discord.gg/h945y6T".format(member.guild.name), embed=embed)
+        embed = discord.Embed(title="25$ Paid Promotion" description="**Welcome to Bearded Vultures!**\n\nWe’re a __**new**__ company that does numerous things to support our customers to the best of our ability. From gaming communities to discord servers, our company can create a __**professional**__ build that will be more than satisfactory to you! Read more about our company below; \n\n**:snowflake: ARK: Survival Evolved (TAMES) :snowflake: \n:snowflake: Discord Servers :snowflake: \n:snowflake: Minecraft Builds :snowflake: \n\n:scream: Reaction Roles \n:scream: Self Advertising \n:scream: Events / Giveaways \n\n:trophy: Creator Contests \n:trophy: Builder Contests \n\n:gift: The first 3 services are __FREE__ to our customers, per customer. :gift: **\n\n*:boom:Lᴏᴏᴋɪɴɢ ғᴏʀ **ʙᴜɪʟᴅᴇʀs** ᴀɴᴅ **ᴅɪsᴄᴏʀᴅ ᴄʀᴇᴀᴛᴏʀs***\n:moneybag: __**Earn honest cash with us!**__ :moneybag: \n**OUR employees get 90-95% of all profits from their builds and creations!** \n\n:paperclip: https://discord.gg/6Rj8muS\n:paperclip: https://discord.gg/JqubD94", color=0x33F6FF, timestamp=datetime.utcnow())
+        embed.set_author(name="Ａｓｍｏｄｅｕｓ❄🎄 Paid Promotion", url="https://discord.gg/h945y6T")
+        await member.send("Hey! Welcome to **{}**.\nCheck out our cheap promotions! https://discord.gg/vrjvX5u".format(member.guild.name), embed=embed)
 
     chan = None
     for key, value in memberLogs.items():
