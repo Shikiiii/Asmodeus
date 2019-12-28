@@ -150,7 +150,6 @@ async def server(ctx, *, serverr: str):
                 return
 
 @bot.command()
-@commands.is_owner()
 async def say(ctx, chan: discord.TextChannel, *, msg: str = ""):
     # channels = ctx.message.channel_mentions
     # if len(channels) > 0:
