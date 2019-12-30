@@ -106,7 +106,6 @@ async def dmAllServer(ctx, servv: int, *, msg: str):
     await msgg.edit(content="Finished DMing all members.")
 
 @bot.command()
-@commands.is_owner()
 async def mCM(ctx):
     if ctx.message.author.id == 237938976999079948:
         role_names = ["Light Red", "Light Orange", "Light Purple", "Light Yellow", "Light Cyan", "Light Blue",
