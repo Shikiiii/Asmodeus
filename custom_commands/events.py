@@ -156,6 +156,7 @@ async def on_member_join(member):
         rol = discord.utils.get(member.guild.roles, name="Members 💖")
         await member.add_roles(rol)
         mbrcnt = bot.get_channel(660637774495481856)
+        channel = bot.get_channel(660616924643721254)
         await mbrcnt.edit(name="🍓 {} +1".format(member.guild.member_count))
         embed = discord.Embed(
             description="Welcome to **[Ａｓｍｏｄｅｕｓ](https://discord.gg/Qqzy2ds)**! You're the **{}th** member. \n\n Make sure to read: <#660634194854150144>\nCheck out our **Nitro Giveaway**: <#660635938925576203>".format(
