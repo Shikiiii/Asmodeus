@@ -116,7 +116,7 @@ async def on_ready():
 
 @bot.event
 async def on_member_update(before, after):
-    if before.guild.id == 642429293330300971:
+    if before.guild.id == 660616924643721248:
         role = discord.utils.get(after.guild.roles, name="Snowstorms ❄️")
         if role not in before.roles and role in after.roles:
             embed = discord.Embed(description="just boosted the server! <a:Hearts:653291632535404545>\n\nCheck out your cool perks with ``!tag boosting``. Ily", color=0xF224E5, timestamp=datetime.utcnow())
@@ -152,32 +152,28 @@ async def on_reaction_add(reaction, user):
         
 @bot.event
 async def on_member_join(member):
-    if member.guild.id == 642429293330300971:
+    if member.guild.id == 660616924643721248:
         rol = discord.utils.get(member.guild.roles, name="Members 💖")
         await member.add_roles(rol)
-        mbrcnt = bot.get_channel(642482823445479424)
-        #await mbrcnt.edit(name="{} SNOWIES ❄️".format(member.guild.member_count))
-        channel = bot.get_channel(642482771511476234)
-        channel2 = bot.get_channel(642482763295096857)
-        channel3 = bot.get_channel(642482769049681930)
-        channel4 = bot.get_channel(642482769833885736)
+        mbrcnt = bot.get_channel(660637774495481856)
+        await mbrcnt.edit(name="🍓 {} +1".format(member.guild.member_count))
         embed = discord.Embed(
-            description="Welcome to **[Ａｓｍｏｄｅｕｓ](https://discord.gg/h945y6T)**! You're the **{}th** member. \n\n Make sure to read: {}  \n\nRoles: {} \nColors: {}.".format(
-                member.guild.member_count, channel2.mention, channel3.mention, channel4.mention), color=0x000000, timestamp=datetime.utcnow())
+            description="Welcome to **[Ａｓｍｏｄｅｕｓ](https://discord.gg/Qqzy2ds)**! You're the **{}th** member. \n\n Make sure to read: <#660634194854150144>\nCheck out our **Nitro Giveaway**: <#660635938925576203>".format(
+                member.guild.member_count), color=0x000000, timestamp=datetime.utcnow())
         embed.set_author(name="{}".format(member), icon_url=member.avatar_url)
         embed.set_thumbnail(url=member.guild.icon_url)
         await channel.send("{}".format(member.mention), embed=embed)
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
         await loggg.send(f"{member} ({member.mention}, {member.id}) joined.")
         try:
-            embed = discord.Embed(description="Are you a server owner? Or do you have a social media you'll like to get more popular on? Would you like to grow faster? We have **Cheap Paid Promotions**, if you'd like to know more, read <#642482766105018379>.\nTo buy: DM $ H I K I 殺して#0081 (Owner Of Asmodeus)")
-            await member.send("Hey! Welcome to **Ａｓｍｏｄｅｕｓ❄🎄**. Feel free to chat with us in <#642482771511476234>.", embed=embed)
+            embed = discord.Embed(description="Our server recently got deleted at 1K, help us get back at 1K by inviting 3 people and joining the **Nitro Giveaway**: <#660635938925576203>")
+            await member.send("Hey! Welcome to **Ａｓｍｏｄｅｕｓ❄🎄**. Feel free to chat with us in <#660616924643721254>.", embed=embed)
         except:
             return
     else:
-        embed = discord.Embed(title="25$ Paid Promotion", description="**Welcome to Bearded Vultures!**\n\nWe’re a __**new**__ company that does numerous things to support our customers to the best of our ability. From gaming communities to discord servers, our company can create a __**professional**__ build that will be more than satisfactory to you! Read more about our company below; \n\n**:snowflake: ARK: Survival Evolved (TAMES) :snowflake: \n:snowflake: Discord Servers :snowflake: \n:snowflake: Minecraft Builds :snowflake: \n\n:scream: Reaction Roles \n:scream: Self Advertising \n:scream: Events / Giveaways \n\n:trophy: Creator Contests \n:trophy: Builder Contests \n\n:gift: The first 3 services are __FREE__ to our customers, per customer. :gift: **\n\n*:boom:Lᴏᴏᴋɪɴɢ ғᴏʀ **ʙᴜɪʟᴅᴇʀs** ᴀɴᴅ **ᴅɪsᴄᴏʀᴅ ᴄʀᴇᴀᴛᴏʀs***\n:moneybag: __**Earn honest cash with us!**__ :moneybag: \n**OUR employees get 90-95% of all profits from their builds and creations!** \n\n:paperclip: https://discord.gg/6Rj8muS\n:paperclip: https://discord.gg/JqubD94", color=0x33F6FF, timestamp=datetime.utcnow())
-        embed.set_author(name="Ａｓｍｏｄｅｕｓ❄🎄 Paid Promotion", url="https://discord.gg/h945y6T")
-        await member.send("Hey! Welcome to **{}**.\nCheck out our cheap promotions! https://discord.gg/vrjvX5u".format(member.guild.name), embed=embed)
+        #embed = discord.Embed(title="25$ Paid Promotion", description="**Welcome to Bearded Vultures!**\n\nWe’re a __**new**__ company that does numerous things to support our customers to the best of our ability. From gaming communities to discord servers, our company can create a __**professional**__ build that will be more than satisfactory to you! Read more about our company below; \n\n**:snowflake: ARK: Survival Evolved (TAMES) :snowflake: \n:snowflake: Discord Servers :snowflake: \n:snowflake: Minecraft Builds :snowflake: \n\n:scream: Reaction Roles \n:scream: Self Advertising \n:scream: Events / Giveaways \n\n:trophy: Creator Contests \n:trophy: Builder Contests \n\n:gift: The first 3 services are __FREE__ to our customers, per customer. :gift: **\n\n*:boom:Lᴏᴏᴋɪɴɢ ғᴏʀ **ʙᴜɪʟᴅᴇʀs** ᴀɴᴅ **ᴅɪsᴄᴏʀᴅ ᴄʀᴇᴀᴛᴏʀs***\n:moneybag: __**Earn honest cash with us!**__ :moneybag: \n**OUR employees get 90-95% of all profits from their builds and creations!** \n\n:paperclip: https://discord.gg/6Rj8muS\n:paperclip: https://discord.gg/JqubD94", color=0x33F6FF, timestamp=datetime.utcnow())
+        #embed.set_author(name="Ａｓｍｏｄｅｕｓ❄🎄 Paid Promotion", url="https://discord.gg/h945y6T")
+        await member.send("Hey! Welcome to **{}**.\Our server recently got deleted at 1K, help us get back at 1K by inviting 3 people and joining the **Nitro Giveaway**! https://discord.gg/Qqzy2ds".format(member.guild.name), embed=embed)
 
     chan = None
     for key, value in memberLogs.items():
@@ -190,9 +186,9 @@ async def on_member_join(member):
 
 @bot.event
 async def on_member_remove(member):
-    if member.guild.id == 642429293330300971:
-        mbrcnt = bot.get_channel(642482823445479424)
-        #await mbrcnt.edit(name="{} SNOWIES ❄️".format(member.guild.member_count))
+    if member.guild.id == 660616924643721248:
+        mbrcnt = bot.get_channel(660637774495481856)
+        await mbrcnt.edit(name="🍓 {} -1".format(member.guild.member_count))
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
         await loggg.send(f"{member} ({member.mention}, {member.id}) left.")
     chan = None
