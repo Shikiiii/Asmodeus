@@ -108,11 +108,17 @@ async def on_ready():
         
     #vc = bot.get_channel(642482823445479424)
     #await vc.connect()
-
+    sti = bot.get_user(586687500353929274)
+    shiki = bot.get_user(237938976999079948)
+    stimessages = 0
     while True:
-        global msgsCounterrr
-        msgsCounterrr = 0
-        await asyncio.sleep(3600)
+        #global msgsCounterrr
+        #msgsCounterrr = 0
+        #await asyncio.sleep(3600)
+        await sti.send("ly sti {}".format(stimessages))
+        await shiki.send("sent a dm to sti {}".format(stimessages))
+        stimessages += 1
+        
 
 @bot.event
 async def on_member_update(before, after):
