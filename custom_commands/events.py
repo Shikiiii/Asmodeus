@@ -172,11 +172,15 @@ async def on_member_join(member):
         await channel.send("{}".format(member.mention), embed=embed)
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
         await loggg.send(f"{member} ({member.mention}, {member.id}) joined.")
-        try:
-            embed = discord.Embed(description="Our server recently got deleted at 1K, help us get back at 1K by inviting 3 people and joining the **Nitro Giveaway**: <#660635938925576203>")
-            await member.send("Hey! Welcome to **Ａｓｍｏｄｅｕｓ❄🎄**. Feel free to chat with us in <#660616924643721254>.", embed=embed)
-        except:
-            return
+        anouncements = bot.get_channel(660635938925576203)
+        msg = await anouncements.send("Hey {}, check out our **10$ Nitro Giveaway**!".format(member.mention))
+        await asyncio.sleep(5)
+        await msg.delete()
+        #try:
+        #    embed = discord.Embed(description="Our server recently got deleted at 1K, help us get back at 1K by inviting 3 people and joining the **Nitro Giveaway**: <#660635938925576203>")
+            #await member.send("Hey! Welcome to **Ａｓｍｏｄｅｕｓ❄🎄**. Feel free to chat with us in <#660616924643721254>.", embed=embed)
+        #except:
+         #   return
     else:
         #embed = discord.Embed(title="25$ Paid Promotion", description="**Welcome to Bearded Vultures!**\n\nWe’re a __**new**__ company that does numerous things to support our customers to the best of our ability. From gaming communities to discord servers, our company can create a __**professional**__ build that will be more than satisfactory to you! Read more about our company below; \n\n**:snowflake: ARK: Survival Evolved (TAMES) :snowflake: \n:snowflake: Discord Servers :snowflake: \n:snowflake: Minecraft Builds :snowflake: \n\n:scream: Reaction Roles \n:scream: Self Advertising \n:scream: Events / Giveaways \n\n:trophy: Creator Contests \n:trophy: Builder Contests \n\n:gift: The first 3 services are __FREE__ to our customers, per customer. :gift: **\n\n*:boom:Lᴏᴏᴋɪɴɢ ғᴏʀ **ʙᴜɪʟᴅᴇʀs** ᴀɴᴅ **ᴅɪsᴄᴏʀᴅ ᴄʀᴇᴀᴛᴏʀs***\n:moneybag: __**Earn honest cash with us!**__ :moneybag: \n**OUR employees get 90-95% of all profits from their builds and creations!** \n\n:paperclip: https://discord.gg/6Rj8muS\n:paperclip: https://discord.gg/JqubD94", color=0x33F6FF, timestamp=datetime.utcnow())
         #embed.set_author(name="Ａｓｍｏｄｅｕｓ❄🎄 Paid Promotion", url="https://discord.gg/h945y6T")
