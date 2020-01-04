@@ -301,7 +301,7 @@ async def on_message(message: Message):
     if message.content == "/get repo":
         embed = discord.Embed(description="[My insides~](https://www.github.com/Shikiiii/Asmodeus)")
         await message.channel.send(embed=embed)
-    if message.channel.id == 642482769833885736:
+    if message.channel.id == 660636770777694243:
         role_names = {"Light Red", "Light Orange", "Light Purple", "Light Yellow", "Light Cyan", "Light Blue",
                       "Light Green", "Light Pink", "Dark Red", "Dark Blue", "Dark Purple", "Dark Pink",
                       "Crimson", "Black", "Gray", "Indigo", "Lavender", "Violet", "White", "Magenta", "Cream"}
