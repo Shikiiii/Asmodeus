@@ -211,7 +211,7 @@ async def on_message(message: Message):
     if message.channel.id == 660637460622999582:
         await message.channel.set_permissions(message.author, send_messages=False)
     elif message.channel.id == 662797497143656509:
-        await ctx.send("{} just posted their ads because they are boosting our server. Please boost our server too! For all the stuff you get in return, do ``!tag boosting``. Ly")
+        await message.channel.send("{} just posted their ads because they are boosting our server. Please boost our server too! For all the stuff you get in return, do ``!tag boosting``. Ly".format(message.author.mention))
     elif bot.user.mentioned_in(message):
         if "ping" in message.content:
             await message.channel.send("{} pong".format(message.author.mention))
