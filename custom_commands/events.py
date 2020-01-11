@@ -167,9 +167,12 @@ async def on_member_join(member):
         embed = discord.Embed(
             description="Welcome to **[Ａｓｍｏｄｅｕｓ](https://discord.gg/Qqzy2ds)**! You're the **{}th** member. \n\n Make sure to read: <#660634194854150144>".format(
                 member.guild.member_count), color=0x000000, timestamp=datetime.utcnow())
-        embed.set_author(name="{}".format(member), icon_url=member.avatar_url)
+        welcomer = member.guild.get_role(665509280140754954)
+        await welcomer.edit(mentionable=True)
+        embed.set_author(name="{}".format(member,), icon_url=member.avatar_url)
         embed.set_thumbnail(url=member.guild.icon_url)
-        await channel.send("{}".format(member.mention), embed=embed)
+        await channel.send("{} | {} <a:Cheers:660932691075530763>".format(member.mention, welcomer.mention), embed=embed)
+        await welcomer.edit(mentionable=False)
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
         await loggg.send(f"{member} ({member.mention}, {member.id}) joined.")
         #anouncements = bot.get_channel(660635938925576203)
