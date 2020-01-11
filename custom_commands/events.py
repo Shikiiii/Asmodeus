@@ -165,17 +165,17 @@ async def on_member_join(member):
         channel = bot.get_channel(660616924643721254)
         await mbrcnt.edit(name="🍓 {} +1".format(member.guild.member_count))
         embed = discord.Embed(
-            description="Welcome to **[Ａｓｍｏｄｅｕｓ](https://discord.gg/Qqzy2ds)**! You're the **{}th** member. \n\n Make sure to read: <#660634194854150144>\nCheck out our **Nitro Giveaway**: <#660635938925576203>".format(
+            description="Welcome to **[Ａｓｍｏｄｅｕｓ](https://discord.gg/Qqzy2ds)**! You're the **{}th** member. \n\n Make sure to read: <#660634194854150144>".format(
                 member.guild.member_count), color=0x000000, timestamp=datetime.utcnow())
         embed.set_author(name="{}".format(member), icon_url=member.avatar_url)
         embed.set_thumbnail(url=member.guild.icon_url)
         await channel.send("{}".format(member.mention), embed=embed)
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
         await loggg.send(f"{member} ({member.mention}, {member.id}) joined.")
-        anouncements = bot.get_channel(660635938925576203)
-        msg = await anouncements.send("Hey {}, check out our **10$ Nitro Giveaway**!".format(member.mention))
-        await asyncio.sleep(5)
-        await msg.delete()
+        #anouncements = bot.get_channel(660635938925576203)
+        #msg = await anouncements.send("Hey {}, check out our **10$ Nitro Giveaway**!".format(member.mention))
+        #await asyncio.sleep(5)
+        #await msg.delete()
         #try:
         #    embed = discord.Embed(description="Our server recently got deleted at 1K, help us get back at 1K by inviting 3 people and joining the **Nitro Giveaway**: <#660635938925576203>")
             #await member.send("Hey! Welcome to **Ａｓｍｏｄｅｕｓ❄🎄**. Feel free to chat with us in <#660616924643721254>.", embed=embed)
