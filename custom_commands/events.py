@@ -108,16 +108,16 @@ async def on_ready():
         
     #c = bot.get_channel(642482823445479424)
     #await vc.connect()
-    faith = bot.get_user(571776582147112991)
-    shiki = bot.get_user(237938976999079948)
-    stimessages = 0
-    while True:
+    #faith = bot.get_user(571776582147112991)
+    #shiki = bot.get_user(237938976999079948)
+    #stimessages = 0
+    #while True:
         #global msgsCounterrr
         #msgsCounterrr = 0
         #await asyncio.sleep(3600)
-        await faith.send("ilym 💕💖💞💖💕💖💞💕💖💞💕💖💖💕💕💖💞💞💞💕")
-        await shiki.send("sent a dm to faith {}".format(stimessages))
-        stimessages += 1
+        #await faith.send("ilym 💕💖💞💖💕💖💞💕💖💞💕💖💖💕💕💖💞💞💞💕")
+        #await shiki.send("sent a dm to faith {}".format(stimessages))
+        #stimessages += 1
         
 
 @bot.event
