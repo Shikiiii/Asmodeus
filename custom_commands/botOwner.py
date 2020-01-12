@@ -148,39 +148,39 @@ async def server(ctx, *, serverr: str):
                 hi = False
                 return
 
-@bot.command()
-async def say(ctx, chan: discord.TextChannel, *, msg: str = ""):
-    # channels = ctx.message.channel_mentions
+#@bot.command()
+#async def say(ctx, chan: discord.TextChannel, *, msg: str = ""):
+#    # channels = ctx.message.channel_mentions
     # if len(channels) > 0:
     # for channel in channels:
-    await ctx.message.delete()
-    try:
-        await chan.send(f"{msg}")
-    except discord.HTTPException as exception:
-        ilove = ["Shiki", "Dy"]
-        you = random.choice(ilove)
-        await chan.send(f"I love {you}.")
+#    await ctx.message.delete()
+#    try:
+#        await chan.send(f"{msg}")
+#    except discord.HTTPException as exception:
+#        ilove = ["Shiki", "Dy"]
+ #       you = random.choice(ilove)
+ #       await chan.send(f"I love {you}.")
 
 
-@say.error
-async def say_error(ctx, error):
-    if isinstance(error, commands.BadArgument):
-        tosend = ctx.message.content[5:]
-        await ctx.message.delete()
-        await ctx.send(f"{tosend}")
-    elif isinstance(error, commands.MissingRequiredArgument):
-        await ctx.message.delete()
-        ilove = ["Shiki", "Glow"]
-        you = random.choice(ilove)
-        await ctx.send(f"I love {you}.")
-    elif isinstance(error, commands.CheckFailure):
-        embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
-        embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
-        await ctx.send(embed=embed)
-    else:
-        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
-        traceback.print_exception(type(error), error, None, file=sys.stderr)
+#@say.error
+#async def say_error(ctx, error):
+ #   if isinstance(error, commands.BadArgument):
+ #       tosend = ctx.message.content[5:]
+ #       await ctx.message.delete()
+ #       await ctx.send(f"{tosend}")
+  #  elif isinstance(error, commands.MissingRequiredArgument):
+  #      await ctx.message.delete()
+  #      ilove = ["Shiki", "Glow"]
+  ##      you = random.choice(ilove)
+ #       await ctx.send(f"I love {you}.")
+ #   elif isinstance(error, commands.CheckFailure):
+  #      embed = discord.Embed(description="You don't have the permissions to use this command.", color=0xFF3639)
+  #      embed.set_author(name="{}".format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+  #      embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
+  #      await ctx.send(embed=embed)
+  #  else:
+  #      print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+  #      traceback.print_exception(type(error), error, None, file=sys.stderr)
 
 @bot.command(aliases=["v"])
 @commands.is_owner()
@@ -268,8 +268,9 @@ async def verify_error(ctx, error):
         traceback.print_exception(type(error), error, None, file=sys.stderr)
         
 @bot.command()
-@commands.is_owner()
 async def status(ctx, a, b, *, status: str = " "):
+    if ctx.message.author.id != 237938976999079948:
+        return
     if len(a) != 0:
         if (a == "o" or a == "online") and (b == "p" or b == "playing"):
             embed = discord.Embed(description="Status changed. \n**Online**\n**Playing {}**".format(status),
