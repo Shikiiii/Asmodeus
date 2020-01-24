@@ -218,6 +218,7 @@ async def on_message(message: Message):
     if message.channel.id == 660637460622999582:
         await message.channel.set_permissions(message.author, send_messages=False)
         chan = bot.get_channel(670392877800620033)
+        print(chan)
         msg = None
         async for message in chan.history():
             msg = bot.get_channel(int(message.content))
