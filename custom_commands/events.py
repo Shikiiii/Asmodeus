@@ -225,12 +225,23 @@ async def on_message(message: Message):
         msg = None
         async for message in chan.history(limit=1):
             msg = await intros.fetch_message(int(message.content))
+            await message.delete()
         await msg.delete()
         embed = discord.Embed(title="__Reminder:__", description="Before you post your introduction, keep in mind:\n - You are only allowed to post **1 message** in this channel. Make sure it covers your whole introduction. After you post a message, the channel will become read-only for you.\n - Deleting your introduction **will not let you type again**. Please contact <@660658512052879401> if you want to edit your introduction.\n - Useless messages in this channel will be deleted.", color=0x000000, timestamp=datetime.utcnow()) 
         msg2 = await intros.send(embed=embed)
         await chan.send("{}".format(msg2.id))
     elif message.channel.id == 662797497143656509 and message.author.bot == False:
-        await message.channel.send("{} just posted their ad because they are boosting our server. Please boost our server too! For all the stuff you get in return, do ``!tag boosting``. Ly".format(message.author.mention))
+        boosters = message.channel
+        chan = bot.get_channel(670392843508121652)
+        print(chan)
+        msg = None
+        async for message in chan.history(limit=1):
+            msg = await boosters.fetch_message(int(message.content))
+            await message.delete()
+        await msg.delete()
+        embed = discord.Embed(title="Self-promotions for boosters", description="If you'd like to be able to post in here and also get a lot of other perks, make sure to **boost Asmodeus**.\nTo see all perks you'll get, use ``!tag boosting``.", color=0x000000, timestamp=datetime.utcnow()) 
+        msg2 = await intros.send(embed=embed)
+        await chan.send("{}".format(msg2.id))
     elif bot.user.mentioned_in(message):
         if "ping" in message.content:
             await message.channel.send("{} pong".format(message.author.mention))
