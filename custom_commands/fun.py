@@ -17,6 +17,10 @@ from datetime import datetime
 # howlesbian, thotrate, 8ball,  rate, roast, penis, ship, coinflip
 
 @bot.command()
+async def servericon(ctx):
+    await ctx.send("{}".format(ctx.guild.icon_url))
+
+@bot.command()
 async def marry(ctx):
     await ctx.send("{}, this command has been disabled for a rework.".format(ctx.message.author.mention))
 
