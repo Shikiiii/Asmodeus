@@ -217,11 +217,12 @@ async def on_member_remove(member):
 async def on_message(message: Message):
     if message.channel.id == 660637460622999582:
         await message.channel.set_permissions(message.author, send_messages=False)
+        intros = message.channel
         chan = bot.get_channel(670392877800620033)
         print(chan)
         msg = None
         async for message in chan.history(limit=1):
-            msg = await message.channel.fetch_message(int(message.content))
+            msg = await intros.fetch_message(int(message.content))
         await msg.delete()
         embed = discord.Embed(title="__Reminder:__", description="Before you post your introduction, keep in mind:\n - You are only allowed to post **1 message** in this channel. Make sure it covers your whole introduction. After you post a message, the channel will become read-only for you.\n - Deleting your introduction **will not let you type again**. Please contact <@660658512052879401> if you want to edit your introduction.\n - Useless messages in this channel will be deleted.", color=0x000000, timestamp=datetime.utcnow()) 
         msg2 = await message.channel.send(embed=embed)
