@@ -217,6 +217,14 @@ async def on_member_remove(member):
 async def on_message(message: Message):
     if message.channel.id == 660637460622999582:
         await message.channel.set_permissions(message.author, send_messages=False)
+        chan = bot.get_channel(670392877800620033)
+        msg = None
+        async for message in chan.history():
+            msg = bot.get_channel(int(message.content))
+        await msg.delete()
+        embed = discord.Embed(title="__Reminder:__", description="Before you post your introduction, keep in mind:\n - You are only allowed to post **1 message** in this channel. Make sure it covers your whole introduction. After you post a message, the channel will become read-only for you.\n - Deleting your introduction **will not let you type again**. Please contact <@660658512052879401> if you want to edit your introduction.\n - Useless messages in this channel will be deleted.", color=0x000000, timestamp=datetime.utcnow()) 
+        msg2 = await message.channel.send(embed=embed)
+        await chan.send("{}".format(msg2.id))
     elif message.channel.id == 662797497143656509 and message.author.bot == False:
         await message.channel.send("{} just posted their ad because they are boosting our server. Please boost our server too! For all the stuff you get in return, do ``!tag boosting``. Ly".format(message.author.mention))
     elif bot.user.mentioned_in(message):
