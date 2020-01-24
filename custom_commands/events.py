@@ -216,6 +216,8 @@ async def on_member_remove(member):
 @bot.event
 async def on_message(message: Message):
     if message.channel.id == 660637460622999582:
+        if message.author.bot == True:
+            return
         await message.channel.set_permissions(message.author, send_messages=False)
         intros = message.channel
         chan = bot.get_channel(670392877800620033)
