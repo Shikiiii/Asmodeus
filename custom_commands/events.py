@@ -240,7 +240,7 @@ async def on_message(message: Message):
             await message.delete()
         await msg.delete()
         embed = discord.Embed(title="Self-promotions for boosters", description="If you'd like to be able to post in here and also get a lot of other perks, make sure to **boost Asmodeus**.\nTo see all perks you'll get, use ``!tag boosting``.", color=0x000000, timestamp=datetime.utcnow()) 
-        msg2 = await intros.send(embed=embed)
+        msg2 = await boosters.send(embed=embed)
         await chan.send("{}".format(msg2.id))
     elif bot.user.mentioned_in(message):
         if "ping" in message.content:
