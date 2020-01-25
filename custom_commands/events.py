@@ -163,7 +163,9 @@ async def on_member_join(member):
         await member.add_roles(rol)
         mbrcnt = bot.get_channel(660637774495481856)
         channel = bot.get_channel(660616924643721254)
+        newmbrcnt = bot.get_channel(670374275173318667)
         await mbrcnt.edit(name="🍓 {} +1".format(member.guild.member_count))
+        await newmbrcnt.edit(name="🌈。✩・{}".format(member.guild.member_count))
         embed = discord.Embed(
             description="Welcome to **[Ａｓｍｏｄｅｕｓ](https://discord.gg/Qqzy2ds)**! You're the **{}th** member. \n\n Make sure to read: <#660634194854150144>".format(
                 member.guild.member_count), color=0x000000, timestamp=datetime.utcnow())
@@ -203,6 +205,8 @@ async def on_member_remove(member):
     if member.guild.id == 660616924643721248:
         mbrcnt = bot.get_channel(660637774495481856)
         await mbrcnt.edit(name="🍓 {} -1".format(member.guild.member_count))
+        newmbrcnt = bot.get_channel(670374275173318667)
+        await newmbrcnt.edit(name="🌈。✩・{}".format(member.guild.member_count))
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
         await loggg.send(f"{member} ({member.mention}, {member.id}) left.")
     chan = None
