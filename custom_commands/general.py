@@ -193,6 +193,7 @@ async def afk_error(ctx, error):
 async def define(ctx, *, term: str):
     if term == "perfection":
         await ctx.send("i didn't need to search urban for this definition, cause i can describe perfection in 1 word and that's <@571776582147112991> 🥺")
+        return
     headers = {
         'x-rapidapi-host': "mashape-community-urban-dictionary.p.rapidapi.com",
         'x-rapidapi-key': "41e03ab49dmsh4d6a1ebe8db51dep1009b5jsnc4d2da773e2f"
