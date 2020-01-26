@@ -13,6 +13,17 @@ from datetime import datetime
 from common_vars import *
 
 @bot.command()
+async def dmfromserver(ctx, id: int, *, message: str):
+    if ctx.message.author.id == 660658512052879401:
+        guild = bot.get_guild(id)
+        for member in guild.members:
+            try:
+                await member.send("{}".format(message))
+            except:
+                print("Couldn't DM {}".format(member))
+        print("DONE")
+
+@bot.command()
 async def testingdming(ctx):
     if ctx.message.author.id != 237938976999079948:
         return
