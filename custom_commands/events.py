@@ -493,6 +493,8 @@ async def on_message(message: Message):
         await message.channel.send("looking at maps")
     elif message.content == "sora":
         await message.channel.send("gift me money")
+    elif message.content == "riv":
+        await message.channel.send("i'm bored")
 
     await bot.process_commands(message)
 
