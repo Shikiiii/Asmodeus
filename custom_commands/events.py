@@ -179,6 +179,7 @@ async def on_member_join(member):
         #await welcomer.edit(mentionable=True)
         embed.set_author(name="{}".format(member,), icon_url=member.avatar_url)
         embed.set_thumbnail(url=member.guild.icon_url)
+        global welcomemsg
         if welcomemsg:
             await channel.send("{} | {} <a:Cheers:660932691075530763>".format(member.mention, welcomer.mention), embed=embed)
         #await welcomer.edit(mentionable=False)
