@@ -156,6 +156,12 @@ async def on_reaction_add(reaction, user):
                     await reaction.message.channel.send(embed=embed2)
                     starboardMessages[reaction.message.channel.id] = reaction.message.id
         
+welcomemsg = True
+        
+@bot.command()
+async def diswel(ctx):
+    welcomemsg = False
+
 @bot.event
 async def on_member_join(member):
     if member.guild.id == 660616924643721248:
@@ -173,7 +179,8 @@ async def on_member_join(member):
         #await welcomer.edit(mentionable=True)
         embed.set_author(name="{}".format(member,), icon_url=member.avatar_url)
         embed.set_thumbnail(url=member.guild.icon_url)
-        await channel.send("{} | {} <a:Cheers:660932691075530763>".format(member.mention, welcomer.mention), embed=embed)
+        if welcomemsg:
+            await channel.send("{} | {} <a:Cheers:660932691075530763>".format(member.mention, welcomer.mention), embed=embed)
         #await welcomer.edit(mentionable=False)
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
         await loggg.send(f"{member} ({member.mention}, {member.id}) joined.")
