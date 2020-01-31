@@ -21,8 +21,8 @@ async def warnash(ctx):
     embed = discord.Embed(description="This is your ``1st`` strike on record.\nYou were striked for ``not enforcing rules, breaking them``.\nYour staff position is Chat Moderator.You were striked by $ H I K I 殺して.\n\nThis is just a strike. Nothing serious. Try not to repeat your mistakes in the future.\nThank you for being a staff member of Ａｓｍｏｄｅｕｓ💫˳⁺!", timestamp=datetime.utcnow(), color=0x000000)
     embed.set_footer(text="Will be auto-cleared in 2 weeks.")
     embed.set_thumbnail(url=asmodeus.icon_url)
-    await shiki.send(":warning: You got a strike in Ａｓｍｏｄｅｕｓ💫˳⁺.")
-    await ash.send(":warning: You got a strike in Ａｓｍｏｄｅｕｓ💫˳⁺.")
+    await shiki.send(":warning: You got a strike in Ａｓｍｏｄｅｕｓ💫˳⁺.", embed=embed)
+    await ash.send(":warning: You got a strike in Ａｓｍｏｄｅｕｓ💫˳⁺.", embed=embed)
     
 
 @bot.command()
