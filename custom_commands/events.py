@@ -23,7 +23,7 @@ async def strike(ctx, user: discord.Member, staff_pos: str, *, reason: str):
     async for message in log.history():
         if int(message.content) == user.id:
             strikes += 1
-    embed = discord.Embed(description="This is your ``{}/3`` strike on record.\nYou were striked for ``{}``.\nYour staff position is {}.\nYou were striked by $ H I K I 殺して.\n\nThis is just a strike. Nothing serious. Try not to repeat your mistakes in the future.\nThank you for being a staff member of Ａｓｍｏｄｅｕｓ💫˳⁺!".format(strikes, reason, staff_pos)), timestamp=datetime.utcnow(), color=0x000000)
+    embed = discord.Embed(description="This is your ``{}/3`` strike on record.\nYou were striked for ``{}``.\nYour staff position is {}.\nYou were striked by $ H I K I 殺して.\n\nThis is just a strike. Nothing serious. Try not to repeat your mistakes in the future.\nThank you for being a staff member of Ａｓｍｏｄｅｕｓ💫˳⁺!".format(strikes, reason, staff_pos), timestamp=datetime.utcnow(), color=0x000000)
     embed.set_thumbnail(url=asmodeus.icon_url)
     await shiki.send(":warning: __You got a staff strike in Ａｓｍｏｄｅｕｓ💫˳⁺.__", embed=embed)
     await user.send(":warning: __You got a staff strike in Ａｓｍｏｄｅｕｓ💫˳⁺.__", embed=embed)
