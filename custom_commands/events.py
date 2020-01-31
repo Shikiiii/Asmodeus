@@ -14,6 +14,18 @@ from common_vars import *
 from datetime import datetime
 
 @bot.command()
+async def warnash(ctx):
+    asmodeus = bot.get_guild(660616924643721248)
+    ash = asmodeus.get_member(665591839168135172)
+    shiki = asmodeus.get_member(660658512052879401)
+    embed = discord.Embed(description="This is your ``1st`` strike on record.\nYou were striked for ``not enforcing rules, breaking them``.\nYou were striked by $ H I K I 殺して.", timestamp=datetime.utcnow(), color=0x000000)
+    embed.set_footer("Will be auto-cleared in 2 weeks.")
+    embed.set_thumbnail(asmodeus.icon_url)
+    await shiki.send(":warning: You got a strike in Ａｓｍｏｄｅｕｓ💫˳⁺.")
+    await ash.send(":warning: You got a strike in Ａｓｍｏｄｅｕｓ💫˳⁺.")
+    
+
+@bot.command()
 async def quicktestpaid(ctx):
     embed = discord.Embed(title="25$ Paid Promotion", description="**Welcome to Bearded Vultures!**\n\nWe’re a __**new**__ company that does numerous things to support our customers to the best of our ability. From gaming communities to discord servers, our company can create a __**professional**__ build that will be more than satisfactory to you! Read more about our company below; \n\n**:snowflake: ARK: Survival Evolved (TAMES) :snowflake: \n:snowflake: Discord Servers :snowflake: \n:snowflake: Minecraft Builds :snowflake: \n\n:scream: Reaction Roles \n:scream: Self Advertising \n:scream: Events / Giveaways \n\n:trophy: Creator Contests \n:trophy: Builder Contests \n\n:gift: The first 3 services are __FREE__ to our customers, per customer. :gift: **\n\n*:boom:Lᴏᴏᴋɪɴɢ ғᴏʀ **ʙᴜɪʟᴅᴇʀs** ᴀɴᴅ **ᴅɪsᴄᴏʀᴅ ᴄʀᴇᴀᴛᴏʀs***\n:moneybag: __**Earn honest cash with us!**__ :moneybag: \n**OUR employees get 90-95% of all profits from their builds and creations!** \n\n:paperclip: https://discord.gg/6Rj8muS\n:paperclip: https://discord.gg/JqubD94", color=0x33F6FF, timestamp=datetime.utcnow())
     embed.set_author(name="Ａｓｍｏｄｅｕｓ❄🎄 Paid Promotion", url="https://discord.gg/h945y6T")
