@@ -18,7 +18,7 @@ async def warnash(ctx):
     asmodeus = bot.get_guild(660616924643721248)
     ash = asmodeus.get_member(665591839168135172)
     shiki = asmodeus.get_member(660658512052879401)
-    embed = discord.Embed(description="This is your ``1st`` strike on record.\nYou were striked for ``not enforcing rules, breaking them``.\nYou were striked by $ H I K I 殺して.", timestamp=datetime.utcnow(), color=0x000000)
+    embed = discord.Embed(description="This is your ``1st`` strike on record.\nYou were striked for ``not enforcing rules, breaking them``.\nYour staff position is Chat Moderator.You were striked by $ H I K I 殺して.\n\nThis is just a strike. Nothing serious. Try not to repeat your mistakes in the future.\nThank you for being a staff member of Ａｓｍｏｄｅｕｓ💫˳⁺!", timestamp=datetime.utcnow(), color=0x000000)
     embed.set_footer("Will be auto-cleared in 2 weeks.")
     embed.set_thumbnail(asmodeus.icon_url)
     await shiki.send(":warning: You got a strike in Ａｓｍｏｄｅｕｓ💫˳⁺.")
