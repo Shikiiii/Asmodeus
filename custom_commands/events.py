@@ -244,7 +244,9 @@ async def on_member_remove(member):
 
 @bot.event
 async def on_message(message: Message):
-    if message.channel.id == 660637460622999582:
+    if message.content.lower() == "nigger":
+        await message.delete()
+    elif message.channel.id == 660637460622999582:
         if message.author.bot == True:
             return
         await message.channel.set_permissions(message.author, send_messages=False)
@@ -520,6 +522,8 @@ async def on_message(message: Message):
         await message.channel.send("gift me money")
     elif message.content == "riv":
         await message.channel.send("i'm bored")
+    elif message.content == "nix":
+        await message.channel.send("what do you want this time")
 
     await bot.process_commands(message)
 
