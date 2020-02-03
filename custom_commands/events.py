@@ -244,7 +244,7 @@ async def on_member_remove(member):
 
 @bot.event
 async def on_message(message: Message):
-    if message.content.lower() == "nigger":
+    if message.content.lower() == "nigger" or "nigger" in message.content.lower():
         await message.delete()
     elif message.channel.id == 660637460622999582:
         if message.author.bot == True:
