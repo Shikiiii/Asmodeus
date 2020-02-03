@@ -182,6 +182,7 @@ async def diswel(ctx):
 @bot.event
 async def on_member_join(member):
     if member.guild.id == 660616924643721248:
+        await asyncio.sleep(10)
         rol = discord.utils.get(member.guild.roles, name="Members 💖")
         await member.add_roles(rol)
         mbrcnt = bot.get_channel(660637774495481856)
