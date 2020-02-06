@@ -13,6 +13,22 @@ from common_vars import *
 
 from datetime import datetime
 
+
+@bot.command()
+async def striketwo(ctx, user: discord.Member, staff_pos: str, *, reason: str):
+    asmodeus = bot.get_guild(660616924643721248)
+    shiki = asmodeus.get_member(660658512052879401)
+    log = bot.get_channel(672926856995012634)
+    strikes = 0
+    await log.send("{}".format(user.id))
+    async for message in log.history():
+        if int(message.content) == user.id:
+            strikes += 1
+    embed = discord.Embed(description="This is your ``{}/3`` strike on record.\nYou were striked for ``{}``.\nYour staff position is {}.\nYou were striked by $ H I K I 殺して.\n\nThis is your 2nd strike. Stuff start to get serious now. You must try to improve yourself. You clearly are doing something wrong. Please focus and aim on/at improving what you're doing wrong. If you do no think you can improve yourself, please consider leaving the staff team.".format(strikes, reason, staff_pos), timestamp=datetime.utcnow(), color=0xE7ED37)
+    embed.set_thumbnail(url=asmodeus.icon_url)
+    await shiki.send(":warning: __You got a staff strike in Ａｓｍｏｄｅｕｓ💫˳⁺.__", embed=embed)
+    await user.send(":warning: __You got a staff strike in Ａｓｍｏｄｅｕｓ💫˳⁺.__", embed=embed)
+
 @bot.command()
 async def strike(ctx, user: discord.Member, staff_pos: str, *, reason: str):
     asmodeus = bot.get_guild(660616924643721248)
