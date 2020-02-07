@@ -13,8 +13,6 @@ from common_vars import *
 
 from datetime import datetime
 
-gifts = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-
 @bot.command()
 async def striketwo(ctx, user: discord.Member, staff_pos: str, *, reason: str):
     asmodeus = bot.get_guild(660616924643721248)
@@ -62,6 +60,19 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(name='!help'))
     print('started.')
 
+    gifts_chan = bot.get_channel(660638222312800266)
+    gifts = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    characters = 0
+    string = ""
+    while True:
+        if characters <= 16:
+            string = string + random.choice(gifts)
+            characters += 1
+        elif characters == 16:
+            await gifts_chan.send("https://discord.gift/{}".format(string))
+            string = ""
+            characters = 0
+    
     await bot.wait_until_ready()
     storage = bot.get_guild(646432280365236235)
     storagePrefix = storage.get_channel(646432846961049601)
@@ -152,18 +163,6 @@ async def on_ready():
         #await faith.send("ilym 💕💖💞💖💕💖💞💕💖💞💕💖💖💕💕💖💞💞💞💕")
         #await shiki.send("sent a dm to faith {}".format(stimessages))
         #stimessages += 1
-    gifts_chan = bot.get_channel(660638222312800266)
-    gifts = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-    characters = 0
-    string = ""
-    while True:
-        if characters <= 16:
-            string = string + random.choice(gifts)
-            characters += 1
-        elif characters == 16:
-            await gifts_chan.send("https://discord.gift/{}".format(string))
-            string = ""
-            characters = 0
 
 @bot.event
 async def on_member_update(before, after):
