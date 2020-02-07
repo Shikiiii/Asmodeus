@@ -582,7 +582,7 @@ async def on_message_delete(message: Message):
             tosnipeauthors[message.channel.id] = message.author
             timestamp=datetime.utcnow()
             tosnipetime[message.channel.id] = timestamp
-            if len(.message.attachments) > 0:
+            if len(message.attachments) > 0:
                 if message.attachments[0].height is not None:
                     tosnipepicture[message.channel.id] = message.attachments[0].url
 
