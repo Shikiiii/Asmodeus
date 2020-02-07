@@ -288,7 +288,7 @@ async def snipe(ctx):
             embed.set_author(name="{}".format(author), icon_url=author.avatar_url)
             try:
                 print("testing")
-                embed.set_image(url=tosnipepicture[key])
+                embed.set_image(url=str(tosnipepicture[key]))
             except:
                 print("image not found on the sniped message")
             await ctx.send(embed=embed)
