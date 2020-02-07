@@ -284,6 +284,7 @@ async def snipe(ctx):
             author = tosnipeauthors[key]
             time = tosnipetime[key]
             embed = discord.Embed(description="{}".format(str(msg)), color=0x000000, timestamp=time)
+            print(tosnipepicture)
             if tosnipepicture[key] == "yes":
                 chan = bot.get_channel(675454841178423347)
                 async for message in chan.history():
