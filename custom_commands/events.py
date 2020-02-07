@@ -583,8 +583,11 @@ async def on_message_delete(message: Message):
             timestamp=datetime.utcnow()
             tosnipetime[message.channel.id] = timestamp
             if len(message.attachments) > 0:
+                print("wassup nigga")
                 if message.attachments[0].height is not None:
+                    print("did it work?")
                     tosnipepicture[message.channel.id] = message.attachments[0].url
+                    print("ye it did lol")
 
 
 @bot.event
