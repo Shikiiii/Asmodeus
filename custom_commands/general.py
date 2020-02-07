@@ -284,13 +284,11 @@ async def snipe(ctx):
             author = tosnipeauthors[key]
             time = tosnipetime[key]
             embed = discord.Embed(description="{}".format(str(msg)), color=0x000000, timestamp=time)
-            print(tosnipepicture[key])
-            print(tosnipepicture)
-            try:
-                print("testing")
-                embed.set_image(url='https://cdn.discordapp.com/attachments/363407145145991168/667916189145759764/20180721-000.gif')
-            except:
-                print("image not found on the sniped message")
+            if tosnipepicture[key] == "yes":
+                chan = bot.get_channel(675454841178423347)
+                async for message in chan.history():
+                    if int(message.content) == ctx.channel.id:
+                        embed.set_image(url=message.attachments[0].url)
             await ctx.send(embed=embed)
 
 @bot.command()
