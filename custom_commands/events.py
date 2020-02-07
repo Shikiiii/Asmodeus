@@ -594,12 +594,12 @@ async def on_message_delete(message: Message):
             async for message in chan.history():
                 if message.content == str(msg.channel.id):
                     await message.delete()
-            if len(message.attachments) > 0:
-                if message.attachments[0].height is not None:
-                    await chan.send("{}".format(msg.id), file= await message.attachments[0].to_file())
-                    tosnipepicture[message.channel.id] = "yes"
+            if len(msg.attachments) > 0:
+                if msg.attachments[0].height is not None:
+                    await chan.send("{}".format(msg.id), file= await msg.attachments[0].to_file())
+                    tosnipepicture[msg.channel.id] = "yes"
             else:
-                tosnipepicture[message.channel.id] = "no"
+                tosnipepicture[msg.channel.id] = "no"
 
 
 @bot.event
