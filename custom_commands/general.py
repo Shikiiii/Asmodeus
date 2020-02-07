@@ -285,12 +285,12 @@ async def snipe(ctx):
             time = tosnipetime[key]
             embed = discord.Embed(description="{}".format(str(msg)), color=0x000000, timestamp=time)
             print(tosnipepicture[key])
+            embed.set_author(name="{}".format(author), icon_url=author.avatar_url)
             try:
                 print("testing")
                 embed.set_image(url=tosnipepicture[key])
             except:
                 print("image not found on the sniped message")
-            embed.set_author(name="{}".format(author), icon_url=author.avatar_url)
             await ctx.send(embed=embed)
 
 @bot.command()
