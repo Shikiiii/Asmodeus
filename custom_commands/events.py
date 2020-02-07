@@ -589,12 +589,17 @@ async def on_message_delete(message: Message):
             tosnipeauthors[message.channel.id] = message.author
             timestamp=datetime.utcnow()
             tosnipetime[message.channel.id] = timestamp
+            chan = bot.get_channel(675454841178423347)
+            msg = message
+            async for message in chan.history():
+                if message.content == str(msg.channel.id):
+                    await message.delete()
             if len(message.attachments) > 0:
-                print("wassup nigga")
                 if message.attachments[0].height is not None:
-                    print("did it work?")
-                    tosnipepicture[message.channel.id] = message.attachments[0].url
-                    print("ye it did lol")
+                    await chan.send("{}".format(msg.id), file= await message.attachments[0].to_file())
+                    tosnipepicture[message.channel.id] = "yes"
+            else:
+                tosnipepicture[message.channel.id] = "no"
 
 
 @bot.event
