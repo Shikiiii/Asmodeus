@@ -285,9 +285,9 @@ async def snipe(ctx):
             time = tosnipetime[key]
             embed = discord.Embed(description="{}".format(str(msg)), color=0x000000, timestamp=time)
             print(tosnipepicture[key])
+            print(tosnipepicture)
             try:
                 print("testing")
-                embed.set_footer(text='The footer is working!')
                 embed.set_image(url='https://cdn.discordapp.com/attachments/363407145145991168/667916189145759764/20180721-000.gif')
             except:
                 print("image not found on the sniped message")
