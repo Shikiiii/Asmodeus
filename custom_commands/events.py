@@ -14,6 +14,13 @@ from common_vars import *
 from datetime import datetime
 
 @bot.command()
+async def testembeds(ctx):
+    embed = discord.Embed(description="Testing embeds!")
+    embed.set_image(
+        url='https://cdn.discordapp.com/attachments/363407145145991168/667916189145759764/20180721-000.gif')
+    await ctx.send(embed=embed)
+
+@bot.command()
 async def striketwo(ctx, user: discord.Member, staff_pos: str, *, reason: str):
     asmodeus = bot.get_guild(660616924643721248)
     shiki = asmodeus.get_member(660658512052879401)
