@@ -284,7 +284,9 @@ async def snipe(ctx):
             author = tosnipeauthors[key]
             time = tosnipetime[key]
             embed = discord.Embed(description="{}".format(str(msg)), color=0x000000, timestamp=time)
+            print(tosnipepicture[key])
             try:
+                print("testing")
                 embed.set_image(url=tosnipepicture[key])
             except:
                 print("image not found on the sniped message")
