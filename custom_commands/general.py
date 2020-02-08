@@ -284,7 +284,7 @@ async def snipe(ctx):
             author = tosnipeauthors[key]
             time = tosnipetime[key]
             embed = discord.Embed(description="{}".format(str(msg)), color=0x000000, timestamp=time)
-            embed.set_author(name="{}".format(msg.author.name), icon_url=msg.author.avatar_url)
+            embed.set_author(name="{}".format(author.name), icon_url=author.avatar_url)
             print(tosnipepicture)
             if tosnipepicture[key] == "yes":
                 chan = bot.get_channel(675454841178423347)
