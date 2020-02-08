@@ -15,7 +15,7 @@ from datetime import datetime
 
 @bot.command()
 async def testmessage(ctx):
-    embed = disord.Embed(description="[Jump to the top.](https://discordapp.com/channels/660616924643721248/675402519832297522/675522329266225181)\n[Vote on the most recent poll.](https://discordapp.com/channels/660616924643721248/675402519832297522/675524001644150795)", color=0x000000)
+    embed = discord.Embed(description="[Jump to the top.](https://discordapp.com/channels/660616924643721248/675402519832297522/675522329266225181)\n[Vote on the most recent poll.](https://discordapp.com/channels/660616924643721248/675402519832297522/675524001644150795)", color=0x000000)
     await ctx.send(embed=embed)
 
 @bot.command()
