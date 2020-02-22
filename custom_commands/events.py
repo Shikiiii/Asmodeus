@@ -288,7 +288,7 @@ async def on_member_remove(member):
 async def on_message(message: Message):
     if message.content.lower() == "nigger" or "nigger" in message.content.lower():
         await message.delete()
-    elif message.channel.id == 660637460622999582:
+    elif message.channel.id == 680532441890422865:
         if message.author.bot == True:
             return
         await message.channel.set_permissions(message.author, send_messages=False)
@@ -303,7 +303,7 @@ async def on_message(message: Message):
         embed = discord.Embed(title="__Reminder:__", description="Before you post your introduction, keep in mind:\n - You are only allowed to post **1 message** in this channel. Make sure it covers your whole introduction. After you post a message, the channel will become read-only for you.\n - Deleting your introduction **will not let you type again**. Please contact <@660658512052879401> if you want to edit your introduction.\n - Useless messages in this channel will be deleted.", color=0x000000, timestamp=datetime.utcnow()) 
         msg2 = await intros.send(embed=embed)
         await chan.send("{}".format(msg2.id))
-    elif message.channel.id == 662797497143656509 and message.author.bot == False:
+    elif message.channel.id == 680532434277630043 and message.author.bot == False:
         boosters = message.channel
         chan = bot.get_channel(670392843508121652)
         print(chan)
@@ -312,7 +312,7 @@ async def on_message(message: Message):
             msg = await boosters.fetch_message(int(message.content))
             await message.delete()
         await msg.delete()
-        embed = discord.Embed(title="Self-promotions for boosters", description="If you'd like to be able to post in here and also get a lot of other perks, make sure to **boost Asmodeus**.\nTo see all perks you'll get, use ``!tag boosting``.", color=0x000000, timestamp=datetime.utcnow()) 
+        embed = discord.Embed(title="__boosters self promotions__ ;;", description="__here's why you should boost asmodeus__ ;\n\m - you'll gain __access to this channel__ ;\n - you'll get a __role__, __hoisted high__ in the member list ;\n - you'll get your own role with __name__ and __hex__ by **your** choice ;\n - you'll get a __custom respond__ from our bot whenever someone @mentions you ;\n - you get a chance to __apply for staff__ ;\n\n💨 so why don't you **boost asmodeus**? we're awaiting you! x", color=0xB6B3FC, timestamp=datetime.utcnow()) 
         msg2 = await boosters.send(embed=embed)
         await chan.send("{}".format(msg2.id))
     elif bot.user.mentioned_in(message):
