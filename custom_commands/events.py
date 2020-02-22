@@ -312,7 +312,7 @@ async def on_message(message: Message):
             msg = await boosters.fetch_message(int(message.content))
             await message.delete()
         await msg.delete()
-        embed = discord.Embed(title="__boosters self promotions__ ;;", description="__here's why you should boost asmodeus__ ;\n\m - you'll gain __access to this channel__ ;\n - you'll get a __role__, __hoisted high__ in the member list ;\n - you'll get your own role with __name__ and __hex__ by **your** choice ;\n - you'll get a __custom respond__ from our bot whenever someone @mentions you ;\n - you get a chance to __apply for staff__ ;\n\n💨 so why don't you **boost asmodeus**? we're awaiting you! x", color=0xB6B3FC, timestamp=datetime.utcnow()) 
+        embed = discord.Embed(title="__boosters self promotions__ ;;", description="__here's why you should boost asmodeus__ ;\n\n - you'll gain __access to this channel__ ;\n\n - you'll get a __role__, __hoisted high__ in the member list ;\n\n - you'll get your own role with __name__ and __hex__ by **your** choice ;\n\n - you'll get a __custom respond__ from our bot whenever someone @mentions you ;\n\n - you get a chance to __apply for staff__ ;\n\n\n💨 so why don't you **boost asmodeus**? we're awaiting you! x", color=0xB6B3FC, timestamp=datetime.utcnow()) 
         msg2 = await boosters.send(embed=embed)
         await chan.send("{}".format(msg2.id))
     elif bot.user.mentioned_in(message):
