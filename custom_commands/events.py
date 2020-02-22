@@ -220,25 +220,27 @@ async def diswel(ctx):
 
 @bot.event
 async def on_member_join(member):
-    if member.guild.id == 660616924643721248:
-        await asyncio.sleep(10)
-        rol = discord.utils.get(member.guild.roles, name="Members 💖")
+    if member.guild.id == 680186413588676649:
+        #await asyncio.sleep(10)
+        rol = discord.utils.get(member.guild.roles, name="Member")
         await member.add_roles(rol)
-        mbrcnt = bot.get_channel(660637774495481856)
-        channel = bot.get_channel(660616924643721254)
-        newmbrcnt = bot.get_channel(670374275173318667)
-        await mbrcnt.edit(name="🍓 {} +1".format(member.guild.member_count))
-        await newmbrcnt.edit(name="🌈。✩・{}".format(member.guild.member_count))
-        embed = discord.Embed(
-            description="Welcome to **[Ａｓｍｏｄｅｕｓ](https://discord.gg/Qqzy2ds)**! You're the **{}th** member. \n\n Make sure to read: <#660634194854150144>".format(
-                member.guild.member_count), color=0x000000, timestamp=datetime.utcnow())
-        welcomer = member.guild.get_role(665509280140754954)
+        mbrcnt = bot.get_channel(680612197386158083)
+        channel = bot.get_channel(680186415493021792)
+        #newmbrcnt = bot.get_channel(670374275173318667)
+        await mbrcnt.edit(name="Members ;; {}".format(member.guild.member_count))
+       # await newmbrcnt.edit(name="🌈。✩・{}".format(member.guild.member_count))
+        #embed = discord.Embed(
+        #    description="Welcome to **[Ａｓｍｏｄｅｕｓ](https://discord.gg/Qqzy2ds)**! You're the **{}th** member. \n\n Make sure to read: <#660634194854150144>".format(
+         #       member.guild.member_count), color=0x000000, timestamp=datetime.utcnow())
+        #welcomer = member.guild.get_role(665509280140754954)
         #await welcomer.edit(mentionable=True)
-        embed.set_author(name="{}".format(member,), icon_url=member.avatar_url)
-        embed.set_thumbnail(url=member.guild.icon_url)
+        #embed.set_author(name="{}".format(member,), icon_url=member.avatar_url)
+        #embed.set_thumbnail(url=member.guild.icon_url)
+        embed = discord.Embed(color=0xFFFFFF)
+        embed.set_image(url="https://cdn.discordapp.com/attachments/680440403266371653/680449992544092183/image0.gif")
         global welcomemsg
         if welcomemsg:
-            await channel.send("{} | {} <a:Cheers:660932691075530763>".format(member.mention, welcomer.mention), embed=embed)
+            await channel.send("Welcome to Ａｓｍｏｄｅｕｓ, {}! We now have **{}** members.".format(member.mention, member.guild.member_count), embed=embed)
         #await welcomer.edit(mentionable=False)
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
         await loggg.send(f"{member} ({member.mention}, {member.id}) joined.")
@@ -267,11 +269,11 @@ async def on_member_join(member):
 
 @bot.event
 async def on_member_remove(member):
-    if member.guild.id == 660616924643721248:
-        mbrcnt = bot.get_channel(660637774495481856)
-        await mbrcnt.edit(name="🍓 {} -1".format(member.guild.member_count))
-        newmbrcnt = bot.get_channel(670374275173318667)
-        await newmbrcnt.edit(name="🌈。✩・{}".format(member.guild.member_count))
+    if member.guild.id == 680186413588676649:
+        mbrcnt = bot.get_channel(680612197386158083)
+        await mbrcnt.edit(name="Members ;; {}".format(member.guild.member_count))
+        #newmbrcnt = bot.get_channel(670374275173318667)
+        #await newmbrcnt.edit(name="🌈。✩・{}".format(member.guild.member_count))
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
         await loggg.send(f"{member} ({member.mention}, {member.id}) left.")
     chan = None
