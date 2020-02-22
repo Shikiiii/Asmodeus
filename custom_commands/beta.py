@@ -16,6 +16,15 @@ from datetime import datetime
 # none
       
 @bot.command()
+async def postrules(ctx):
+      if ctx.message.author.id != 680519129219727380:
+            return
+      embed = discord.Embed(title="Ａｓｍｏｄｅｕｓ| Rules", description="\n``1`` ;; __always__ follow the [discord tos]() and the [community guidelines](). thank u!\n\n``2`` ;; being toxic __is__ allowed, but do not overdo it. do not start beef with anyone.\n\n``3`` ;; don't advertise in the server nor in dms.\n\n``4`` ;; no linking of personal information without agreement \ no doxing.\n\n``5`` ;; respect all members, staff members and etc.\n\n``6`` ;; no racism, discrimination or etc.\n\n\nother than that, please have __common sense__ while you're using the server. this includes (but is not only limited to) spamming, being annoying, mass-mentioning and etc.\n\nif you've found any loopholes or people that break the rules, please let <@680519129219727380> know in dms.", color=0xF255E3, timestamp=datetime.utcnow())
+      embed.set_image(url="https://cdn.discordapp.com/attachments/668462934774775818/680606317689307145/asmodeus_rules_gif.gif")
+      embed.set_footer(text="Last edited at")
+      await ctx.send(embed=embed)
+      
+@bot.command()
 async def testingofdms(ctx):
       embed = discord.Embed(description="```yaml\nActive, non-toxic, friendly and welcoming community. Feel free to join and make new friends!```\n\n>  **10$ Nitro Giveaway happening NOW! JOIN TO ENTER**\n\n - __Chilled mods.__\n - __No useless pings.__\n - __Very addictive.__\n - __Giveaways and events.__\n - __Self-advertising.__", color=0xEBFA16, timestamp=datetime.utcnow())
       embed.set_author(name="Ａｓｍｏｄｅｕｓ💫˳⁺ 2.0", url="https://discord.gg/Qqzy2ds")
