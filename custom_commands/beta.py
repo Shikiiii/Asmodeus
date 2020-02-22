@@ -16,10 +16,37 @@ from datetime import datetime
 # none
       
 @bot.command()
+async def colormenupost(ctx):
+      red = discord.Embed(title="Red - ;;", color=0xFA1D19)
+      red.set_image(url="https://media.discordapp.net/attachments/680498370636414994/680559413819736259/image0.gif")
+      orange = discord.Embed(title="Orange - ;;", color=0xFFA14A)
+      orange.set_image(url="https://media.discordapp.net/attachments/680498370636414994/680559792271523944/image0.gif")
+      yellow = discord.Embed(title="Yellow - ;;", color=0xFFF94A)
+      yellow.set_image(url="https://media.discordapp.net/attachments/680498370636414994/680561077104148532/image0.gif")
+      green = discord.Embed(title="Green - ;;", color=0x15BF1E)
+      green.set_image(url="https://cdn.discordapp.com/attachments/680440403266371653/680450494765858816/image0.gif")
+      blue = discord.Embed(title="Blue - ;;", color=0x2DFADF)
+      blue.set_image(url="https://media.discordapp.net/attachments/680498370636414994/680564384187023374/image0.gif")
+      purple = discord.Embed(title="Purple - ;;", color=0xF73EF1)
+      purple.set_image(url="https://cdn.discordapp.com/attachments/680440403266371653/680444276357988371/image0.gif")
+      pink = discord.Embed(title="Pink - ;;", color=0xFF75CF)
+      pink.set_image(url="https://media.discordapp.net/attachments/680498370636414994/680561382218793055/image0.gif")
+      black = discord.Embed(title="Black - ;;", color=0x171717)
+      black.set_image(url="https://cdn.discordapp.com/attachments/668462934774775818/680825014215507978/unnamed.gif")
+      await ctx.send(embed=red)
+      await ctx.send(embed=orange)
+      await ctx.send(embed=yellow)
+      await ctx.send(embed=green)
+      await ctx.send(embed=blue)
+      await ctx.send(embed=purple)
+      await ctx.send(embed=pink)
+      await ctx.send(embed=black)
+      
+@bot.command()
 async def postrules(ctx):
       if ctx.message.author.id != 680519129219727380:
             return
-      embed = discord.Embed(title="Ａｓｍｏｄｅｕｓ| Rules", description="\n``1`` ;; __always__ follow the [discord tos]() and the [community guidelines](). thank u!\n\n``2`` ;; being toxic __is__ allowed, but do not overdo it. do not start beef with anyone.\n\n``3`` ;; don't advertise in the server nor in dms.\n\n``4`` ;; no linking of personal information without agreement \ no doxing.\n\n``5`` ;; respect all members, staff members and etc.\n\n``6`` ;; no racism, discrimination or etc.\n\n\nother than that, please have __common sense__ while you're using the server. this includes (but is not only limited to) spamming, being annoying, mass-mentioning and etc.\n\nif you've found any loopholes or people that break the rules, please let <@680519129219727380> know in dms.", color=0xF255E3, timestamp=datetime.utcnow())
+      embed = discord.Embed(title="Ａｓｍｏｄｅｕｓ| Rules", description="\n``1`` ;; __always__ follow the [discord tos](https://discordapp.com/terms) and the [community guidelines](https://discordapp.com/guidelines). thank u!\n\n``2`` ;; being toxic __is__ allowed, but do not overdo it. do not start beef with anyone.\n\n``3`` ;; don't advertise in the server nor in dms.\n\n``4`` ;; no linking of personal information without agreement \ no doxing.\n\n``5`` ;; respect all members, staff members and etc.\n\n``6`` ;; no racism, discrimination or etc.\n\n\nother than that, please have __common sense__ while you're using the server. this includes (but is not only limited to) spamming, being annoying, mass-mentioning and etc.\n\nif you've found any loopholes or people that break the rules, please let <@680519129219727380> know in dms.", color=0xF255E3, timestamp=datetime.utcnow())
       embed.set_image(url="https://cdn.discordapp.com/attachments/668462934774775818/680606317689307145/asmodeus_rules_gif.gif")
       embed.set_footer(text="Last edited at")
       await ctx.send(embed=embed)
