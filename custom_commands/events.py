@@ -603,7 +603,7 @@ async def on_message_delete(message: Message):
                     await message.delete()
             if len(msg.attachments) > 0:
                 if msg.attachments[0].height is not None:
-                    await chan.send("{}".format(msg.id), file= await msg.attachments[0].to_file())
+                    await chan.send("{}".format(msg.id), file= await msg.attachments[0].proxy_url.to_file())
                     tosnipepicture[msg.channel.id] = "yes"
             else:
                 tosnipepicture[msg.channel.id] = "no"
