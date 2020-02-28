@@ -19,7 +19,7 @@ from datetime import datetime
 async def colormenupost(ctx):
       red = discord.Embed(description=":maple_leaf:**⊱────── {⋅. Red .⋅} ──────⊰**:maple_leaf: \n   . ★・・・・★・・・・★・・・・★ .\n\n꒰:maple_leaf:꒱ <@&680554830326005819>\n꒰:apple:꒱ <@&680541689504333830>\n꒰:strawberry:꒱ <@&680541913941540912>\n꒰:cherries:꒱ <@&680542039443505173>\n\n.・。.・゜✭・.・✫・゜・。. ・。.・✭", color=0xFA1D19)
       red.set_image(url="https://cdn.discordapp.com/attachments/680532449989492750/682945355674812487/ezgif-2-e3111241cfda.gif")
-      orange = discord.Embed(title="Orange - ;;", color=0xFFA14A)
+      orange = discord.Embed(description=":ringed_planet:⊱─────── {⋅. Orange .⋅} ───────⊰:ringed_planet: \n  .★・・・・・★・・・・・★・・・・・★.\n\n꒰:fried_shrimp:꒱ @Pastel Orange \n꒰:fire:꒱ @Light Orange\n꒰:ringed_planet:꒱ @Medium Orange \n꒰:tangerine:꒱ @Dark Orange \n\n.・。.・゜✭・.・✫・゜・。. ・。.・゜✭・.・", color=0xFFA14A)
       orange.set_image(url="https://cdn.discordapp.com/attachments/680532449989492750/682941708572426292/orange.gif")
       yellow = discord.Embed(title="Yellow - ;;", color=0xFFF94A)
       yellow.set_image(url="https://media.discordapp.net/attachments/680498370636414994/680561077104148532/image0.gif")
