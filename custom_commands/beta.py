@@ -17,7 +17,7 @@ from datetime import datetime
       
 @bot.command()
 async def colormenupost(ctx):
-      red = discord.Embed(description=":maple_leaf:**⊱────── {⋅. Red .⋅} ──────⊰**:maple_leaf: \n    ★・・・・★・・・・★・・・・★\n\n꒰:maple_leaf:꒱ <@&680554830326005819>\n꒰:apple:꒱ <@&680541689504333830>\n꒰:strawberry:꒱ <@&680541913941540912>\n꒰:cherries:꒱ <@&680542039443505173>\n\n.・。.・゜✭・.・✫・゜・。. ・。.・✭", color=0xFA1D19)
+      red = discord.Embed(description=":maple_leaf:**⊱────── {⋅. Red .⋅} ──────⊰**:maple_leaf: \n   . ★・・・・★・・・・★・・・・★ .\n\n꒰:maple_leaf:꒱ <@&680554830326005819>\n꒰:apple:꒱ <@&680541689504333830>\n꒰:strawberry:꒱ <@&680541913941540912>\n꒰:cherries:꒱ <@&680542039443505173>\n\n.・。.・゜✭・.・✫・゜・。. ・。.・✭", color=0xFA1D19)
       red.set_image(url="https://cdn.discordapp.com/attachments/680532449989492750/682945355674812487/ezgif-2-e3111241cfda.gif")
       orange = discord.Embed(title="Orange - ;;", color=0xFFA14A)
       orange.set_image(url="https://cdn.discordapp.com/attachments/680532449989492750/682941708572426292/orange.gif")
