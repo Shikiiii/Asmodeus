@@ -612,6 +612,8 @@ async def on_message_delete(message: Message):
 @bot.event
 async def on_message_edit(before, after):
     if before.author.bot == False:
+        if "nigger" in after.content.lower(): 
+            await after.delete()
         logch = None
         for key, value in editLogs.items():
             if int(key) == before.author.guild.id:
