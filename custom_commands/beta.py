@@ -16,6 +16,17 @@ from datetime import datetime
 # none
 
 @bot.command()
+async def fixrolemenupings(ctx):
+      chan = bot.get_channel(id)
+      msg = await chan.fetch_message(id)
+      pings = discord.Embed(description=":star2:«─────── « ⋅ʚ♡ɞ⋅ » ───────»:star2: \n**✧༺༻✧♡༻∞　Pings　∞༺♡✧༺༻✧**\n\n꒰:dizzy:꒱ <@&680813408958021665> \n꒰:sparkles:꒱ <@&680813442747203605> \n꒰:ringed_planet:꒱ <@&680813479333986386> \n꒰:zap:꒱ <@&684408442366328832>\n\n«──────────────────────»", color=0xFA4B88)
+      pings.set_image(url="https://cdn.discordapp.com/attachments/680532449989492750/683015182909440111/tenor_6.gif")
+      await msg.edit(embed=pings)
+      
+            
+            
+
+@bot.command()
 async def rolemenupost(ctx):
       age = discord.Embed(description=":cloud:«────── « ⋅ʚ♡ɞ⋅ » ──────»:cloud: \n**✧༺༻✧♡༻∞　Age　∞༺♡✧༺༻✧**\n\n꒰:rice_ball:꒱ <@&680799622914113636> \n꒰:rice:꒱ <@&680800004855824416>\n\n«────────────────────»", color=0x081154)
       age.set_image(url="https://cdn.discordapp.com/attachments/680532449989492750/683015137778729061/original_12_-_Copy.gif")
