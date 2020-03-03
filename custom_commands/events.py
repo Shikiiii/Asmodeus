@@ -236,7 +236,7 @@ async def on_member_join(member):
         #await welcomer.edit(mentionable=True)
         #embed.set_author(name="{}".format(member,), icon_url=member.avatar_url)
         #embed.set_thumbnail(url=member.guild.icon_url)
-        embed = discord.Embed(title="˜”°•.˜”°• Welcome to Asmodeus! •°”˜.•°”˜", description="✧ :- We now have **{}** members! -: ✧\n\n≼⌈ Read the <#680532428213059627> to avoid punishments.\n⋞⌊ Take a look at <#680532441890422865>, <#680532444553674773> and <#680532447318114367>.\n\nღ Do you want to get mentioned everytime a new member joins? Visit <#684413121812758542>!", color=0xFFFFFF)
+        embed = discord.Embed(title="˜”°•.˜”°• Welcome to Asmodeus! •°”˜.•°”˜", description="✧ :- We now have **{}** members! -: ✧\n\n≼⌈ Read the <#680532428213059627> to avoid punishments.\n⋞⌊ Take a look at <#680532441890422865>, <#680532444553674773> and <#680532447318114367>.\n\nღ Do you want to get mentioned everytime a new member joins? Visit <#684413121812758542>!".format(member.guild.member_count), color=0xFFFFFF)
         embed.set_image(url="https://giffiles.alphacoders.com/905/90574.gif")
         global welcomemsg
         if welcomemsg:
