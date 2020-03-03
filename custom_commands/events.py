@@ -300,7 +300,7 @@ async def on_message(message: Message):
             msg = await intros.fetch_message(int(message.content))
             await message.delete()
         await msg.delete()
-        embed = discord.Embed(title="__Reminder:__", description="Before you post your introduction, keep in mind:\n - You are only allowed to post **1 message** in this channel. Make sure it covers your whole introduction. After you post a message, the channel will become read-only for you.\n - Deleting your introduction **will not let you type again**. Please contact <@660658512052879401> if you want to edit your introduction.\n - Useless messages in this channel will be deleted.", color=0x000000, timestamp=datetime.utcnow()) 
+        embed = discord.Embed(title="‧̍̊˙˚˙ᵕ꒳ᵕ˙˚˙─Reminder:─˙˚˙ᵕ꒳ᵕ˙˚˙‧̍̊", description="**Before you post your introduction, keep in mind:**\n<a:purplehearts:684377574507544631> - You are allowed to post __one message__ in this channel, keep that in mind while making your introduction. After posting the introduction the channel will become __read-only__.\n<a:purplehearts:684377574507544631> - Deleting your introduction __will not__ let you type again, Please contact <@680519129219727380> if you want to edit your introduction.\n<a:purplehearts:684377574507544631> - Useless messages in this channel will be deleted.", color=0x000000, timestamp=datetime.utcnow()) 
         msg2 = await intros.send(embed=embed)
         await chan.send("{}".format(msg2.id))
     elif message.channel.id == 680532434277630043 and message.author.bot == False:
