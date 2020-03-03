@@ -220,14 +220,14 @@ async def diswel(ctx):
 
 @bot.event
 async def on_member_join(member):
-    if member.guild.id == 680186413588676649:
+    if member.guild.id == 680527521762246701:
         #await asyncio.sleep(10)
-        rol = discord.utils.get(member.guild.roles, name="Member")
+        rol = discord.utils.get(member.guild.roles, name="Members")
         await member.add_roles(rol)
-        mbrcnt = bot.get_channel(680612197386158083)
-        channel = bot.get_channel(680186415493021792)
+        mbrcnt = bot.get_channel(680792854200713217)
+        channel = bot.get_channel(680532449989492750)
         #newmbrcnt = bot.get_channel(670374275173318667)
-        await mbrcnt.edit(name="Members ;; {}".format(member.guild.member_count))
+        await mbrcnt.edit(name="☆,˚🌙゜  {} ｡˚ ⋆".format(member.guild.member_count))
        # await newmbrcnt.edit(name="🌈。✩・{}".format(member.guild.member_count))
         #embed = discord.Embed(
         #    description="Welcome to **[Ａｓｍｏｄｅｕｓ](https://discord.gg/Qqzy2ds)**! You're the **{}th** member. \n\n Make sure to read: <#660634194854150144>".format(
@@ -236,11 +236,11 @@ async def on_member_join(member):
         #await welcomer.edit(mentionable=True)
         #embed.set_author(name="{}".format(member,), icon_url=member.avatar_url)
         #embed.set_thumbnail(url=member.guild.icon_url)
-        embed = discord.Embed(color=0xFFFFFF)
-        embed.set_image(url="https://cdn.discordapp.com/attachments/680440403266371653/680449992544092183/image0.gif")
+        embed = discord.Embed(title="˜”°•.˜”°• Welcome to Asmodeus! •°”˜.•°”˜", description="✧ :- We now have **{}** members! -: ✧\n\n≼⌈ Read the <#680532428213059627> to avoid punishments.\n⋞⌊ Take a look at <#680532441890422865>, <#680532444553674773> and <#680532447318114367>.\n\nღ Do you want to get mentioned everytime a new member joins? Visit <#684413121812758542>!", color=0xFFFFFF)
+        embed.set_image(url="https://giffiles.alphacoders.com/905/90574.gif")
         global welcomemsg
         if welcomemsg:
-            await channel.send("Welcome to Ａｓｍｏｄｅｕｓ, {}! We now have **{}** members.".format(member.mention, member.guild.member_count), embed=embed)
+            await channel.send("<@&684408442366328832>, please welcome our new member {} to the server!".format(member.mention, member.guild.member_count), embed=embed)
         #await welcomer.edit(mentionable=False)
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
         await loggg.send(f"{member} ({member.mention}, {member.id}) joined.")
@@ -253,10 +253,10 @@ async def on_member_join(member):
             #await member.send("Hey! Welcome to **Ａｓｍｏｄｅｕｓ❄🎄**. Feel free to chat with us in <#660616924643721254>.", embed=embed)
         #except:
          #   return
-    else:
+    #else:
         #embed = discord.Embed(title="25$ Paid Promotion", description="**Welcome to Bearded Vultures!**\n\nWe’re a __**new**__ company that does numerous things to support our customers to the best of our ability. From gaming communities to discord servers, our company can create a __**professional**__ build that will be more than satisfactory to you! Read more about our company below; \n\n**:snowflake: ARK: Survival Evolved (TAMES) :snowflake: \n:snowflake: Discord Servers :snowflake: \n:snowflake: Minecraft Builds :snowflake: \n\n:scream: Reaction Roles \n:scream: Self Advertising \n:scream: Events / Giveaways \n\n:trophy: Creator Contests \n:trophy: Builder Contests \n\n:gift: The first 3 services are __FREE__ to our customers, per customer. :gift: **\n\n*:boom:Lᴏᴏᴋɪɴɢ ғᴏʀ **ʙᴜɪʟᴅᴇʀs** ᴀɴᴅ **ᴅɪsᴄᴏʀᴅ ᴄʀᴇᴀᴛᴏʀs***\n:moneybag: __**Earn honest cash with us!**__ :moneybag: \n**OUR employees get 90-95% of all profits from their builds and creations!** \n\n:paperclip: https://discord.gg/6Rj8muS\n:paperclip: https://discord.gg/JqubD94", color=0x33F6FF, timestamp=datetime.utcnow())
         #embed.set_author(name="Ａｓｍｏｄｅｕｓ❄🎄 Paid Promotion", url="https://discord.gg/h945y6T")
-        await member.send("Hey! Welcome to **{}**.\Our server recently got deleted at 1K, help us get back at 1K by inviting 3 people and joining the **Nitro Giveaway**! https://discord.gg/Qqzy2ds".format(member.guild.name), embed=embed)
+        #await member.send("Hey! Welcome to **{}**.\Our server recently got deleted at 1K, help us get back at 1K by inviting 3 people and joining the **Nitro Giveaway**! https://discord.gg/Qqzy2ds".format(member.guild.name), embed=embed)
 
     chan = None
     for key, value in memberLogs.items():
