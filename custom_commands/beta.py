@@ -16,6 +16,23 @@ from datetime import datetime
 # none
 
 @bot.command()
+async def movingservers(ctx):
+      if ctx.message.author.id != 680519129219727380:
+            return
+      old_asmo = bot.get_guild(680186413588676649)
+      new_asmo = bot.get_guild(680527521762246701)
+      for user in old_asmo.members:
+            member = new_asmo.get_member(user.id)
+            if member is None:
+                  try:
+                        await user.send("asmodeus, a server you are in, moved to a new server.\nif you'd like to know why: <#684934881360216071>\nplease make sure to join the new one: discord.gg/PRBxdkZ\nthank you!")
+                  except:
+                        shiki = old_asmo.get_member(680519129219727380)
+                        await shiki.send("Couldn't DM {}".format(user))
+            elif member is not None:
+                  await user.kick()
+
+@bot.command()
 async def fixrolemenupings(ctx):
       chan = bot.get_channel(680532444553674773)
       msg = await chan.fetch_message(683687197974724703)
