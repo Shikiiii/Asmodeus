@@ -269,9 +269,9 @@ async def on_member_join(member):
 
 @bot.event
 async def on_member_remove(member):
-    if member.guild.id == 680186413588676649:
-        mbrcnt = bot.get_channel(680612197386158083)
-        await mbrcnt.edit(name="Members ;; {}".format(member.guild.member_count))
+    if member.guild.id == 680527521762246701:
+        mbrcnt = bot.get_channel(680792854200713217)
+        await mbrcnt.edit(name="☆,˚🌙゜  {} ｡˚ ⋆".format(member.guild.member_count))
         #newmbrcnt = bot.get_channel(670374275173318667)
         #await newmbrcnt.edit(name="🌈。✩・{}".format(member.guild.member_count))
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
