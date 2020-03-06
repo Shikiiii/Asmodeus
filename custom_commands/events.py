@@ -285,6 +285,14 @@ async def on_member_remove(member):
             embed.set_author(name="{}".format(member), icon_url=member.avatar_url)
             await chan.send(embed=embed)
 
+@bot.command()
+async def testingboost(ctx):
+    embed = discord.Embed(description="**Thank you so much for deciding to boost Ａｓｍｏｄｅｕｓ✨!**\n\nYou're now eligible for all the stuff listed in <#680532434277630043>. You can also see them by using the ``!tag boosting`` command in any of the text channels.\n\nPlease contact <@680519129219727380> to collect your perks for boosting.\n\n``` ```", color=0xFFB6C1, timestamp=datetime.utcnow())
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/680521500352315423/685555150085029915/asmodeus_boosted_thumbnail.png")
+    embed.set_image(url="https://cdn.discordapp.com/attachments/680521500352315423/685556831761989676/ily.gif")
+    await ctx.message.author.send("``` ```", embed=embed)
+    await ctx.message.author.send("``` ```")
+            
 @bot.event
 async def on_message(message: Message):
     if message.is_system()
