@@ -287,7 +287,25 @@ async def on_member_remove(member):
 
 @bot.event
 async def on_message(message: Message):
-    if message.content.lower() == "nigger" or "nigger" in message.content.lower():
+    if message.is_system()
+        if message.channel.id == 680532431216181281:
+            await message.add_reaction(":regional_indicator_t:")
+            await message.add_reaction(":regional_indicator_h:")
+            await message.add_reaction(":regional_indicator_a:")
+            await message.add_reaction(":regional_indicator_n:")
+            await message.add_reaction(":regional_indicator_k:")
+            await message.add_reaction(":regional_indicator_y:")
+            await message.add_reaction(":regional_indicator_o:")
+            await message.add_reaction(":regional_indicator_u:")
+            await message.add_reaction("<a:purplehearts:684377574507544631>")
+            embed = discord.Embed(description="**Thank you so much for deciding to boost Ａｓｍｏｄｅｕｓ✨!**\n\nYou're now eligible for all the stuff listed in <#680532434277630043>. You can also see them by using the ``!tag boosting`` command in any of the text channels.\n\nPlease contact <@680519129219727380> to collect your perks for boosting.\n\n``` ```", color=0xFFB6C1, timestamp=datetime.utcnow())
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/680521500352315423/685555150085029915/asmodeus_boosted_thumbnail.png")
+            embed.set_image(url="https://cdn.discordapp.com/attachments/680521500352315423/685556831761989676/ily.gif")
+            await message.author.send("``` ```", embed=embed)
+            await message.author.send("``` ```")
+            await message.channel.send("<3 {}".format(message.author.mention))
+        
+    elif message.content.lower() == "nigger" or "nigger" in message.content.lower():
         await message.delete()
     elif message.channel.id == 680532441890422865:
         if message.author.bot == True:
