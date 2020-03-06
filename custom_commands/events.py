@@ -295,7 +295,7 @@ async def testingboost(ctx):
             
 @bot.event
 async def on_message(message: Message):
-    if message.is_system()
+    if message.is_system():
         if message.channel.id == 680532431216181281:
             await message.add_reaction(":regional_indicator_t:")
             await message.add_reaction(":regional_indicator_h:")
