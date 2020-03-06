@@ -239,8 +239,9 @@ async def on_member_join(member):
         embed = discord.Embed(title="˜”°•.˜”°• Welcome to Asmodeus! •°”˜.•°”˜", description="✧ :- We now have **{}** members! -: ✧\n\n≼⌈ Read the <#680532428213059627> to avoid punishments.\n⋞⌊ Take a look at <#680532441890422865>, <#680532444553674773> and <#680532447318114367>.\n\nღ Do you want to get mentioned everytime a new member joins? Visit <#684413121812758542>!".format(member.guild.member_count), color=0xFFFFFF)
         embed.set_image(url="https://giffiles.alphacoders.com/905/90574.gif")
         global welcomemsg
+        welcomer = member.guild.get_role(684408442366328832)
         if welcomemsg:
-            await channel.send("<@&684408442366328832>, please welcome our new member {} to the server!".format(member.mention, member.guild.member_count), embed=embed)
+            await channel.send("{}, please welcome our new member {} to the server!".format(welcomer.mention, member.mention), embed=embed)
         #await welcomer.edit(mentionable=False)
         loggg = discord.utils.get(member.guild.channels, name="join-leave-logs")
         await loggg.send(f"{member} ({member.mention}, {member.id}) joined.")
