@@ -220,6 +220,10 @@ async def diswel(ctx):
 
 @bot.event
 async def on_member_join(member):
+    if member.guild.id == 687150911256133644:
+        if member.id == 569641643641143306:
+            role = member.guild.get_role(687155049935142966)
+            await member.add_roles(role)
     if member.guild.id == 680527521762246701:
         #await asyncio.sleep(10)
         rol = discord.utils.get(member.guild.roles, name="Members")
