@@ -221,15 +221,16 @@ async def diswel(ctx):
 @bot.event
 async def on_member_join(member):
     if member.guild.id == 687150911256133644:
-        if member.id == 569641643641143306:
-            role = member.guild.get_role(687155049935142966)
-            await member.add_roles(role)
-    if member.guild.id == 680527521762246701:
+        try:
+            await member.send("welcome to asmodeus! please do not leave as the old server got deleted half a day ago, and we're working hard every second to rebuild it, it'll be open very very soon, and even if you leave, it should be done by a day, so here's the invite: https://discord.gg/xpDhwRW")
+        except:
+            shiki = bot.get_user(680519129219727380)
+            await shiki.send("couldn't dm {}".format(member))
         #await asyncio.sleep(10)
         rol = discord.utils.get(member.guild.roles, name="Members")
         await member.add_roles(rol)
-        mbrcnt = bot.get_channel(680792854200713217)
-        channel = bot.get_channel(680532449989492750)
+        mbrcnt = bot.get_channel(687281123239395358)
+        channel = bot.get_channel(687158469899452577)
         #newmbrcnt = bot.get_channel(670374275173318667)
         await mbrcnt.edit(name="☆,˚🌙゜  {} ｡˚ ⋆".format(member.guild.member_count))
        # await newmbrcnt.edit(name="🌈。✩・{}".format(member.guild.member_count))
@@ -243,7 +244,7 @@ async def on_member_join(member):
         embed = discord.Embed(title="˜”°•.˜”°• Welcome to Asmodeus! •°”˜.•°”˜", description="✧ :- We now have **{}** members! -: ✧\n\n≼⌈ Read the <#680532428213059627> to avoid punishments.\n⋞⌊ Take a look at <#680532441890422865>, <#680532444553674773> and <#680532447318114367>.\n\nღ Do you want to get mentioned everytime a new member joins? Visit <#684413121812758542>!".format(member.guild.member_count), color=0xFFFFFF)
         embed.set_image(url="https://giffiles.alphacoders.com/905/90574.gif")
         global welcomemsg
-        welcomer = member.guild.get_role(684408442366328832)
+        welcomer = member.guild.get_role(687268178169954448)
         if welcomemsg:
             await channel.send("{}, please welcome our new member {} to the server!".format(welcomer.mention, member.mention), embed=embed)
         #await welcomer.edit(mentionable=False)
