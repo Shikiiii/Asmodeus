@@ -309,7 +309,7 @@ async def sendboostedmessagex(ctx, user: discord.Member):
 @bot.event
 async def on_message(message: Message):
     if message.is_system():
-        if message.channel.id == 680532431216181281:
+        if message.channel.id == 687158460902801429:
             await message.add_reaction("🇹")
             await message.add_reaction("🇭")
             await message.add_reaction("🇦")
