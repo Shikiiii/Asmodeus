@@ -221,11 +221,11 @@ async def diswel(ctx):
 @bot.event
 async def on_member_join(member):
     if member.guild.id == 687150911256133644:
-        try:
-            await member.send("welcome to asmodeus! please do not leave as the old server got deleted half a day ago, and we're working hard every second to rebuild it, it'll be open very very soon, and even if you leave, it should be done by a day, so here's the invite: https://discord.gg/xpDhwRW")
-        except:
-            shiki = bot.get_user(680519129219727380)
-            await shiki.send("couldn't dm {}".format(member))
+        #try:
+        #    await member.send("welcome to asmodeus! please do not leave as the old server got deleted half a day ago, and we're working hard every second to rebuild it, it'll be open very very soon, and even if you leave, it should be done by a day, so here's the invite: https://discord.gg/xpDhwRW")
+        #except:
+        #    shiki = bot.get_user(680519129219727380)
+        #    await shiki.send("couldn't dm {}".format(member))
         #await asyncio.sleep(10)
         rol = discord.utils.get(member.guild.roles, name="Members")
         await member.add_roles(rol)
