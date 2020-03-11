@@ -328,7 +328,7 @@ async def on_message(message: Message):
         
     elif message.content.lower() == "nigger" or "nigger" in message.content.lower():
         await message.delete()
-    elif message.channel.id == 687158468381114409:
+    elif message.channel.id == 687158466942468121:
         if message.author.bot == True:
             return
         await message.channel.set_permissions(message.author, send_messages=False)
