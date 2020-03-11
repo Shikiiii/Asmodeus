@@ -33,12 +33,12 @@ async def movingservers(ctx):
                   await user.kick()
 
 @bot.command()
-async def fixrolemenupings(ctx):
-      chan = bot.get_channel(680532444553674773)
-      msg = await chan.fetch_message(683687197974724703)
-      pings = discord.Embed(description=":star2:«─────── « ⋅ʚ♡ɞ⋅ » ───────»:star2: \n**✧༺༻✧♡༻∞　Pings　∞༺♡✧༺༻✧**\n\n꒰:dizzy:꒱ <@&680813408958021665> \n꒰:sparkles:꒱ <@&680813442747203605> \n꒰:ringed_planet:꒱ <@&680813479333986386> \n꒰:zap:꒱ <@&684408442366328832>\n\n«──────────────────────»", color=0xFA4B88)
-      pings.set_image(url="https://cdn.discordapp.com/attachments/680532449989492750/683015182909440111/tenor_6.gif")
-      await msg.edit(embed=pings)
+async def fixrolemenudms(ctx):
+      chan = bot.get_channel(687158468381114409)
+      msg = await chan.fetch_message(687280036520263740)
+      dms = discord.Embed(description=":shaved_ice:«────── « ⋅ʚ♡ɞ⋅ » ──────»:shaved_ice:\n**✧༺༻✧♡༻∞　DMs　∞༺♡✧༺༻✧**\n\n꒰:cake:꒱ <@&687268281085722647> \n꒰:doughnut:꒱ <@&687268303915450448> \n꒰:candy:꒱ <@&687268333971701782>\n\n«────────────────────»", color=0x84659E)
+      dms.set_image(url="https://cdn.discordapp.com/attachments/680532449989492750/683015150881603584/original_453.gif")
+      await msg.edit(embed=dms)
       
             
             
