@@ -275,8 +275,8 @@ async def on_member_join(member):
 
 @bot.event
 async def on_member_remove(member):
-    if member.guild.id == 680527521762246701:
-        mbrcnt = bot.get_channel(680792854200713217)
+    if member.guild.id == 687150911256133644:
+        mbrcnt = bot.get_channel(687281123239395358)
         await mbrcnt.edit(name="☆,˚🌙゜  {} ｡˚ ⋆".format(member.guild.member_count))
         #newmbrcnt = bot.get_channel(670374275173318667)
         #await newmbrcnt.edit(name="🌈。✩・{}".format(member.guild.member_count))
