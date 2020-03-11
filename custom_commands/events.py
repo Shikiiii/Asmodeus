@@ -328,7 +328,7 @@ async def on_message(message: Message):
         
     elif message.content.lower() == "nigger" or "nigger" in message.content.lower():
         await message.delete()
-    elif message.channel.id == 680532441890422865:
+    elif message.channel.id == 687158468381114409:
         if message.author.bot == True:
             return
         await message.channel.set_permissions(message.author, send_messages=False)
@@ -340,10 +340,10 @@ async def on_message(message: Message):
             msg = await intros.fetch_message(int(message.content))
             await message.delete()
         await msg.delete()
-        embed = discord.Embed(title="‧̍̊˙˚˙ᵕ꒳ᵕ˙˚˙─Reminder:─˙˚˙ᵕ꒳ᵕ˙˚˙‧̍̊", description="**Before you post your introduction, keep in mind:**\n<a:purplehearts:684377574507544631> - You are allowed to post __one message__ in this channel, keep that in mind while making your introduction. After posting the introduction the channel will become __read-only__.\n<a:purplehearts:684377574507544631> - Deleting your introduction __will not__ let you type again, Please contact <@680519129219727380> if you want to edit your introduction.\n<a:purplehearts:684377574507544631> - Useless messages in this channel will be deleted.", color=0x000000, timestamp=datetime.utcnow()) 
+        embed = discord.Embed(title="‧̍̊˙˚˙ᵕ꒳ᵕ˙˚˙─Reminder:─˙˚˙ᵕ꒳ᵕ˙˚˙‧̍̊", description="**Before you post your introduction, keep in mind:**\n<a:purplehearts:687272661138800650> - You are allowed to post __one message__ in this channel, keep that in mind while making your introduction. After posting the introduction the channel will become __read-only__.\n<a:purplehearts:687272661138800650> - Deleting your introduction __will not__ let you type again, Please contact <@680519129219727380> if you want to edit your introduction.\n<a:purplehearts:687272661138800650> - Useless messages in this channel will be deleted.", color=0x000000, timestamp=datetime.utcnow()) 
         msg2 = await intros.send(embed=embed)
         await chan.send("{}".format(msg2.id))
-    elif message.channel.id == 680532434277630043 and message.author.bot == False:
+    elif message.channel.id == 687158463406800945 and message.author.bot == False:
         boosters = message.channel
         chan = bot.get_channel(670392843508121652)
         print(chan)
@@ -352,7 +352,7 @@ async def on_message(message: Message):
             msg = await boosters.fetch_message(int(message.content))
             await message.delete()
         await msg.delete()
-        embed = discord.Embed(title=".・゜-: ✧ :-　Booster Perks　-: ✧ :-゜・．", description="<a:purplehearts:684377574507544631>─ You will get permission to advertise whatever you want in <#680532434277630043>\n\n<a:purplehearts:684377574507544631>─ You will get the booster role that is hoisted above the members.\n\n<a:purplehearts:684377574507544631>─ You get a special role, which you personalize with name and color.\n\n<a:purplehearts:684377574507544631>─ You get a custom response when someone mentions your name in the chat. \n\n<a:purplehearts:684377574507544631>─ You can apply for staff even if the applications are closed.\n\n<a:purplehearts:684377574507544631>─ Higher chances in winning future giveaways, also booster only giveaways. \n\n<a:purplehearts:684377574507544631>─ You will get your own voice channel and text channel, alike a blog, where it can be public or private. You can invite your friends in it and do whatever your hearts desire.", color=0xB6B3FC, timestamp=datetime.utcnow()) 
+        embed = discord.Embed(title=".・゜-: ✧ :-　Booster Perks　-: ✧ :-゜・．", description="<a:purplehearts:687272661138800650>─ You will get permission to advertise whatever you want in <#687158463406800945>.\n\n<a:purplehearts:687272661138800650>─ You will get the booster role that is hoisted above the members.\n\n<a:purplehearts:687272661138800650>─ You get a special role, which you personalize with name and color.\n\n<a:purplehearts:687272661138800650>─ You get a custom response when someone mentions your name in the chat. \n\n<a:purplehearts:687272661138800650>─ You can apply for staff even if the applications are closed.\n\n<a:purplehearts:687272661138800650>─ Higher chances in winning future giveaways, also booster only giveaways. \n\n<a:purplehearts:687272661138800650>─ You will get your own voice channel and text channel, alike a blog, where it can be public or private. You can invite your friends in it and do whatever your hearts desire.", color=0xB6B3FC, timestamp=datetime.utcnow()) 
         msg2 = await boosters.send(embed=embed)
         await chan.send("{}".format(msg2.id))
     elif bot.user.mentioned_in(message):
