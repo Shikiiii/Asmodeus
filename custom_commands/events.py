@@ -606,6 +606,9 @@ async def on_message(message: Message):
         await message.channel.send("i'm bored")
     elif message.content == "nix":
         await message.channel.send("what do you want this time")
+    blank = bot.get_user(635191040764018719)
+    elif message.content == "blank" or blank.mentioned_in(message):
+        await message.channel.send("server sugar daddy")
 
     await bot.process_commands(message)
 
