@@ -16,6 +16,11 @@ from datetime import datetime
 # none
 
 @bot.command()
+async def topic(ctx):
+      questions = ["What weird food combinations do you really enjoy?", "What social stigma does society need to get over?", "What’s something you really resent paying for?", "What would a world populated by clones of you be like?","What would a world populated by clones of you be like?","Do you think that aliens exist?","Where are some unusual places you’ve been?","What are some red flags to watch out for in daily life?","What movie can you watch over and over without ever getting tired of?","When did something start out badly for you but in the end, it was great?","What’s wrong but sounds right?","Who is your favorite person in the server?","If you couldn’t be convicted of any one type of crime, what criminal charge would you like to be immune to?","In the past people were buried with the items they would need in the afterlife, what would you want buried with you so you could use it in the afterlife?","Who do you go out of your way to be nice to?","What food is delicious but a pain to eat?","What “old person” things do you do?","What’s the most expensive thing you’ve broken?","What’s your cure for hiccups?","What mythical creature do you wish actually existed?","What was the most unsettling film you’ve seen?","What are you interested in that most people aren’t?","Most Memorable Birthday?","What is your guilty pleasure?","What would be your last meal?","Do you eat fries with a sauce or without?","What is the worst food in your opinion?","What kind of person would you like to be?","What is your life goal?","What is your favorite game?","What’s on Your Bucket List?","Do you prefer coffee or tea?","Do you drink water cold or warm?"]
+      await ctx.send(f"{random.choice(questions)}")
+      
+@bot.command()
 async def movingservers(ctx):
       if ctx.message.author.id != 680519129219727380:
             return
