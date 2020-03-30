@@ -20,10 +20,10 @@ async def requeststar(ctx, id: int):
       message = None
       try:
             message = await ctx.message.channel.fetch_message(id)
+            await message.add_reaction("⭐")
       except:
             await ctx.send("**{}**, message not found. Please make sure you're getting a valid message ID.".format(ctx.message.author.name))
       embed = discord.Embed(description="[**Click __HERE__ to jump to the message!**]({})".format(message.jump_url))
-      await message.add_reaction("⭐")
       left = 5
       for reaction in message.reactions:
             if reaction.emoji == "⭐":
