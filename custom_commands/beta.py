@@ -22,11 +22,11 @@ async def requeststar(ctx, id: int):
             message = await ctx.message.channel.fetch_message(id)
       except:
             await ctx.send("**{}**, message not found. Please make sure you're getting a valid message ID.".format(ctx.message.author.name))
-      embed = discord.Embed(description="[**Click __HERE__ to jump to the message!**]()")
-      left = 0
+      embed = discord.Embed(description="[**Click __HERE__ to jump to the message!**]({})".format(message.jump_url)
+      left = 5
       for reaction in message.reactions:
             if reaction.emoji == "⭐":
-                  left = 5 - reaction.count
+                  left = left - reaction.count
       await ctx.send("**{}** is requesting to star a message. It requires **{}** more ⭐ reactions to get in <#687158464849379339>.".format(ctx.message.author.name, str(left)), embed=embed) 
 
 @bot.command()
