@@ -17,6 +17,7 @@ from datetime import datetime
 
 @bot.command(aliases=["rs", "starthis", "st"])
 async def requeststar(ctx, id: int):
+      message = None
       try:
             message = await ctx.message.channel.fetch_message(id)
       except:
