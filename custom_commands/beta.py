@@ -18,7 +18,7 @@ from datetime import datetime
 @bot.command(aliases=["rs", "starthis", "st"])
 async def requeststar(ctx, id: int):
       try:
-            message = ctx.message.channel.fetch_message(id)
+            message = await ctx.message.channel.fetch_message(id)
       except:
             await ctx.send("**{}**, message not found. Please make sure you're getting a valid message ID.".format(ctx.message.author.name))
       embed = discord.Embed(description="[**Click __HERE__ to jump to the message!**]()")
