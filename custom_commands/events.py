@@ -27,8 +27,8 @@ async def testembeds(ctx):
 
 @bot.command()
 async def striketwo(ctx, user: discord.Member, staff_pos: str, *, reason: str):
-    asmodeus = bot.get_guild(660616924643721248)
-    shiki = asmodeus.get_member(660658512052879401)
+    asmodeus = bot.get_guild(687150911256133644)
+    shiki = asmodeus.get_member(680519129219727380)
     log = bot.get_channel(672926856995012634)
     strikes = 0
     await log.send("{}".format(user.id))
@@ -42,8 +42,8 @@ async def striketwo(ctx, user: discord.Member, staff_pos: str, *, reason: str):
 
 @bot.command()
 async def strike(ctx, user: discord.Member, staff_pos: str, *, reason: str):
-    asmodeus = bot.get_guild(660616924643721248)
-    shiki = asmodeus.get_member(660658512052879401)
+    asmodeus = bot.get_guild(687150911256133644)
+    shiki = asmodeus.get_member(680519129219727380)
     log = bot.get_channel(672926856995012634)
     strikes = 0
     await log.send("{}".format(user.id))
