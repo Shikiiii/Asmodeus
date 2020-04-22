@@ -223,7 +223,7 @@ async def on_member_join(member):
     if member.guild.id == 670542439945338900:
         chan = bot.get_channel(670543196794781726)
         msg = await chan.send("Hey {}, check out those servers!".format(member.mention))
-        await asyncio.sleep(5)
+        await asyncio.sleep(2)
         await msg.delete()
     elif member.guild.id == 687150911256133644:
         #try:
