@@ -25,7 +25,7 @@ async def purgeshit(ctx, *, word: str):
             await ctx.send("Checking {}...".format(channel.mention))
             i = 0
             chans += 1
-            async for message in channel.history():
+            async for message in channel.history(limit=None):
                   if word in message.content:
                         await message.delete()
                         i += 1
