@@ -21,7 +21,7 @@ async def purgeshit(ctx, *, word: str):
             return
       chans = 0
       globalcount = 0
-      for channel in ctx.message.guild.textchannels:
+      for channel in ctx.message.guild.text_channels:
             await ctx.send("Checking {}...".format(channel.mention))
             i = 0
             chans += 1
