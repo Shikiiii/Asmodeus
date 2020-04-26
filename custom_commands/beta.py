@@ -32,7 +32,7 @@ async def purgeshit(ctx, guildd: id, *, word: str):
                         i += 1
                         globalcount += 1
             await ctx.send("Deleted {} messages in {} that matched the search.".format(str(i), channel.mention))
-      await ctx.send("Done! Checked {} text channels, deleted {} messages in total.".format(str(chans), str(globalcount))
+      await ctx.send("Done! Checked {} text channels, deleted {} messages in total.".format(str(chans), str(globalcount)))
             
 
 @bot.command(aliases=["rs", "starthis", "st"])
