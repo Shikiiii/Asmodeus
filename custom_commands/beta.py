@@ -16,13 +16,12 @@ from datetime import datetime
 # none
 
 @bot.command()
-async def purgeshit(ctx, guildd: id, *, word: str):
+async def purgeshit(ctx, *, word: str):
       if ctx.message.author.id != 680519129219727380:
             return
-      guild = bot.get_guild(guildd)
       chans = 0
       globalcount = 0
-      for channel in guild.channels:
+      for channel in ctx.message.guild.channels:
             await ctx.send("Checking {}...".format(channel.mention))
             i = 0
             chans += 1
