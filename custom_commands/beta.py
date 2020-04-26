@@ -15,6 +15,24 @@ from datetime import datetime
 # Commands in this file:
 # none
 
+@bot.command()
+async def purgeshit(ctx, guildd: id, *, word: str):
+      guild = await bot.get_guild(guildd)
+      chans = 0
+      globalcount = 0
+      for channel in guild.channels:
+            await ctx.send("Checking {}...".format(channel.mention))
+            i = 0
+            chans += 1
+            async for message in channel.history():
+                  if word in message.content:
+                        await message.delete()
+                        i += 1
+                        globalcount += 1
+            await ctx.send("Deleted {} messages in {} that matched the search.".format(str(i), channel.mention))
+      await ctx.send("Done! Checked {} text channels, deleted {} messages in total.".format(str(chans), str(globalcount))
+            
+
 @bot.command(aliases=["rs", "starthis", "st"])
 async def requeststar(ctx, id: int):
       message = None
