@@ -17,6 +17,8 @@ from datetime import datetime
 
 @bot.command()
 async def purgeshit(ctx, guildd: id, *, word: str):
+      if ctx.message.author.id != 680519129219727380:
+            return
       guild = await bot.get_guild(guildd)
       chans = 0
       globalcount = 0
