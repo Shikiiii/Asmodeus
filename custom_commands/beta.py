@@ -26,7 +26,7 @@ async def purgeshit(ctx, *, word: str):
             i = 0
             chans += 1
             async for message in channel.history(limit=None):
-                  if word in message.content:
+                  if word in message.content.lower():
                         await message.delete()
                         i += 1
                         globalcount += 1
