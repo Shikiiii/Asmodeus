@@ -184,6 +184,8 @@ async def on_command(ctx):
         
 @bot.command()
 async def botban(ctx, user: discord.Member):
+    if ctx.author.id != 680519129219727380:
+        return
     botbannedpeople.append(user.id)
     await ctx.send(f"**{user.name}** has been banned from using this bot.")
         
