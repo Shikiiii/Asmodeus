@@ -13,6 +13,8 @@ async def get_prefix(bot, message):
 
 bot = commands.Bot(command_prefix=get_prefix, case_insensitive=True)
 
+botbannedpeople = []
+
 afklist = {}
 
 remindersdm = []
