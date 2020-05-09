@@ -180,6 +180,7 @@ async def on_ready():
 async def on_command(ctx):
     if ctx.message.author.id in botbannedpeople:
         await ctx.send("You've been banned from using this bot.")
+        return
         
 @bot.command()
 async def botban(ctx, user: discord.Member):
