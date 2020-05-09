@@ -177,6 +177,16 @@ async def on_ready():
         #stimessages += 1
 
 @bot.event
+async def on_command(ctx):
+    if ctx.message.author.id in botbannedpeople:
+        await ctx.send("You've been banned from using this bot.")
+        
+@bot.command()
+async def botban(ctx, user: discord.Member):
+    botbannedpeople.append(user.id)
+    await ctx.send(f"**{user.name}** has been banned from using this bot.")
+        
+@bot.event
 async def on_member_update(before, after):
     if before.guild.id == 660616924643721248:
         role = discord.utils.get(after.guild.roles, name="Snowstorms ❄️")
