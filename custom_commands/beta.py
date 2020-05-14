@@ -92,7 +92,7 @@ async def rolemenupost(ctx):
       device.set_image(url="https://cdn.discordapp.com/attachments/680532449989492750/683015135719063552/original_13.gif")
       pings = discord.Embed(description=":star2:«─────── « ⋅ʚ♡ɞ⋅ » ───────»:star2: \n**✧༺༻✧♡༻∞　Pings　∞༺♡✧༺༻✧**\n\n꒰:dizzy:꒱ <@&687267882635100268> \n꒰:sparkles:꒱ <@&687268022754213892> \n꒰:ringed_planet:꒱ <@&687268043990237237> \n꒰:zap:꒱ <@&687268178169954448>\n\n«──────────────────────»", color=0xFA4B88)
       pings.set_image(url="https://cdn.discordapp.com/attachments/680532449989492750/683015182909440111/tenor_6.gif")
-      dms = discord.Embed(description=":shaved_ice:«────── « ⋅ʚ♡ɞ⋅ » ──────»:shaved_ice:\n**✧༺༻✧♡༻∞　DMs　∞༺♡✧༺༻✧**\n\n꒰:cake:꒱ <@&687267631731965974> \n꒰:doughnut:꒱ <@&687268303915450448> \n꒰:candy:꒱ <@&687268333971701782>\n\n«────────────────────»", color=0x84659E)
+      dms = discord.Embed(description=":shaved_ice:«────── « ⋅ʚ♡ɞ⋅ » ──────»:shaved_ice:\n**✧༺༻✧♡༻∞　DMs　∞༺♡✧༺༻✧**\n\n꒰:cake:꒱ <@&687268281085722647> \n꒰:doughnut:꒱ <@&687268303915450448> \n꒰:candy:꒱ <@&687268333971701782>\n\n«────────────────────»", color=0x84659E)
       dms.set_image(url="https://cdn.discordapp.com/attachments/680532449989492750/683015150881603584/original_453.gif")
       continent = discord.Embed(description=":fish_cake:«─────── « ⋅ʚ♡ɞ⋅ » ───────»:fish_cake: \n**✧༺༻✧♡༻∞　Continent　∞༺♡✧༺༻✧**\n\n꒰:tulip:꒱ <@&687267631731965974> \n꒰:hamburger:꒱ <@&687267653915770920> \n꒰:sunflower:꒱ <@&687267673331073054> \n꒰:sushi:꒱ <@&687267693858258955> \n꒰:cherry_blossom:꒱ <@&687267710190747660> \n꒰:fog:꒱ <@&687267733422997531>\n\n«────────────────────»", color=0xF261B1)
       continent.set_image(url="https://cdn.discordapp.com/attachments/680532449989492750/683018281736863822/original_487.gif")
