@@ -327,7 +327,7 @@ async def sendboostedmessagex(ctx, user: discord.Member):
 @bot.event
 async def on_message(message: Message):
     if message.is_system():
-        if message.channel.id == 687158460902801429:
+        if message.channel.id == 710597940573503518:
             await message.add_reaction("🇹")
             await message.add_reaction("🇭")
             await message.add_reaction("🇦")
@@ -346,7 +346,7 @@ async def on_message(message: Message):
         
     elif message.content.lower() == "nigger" or "nigger" in message.content.lower():
         await message.delete()
-    elif message.channel.id == 687158466942468121:
+    elif message.channel.id == 710598783100256337:
         if message.author.bot == True:
             return
         await message.channel.set_permissions(message.author, send_messages=False)
@@ -361,7 +361,7 @@ async def on_message(message: Message):
         embed = discord.Embed(title="‧̍̊˙˚˙ᵕ꒳ᵕ˙˚˙─Reminder:─˙˚˙ᵕ꒳ᵕ˙˚˙‧̍̊", description="**Before you post your introduction, keep in mind:**\n<a:purplehearts:687272661138800650> - You are allowed to post __one message__ in this channel, keep that in mind while making your introduction. After posting the introduction the channel will become __read-only__.\n<a:purplehearts:687272661138800650> - Deleting your introduction __will not__ let you type again, Please contact <@680519129219727380> if you want to edit your introduction.\n<a:purplehearts:687272661138800650> - Useless messages in this channel will be deleted.", color=0x000000, timestamp=datetime.utcnow()) 
         msg2 = await intros.send(embed=embed)
         await chan.send("{}".format(msg2.id))
-    elif message.channel.id == 687158463406800945 and message.author.bot == False:
+    elif message.channel.id == 710597943232692375 and message.author.bot == False:
         boosters = message.channel
         chan = bot.get_channel(670392843508121652)
         print(chan)
