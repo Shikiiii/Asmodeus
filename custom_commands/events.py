@@ -247,8 +247,8 @@ async def on_member_join(member):
         #await asyncio.sleep(10)
         rol = discord.utils.get(member.guild.roles, name="Members")
         await member.add_roles(rol)
-        mbrcnt = bot.get_channel(687281123239395358)
-        channel = bot.get_channel(687158469899452577)
+        mbrcnt = bot.get_channel(710597931257954375)
+        channel = bot.get_channel(710597951252070452)
         #newmbrcnt = bot.get_channel(670374275173318667)
         await mbrcnt.edit(name="☆,˚🌙゜  {} ｡˚ ⋆".format(member.guild.member_count))
        # await newmbrcnt.edit(name="🌈。✩・{}".format(member.guild.member_count))
@@ -259,10 +259,10 @@ async def on_member_join(member):
         #await welcomer.edit(mentionable=True)
         #embed.set_author(name="{}".format(member,), icon_url=member.avatar_url)
         #embed.set_thumbnail(url=member.guild.icon_url)
-        embed = discord.Embed(title="˜”°•.˜”°• Welcome to Asmodeus! •°”˜.•°”˜", description="✧ :- We now have **{}** members! -: ✧\n\n≼⌈ Read the <#687158458977615874> to avoid punishments.\n⋞⌊ Take a look at <#687158466942468121>, <#687158468381114409> and <#687158469253398557>.".format(member.guild.member_count), color=0xFFFFFF)
+        embed = discord.Embed(title="˜”°•.˜”°• Welcome to Asmodeus! •°”˜.•°”˜", description="✧ :- We now have **{}** members! -: ✧\n\n≼⌈ Read the <#710597938786598912> to avoid punishments.\n⋞⌊ Take a look at <#710598783100256337>, <#710597948227977356> and <#710597948580560992>.".format(member.guild.member_count), color=0xFFFFFF)
         embed.set_image(url="https://giffiles.alphacoders.com/905/90574.gif")
         global welcomemsg
-        welcomer = member.guild.get_role(687268178169954448)
+        welcomer = member.guild.get_role(710597919203393599)
         if welcomemsg:
             await channel.send("{}, please welcome our new member {} to the server!".format(welcomer.mention, member.mention), embed=embed)
         #await welcomer.edit(mentionable=False)
@@ -294,7 +294,7 @@ async def on_member_join(member):
 @bot.event
 async def on_member_remove(member):
     if member.guild.id == 687150911256133644:
-        mbrcnt = bot.get_channel(687281123239395358)
+        mbrcnt = bot.get_channel(710597931257954375)
         await mbrcnt.edit(name="☆,˚🌙゜  {} ｡˚ ⋆".format(member.guild.member_count))
         #newmbrcnt = bot.get_channel(670374275173318667)
         #await newmbrcnt.edit(name="🌈。✩・{}".format(member.guild.member_count))
