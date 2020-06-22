@@ -425,4 +425,5 @@ async def cmdhelp(ctx, *, cmd: str):
         embed.set_footer(text="Error raised on: {}".format(ctx.message.content))
         await ctx.send(embed=embed)              
 
+bot.load_extension("jishaku")        
 bot.run(os.environ.get("token"))
